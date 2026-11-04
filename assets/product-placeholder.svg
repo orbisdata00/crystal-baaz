@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 960" fill="none">
+  <rect width="800" height="960" fill="#ebe8df"/>
+  <circle cx="400" cy="426" r="214" fill="#e2ded3"/>
+  <path d="m400 207 135 101-23 246-112 150-112-150-23-246 135-101Z" fill="#b8b6a9" fill-opacity=".68" stroke="#778072" stroke-width="5"/>
+  <path d="m400 207 17 301 118-200M400 508l-112-200M400 508l-112 196M400 508l112 46M417 508 512 554" stroke="#f8f6ef" stroke-width="4" stroke-linecap="round"/>
+  <path d="M274 762h252" stroke="#c5c0b4" stroke-width="3"/>
+  <text x="400" y="818" fill="#586356" font-family="Georgia,serif" font-size="34" text-anchor="middle">Crystal Baaz</text>
+  <text x="400" y="853" fill="#85877e" font-family="Arial,sans-serif" font-size="16" letter-spacing="3" text-anchor="middle">CATALOG IMAGE PENDING</text>
+</svg>

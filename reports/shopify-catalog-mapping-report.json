@@ -1,0 +1,111 @@
+{
+  "generatedAt": "2026-11-04T09:54:04.567Z",
+  "storeDomain": "crystalbaaz.myshopify.com",
+  "apiVersion": "2026-10",
+  "authentication": {
+    "status": "authenticated",
+    "httpStatus": 200,
+    "tokenType": "accepted using public Storefront API header; Shopify Admin credential metadata was not independently inspected",
+    "requestHeader": "X-Shopify-Storefront-Access-Token",
+    "tokenValueLogged": false,
+    "errors": [],
+    "readAccess": {
+      "shop": "succeeded",
+      "products": "succeeded; 1520 accessible products returned across all pages",
+      "collections": "succeeded; 1 accessible collections returned across all pages",
+      "adminChannelConfiguration": "not exposed through these Storefront API reads"
+    }
+  },
+  "shopIdentity": {
+    "name": "My Store 2",
+    "primaryDomain": {
+      "host": "crystalbaaz.myshopify.com",
+      "url": "https://crystalbaaz.myshopify.com"
+    }
+  },
+  "source": {
+    "workbookRegistry": "src/data/client-catalog.json (imported from New Website Product Catalog.xlsx)",
+    "workbookProducts": 1523,
+    "workbookCollections": 111,
+    "workbookSkuPairs": 2576,
+    "workbookVariantsWithoutSku": 0
+  },
+  "shopify": {
+    "productsReturned": 1520,
+    "productPages": 38,
+    "collectionsReturned": 1,
+    "collectionPages": 1,
+    "variantSkuPairs": 1915,
+    "variantsWithoutSku": 12,
+    "productRecordsWithoutHandle": 0,
+    "collectionRecordsWithoutHandle": 0
+  },
+  "mappings": {
+    "products": {
+      "unionRows": 1523,
+      "statuses": {
+        "matched": 1520,
+        "workbook_only": 3
+      }
+    },
+    "skus": {
+      "unionRows": 2512,
+      "statuses": {
+        "matched": 1864,
+        "workbook_only": 648
+      }
+    },
+    "variants": {
+      "unionRows": 2576,
+      "statuses": {
+        "matched": 1915,
+        "workbook_only": 661
+      }
+    },
+    "collections": {
+      "unionRows": 112,
+      "statuses": {
+        "workbook_only": 111,
+        "shopify_only": 1
+      }
+    },
+    "titleConflicts": {
+      "products": 0,
+      "collections": 0
+    },
+    "skuHandleConflicts": 0,
+    "skuHandleConflictSamples": [],
+    "liveVariantData": {
+      "returnedVariantRows": 1915,
+      "workbookOnlyVariantRows": 661,
+      "skuAbsentFromAnyShopifyHandle": 661,
+      "skuPresentOnDifferentShopifyHandle": 0,
+      "variantsAvailableForSale": 1915,
+      "variantsUnavailableForSale": 0,
+      "variantFieldsQueried": [
+        "sku",
+        "title",
+        "selectedOptions",
+        "price",
+        "compareAtPrice",
+        "availableForSale"
+      ]
+    }
+  },
+  "frontend": {
+    "catalogProvider": "preview",
+    "checkoutEnabled": false,
+    "cartMutationsRun": true,
+    "cartSmokeTest": "passed on temporary cart; empty at completion; no checkout or order",
+    "shopifyCatalogRecordsModified": false,
+    "published": false
+  },
+  "reports": [
+    "reports/shopify-product-mapping.csv",
+    "reports/shopify-sku-mapping.csv",
+    "reports/shopify-variant-mapping.csv",
+    "reports/shopify-variant-live-data.csv",
+    "reports/shopify-collection-mapping.csv"
+  ],
+  "mappingReadiness": "complete_comparison_with_catalog_gaps_or_conflicts"
+}

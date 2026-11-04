@@ -1,0 +1,1148 @@
+{
+  "previewUrl": "http://127.0.0.1:4174/",
+  "viewport": {
+    "width": 390,
+    "height": 844,
+    "mobile": true
+  },
+  "sourceProducts": 1523,
+  "sourceCollections": 111,
+  "homepage": {
+    "title": "Crystal Baaz — Client catalog preview",
+    "hero": true,
+    "productRails": [
+      {
+        "title": "New Arrivals",
+        "cards": 12
+      },
+      {
+        "title": "Category",
+        "cards": 12
+      },
+      {
+        "title": "Crystal",
+        "cards": 0
+      },
+      {
+        "title": "Pooja Needs",
+        "cards": 12
+      },
+      {
+        "title": "Jewellery",
+        "cards": 12
+      },
+      {
+        "title": "Decor",
+        "cards": 12
+      }
+    ],
+    "newArrivals": [
+      "Amethyst Vase",
+      "Carnelian Vase",
+      "Carnelian vase",
+      "Red Jasper Vase",
+      "Rose Quartz Vase",
+      "Sphatik Vase",
+      "7 Chakra Chip Crystal Diya",
+      "Amethyst Diya",
+      "Green Aventurine Diya",
+      "Green Jade Diya",
+      "Lapis Lazuli Diya",
+      "Rose Quartz Diya"
+    ],
+    "header": true,
+    "bottomNavigation": true,
+    "expectedNewArrivals": [
+      "Amethyst Vase",
+      "Carnelian Vase",
+      "Carnelian vase",
+      "Red Jasper Vase",
+      "Rose Quartz Vase",
+      "Sphatik Vase",
+      "7 Chakra Chip Crystal Diya",
+      "Amethyst Diya",
+      "Green Aventurine Diya",
+      "Green Jade Diya",
+      "Lapis Lazuli Diya",
+      "Rose Quartz Diya"
+    ]
+  },
+  "categoriesPage": {
+    "heading": "Rashi Rings",
+    "sidebarVisible": true,
+    "sidebarEntries": 32,
+    "gridColumns": "143.5px 143.5px",
+    "productCards": 17,
+    "documentWidth": 390,
+    "scrollWidth": 390
+  },
+  "pagination": {
+    "collectionHandle": "bracelets",
+    "collectionTitle": "Bracelets",
+    "expectedProducts": 347,
+    "initialCards": 24,
+    "expectedInitialCards": 24,
+    "loadMoreClicks": 14,
+    "finalCards": 347,
+    "completed": true
+  },
+  "collectionRoutes": {
+    "checked": 111,
+    "productCardsRendered": 1858,
+    "failures": [],
+    "routes": [
+      {
+        "handle": "agate-slices",
+        "title": "Agate slices",
+        "expectedProducts": 12,
+        "renderedProducts": 12,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "love",
+        "title": "Love",
+        "expectedProducts": 69,
+        "renderedProducts": 69,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "angels",
+        "title": "Angels",
+        "expectedProducts": 19,
+        "renderedProducts": 19,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "anklet",
+        "title": "Anklet",
+        "expectedProducts": 6,
+        "renderedProducts": 6,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "nazar",
+        "title": "Nazar",
+        "expectedProducts": 46,
+        "renderedProducts": 46,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "confidence-1",
+        "title": "Confidence",
+        "expectedProducts": 56,
+        "renderedProducts": 56,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "aura-spray",
+        "title": "Aura Spray",
+        "expectedProducts": 4,
+        "renderedProducts": 4,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "money",
+        "title": "Money",
+        "expectedProducts": 99,
+        "renderedProducts": 99,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "bangle",
+        "title": "Bangle",
+        "expectedProducts": 1,
+        "renderedProducts": 1,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "bowl",
+        "title": "Bowl",
+        "expectedProducts": 1,
+        "renderedProducts": 1,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "bracelets",
+        "title": "Bracelets",
+        "expectedProducts": 347,
+        "renderedProducts": 347,
+        "firstPageTarget": 24,
+        "failures": 6
+      },
+      {
+        "handle": "focus",
+        "title": "Focus",
+        "expectedProducts": 79,
+        "renderedProducts": 79,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "business-losses",
+        "title": "Business Losses",
+        "expectedProducts": 42,
+        "renderedProducts": 42,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "sets",
+        "title": "Sets",
+        "expectedProducts": 2,
+        "renderedProducts": 2,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "karungali",
+        "title": "Karungali",
+        "expectedProducts": 8,
+        "renderedProducts": 8,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "clock-watch",
+        "title": "Clock/Watch",
+        "expectedProducts": 1,
+        "renderedProducts": 1,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "cluster",
+        "title": "Cluster",
+        "expectedProducts": 62,
+        "renderedProducts": 62,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "diyas",
+        "title": "Diyas",
+        "expectedProducts": 8,
+        "renderedProducts": 8,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "earrings-tops",
+        "title": "Earrings/Tops",
+        "expectedProducts": 76,
+        "renderedProducts": 76,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "frames",
+        "title": "Frames",
+        "expectedProducts": 9,
+        "renderedProducts": 9,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "ganesh-ji-murti",
+        "title": "Ganesh ji murti",
+        "expectedProducts": 24,
+        "renderedProducts": 24,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "statue-murti",
+        "title": "Statue/Murti",
+        "expectedProducts": 24,
+        "renderedProducts": 24,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "pendants",
+        "title": "Pendants",
+        "expectedProducts": 202,
+        "renderedProducts": 202,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "glass",
+        "title": "Glass",
+        "expectedProducts": 1,
+        "renderedProducts": 1,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "hanger",
+        "title": "Hanger",
+        "expectedProducts": 1,
+        "renderedProducts": 1,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "jaap-mala",
+        "title": "Jaap mala",
+        "expectedProducts": 47,
+        "renderedProducts": 47,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "mala",
+        "title": "Mala",
+        "expectedProducts": 138,
+        "renderedProducts": 138,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "keyrings",
+        "title": "Keyrings",
+        "expectedProducts": 1,
+        "renderedProducts": 1,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "knife",
+        "title": "Knife",
+        "expectedProducts": 6,
+        "renderedProducts": 6,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "pencil-towers",
+        "title": "Pencil/Towers",
+        "expectedProducts": 24,
+        "renderedProducts": 24,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "pyramid",
+        "title": "Pyramid",
+        "expectedProducts": 36,
+        "renderedProducts": 36,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "rings",
+        "title": "Rings",
+        "expectedProducts": 64,
+        "renderedProducts": 64,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "rollers",
+        "title": "Rollers",
+        "expectedProducts": 3,
+        "renderedProducts": 3,
+        "firstPageTarget": 24,
+        "failures": 1
+      },
+      {
+        "handle": "selenite-plates",
+        "title": "Selenite plates",
+        "expectedProducts": 19,
+        "renderedProducts": 19,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "shaligram",
+        "title": "Shaligram",
+        "expectedProducts": 10,
+        "renderedProducts": 10,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "shankh",
+        "title": "Shankh",
+        "expectedProducts": 4,
+        "renderedProducts": 4,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "shivling",
+        "title": "Shivling",
+        "expectedProducts": 9,
+        "renderedProducts": 9,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "tumbles",
+        "title": "Tumbles",
+        "expectedProducts": 40,
+        "renderedProducts": 40,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "sphere",
+        "title": "Sphere",
+        "expectedProducts": 38,
+        "renderedProducts": 38,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "tortoise-turtle",
+        "title": "Tortoise/Turtle",
+        "expectedProducts": 18,
+        "renderedProducts": 18,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "trees",
+        "title": "Trees",
+        "expectedProducts": 73,
+        "renderedProducts": 73,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "vase",
+        "title": "Vase",
+        "expectedProducts": 6,
+        "renderedProducts": 6,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "yantra",
+        "title": "Yantra",
+        "expectedProducts": 53,
+        "renderedProducts": 53,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "zibu-coins",
+        "title": "Zibu coins",
+        "expectedProducts": 23,
+        "renderedProducts": 23,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "amethyst",
+        "title": "Amethyst",
+        "expectedProducts": 0,
+        "renderedProducts": 0,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "amber",
+        "title": "Amber",
+        "expectedProducts": 0,
+        "renderedProducts": 0,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "amazonite",
+        "title": "Amazonite",
+        "expectedProducts": 0,
+        "renderedProducts": 0,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "aquamarine",
+        "title": "Aquamarine",
+        "expectedProducts": 0,
+        "renderedProducts": 0,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "black-obsidian",
+        "title": "Black Obsidian",
+        "expectedProducts": 0,
+        "renderedProducts": 0,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "black-tourmaline",
+        "title": "Black Tourmaline",
+        "expectedProducts": 0,
+        "renderedProducts": 0,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "bloodstone",
+        "title": "Bloodstone",
+        "expectedProducts": 0,
+        "renderedProducts": 0,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "blue-apatite",
+        "title": "Blue Apatite",
+        "expectedProducts": 0,
+        "renderedProducts": 0,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "blue-goldstone",
+        "title": "Blue Goldstone",
+        "expectedProducts": 0,
+        "renderedProducts": 0,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "blue-lace-agate",
+        "title": "Blue Lace Agate",
+        "expectedProducts": 0,
+        "renderedProducts": 0,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "blue-tigers-eye",
+        "title": "Blue Tiger's Eye",
+        "expectedProducts": 0,
+        "renderedProducts": 0,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "calcite",
+        "title": "Calcite",
+        "expectedProducts": 0,
+        "renderedProducts": 0,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "carnelian",
+        "title": "Carnelian",
+        "expectedProducts": 0,
+        "renderedProducts": 0,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "cats-eye",
+        "title": "Cat's Eye",
+        "expectedProducts": 0,
+        "renderedProducts": 0,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "citrine",
+        "title": "Citrine",
+        "expectedProducts": 0,
+        "renderedProducts": 0,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "coral",
+        "title": "Coral",
+        "expectedProducts": 0,
+        "renderedProducts": 0,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "cherry-quartz",
+        "title": "Cherry Quartz",
+        "expectedProducts": 0,
+        "renderedProducts": 0,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "chrysocolla",
+        "title": "Chrysocolla",
+        "expectedProducts": 0,
+        "renderedProducts": 0,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "dalmatian-jasper",
+        "title": "Dalmatian Jasper",
+        "expectedProducts": 0,
+        "renderedProducts": 0,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "evil-eye-symbol",
+        "title": "Evil Eye (Symbol)",
+        "expectedProducts": 0,
+        "renderedProducts": 0,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "fluorite",
+        "title": "Fluorite",
+        "expectedProducts": 0,
+        "renderedProducts": 0,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "garnet",
+        "title": "Garnet",
+        "expectedProducts": 0,
+        "renderedProducts": 0,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "golden-obsidian",
+        "title": "Golden Obsidian",
+        "expectedProducts": 0,
+        "renderedProducts": 0,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "green-aventurine",
+        "title": "Green Aventurine",
+        "expectedProducts": 0,
+        "renderedProducts": 0,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "green-agate",
+        "title": "Green Agate",
+        "expectedProducts": 0,
+        "renderedProducts": 0,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "green-jade",
+        "title": "Green Jade",
+        "expectedProducts": 0,
+        "renderedProducts": 0,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "hematite",
+        "title": "Hematite",
+        "expectedProducts": 0,
+        "renderedProducts": 0,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "howlite",
+        "title": "Howlite",
+        "expectedProducts": 0,
+        "renderedProducts": 0,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "labradorite",
+        "title": "Labradorite",
+        "expectedProducts": 0,
+        "renderedProducts": 0,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "lapis-lazuli",
+        "title": "Lapis Lazuli",
+        "expectedProducts": 0,
+        "renderedProducts": 0,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "larvikite",
+        "title": "Larvikite",
+        "expectedProducts": 0,
+        "renderedProducts": 0,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "lava",
+        "title": "Lava",
+        "expectedProducts": 0,
+        "renderedProducts": 0,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "lepidolite",
+        "title": "Lepidolite",
+        "expectedProducts": 0,
+        "renderedProducts": 0,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "mahogany-obsidian",
+        "title": "Mahogany Obsidian",
+        "expectedProducts": 0,
+        "renderedProducts": 0,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "malachite",
+        "title": "Malachite",
+        "expectedProducts": 0,
+        "renderedProducts": 0,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "mookaite",
+        "title": "Mookaite",
+        "expectedProducts": 0,
+        "renderedProducts": 0,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "moonstone",
+        "title": "Moonstone",
+        "expectedProducts": 0,
+        "renderedProducts": 0,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "morganite",
+        "title": "Morganite",
+        "expectedProducts": 0,
+        "renderedProducts": 0,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "moss-agate",
+        "title": "Moss Agate",
+        "expectedProducts": 0,
+        "renderedProducts": 0,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "multi-tourmaline",
+        "title": "Multi Tourmaline",
+        "expectedProducts": 0,
+        "renderedProducts": 0,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "onyx",
+        "title": "Onyx",
+        "expectedProducts": 0,
+        "renderedProducts": 0,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "opal",
+        "title": "Opal",
+        "expectedProducts": 0,
+        "renderedProducts": 0,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "peridot",
+        "title": "Peridot",
+        "expectedProducts": 0,
+        "renderedProducts": 0,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "prehnite",
+        "title": "Prehnite",
+        "expectedProducts": 0,
+        "renderedProducts": 0,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "pyrite",
+        "title": "Pyrite",
+        "expectedProducts": 0,
+        "renderedProducts": 0,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "red-jasper",
+        "title": "Red Jasper",
+        "expectedProducts": 0,
+        "renderedProducts": 0,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "rhodonite",
+        "title": "Rhodonite",
+        "expectedProducts": 0,
+        "renderedProducts": 0,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "rose-quartz",
+        "title": "Rose Quartz",
+        "expectedProducts": 0,
+        "renderedProducts": 0,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "ruby-zoisite",
+        "title": "Ruby Zoisite",
+        "expectedProducts": 0,
+        "renderedProducts": 0,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "selenite",
+        "title": "Selenite",
+        "expectedProducts": 0,
+        "renderedProducts": 0,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "serpentine",
+        "title": "Serpentine",
+        "expectedProducts": 0,
+        "renderedProducts": 0,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "smoky-quartz",
+        "title": "Smoky Quartz",
+        "expectedProducts": 0,
+        "renderedProducts": 0,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "snowflake-obsidian",
+        "title": "Snowflake Obsidian",
+        "expectedProducts": 0,
+        "renderedProducts": 0,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "sodalite",
+        "title": "Sodalite",
+        "expectedProducts": 0,
+        "renderedProducts": 0,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "sphatik",
+        "title": "Sphatik",
+        "expectedProducts": 36,
+        "renderedProducts": 36,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "sunstone",
+        "title": "Sunstone",
+        "expectedProducts": 0,
+        "renderedProducts": 0,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "tiger-s-eye",
+        "title": "Tiger’s Eye",
+        "expectedProducts": 0,
+        "renderedProducts": 0,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "turquoise",
+        "title": "Turquoise",
+        "expectedProducts": 0,
+        "renderedProducts": 0,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "tree-line-agate",
+        "title": "Tree Line Agate",
+        "expectedProducts": 0,
+        "renderedProducts": 0,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "unakite",
+        "title": "Unakite",
+        "expectedProducts": 0,
+        "renderedProducts": 0,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "zibu",
+        "title": "Zibu",
+        "expectedProducts": 0,
+        "renderedProducts": 0,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "home-decor-vastu",
+        "title": "Home Decor/Vastu",
+        "expectedProducts": 0,
+        "renderedProducts": 0,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "under-499-rs",
+        "title": "Under 499 Rs",
+        "expectedProducts": 0,
+        "renderedProducts": 0,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "malas-jap-malas",
+        "title": "Malas & Jap Malas",
+        "expectedProducts": 0,
+        "renderedProducts": 0,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "zodiac",
+        "title": "Zodiac",
+        "expectedProducts": 0,
+        "renderedProducts": 0,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "gifts",
+        "title": "Gifts",
+        "expectedProducts": 11,
+        "renderedProducts": 11,
+        "firstPageTarget": 24,
+        "failures": 0
+      },
+      {
+        "handle": "kawach-yantra",
+        "title": "Kawach/Yantra",
+        "expectedProducts": 0,
+        "renderedProducts": 0,
+        "firstPageTarget": 24,
+        "failures": 0
+      }
+    ]
+  },
+  "productDetailRoutes": {
+    "checked": 1523,
+    "failures": [],
+    "representativeInteractions": {
+      "gallery": {
+        "handle": "certificate",
+        "before": "https://cdn.shopify.com/s/files/1/0657/3948/9391/files/crt2.png?v=1786685750",
+        "after": "https://cdn.shopify.com/s/files/1/0657/3948/9391/files/crt3.png?v=1786685751",
+        "count": 2,
+        "expectedSecond": "https://cdn.shopify.com/s/files/1/0657/3948/9391/files/crt3.png?v=1786685751"
+      },
+      "variant": {
+        "handle": "7-chakra-angel-1-inch",
+        "selected": 1,
+        "price": "₹590",
+        "selectedText": "C1218 · ₹590",
+        "expectedPrice": 590,
+        "sku": "C1218"
+      }
+    },
+    "detailPageReloads": 15
+  },
+  "search": {
+    "query": "RU1911",
+    "heading": "Search results",
+    "resultCount": 1,
+    "titles": [
+      "1 Mukhi Rudraksha Gol Nepali (Under Develop) Regular"
+    ],
+    "firstImage": "https://cdn.shopify.com/s/files/1/0657/3948/9391/files/1MukhiRudrakshaGolNepali_UnderDevelop_Regular.png?v=1783772855",
+    "expectedCount": 1,
+    "expectedFirstPage": [
+      "1 Mukhi Rudraksha Gol Nepali (Under Develop) Regular"
+    ]
+  },
+  "filtersAndSorting": {
+    "drawerOpened": true,
+    "sortedTitles": [
+      "White Agate Slice",
+      "Rose Quartz Agate Slice",
+      "Blue Aagte Slice",
+      "Brown &amp; Green Agate Slice",
+      "Brown Agate Slice (Big)",
+      "Green Agate Slice",
+      "Multi Agate Slice",
+      "Orange Agate Slice",
+      "Blue Agate Slice (Big)",
+      "Jade Agate Slice",
+      "Pink Agate Slice",
+      "Sky Blue Agate Slice"
+    ],
+    "expectedSortedTitles": [
+      "White Agate Slice",
+      "Rose Quartz Agate Slice",
+      "Blue Aagte Slice",
+      "Brown &amp; Green Agate Slice",
+      "Brown Agate Slice (Big)",
+      "Green Agate Slice",
+      "Multi Agate Slice",
+      "Orange Agate Slice",
+      "Blue Agate Slice (Big)",
+      "Jade Agate Slice",
+      "Pink Agate Slice",
+      "Sky Blue Agate Slice"
+    ],
+    "sortValue": "price-low"
+  },
+  "cart": {
+    "addProductTitle": "Blue Aagte Slice",
+    "initial": {
+      "lines": 1,
+      "title": "Blue Aagte Slice",
+      "quantity": "1",
+      "total": "₹1,290",
+      "checkoutDisabled": true
+    },
+    "afterIncrement": {
+      "quantity": "2",
+      "total": "₹2,580"
+    },
+    "removed": true
+  },
+  "pwa": {
+    "manifest": true,
+    "display": "standalone",
+    "icons": [
+      {
+        "src": "/assets/pwa-icon-192.png",
+        "status": 200
+      },
+      {
+        "src": "/assets/pwa-icon-512.png",
+        "status": 200
+      },
+      {
+        "src": "/assets/pwa-icon-512.png",
+        "status": 200
+      }
+    ],
+    "registered": true,
+    "serviceWorkerState": "activated"
+  },
+  "issues": [
+    {
+      "scope": "collection",
+      "key": "bracelets",
+      "field": "product_1_image_display",
+      "expected": "https://cdn.shopify.com/s/files/1/0657/3948/9391/files/combo04.png?v=1760512997",
+      "actual": "Fallback shown after image load failure for https://cdn.shopify.com/s/files/1/0657/3948/9391/files/combo04.png?v=1760512997"
+    },
+    {
+      "scope": "collection",
+      "key": "bracelets",
+      "field": "product_2_image_display",
+      "expected": "https://cdn.shopify.com/s/files/1/0657/3948/9391/files/DSC04330-1536x1536_4a68bbbe-469e-41fc-a49a-a28acd38af9e.webp?v=1758536574",
+      "actual": "Fallback shown after image load failure for https://cdn.shopify.com/s/files/1/0657/3948/9391/files/DSC04330-1536x1536_4a68bbbe-469e-41fc-a49a-a28acd38af9e.webp?v=1758536574"
+    },
+    {
+      "scope": "collection",
+      "key": "bracelets",
+      "field": "product_3_image_display",
+      "expected": "https://cdn.shopify.com/s/files/1/0657/3948/9391/files/combo08.png?v=1760513867",
+      "actual": "Fallback shown after image load failure for https://cdn.shopify.com/s/files/1/0657/3948/9391/files/combo08.png?v=1760513867"
+    },
+    {
+      "scope": "collection",
+      "key": "bracelets",
+      "field": "product_4_image_display",
+      "expected": "https://cdn.shopify.com/s/files/1/0657/3948/9391/files/Amazonite-bracelet-1-675x723_e72b9e42-7834-4dfe-ab35-0218dc26f8e3.webp?v=1758537081",
+      "actual": "Fallback shown after image load failure for https://cdn.shopify.com/s/files/1/0657/3948/9391/files/Amazonite-bracelet-1-675x723_e72b9e42-7834-4dfe-ab35-0218dc26f8e3.webp?v=1758537081"
+    },
+    {
+      "scope": "collection",
+      "key": "bracelets",
+      "field": "product_6_image_display",
+      "expected": "https://cdn.shopify.com/s/files/1/0657/3948/9391/files/5mukhiRudrakshabraceletgoldenmagneticlock_superquality.png?v=1790746179",
+      "actual": "Fallback shown after image load failure for https://cdn.shopify.com/s/files/1/0657/3948/9391/files/5mukhiRudrakshabraceletgoldenmagneticlock_superquality.png?v=1790746179"
+    },
+    {
+      "scope": "collection",
+      "key": "bracelets",
+      "field": "product_12_image_display",
+      "expected": "https://cdn.shopify.com/s/files/1/0657/3948/9391/files/1_1_9c3d55af-b602-461c-810c-7c236d8fec34.png?v=1772867016",
+      "actual": "Fallback shown after image load failure for https://cdn.shopify.com/s/files/1/0657/3948/9391/files/1_1_9c3d55af-b602-461c-810c-7c236d8fec34.png?v=1772867016"
+    },
+    {
+      "scope": "collection",
+      "key": "rollers",
+      "field": "product_1_image_display",
+      "expected": "https://cdn.shopify.com/s/files/1/0657/3948/9391/files/Untitleddesign-2025-12-08T115013.294.png?v=1765174932",
+      "actual": "Fallback shown after image load failure for https://cdn.shopify.com/s/files/1/0657/3948/9391/files/Untitleddesign-2025-12-08T115013.294.png?v=1765174932"
+    }
+  ],
+  "passed": false,
+  "summary": {
+    "productRoutesChecked": 1523,
+    "productRouteFailures": 0,
+    "collectionRoutesChecked": 111,
+    "collectionRouteFailures": 7,
+    "collectionCardsRendered": 1858,
+    "renderedDataMismatches": 0,
+    "imageFallbackDisplays": 7,
+    "issues": 7
+  }
+}

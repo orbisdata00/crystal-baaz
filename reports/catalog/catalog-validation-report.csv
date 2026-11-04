@@ -1,0 +1,42 @@
+﻿metric,count,severity,details
+workbook_sheets,10,info,"Listing (visible), MAIN (visible), Common (visible), Keywords (hidden), Structure (visible), SKUs in each category (visible), Categories (visible), Category wise products- Tuhin (visible), Sheet10 (visible), All Collections Count - Tuhin (visible)"
+listing_data_rows,5693,info,Repeated handles are media/variant rows; rows were grouped by product handle.
+listing_unique_product_handles,1523,info,Grouped from Listing.Handle.
+listing_sku_source_rows,2579,info,"Raw SKU-bearing rows in Listing, before duplicate rows for one handle/SKU are merged."
+listing_handle_sku_variants,2576,info,Unique product-handle/SKU variant identities after merging repeated rows.
+listing_unique_skus,2512,info,Unique SKU values in Listing.
+listing_duplicate_sku_values,60,blocker,Resolve duplicate SKU values before Shopify import.
+listing_skus_missing_price,661,blocker,These SKU rows have no positive final price.
+common_skus_missing_price_and_mrp,648,blocker,Counted from Common rows without a final price; MRP also requires review.
+listing_image_references,4968,info,Source image references grouped by handle; remote reachability and rights were not checked.
+listing_unique_image_urls,3760,info,Duplicate image URLs are not repeated in product galleries.
+product_images_not_fetched_or_rights_checked,1496,review,"Image URLs come from the client workbook; remote reachability, usage rights, and alt text still need approval."
+products_without_listing_category_row,2,review,"blue-apatite, certificate"
+category_handles_not_in_common,38,review,Category assignments need SKU/product reconciliation against Common.
+common_handles_not_in_listing,0,blocker,Common records without a Listing product handle need reconciliation.
+common_stock_values,1,blocker,"{""200.0"": 2512}"
+common_weight_values_grams,1,blocker,"{""0.0"": 2512}"
+collections_in_registry,111,info,Workbook target assignments may overlap across collections.
+explicit_product_collection_assignments,1858,info,Exact collection labels and unique curated SKU references only; prose rules are not auto-applied.
+products_blocked_from_publication,1523,blocker,"Price, stock, weight, SKU/variant options, image rights, and content require review before live publishing."
+issue:category_rule_or_label_pending_review,12,review,See unresolved-items.csv for source rows and details.
+issue:collection_assignment_count_mismatch,87,review,See unresolved-items.csv for source rows and details.
+issue:conflicting_product_classification,3,review,See unresolved-items.csv for source rows and details.
+issue:curated_navigation_group_not_in_registry,11,review,See unresolved-items.csv for source rows and details.
+issue:curated_non_sku_entry,1,info,See unresolved-items.csv for source rows and details.
+issue:curated_sku_has_duplicate_mapping,15,blocker,See unresolved-items.csv for source rows and details.
+issue:curated_sku_not_in_listing,1050,blocker,See unresolved-items.csv for source rows and details.
+issue:description_copy_needs_client_review,1493,review,See unresolved-items.csv for source rows and details.
+issue:duplicate_listing_sku_rows_same_handle,3,review,See unresolved-items.csv for source rows and details.
+issue:duplicate_sku,60,blocker,See unresolved-items.csv for source rows and details.
+issue:keyword_sku_ambiguous,88,review,See unresolved-items.csv for source rows and details.
+issue:keyword_sku_not_in_listing,144,review,See unresolved-items.csv for source rows and details.
+issue:missing_or_invalid_final_price,661,blocker,See unresolved-items.csv for source rows and details.
+issue:missing_product_description,30,review,See unresolved-items.csv for source rows and details.
+issue:missing_product_image,27,review,See unresolved-items.csv for source rows and details.
+issue:missing_product_title,2,blocker,See unresolved-items.csv for source rows and details.
+issue:placeholder_stock_value,2576,review,See unresolved-items.csv for source rows and details.
+issue:planning_rule_not_rendered,8,info,See unresolved-items.csv for source rows and details.
+issue:sku_handle_mismatch,60,review,See unresolved-items.csv for source rows and details.
+issue:variant_options_not_supplied,174,review,See unresolved-items.csv for source rows and details.
+issue:zero_or_placeholder_weight,2576,review,See unresolved-items.csv for source rows and details.

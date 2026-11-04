@@ -1,0 +1,288 @@
+{
+  "status": "authenticated",
+  "checkedAt": "2026-11-04",
+  "storeDomain": "crystalbaaz.myshopify.com",
+  "apiVersion": "2026-10",
+  "apiType": "GraphQL Storefront API",
+  "endpoint": "https://crystalbaaz.myshopify.com/api/2026-10/graphql.json",
+  "authenticationAttempt": "Authenticated using the public Storefront API header; token value was never logged.",
+  "httpStatus": 200,
+  "graphqlErrors": [],
+  "shopQuery": "passed; My Store 2 (crystalbaaz.myshopify.com)",
+  "productsQuery": "passed; first page 5, full pagination 1520 products",
+  "collectionsQuery": "passed; first page 1, full pagination 1 collection",
+  "tokenType": "accepted using public Storefront API header; Shopify Admin credential metadata was not independently inspected",
+  "credentialChecks": {
+    "projectRootEnvLocal": "present; VITE_SHOPIFY_STOREFRONT_PUBLIC_TOKEN loaded by Vite loadEnv",
+    "otherWorkspaceEnvFiles": "none found",
+    "processEnvironment": "no Shopify or Storefront-related variable names found",
+    "sitesProductionEnvironment": "no entries configured (revision 0)",
+    "expectedPublicViteVariable": "set and loaded from .env.local by Vite",
+    "privateServerVariable": "SHOPIFY_STOREFRONT_PRIVATE_TOKEN is unavailable",
+    "gitIgnoreRule": ".env.* matches .env.local in .gitignore; no Git repository metadata is available for git check-ignore",
+    "publicTokenEnvironment": "set; value not logged",
+    "privateTokenEnvironment": "not used by browser or this preflight",
+    "workspaceEnvFiles": "project root .env.local present; no other workspace .env* files found"
+  },
+  "requiredNextSteps": [
+    "Review the three workbook-only product handles, 661 workbook-only handle/SKU pairs, and 111 workbook-only collection handles in the mapping CSVs.",
+    "Confirm the expected catalog publication with the Shopify catalog owner before considering any live data switch; no Shopify records or access settings were changed.",
+    "Keep workbook preview mode active and checkout disabled until catalog gaps are resolved and separately approved for live use."
+  ],
+  "mappingReports": {
+    "generated": true,
+    "summary": "reports/shopify-catalog-mapping-report.json",
+    "products": "reports/shopify-product-mapping.csv",
+    "skus": "reports/shopify-sku-mapping.csv",
+    "variants": "reports/shopify-variant-mapping.csv",
+    "variantLiveData": "reports/shopify-variant-live-data.csv",
+    "collections": "reports/shopify-collection-mapping.csv"
+  },
+  "secretsLogged": false,
+  "previousTokenlessPreflight": {
+    "httpStatus": 400,
+    "graphqlErrors": [
+      "Online Store channel is locked."
+    ],
+    "authenticated": false,
+    "interpretation": "Not evidence of authenticated Storefront API access; authenticated status remains unverified."
+  },
+  "authenticatedPreflight": {
+    "attempted": true,
+    "authenticationStatus": "authenticated",
+    "httpStatus": 200,
+    "graphqlErrors": [],
+    "shop": {
+      "name": "My Store 2",
+      "primaryDomain": {
+        "host": "crystalbaaz.myshopify.com",
+        "url": "https://crystalbaaz.myshopify.com"
+      }
+    },
+    "productsQuery": {
+      "requested": 5,
+      "returned": 5,
+      "hasNextPage": true
+    },
+    "collectionsQuery": {
+      "requested": 5,
+      "returned": 1,
+      "hasNextPage": false
+    },
+    "fullPagination": {
+      "productsReturned": 1520,
+      "productPages": 38,
+      "collectionsReturned": 1,
+      "collectionPages": 1
+    }
+  },
+  "applicationConfig": {
+    "provider": "preview",
+    "storeDomain": "crystalbaaz.myshopify.com",
+    "apiVersion": "2026-10",
+    "publicTokenVariable": "VITE_SHOPIFY_STOREFRONT_PUBLIC_TOKEN",
+    "privateTokensReadByBrowser": false,
+    "checkoutEnabled": false,
+    "freshDevelopmentServer": "http://127.0.0.1:49234/",
+    "freshDevelopmentServerLoadedPublicToken": true,
+    "auditServer": "temporary local Vite server; ephemeral Shopify mode, checkout disabled; default preview retained",
+    "auditServerStoppedAfterVerification": true
+  },
+  "verification": {
+    "existingTests": "passed (19/19)",
+    "productionBuild": "passed; Vite emitted the existing large-chunk advisory",
+    "desktopMobileVisualAudit": "passed in Chrome at 10 widths (320–1920px); no horizontal overflow, visible broken images, console warnings, or uncaught page errors",
+    "liveCatalogService": "passed; 1,520 Shopify products mapped to workbook handles; 111 workbook collection routes retained; search and product detail verified",
+    "integratedCartOperations": "passed; create, add, quantity update, and remove; final temporary cart empty; no checkout or order",
+    "browserCollectionRouteAudit": "passed; all 111 routes matched exact workbook assignments intersected with Shopify handles (46 populated, 65 empty by source data)"
+  },
+  "storefrontAccessPermissions": {
+    "shop": "succeeded",
+    "products": "succeeded; 1520 accessible products returned across all pages",
+    "collections": "succeeded; 1 accessible collections returned across all pages",
+    "adminChannelConfiguration": "not exposed through these Storefront API reads"
+  },
+  "latestRetry": {
+    "attempted": "2026-11-04",
+    "authenticationStatus": "authenticated",
+    "httpStatus": 200,
+    "graphqlErrors": [],
+    "shopifyProductsReturned": 1520,
+    "shopifyCollectionsReturned": 1,
+    "result": "Authenticated preflight and full pagination succeeded; token value was not logged.",
+    "browserAuditAt": "2026-11-04T11:09:05.613Z",
+    "browserAuditPassed": true,
+    "browserAuditReport": "reports/shopify-live-browser-audit.json"
+  },
+  "cartApiTest": {
+    "status": "passed",
+    "operations": [
+      {
+        "name": "cartCreate",
+        "httpStatus": 200,
+        "graphqlErrors": [],
+        "userErrors": []
+      },
+      {
+        "name": "cartLinesAdd",
+        "httpStatus": 200,
+        "graphqlErrors": [],
+        "userErrors": []
+      },
+      {
+        "name": "cartLinesUpdate",
+        "httpStatus": 200,
+        "graphqlErrors": [],
+        "userErrors": []
+      },
+      {
+        "name": "cartLinesRemove",
+        "httpStatus": 200,
+        "graphqlErrors": [],
+        "userErrors": []
+      }
+    ],
+    "testProductHandle": "5-mukhi-rudraksha-bracelet",
+    "startingQuantity": 1,
+    "updatedQuantity": 2,
+    "finalQuantity": 0,
+    "finalCartEmpty": true,
+    "temporaryCartIdCreated": true,
+    "cartIdLogged": false,
+    "checkoutUrlRequested": false,
+    "checkoutOpened": false,
+    "placedOrder": false,
+    "note": "Temporary cart was created, populated, quantity-updated, and emptied; no checkout or order was initiated."
+  },
+  "liveApplicationSmokeTest": {
+    "checkedAt": "2026-11-04T09:13:25.573Z",
+    "result": "passed",
+    "authenticatedRequestHeader": "X-Shopify-Storefront-Access-Token",
+    "tokenValueLogged": false,
+    "appModeDuringSmokeTest": "shopify (ephemeral Vite SSR test override)",
+    "defaultAppMode": "preview (VITE_CATALOG_SOURCE remains unset in .env.local)",
+    "checkoutEnabled": false,
+    "shopifyProductsRead": 1520,
+    "workbookProducts": 1523,
+    "exactHandleMatchesRendered": 1520,
+    "workbookProductsMissingFromShopify": 3,
+    "workbookCollectionRoutesAvailable": 111,
+    "collectionsWithMatchedProducts": 46,
+    "collectionsWithoutMatchedProducts": 65,
+    "searchQuery": "rudraksha",
+    "searchResults": 37,
+    "productDetailRoute": "passed with an available exact-SKU match",
+    "graphqlErrors": []
+  },
+  "liveCartSmokeTest": {
+    "checkedAt": "2026-11-04T09:13:25.573Z",
+    "status": "passed",
+    "operations": [
+      "cartCreate",
+      "cartLinesAdd",
+      "cartLinesUpdate",
+      "cartLinesRemove"
+    ],
+    "quantitiesByStage": {
+      "created": 1,
+      "afterAdd": 2,
+      "afterUpdate": 3,
+      "afterRemovingOneLine": 2,
+      "afterFinalCleanup": 0
+    },
+    "exactWorkbookMatchedVariantsUsed": 2,
+    "finalCartEmpty": true,
+    "cartIdLogged": false,
+    "checkoutOrOrderAttempted": false
+  },
+  "browserAudit": {
+    "report": "reports/shopify-live-browser-audit.json",
+    "generatedAt": "2026-11-04T11:09:05.613Z",
+    "mode": "local Vite server with ephemeral VITE_CATALOG_SOURCE=shopify and checkout disabled",
+    "checkoutEnabled": false,
+    "widths": [
+      320,
+      360,
+      390,
+      427,
+      440,
+      768,
+      1024,
+      1280,
+      1440,
+      1920
+    ],
+    "horizontalOverflowWidths": [],
+    "allCollectionRoutes": {
+      "tested": 111,
+      "passed": 111,
+      "mappedRoutes": 46,
+      "emptyRoutes": 65,
+      "mismatches": []
+    },
+    "categoriesDirectoryCount": 111,
+    "collectionPagination": {
+      "route": "#collection/bracelets",
+      "total": 347,
+      "beforeLoadMore": 24,
+      "afterLoadMore": 48,
+      "passed": true
+    },
+    "search": {
+      "route": "#search/rudraksha",
+      "resultCards": 24,
+      "inputVisible": true
+    },
+    "productDetail": {
+      "route": "#product/7-chakra-angel-1-inch",
+      "title": "7 Chakra Angel",
+      "optionCount": 3,
+      "enabledOptions": 3,
+      "selectedOption": "Variant 3 · ₹490",
+      "renderedPrice": "₹490",
+      "selectedVariantPrice": 490,
+      "expectedLowestAvailableMatchedVariantPrice": 290,
+      "imageElements": 1,
+      "passed": true
+    },
+    "wishlist": {
+      "savedProduct": "Amethyst Vase",
+      "itemVisibleOnWishlist": true,
+      "passed": true
+    },
+    "cart": {
+      "added": true,
+      "lineCountAfterAdd": 1,
+      "subtotalAfterAdd": "₹490",
+      "updatedQuantity": "2",
+      "subtotalAfterUpdate": "₹980",
+      "removedAndEmpty": true,
+      "checkoutDisabled": true,
+      "passed": true
+    },
+    "graphqlStatuses": [
+      200
+    ],
+    "consoleErrors": 0,
+    "uncaughtPageErrors": 0,
+    "visibleBrokenImages": 0,
+    "blockedShopifyImageUrls": [
+      "https://cdn.shopify.com/s/files/1/0657/3948/9391/files/5mukhiRudrakshabraceletgoldenmagneticlock_superquality.png",
+      "https://cdn.shopify.com/s/files/1/0657/3948/9391/files/Karungalichainbracelet.jpg",
+      "https://cdn.shopify.com/s/files/1/0657/3948/9391/files/Rudrakshakarungalibraceletblackdori8mm.jpg",
+      "https://cdn.shopify.com/s/files/1/0657/3948/9391/files/C3765-1.png",
+      "https://cdn.shopify.com/s/files/1/0657/3948/9391/files/C3784-1.png"
+    ],
+    "passed": true
+  },
+  "shopifyImageAudit": {
+    "failedUniqueShopifyCdnUrls": [
+      "https://cdn.shopify.com/s/files/1/0657/3948/9391/files/5mukhiRudrakshabraceletgoldenmagneticlock_superquality.png",
+      "https://cdn.shopify.com/s/files/1/0657/3948/9391/files/Karungalichainbracelet.jpg",
+      "https://cdn.shopify.com/s/files/1/0657/3948/9391/files/Rudrakshakarungalibraceletblackdori8mm.jpg",
+      "https://cdn.shopify.com/s/files/1/0657/3948/9391/files/C3765-1.png",
+      "https://cdn.shopify.com/s/files/1/0657/3948/9391/files/C3784-1.png"
+    ],
+    "fallbackBehavior": "local catalog placeholder used for failed product image requests; no image errors remained visible in viewport checks"
+  }
+}

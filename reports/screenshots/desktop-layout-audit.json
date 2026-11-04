@@ -1,0 +1,1951 @@
+{
+  "previewUrl": "http://127.0.0.1:4174/",
+  "sourceProducts": 1523,
+  "sourceCollections": 111,
+  "desktopWidths": [
+    {
+      "width": 1024,
+      "documentWidth": 1009,
+      "scrollWidth": 1009,
+      "horizontalOverflow": false,
+      "headerVisible": true,
+      "desktopNavVisible": true,
+      "mobileNavHidden": true,
+      "mobileGroupNavHidden": true,
+      "brand": "crystal baaz.client catalog preview"
+    },
+    {
+      "width": 1280,
+      "documentWidth": 1265,
+      "scrollWidth": 1265,
+      "horizontalOverflow": false,
+      "headerVisible": true,
+      "desktopNavVisible": true,
+      "mobileNavHidden": true,
+      "mobileGroupNavHidden": true,
+      "brand": "crystal baaz.client catalog preview"
+    },
+    {
+      "width": 1366,
+      "documentWidth": 1351,
+      "scrollWidth": 1351,
+      "horizontalOverflow": false,
+      "headerVisible": true,
+      "desktopNavVisible": true,
+      "mobileNavHidden": true,
+      "mobileGroupNavHidden": true,
+      "brand": "crystal baaz.client catalog preview"
+    },
+    {
+      "width": 1440,
+      "documentWidth": 1425,
+      "scrollWidth": 1425,
+      "horizontalOverflow": false,
+      "headerVisible": true,
+      "desktopNavVisible": true,
+      "mobileNavHidden": true,
+      "mobileGroupNavHidden": true,
+      "brand": "crystal baaz.client catalog preview"
+    },
+    {
+      "width": 1600,
+      "documentWidth": 1585,
+      "scrollWidth": 1585,
+      "horizontalOverflow": false,
+      "headerVisible": true,
+      "desktopNavVisible": true,
+      "mobileNavHidden": true,
+      "mobileGroupNavHidden": true,
+      "brand": "crystal baaz.client catalog preview"
+    },
+    {
+      "width": 1920,
+      "documentWidth": 1905,
+      "scrollWidth": 1905,
+      "horizontalOverflow": false,
+      "headerVisible": true,
+      "desktopNavVisible": true,
+      "mobileNavHidden": true,
+      "mobileGroupNavHidden": true,
+      "brand": "crystal baaz.client catalog preview"
+    }
+  ],
+  "collectionRoutes": {
+    "checked": 222,
+    "failures": [],
+    "results": [
+      {
+        "width": 1024,
+        "handle": "agate-slices",
+        "title": "Agate slices",
+        "expectedProducts": 12,
+        "renderedCards": 12,
+        "columns": 4
+      },
+      {
+        "width": 1024,
+        "handle": "love",
+        "title": "Love",
+        "expectedProducts": 69,
+        "renderedCards": 24,
+        "columns": 4
+      },
+      {
+        "width": 1024,
+        "handle": "angels",
+        "title": "Angels",
+        "expectedProducts": 19,
+        "renderedCards": 19,
+        "columns": 4
+      },
+      {
+        "width": 1024,
+        "handle": "anklet",
+        "title": "Anklet",
+        "expectedProducts": 6,
+        "renderedCards": 6,
+        "columns": 4
+      },
+      {
+        "width": 1024,
+        "handle": "nazar",
+        "title": "Nazar",
+        "expectedProducts": 46,
+        "renderedCards": 24,
+        "columns": 4
+      },
+      {
+        "width": 1024,
+        "handle": "confidence-1",
+        "title": "Confidence",
+        "expectedProducts": 56,
+        "renderedCards": 24,
+        "columns": 4
+      },
+      {
+        "width": 1024,
+        "handle": "aura-spray",
+        "title": "Aura Spray",
+        "expectedProducts": 4,
+        "renderedCards": 4,
+        "columns": 4
+      },
+      {
+        "width": 1024,
+        "handle": "money",
+        "title": "Money",
+        "expectedProducts": 99,
+        "renderedCards": 24,
+        "columns": 4
+      },
+      {
+        "width": 1024,
+        "handle": "bangle",
+        "title": "Bangle",
+        "expectedProducts": 1,
+        "renderedCards": 1,
+        "columns": 4
+      },
+      {
+        "width": 1024,
+        "handle": "bowl",
+        "title": "Bowl",
+        "expectedProducts": 1,
+        "renderedCards": 1,
+        "columns": 4
+      },
+      {
+        "width": 1024,
+        "handle": "bracelets",
+        "title": "Bracelets",
+        "expectedProducts": 347,
+        "renderedCards": 24,
+        "columns": 4
+      },
+      {
+        "width": 1024,
+        "handle": "focus",
+        "title": "Focus",
+        "expectedProducts": 79,
+        "renderedCards": 24,
+        "columns": 4
+      },
+      {
+        "width": 1024,
+        "handle": "business-losses",
+        "title": "Business Losses",
+        "expectedProducts": 42,
+        "renderedCards": 24,
+        "columns": 4
+      },
+      {
+        "width": 1024,
+        "handle": "sets",
+        "title": "Sets",
+        "expectedProducts": 2,
+        "renderedCards": 2,
+        "columns": 4
+      },
+      {
+        "width": 1024,
+        "handle": "karungali",
+        "title": "Karungali",
+        "expectedProducts": 8,
+        "renderedCards": 8,
+        "columns": 4
+      },
+      {
+        "width": 1024,
+        "handle": "clock-watch",
+        "title": "Clock/Watch",
+        "expectedProducts": 1,
+        "renderedCards": 1,
+        "columns": 4
+      },
+      {
+        "width": 1024,
+        "handle": "cluster",
+        "title": "Cluster",
+        "expectedProducts": 62,
+        "renderedCards": 24,
+        "columns": 4
+      },
+      {
+        "width": 1024,
+        "handle": "diyas",
+        "title": "Diyas",
+        "expectedProducts": 8,
+        "renderedCards": 8,
+        "columns": 4
+      },
+      {
+        "width": 1024,
+        "handle": "earrings-tops",
+        "title": "Earrings/Tops",
+        "expectedProducts": 76,
+        "renderedCards": 24,
+        "columns": 4
+      },
+      {
+        "width": 1024,
+        "handle": "frames",
+        "title": "Frames",
+        "expectedProducts": 9,
+        "renderedCards": 9,
+        "columns": 4
+      },
+      {
+        "width": 1024,
+        "handle": "ganesh-ji-murti",
+        "title": "Ganesh ji murti",
+        "expectedProducts": 24,
+        "renderedCards": 24,
+        "columns": 4
+      },
+      {
+        "width": 1024,
+        "handle": "statue-murti",
+        "title": "Statue/Murti",
+        "expectedProducts": 24,
+        "renderedCards": 24,
+        "columns": 4
+      },
+      {
+        "width": 1024,
+        "handle": "pendants",
+        "title": "Pendants",
+        "expectedProducts": 202,
+        "renderedCards": 24,
+        "columns": 4
+      },
+      {
+        "width": 1024,
+        "handle": "glass",
+        "title": "Glass",
+        "expectedProducts": 1,
+        "renderedCards": 1,
+        "columns": 4
+      },
+      {
+        "width": 1024,
+        "handle": "hanger",
+        "title": "Hanger",
+        "expectedProducts": 1,
+        "renderedCards": 1,
+        "columns": 4
+      },
+      {
+        "width": 1024,
+        "handle": "jaap-mala",
+        "title": "Jaap mala",
+        "expectedProducts": 47,
+        "renderedCards": 24,
+        "columns": 4
+      },
+      {
+        "width": 1024,
+        "handle": "mala",
+        "title": "Mala",
+        "expectedProducts": 138,
+        "renderedCards": 24,
+        "columns": 4
+      },
+      {
+        "width": 1024,
+        "handle": "keyrings",
+        "title": "Keyrings",
+        "expectedProducts": 1,
+        "renderedCards": 1,
+        "columns": 4
+      },
+      {
+        "width": 1024,
+        "handle": "knife",
+        "title": "Knife",
+        "expectedProducts": 6,
+        "renderedCards": 6,
+        "columns": 4
+      },
+      {
+        "width": 1024,
+        "handle": "pencil-towers",
+        "title": "Pencil/Towers",
+        "expectedProducts": 24,
+        "renderedCards": 24,
+        "columns": 4
+      },
+      {
+        "width": 1024,
+        "handle": "pyramid",
+        "title": "Pyramid",
+        "expectedProducts": 36,
+        "renderedCards": 24,
+        "columns": 4
+      },
+      {
+        "width": 1024,
+        "handle": "rings",
+        "title": "Rings",
+        "expectedProducts": 64,
+        "renderedCards": 24,
+        "columns": 4
+      },
+      {
+        "width": 1024,
+        "handle": "rollers",
+        "title": "Rollers",
+        "expectedProducts": 3,
+        "renderedCards": 3,
+        "columns": 4
+      },
+      {
+        "width": 1024,
+        "handle": "selenite-plates",
+        "title": "Selenite plates",
+        "expectedProducts": 19,
+        "renderedCards": 19,
+        "columns": 4
+      },
+      {
+        "width": 1024,
+        "handle": "shaligram",
+        "title": "Shaligram",
+        "expectedProducts": 10,
+        "renderedCards": 10,
+        "columns": 4
+      },
+      {
+        "width": 1024,
+        "handle": "shankh",
+        "title": "Shankh",
+        "expectedProducts": 4,
+        "renderedCards": 4,
+        "columns": 4
+      },
+      {
+        "width": 1024,
+        "handle": "shivling",
+        "title": "Shivling",
+        "expectedProducts": 9,
+        "renderedCards": 9,
+        "columns": 4
+      },
+      {
+        "width": 1024,
+        "handle": "tumbles",
+        "title": "Tumbles",
+        "expectedProducts": 40,
+        "renderedCards": 24,
+        "columns": 4
+      },
+      {
+        "width": 1024,
+        "handle": "sphere",
+        "title": "Sphere",
+        "expectedProducts": 38,
+        "renderedCards": 24,
+        "columns": 4
+      },
+      {
+        "width": 1024,
+        "handle": "tortoise-turtle",
+        "title": "Tortoise/Turtle",
+        "expectedProducts": 18,
+        "renderedCards": 18,
+        "columns": 4
+      },
+      {
+        "width": 1024,
+        "handle": "trees",
+        "title": "Trees",
+        "expectedProducts": 73,
+        "renderedCards": 24,
+        "columns": 4
+      },
+      {
+        "width": 1024,
+        "handle": "vase",
+        "title": "Vase",
+        "expectedProducts": 6,
+        "renderedCards": 6,
+        "columns": 4
+      },
+      {
+        "width": 1024,
+        "handle": "yantra",
+        "title": "Yantra",
+        "expectedProducts": 53,
+        "renderedCards": 24,
+        "columns": 4
+      },
+      {
+        "width": 1024,
+        "handle": "zibu-coins",
+        "title": "Zibu coins",
+        "expectedProducts": 23,
+        "renderedCards": 23,
+        "columns": 4
+      },
+      {
+        "width": 1024,
+        "handle": "amethyst",
+        "title": "Amethyst",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1024,
+        "handle": "amber",
+        "title": "Amber",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1024,
+        "handle": "amazonite",
+        "title": "Amazonite",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1024,
+        "handle": "aquamarine",
+        "title": "Aquamarine",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1024,
+        "handle": "black-obsidian",
+        "title": "Black Obsidian",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1024,
+        "handle": "black-tourmaline",
+        "title": "Black Tourmaline",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1024,
+        "handle": "bloodstone",
+        "title": "Bloodstone",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1024,
+        "handle": "blue-apatite",
+        "title": "Blue Apatite",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1024,
+        "handle": "blue-goldstone",
+        "title": "Blue Goldstone",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1024,
+        "handle": "blue-lace-agate",
+        "title": "Blue Lace Agate",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1024,
+        "handle": "blue-tigers-eye",
+        "title": "Blue Tiger's Eye",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1024,
+        "handle": "calcite",
+        "title": "Calcite",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1024,
+        "handle": "carnelian",
+        "title": "Carnelian",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1024,
+        "handle": "cats-eye",
+        "title": "Cat's Eye",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1024,
+        "handle": "citrine",
+        "title": "Citrine",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1024,
+        "handle": "coral",
+        "title": "Coral",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1024,
+        "handle": "cherry-quartz",
+        "title": "Cherry Quartz",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1024,
+        "handle": "chrysocolla",
+        "title": "Chrysocolla",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1024,
+        "handle": "dalmatian-jasper",
+        "title": "Dalmatian Jasper",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1024,
+        "handle": "evil-eye-symbol",
+        "title": "Evil Eye (Symbol)",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1024,
+        "handle": "fluorite",
+        "title": "Fluorite",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1024,
+        "handle": "garnet",
+        "title": "Garnet",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1024,
+        "handle": "golden-obsidian",
+        "title": "Golden Obsidian",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1024,
+        "handle": "green-aventurine",
+        "title": "Green Aventurine",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1024,
+        "handle": "green-agate",
+        "title": "Green Agate",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1024,
+        "handle": "green-jade",
+        "title": "Green Jade",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1024,
+        "handle": "hematite",
+        "title": "Hematite",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1024,
+        "handle": "howlite",
+        "title": "Howlite",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1024,
+        "handle": "labradorite",
+        "title": "Labradorite",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1024,
+        "handle": "lapis-lazuli",
+        "title": "Lapis Lazuli",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1024,
+        "handle": "larvikite",
+        "title": "Larvikite",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1024,
+        "handle": "lava",
+        "title": "Lava",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1024,
+        "handle": "lepidolite",
+        "title": "Lepidolite",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1024,
+        "handle": "mahogany-obsidian",
+        "title": "Mahogany Obsidian",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1024,
+        "handle": "malachite",
+        "title": "Malachite",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1024,
+        "handle": "mookaite",
+        "title": "Mookaite",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1024,
+        "handle": "moonstone",
+        "title": "Moonstone",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1024,
+        "handle": "morganite",
+        "title": "Morganite",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1024,
+        "handle": "moss-agate",
+        "title": "Moss Agate",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1024,
+        "handle": "multi-tourmaline",
+        "title": "Multi Tourmaline",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1024,
+        "handle": "onyx",
+        "title": "Onyx",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1024,
+        "handle": "opal",
+        "title": "Opal",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1024,
+        "handle": "peridot",
+        "title": "Peridot",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1024,
+        "handle": "prehnite",
+        "title": "Prehnite",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1024,
+        "handle": "pyrite",
+        "title": "Pyrite",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1024,
+        "handle": "red-jasper",
+        "title": "Red Jasper",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1024,
+        "handle": "rhodonite",
+        "title": "Rhodonite",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1024,
+        "handle": "rose-quartz",
+        "title": "Rose Quartz",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1024,
+        "handle": "ruby-zoisite",
+        "title": "Ruby Zoisite",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1024,
+        "handle": "selenite",
+        "title": "Selenite",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1024,
+        "handle": "serpentine",
+        "title": "Serpentine",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1024,
+        "handle": "smoky-quartz",
+        "title": "Smoky Quartz",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1024,
+        "handle": "snowflake-obsidian",
+        "title": "Snowflake Obsidian",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1024,
+        "handle": "sodalite",
+        "title": "Sodalite",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1024,
+        "handle": "sphatik",
+        "title": "Sphatik",
+        "expectedProducts": 36,
+        "renderedCards": 24,
+        "columns": 4
+      },
+      {
+        "width": 1024,
+        "handle": "sunstone",
+        "title": "Sunstone",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1024,
+        "handle": "tiger-s-eye",
+        "title": "Tiger’s Eye",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1024,
+        "handle": "turquoise",
+        "title": "Turquoise",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1024,
+        "handle": "tree-line-agate",
+        "title": "Tree Line Agate",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1024,
+        "handle": "unakite",
+        "title": "Unakite",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1024,
+        "handle": "zibu",
+        "title": "Zibu",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1024,
+        "handle": "home-decor-vastu",
+        "title": "Home Decor/Vastu",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1024,
+        "handle": "under-499-rs",
+        "title": "Under 499 Rs",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1024,
+        "handle": "malas-jap-malas",
+        "title": "Malas & Jap Malas",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1024,
+        "handle": "zodiac",
+        "title": "Zodiac",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1024,
+        "handle": "gifts",
+        "title": "Gifts",
+        "expectedProducts": 11,
+        "renderedCards": 11,
+        "columns": 4
+      },
+      {
+        "width": 1024,
+        "handle": "kawach-yantra",
+        "title": "Kawach/Yantra",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1280,
+        "handle": "agate-slices",
+        "title": "Agate slices",
+        "expectedProducts": 12,
+        "renderedCards": 12,
+        "columns": 4
+      },
+      {
+        "width": 1280,
+        "handle": "love",
+        "title": "Love",
+        "expectedProducts": 69,
+        "renderedCards": 24,
+        "columns": 4
+      },
+      {
+        "width": 1280,
+        "handle": "angels",
+        "title": "Angels",
+        "expectedProducts": 19,
+        "renderedCards": 19,
+        "columns": 4
+      },
+      {
+        "width": 1280,
+        "handle": "anklet",
+        "title": "Anklet",
+        "expectedProducts": 6,
+        "renderedCards": 6,
+        "columns": 4
+      },
+      {
+        "width": 1280,
+        "handle": "nazar",
+        "title": "Nazar",
+        "expectedProducts": 46,
+        "renderedCards": 24,
+        "columns": 4
+      },
+      {
+        "width": 1280,
+        "handle": "confidence-1",
+        "title": "Confidence",
+        "expectedProducts": 56,
+        "renderedCards": 24,
+        "columns": 4
+      },
+      {
+        "width": 1280,
+        "handle": "aura-spray",
+        "title": "Aura Spray",
+        "expectedProducts": 4,
+        "renderedCards": 4,
+        "columns": 4
+      },
+      {
+        "width": 1280,
+        "handle": "money",
+        "title": "Money",
+        "expectedProducts": 99,
+        "renderedCards": 24,
+        "columns": 4
+      },
+      {
+        "width": 1280,
+        "handle": "bangle",
+        "title": "Bangle",
+        "expectedProducts": 1,
+        "renderedCards": 1,
+        "columns": 4
+      },
+      {
+        "width": 1280,
+        "handle": "bowl",
+        "title": "Bowl",
+        "expectedProducts": 1,
+        "renderedCards": 1,
+        "columns": 4
+      },
+      {
+        "width": 1280,
+        "handle": "bracelets",
+        "title": "Bracelets",
+        "expectedProducts": 347,
+        "renderedCards": 24,
+        "columns": 4
+      },
+      {
+        "width": 1280,
+        "handle": "focus",
+        "title": "Focus",
+        "expectedProducts": 79,
+        "renderedCards": 24,
+        "columns": 4
+      },
+      {
+        "width": 1280,
+        "handle": "business-losses",
+        "title": "Business Losses",
+        "expectedProducts": 42,
+        "renderedCards": 24,
+        "columns": 4
+      },
+      {
+        "width": 1280,
+        "handle": "sets",
+        "title": "Sets",
+        "expectedProducts": 2,
+        "renderedCards": 2,
+        "columns": 4
+      },
+      {
+        "width": 1280,
+        "handle": "karungali",
+        "title": "Karungali",
+        "expectedProducts": 8,
+        "renderedCards": 8,
+        "columns": 4
+      },
+      {
+        "width": 1280,
+        "handle": "clock-watch",
+        "title": "Clock/Watch",
+        "expectedProducts": 1,
+        "renderedCards": 1,
+        "columns": 4
+      },
+      {
+        "width": 1280,
+        "handle": "cluster",
+        "title": "Cluster",
+        "expectedProducts": 62,
+        "renderedCards": 24,
+        "columns": 4
+      },
+      {
+        "width": 1280,
+        "handle": "diyas",
+        "title": "Diyas",
+        "expectedProducts": 8,
+        "renderedCards": 8,
+        "columns": 4
+      },
+      {
+        "width": 1280,
+        "handle": "earrings-tops",
+        "title": "Earrings/Tops",
+        "expectedProducts": 76,
+        "renderedCards": 24,
+        "columns": 4
+      },
+      {
+        "width": 1280,
+        "handle": "frames",
+        "title": "Frames",
+        "expectedProducts": 9,
+        "renderedCards": 9,
+        "columns": 4
+      },
+      {
+        "width": 1280,
+        "handle": "ganesh-ji-murti",
+        "title": "Ganesh ji murti",
+        "expectedProducts": 24,
+        "renderedCards": 24,
+        "columns": 4
+      },
+      {
+        "width": 1280,
+        "handle": "statue-murti",
+        "title": "Statue/Murti",
+        "expectedProducts": 24,
+        "renderedCards": 24,
+        "columns": 4
+      },
+      {
+        "width": 1280,
+        "handle": "pendants",
+        "title": "Pendants",
+        "expectedProducts": 202,
+        "renderedCards": 24,
+        "columns": 4
+      },
+      {
+        "width": 1280,
+        "handle": "glass",
+        "title": "Glass",
+        "expectedProducts": 1,
+        "renderedCards": 1,
+        "columns": 4
+      },
+      {
+        "width": 1280,
+        "handle": "hanger",
+        "title": "Hanger",
+        "expectedProducts": 1,
+        "renderedCards": 1,
+        "columns": 4
+      },
+      {
+        "width": 1280,
+        "handle": "jaap-mala",
+        "title": "Jaap mala",
+        "expectedProducts": 47,
+        "renderedCards": 24,
+        "columns": 4
+      },
+      {
+        "width": 1280,
+        "handle": "mala",
+        "title": "Mala",
+        "expectedProducts": 138,
+        "renderedCards": 24,
+        "columns": 4
+      },
+      {
+        "width": 1280,
+        "handle": "keyrings",
+        "title": "Keyrings",
+        "expectedProducts": 1,
+        "renderedCards": 1,
+        "columns": 4
+      },
+      {
+        "width": 1280,
+        "handle": "knife",
+        "title": "Knife",
+        "expectedProducts": 6,
+        "renderedCards": 6,
+        "columns": 4
+      },
+      {
+        "width": 1280,
+        "handle": "pencil-towers",
+        "title": "Pencil/Towers",
+        "expectedProducts": 24,
+        "renderedCards": 24,
+        "columns": 4
+      },
+      {
+        "width": 1280,
+        "handle": "pyramid",
+        "title": "Pyramid",
+        "expectedProducts": 36,
+        "renderedCards": 24,
+        "columns": 4
+      },
+      {
+        "width": 1280,
+        "handle": "rings",
+        "title": "Rings",
+        "expectedProducts": 64,
+        "renderedCards": 24,
+        "columns": 4
+      },
+      {
+        "width": 1280,
+        "handle": "rollers",
+        "title": "Rollers",
+        "expectedProducts": 3,
+        "renderedCards": 3,
+        "columns": 4
+      },
+      {
+        "width": 1280,
+        "handle": "selenite-plates",
+        "title": "Selenite plates",
+        "expectedProducts": 19,
+        "renderedCards": 19,
+        "columns": 4
+      },
+      {
+        "width": 1280,
+        "handle": "shaligram",
+        "title": "Shaligram",
+        "expectedProducts": 10,
+        "renderedCards": 10,
+        "columns": 4
+      },
+      {
+        "width": 1280,
+        "handle": "shankh",
+        "title": "Shankh",
+        "expectedProducts": 4,
+        "renderedCards": 4,
+        "columns": 4
+      },
+      {
+        "width": 1280,
+        "handle": "shivling",
+        "title": "Shivling",
+        "expectedProducts": 9,
+        "renderedCards": 9,
+        "columns": 4
+      },
+      {
+        "width": 1280,
+        "handle": "tumbles",
+        "title": "Tumbles",
+        "expectedProducts": 40,
+        "renderedCards": 24,
+        "columns": 4
+      },
+      {
+        "width": 1280,
+        "handle": "sphere",
+        "title": "Sphere",
+        "expectedProducts": 38,
+        "renderedCards": 24,
+        "columns": 4
+      },
+      {
+        "width": 1280,
+        "handle": "tortoise-turtle",
+        "title": "Tortoise/Turtle",
+        "expectedProducts": 18,
+        "renderedCards": 18,
+        "columns": 4
+      },
+      {
+        "width": 1280,
+        "handle": "trees",
+        "title": "Trees",
+        "expectedProducts": 73,
+        "renderedCards": 24,
+        "columns": 4
+      },
+      {
+        "width": 1280,
+        "handle": "vase",
+        "title": "Vase",
+        "expectedProducts": 6,
+        "renderedCards": 6,
+        "columns": 4
+      },
+      {
+        "width": 1280,
+        "handle": "yantra",
+        "title": "Yantra",
+        "expectedProducts": 53,
+        "renderedCards": 24,
+        "columns": 4
+      },
+      {
+        "width": 1280,
+        "handle": "zibu-coins",
+        "title": "Zibu coins",
+        "expectedProducts": 23,
+        "renderedCards": 23,
+        "columns": 4
+      },
+      {
+        "width": 1280,
+        "handle": "amethyst",
+        "title": "Amethyst",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1280,
+        "handle": "amber",
+        "title": "Amber",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1280,
+        "handle": "amazonite",
+        "title": "Amazonite",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1280,
+        "handle": "aquamarine",
+        "title": "Aquamarine",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1280,
+        "handle": "black-obsidian",
+        "title": "Black Obsidian",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1280,
+        "handle": "black-tourmaline",
+        "title": "Black Tourmaline",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1280,
+        "handle": "bloodstone",
+        "title": "Bloodstone",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1280,
+        "handle": "blue-apatite",
+        "title": "Blue Apatite",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1280,
+        "handle": "blue-goldstone",
+        "title": "Blue Goldstone",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1280,
+        "handle": "blue-lace-agate",
+        "title": "Blue Lace Agate",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1280,
+        "handle": "blue-tigers-eye",
+        "title": "Blue Tiger's Eye",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1280,
+        "handle": "calcite",
+        "title": "Calcite",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1280,
+        "handle": "carnelian",
+        "title": "Carnelian",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1280,
+        "handle": "cats-eye",
+        "title": "Cat's Eye",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1280,
+        "handle": "citrine",
+        "title": "Citrine",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1280,
+        "handle": "coral",
+        "title": "Coral",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1280,
+        "handle": "cherry-quartz",
+        "title": "Cherry Quartz",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1280,
+        "handle": "chrysocolla",
+        "title": "Chrysocolla",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1280,
+        "handle": "dalmatian-jasper",
+        "title": "Dalmatian Jasper",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1280,
+        "handle": "evil-eye-symbol",
+        "title": "Evil Eye (Symbol)",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1280,
+        "handle": "fluorite",
+        "title": "Fluorite",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1280,
+        "handle": "garnet",
+        "title": "Garnet",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1280,
+        "handle": "golden-obsidian",
+        "title": "Golden Obsidian",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1280,
+        "handle": "green-aventurine",
+        "title": "Green Aventurine",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1280,
+        "handle": "green-agate",
+        "title": "Green Agate",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1280,
+        "handle": "green-jade",
+        "title": "Green Jade",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1280,
+        "handle": "hematite",
+        "title": "Hematite",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1280,
+        "handle": "howlite",
+        "title": "Howlite",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1280,
+        "handle": "labradorite",
+        "title": "Labradorite",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1280,
+        "handle": "lapis-lazuli",
+        "title": "Lapis Lazuli",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1280,
+        "handle": "larvikite",
+        "title": "Larvikite",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1280,
+        "handle": "lava",
+        "title": "Lava",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1280,
+        "handle": "lepidolite",
+        "title": "Lepidolite",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1280,
+        "handle": "mahogany-obsidian",
+        "title": "Mahogany Obsidian",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1280,
+        "handle": "malachite",
+        "title": "Malachite",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1280,
+        "handle": "mookaite",
+        "title": "Mookaite",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1280,
+        "handle": "moonstone",
+        "title": "Moonstone",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1280,
+        "handle": "morganite",
+        "title": "Morganite",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1280,
+        "handle": "moss-agate",
+        "title": "Moss Agate",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1280,
+        "handle": "multi-tourmaline",
+        "title": "Multi Tourmaline",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1280,
+        "handle": "onyx",
+        "title": "Onyx",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1280,
+        "handle": "opal",
+        "title": "Opal",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1280,
+        "handle": "peridot",
+        "title": "Peridot",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1280,
+        "handle": "prehnite",
+        "title": "Prehnite",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1280,
+        "handle": "pyrite",
+        "title": "Pyrite",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1280,
+        "handle": "red-jasper",
+        "title": "Red Jasper",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1280,
+        "handle": "rhodonite",
+        "title": "Rhodonite",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1280,
+        "handle": "rose-quartz",
+        "title": "Rose Quartz",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1280,
+        "handle": "ruby-zoisite",
+        "title": "Ruby Zoisite",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1280,
+        "handle": "selenite",
+        "title": "Selenite",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1280,
+        "handle": "serpentine",
+        "title": "Serpentine",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1280,
+        "handle": "smoky-quartz",
+        "title": "Smoky Quartz",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1280,
+        "handle": "snowflake-obsidian",
+        "title": "Snowflake Obsidian",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1280,
+        "handle": "sodalite",
+        "title": "Sodalite",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1280,
+        "handle": "sphatik",
+        "title": "Sphatik",
+        "expectedProducts": 36,
+        "renderedCards": 24,
+        "columns": 4
+      },
+      {
+        "width": 1280,
+        "handle": "sunstone",
+        "title": "Sunstone",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1280,
+        "handle": "tiger-s-eye",
+        "title": "Tiger’s Eye",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1280,
+        "handle": "turquoise",
+        "title": "Turquoise",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1280,
+        "handle": "tree-line-agate",
+        "title": "Tree Line Agate",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1280,
+        "handle": "unakite",
+        "title": "Unakite",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1280,
+        "handle": "zibu",
+        "title": "Zibu",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1280,
+        "handle": "home-decor-vastu",
+        "title": "Home Decor/Vastu",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1280,
+        "handle": "under-499-rs",
+        "title": "Under 499 Rs",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1280,
+        "handle": "malas-jap-malas",
+        "title": "Malas & Jap Malas",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1280,
+        "handle": "zodiac",
+        "title": "Zodiac",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      },
+      {
+        "width": 1280,
+        "handle": "gifts",
+        "title": "Gifts",
+        "expectedProducts": 11,
+        "renderedCards": 11,
+        "columns": 4
+      },
+      {
+        "width": 1280,
+        "handle": "kawach-yantra",
+        "title": "Kawach/Yantra",
+        "expectedProducts": 0,
+        "renderedCards": 0,
+        "columns": 0
+      }
+    ],
+    "pass": true
+  },
+  "groupEmptyState": {
+    "route": "#group/group-rudraksha121mukhi",
+    "title": "Rudraksha 1-21 Mukhi",
+    "mappedProducts": 0,
+    "visibleEmptyCount": 1,
+    "emptyMessage": "No mapped products in this view yet.",
+    "mobileLayoutHidden": true,
+    "overflow": false
+  },
+  "destinations": {
+    "categories": {
+      "hash": "#collections",
+      "pageVisible": true,
+      "heading": "",
+      "documentWidth": 1425,
+      "scrollWidth": 1425,
+      "mobileNavHidden": true
+    },
+    "search": {
+      "hash": "#search/rudraksha",
+      "pageVisible": true,
+      "heading": "Search results",
+      "documentWidth": 1425,
+      "scrollWidth": 1425,
+      "mobileNavHidden": true
+    },
+    "wishlist": {
+      "hash": "#wishlist",
+      "pageVisible": true,
+      "heading": "Your wishlist",
+      "documentWidth": 1425,
+      "scrollWidth": 1425,
+      "mobileNavHidden": true
+    },
+    "cart": {
+      "hash": "#cart",
+      "pageVisible": true,
+      "heading": "",
+      "documentWidth": 1425,
+      "scrollWidth": 1425,
+      "mobileNavHidden": true
+    },
+    "account": {
+      "hash": "#account",
+      "pageVisible": true,
+      "heading": "Customer account",
+      "documentWidth": 1425,
+      "scrollWidth": 1425,
+      "mobileNavHidden": true
+    },
+    "about": {
+      "hash": "#about",
+      "pageVisible": true,
+      "heading": "About Crystal Baaz",
+      "documentWidth": 1425,
+      "scrollWidth": 1425,
+      "mobileNavHidden": true
+    },
+    "policies": {
+      "hash": "#policies",
+      "pageVisible": true,
+      "heading": "Store policies",
+      "documentWidth": 1425,
+      "scrollWidth": 1425,
+      "mobileNavHidden": true
+    },
+    "product": {
+      "route": "#product/blue-apatite",
+      "visible": true,
+      "heading": "Blue Apatite",
+      "imagePresent": true,
+      "imageWidth": 2048,
+      "documentWidth": 1425,
+      "scrollWidth": 1425
+    },
+    "navigation": {
+      "opened": true,
+      "menuLinks": 11,
+      "title": "Best Seller"
+    },
+    "footer": {
+      "present": true,
+      "visible": true,
+      "brand": "crystal baaz.client catalog preview",
+      "links": 8
+    }
+  },
+  "screenshots": [
+    "reports/screenshots/home-desktop-baaz-after-1440.png",
+    "reports/screenshots/collection-desktop-baaz-after-1280.png",
+    "reports/screenshots/collection-desktop-baaz-after-1440.png",
+    "reports/screenshots/product-desktop-baaz-after-1440.png"
+  ],
+  "failures": [],
+  "pass": true
+}

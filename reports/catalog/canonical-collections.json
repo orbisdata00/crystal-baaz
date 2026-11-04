@@ -1,0 +1,779 @@
+[
+  {
+    "title": "Agate slices",
+    "handle": "agate-slices",
+    "target_assignments": 12,
+    "actual_explicit_assignments": 12,
+    "count_difference": 0
+  },
+  {
+    "title": "Love",
+    "handle": "love",
+    "target_assignments": 51,
+    "actual_explicit_assignments": 69,
+    "count_difference": 18
+  },
+  {
+    "title": "Angels",
+    "handle": "angels",
+    "target_assignments": 2,
+    "actual_explicit_assignments": 19,
+    "count_difference": 17
+  },
+  {
+    "title": "Anklet",
+    "handle": "anklet",
+    "target_assignments": 6,
+    "actual_explicit_assignments": 6,
+    "count_difference": 0
+  },
+  {
+    "title": "Nazar",
+    "handle": "nazar",
+    "target_assignments": 39,
+    "actual_explicit_assignments": 46,
+    "count_difference": 7
+  },
+  {
+    "title": "Confidence",
+    "handle": "confidence-1",
+    "target_assignments": 41,
+    "actual_explicit_assignments": 56,
+    "count_difference": 15
+  },
+  {
+    "title": "Aura Spray",
+    "handle": "aura-spray",
+    "target_assignments": 4,
+    "actual_explicit_assignments": 4,
+    "count_difference": 0
+  },
+  {
+    "title": "Money",
+    "handle": "money",
+    "target_assignments": 89,
+    "actual_explicit_assignments": 99,
+    "count_difference": 10
+  },
+  {
+    "title": "Bangle",
+    "handle": "bangle",
+    "target_assignments": 1,
+    "actual_explicit_assignments": 1,
+    "count_difference": 0
+  },
+  {
+    "title": "Bowl",
+    "handle": "bowl",
+    "target_assignments": 1,
+    "actual_explicit_assignments": 1,
+    "count_difference": 0
+  },
+  {
+    "title": "Bracelets",
+    "handle": "bracelets",
+    "target_assignments": 325,
+    "actual_explicit_assignments": 347,
+    "count_difference": 22
+  },
+  {
+    "title": "Focus",
+    "handle": "focus",
+    "target_assignments": 70,
+    "actual_explicit_assignments": 79,
+    "count_difference": 9
+  },
+  {
+    "title": "Business Losses",
+    "handle": "business-losses",
+    "target_assignments": 38,
+    "actual_explicit_assignments": 42,
+    "count_difference": 4
+  },
+  {
+    "title": "Sets",
+    "handle": "sets",
+    "target_assignments": 1,
+    "actual_explicit_assignments": 2,
+    "count_difference": 1
+  },
+  {
+    "title": "Karungali",
+    "handle": "karungali",
+    "target_assignments": 4,
+    "actual_explicit_assignments": 8,
+    "count_difference": 4
+  },
+  {
+    "title": "Clock/Watch",
+    "handle": "clock-watch",
+    "target_assignments": 1,
+    "actual_explicit_assignments": 1,
+    "count_difference": 0
+  },
+  {
+    "title": "Cluster",
+    "handle": "cluster",
+    "target_assignments": 36,
+    "actual_explicit_assignments": 62,
+    "count_difference": 26
+  },
+  {
+    "title": "Diyas",
+    "handle": "diyas",
+    "target_assignments": 8,
+    "actual_explicit_assignments": 8,
+    "count_difference": 0
+  },
+  {
+    "title": "Earrings/Tops",
+    "handle": "earrings-tops",
+    "target_assignments": 73,
+    "actual_explicit_assignments": 76,
+    "count_difference": 3
+  },
+  {
+    "title": "Frames",
+    "handle": "frames",
+    "target_assignments": 9,
+    "actual_explicit_assignments": 9,
+    "count_difference": 0
+  },
+  {
+    "title": "Ganesh ji murti",
+    "handle": "ganesh-ji-murti",
+    "target_assignments": 24,
+    "actual_explicit_assignments": 24,
+    "count_difference": 0
+  },
+  {
+    "title": "Statue/Murti",
+    "handle": "statue-murti",
+    "target_assignments": 24,
+    "actual_explicit_assignments": 24,
+    "count_difference": 0
+  },
+  {
+    "title": "Pendants",
+    "handle": "pendants",
+    "target_assignments": 197,
+    "actual_explicit_assignments": 202,
+    "count_difference": 5
+  },
+  {
+    "title": "Glass",
+    "handle": "glass",
+    "target_assignments": 1,
+    "actual_explicit_assignments": 1,
+    "count_difference": 0
+  },
+  {
+    "title": "Hanger",
+    "handle": "hanger",
+    "target_assignments": 1,
+    "actual_explicit_assignments": 1,
+    "count_difference": 0
+  },
+  {
+    "title": "Jaap mala",
+    "handle": "jaap-mala",
+    "target_assignments": 39,
+    "actual_explicit_assignments": 47,
+    "count_difference": 8
+  },
+  {
+    "title": "Mala",
+    "handle": "mala",
+    "target_assignments": 132,
+    "actual_explicit_assignments": 138,
+    "count_difference": 6
+  },
+  {
+    "title": "Keyrings",
+    "handle": "keyrings",
+    "target_assignments": 1,
+    "actual_explicit_assignments": 1,
+    "count_difference": 0
+  },
+  {
+    "title": "Knife",
+    "handle": "knife",
+    "target_assignments": 6,
+    "actual_explicit_assignments": 6,
+    "count_difference": 0
+  },
+  {
+    "title": "Pencil/Towers",
+    "handle": "pencil-towers",
+    "target_assignments": 24,
+    "actual_explicit_assignments": 24,
+    "count_difference": 0
+  },
+  {
+    "title": "Pyramid",
+    "handle": "pyramid",
+    "target_assignments": 35,
+    "actual_explicit_assignments": 36,
+    "count_difference": 1
+  },
+  {
+    "title": "Rings",
+    "handle": "rings",
+    "target_assignments": 58,
+    "actual_explicit_assignments": 64,
+    "count_difference": 6
+  },
+  {
+    "title": "Rollers",
+    "handle": "rollers",
+    "target_assignments": 3,
+    "actual_explicit_assignments": 3,
+    "count_difference": 0
+  },
+  {
+    "title": "Selenite plates",
+    "handle": "selenite-plates",
+    "target_assignments": 19,
+    "actual_explicit_assignments": 19,
+    "count_difference": 0
+  },
+  {
+    "title": "Shaligram",
+    "handle": "shaligram",
+    "target_assignments": 10,
+    "actual_explicit_assignments": 10,
+    "count_difference": 0
+  },
+  {
+    "title": "Shankh",
+    "handle": "shankh",
+    "target_assignments": 4,
+    "actual_explicit_assignments": 4,
+    "count_difference": 0
+  },
+  {
+    "title": "Shivling",
+    "handle": "shivling",
+    "target_assignments": 9,
+    "actual_explicit_assignments": 9,
+    "count_difference": 0
+  },
+  {
+    "title": "Tumbles",
+    "handle": "tumbles",
+    "target_assignments": 40,
+    "actual_explicit_assignments": 40,
+    "count_difference": 0
+  },
+  {
+    "title": "Sphere",
+    "handle": "sphere",
+    "target_assignments": 37,
+    "actual_explicit_assignments": 38,
+    "count_difference": 1
+  },
+  {
+    "title": "Tortoise/Turtle",
+    "handle": "tortoise-turtle",
+    "target_assignments": 18,
+    "actual_explicit_assignments": 18,
+    "count_difference": 0
+  },
+  {
+    "title": "Trees",
+    "handle": "trees",
+    "target_assignments": 73,
+    "actual_explicit_assignments": 73,
+    "count_difference": 0
+  },
+  {
+    "title": "Vase",
+    "handle": "vase",
+    "target_assignments": 6,
+    "actual_explicit_assignments": 6,
+    "count_difference": 0
+  },
+  {
+    "title": "Yantra",
+    "handle": "yantra",
+    "target_assignments": 51,
+    "actual_explicit_assignments": 53,
+    "count_difference": 2
+  },
+  {
+    "title": "Zibu coins",
+    "handle": "zibu-coins",
+    "target_assignments": 22,
+    "actual_explicit_assignments": 23,
+    "count_difference": 1
+  },
+  {
+    "title": "Amethyst",
+    "handle": "amethyst",
+    "target_assignments": 74,
+    "actual_explicit_assignments": 0,
+    "count_difference": -74
+  },
+  {
+    "title": "Amber",
+    "handle": "amber",
+    "target_assignments": 4,
+    "actual_explicit_assignments": 0,
+    "count_difference": -4
+  },
+  {
+    "title": "Amazonite",
+    "handle": "amazonite",
+    "target_assignments": 9,
+    "actual_explicit_assignments": 0,
+    "count_difference": -9
+  },
+  {
+    "title": "Aquamarine",
+    "handle": "aquamarine",
+    "target_assignments": 4,
+    "actual_explicit_assignments": 0,
+    "count_difference": -4
+  },
+  {
+    "title": "Black Obsidian",
+    "handle": "black-obsidian",
+    "target_assignments": 5,
+    "actual_explicit_assignments": 0,
+    "count_difference": -5
+  },
+  {
+    "title": "Black Tourmaline",
+    "handle": "black-tourmaline",
+    "target_assignments": 23,
+    "actual_explicit_assignments": 0,
+    "count_difference": -23
+  },
+  {
+    "title": "Bloodstone",
+    "handle": "bloodstone",
+    "target_assignments": 5,
+    "actual_explicit_assignments": 0,
+    "count_difference": -5
+  },
+  {
+    "title": "Blue Apatite",
+    "handle": "blue-apatite",
+    "target_assignments": 1,
+    "actual_explicit_assignments": 0,
+    "count_difference": -1
+  },
+  {
+    "title": "Blue Goldstone",
+    "handle": "blue-goldstone",
+    "target_assignments": 2,
+    "actual_explicit_assignments": 0,
+    "count_difference": -2
+  },
+  {
+    "title": "Blue Lace Agate",
+    "handle": "blue-lace-agate",
+    "target_assignments": 2,
+    "actual_explicit_assignments": 0,
+    "count_difference": -2
+  },
+  {
+    "title": "Blue Tiger's Eye",
+    "handle": "blue-tigers-eye",
+    "target_assignments": 2,
+    "actual_explicit_assignments": 0,
+    "count_difference": -2
+  },
+  {
+    "title": "Calcite",
+    "handle": "calcite",
+    "target_assignments": 2,
+    "actual_explicit_assignments": 0,
+    "count_difference": -2
+  },
+  {
+    "title": "Carnelian",
+    "handle": "carnelian",
+    "target_assignments": 27,
+    "actual_explicit_assignments": 0,
+    "count_difference": -27
+  },
+  {
+    "title": "Cat's Eye",
+    "handle": "cats-eye",
+    "target_assignments": 9,
+    "actual_explicit_assignments": 0,
+    "count_difference": -9
+  },
+  {
+    "title": "Citrine",
+    "handle": "citrine",
+    "target_assignments": 42,
+    "actual_explicit_assignments": 0,
+    "count_difference": -42
+  },
+  {
+    "title": "Coral",
+    "handle": "coral",
+    "target_assignments": 15,
+    "actual_explicit_assignments": 0,
+    "count_difference": -15
+  },
+  {
+    "title": "Cherry Quartz",
+    "handle": "cherry-quartz",
+    "target_assignments": 4,
+    "actual_explicit_assignments": 0,
+    "count_difference": -4
+  },
+  {
+    "title": "Chrysocolla",
+    "handle": "chrysocolla",
+    "target_assignments": 2,
+    "actual_explicit_assignments": 0,
+    "count_difference": -2
+  },
+  {
+    "title": "Dalmatian Jasper",
+    "handle": "dalmatian-jasper",
+    "target_assignments": 6,
+    "actual_explicit_assignments": 0,
+    "count_difference": -6
+  },
+  {
+    "title": "Evil Eye (Symbol)",
+    "handle": "evil-eye-symbol",
+    "target_assignments": 9,
+    "actual_explicit_assignments": 0,
+    "count_difference": -9
+  },
+  {
+    "title": "Fluorite",
+    "handle": "fluorite",
+    "target_assignments": 6,
+    "actual_explicit_assignments": 0,
+    "count_difference": -6
+  },
+  {
+    "title": "Garnet",
+    "handle": "garnet",
+    "target_assignments": 8,
+    "actual_explicit_assignments": 0,
+    "count_difference": -8
+  },
+  {
+    "title": "Golden Obsidian",
+    "handle": "golden-obsidian",
+    "target_assignments": 5,
+    "actual_explicit_assignments": 0,
+    "count_difference": -5
+  },
+  {
+    "title": "Green Aventurine",
+    "handle": "green-aventurine",
+    "target_assignments": 34,
+    "actual_explicit_assignments": 0,
+    "count_difference": -34
+  },
+  {
+    "title": "Green Agate",
+    "handle": "green-agate",
+    "target_assignments": 2,
+    "actual_explicit_assignments": 0,
+    "count_difference": -2
+  },
+  {
+    "title": "Green Jade",
+    "handle": "green-jade",
+    "target_assignments": 16,
+    "actual_explicit_assignments": 0,
+    "count_difference": -16
+  },
+  {
+    "title": "Hematite",
+    "handle": "hematite",
+    "target_assignments": 11,
+    "actual_explicit_assignments": 0,
+    "count_difference": -11
+  },
+  {
+    "title": "Howlite",
+    "handle": "howlite",
+    "target_assignments": 8,
+    "actual_explicit_assignments": 0,
+    "count_difference": -8
+  },
+  {
+    "title": "Labradorite",
+    "handle": "labradorite",
+    "target_assignments": 37,
+    "actual_explicit_assignments": 0,
+    "count_difference": -37
+  },
+  {
+    "title": "Lapis Lazuli",
+    "handle": "lapis-lazuli",
+    "target_assignments": 35,
+    "actual_explicit_assignments": 0,
+    "count_difference": -35
+  },
+  {
+    "title": "Larvikite",
+    "handle": "larvikite",
+    "target_assignments": 1,
+    "actual_explicit_assignments": 0,
+    "count_difference": -1
+  },
+  {
+    "title": "Lava",
+    "handle": "lava",
+    "target_assignments": 3,
+    "actual_explicit_assignments": 0,
+    "count_difference": -3
+  },
+  {
+    "title": "Lepidolite",
+    "handle": "lepidolite",
+    "target_assignments": 1,
+    "actual_explicit_assignments": 0,
+    "count_difference": -1
+  },
+  {
+    "title": "Mahogany Obsidian",
+    "handle": "mahogany-obsidian",
+    "target_assignments": 5,
+    "actual_explicit_assignments": 0,
+    "count_difference": -5
+  },
+  {
+    "title": "Malachite",
+    "handle": "malachite",
+    "target_assignments": 8,
+    "actual_explicit_assignments": 0,
+    "count_difference": -8
+  },
+  {
+    "title": "Mookaite",
+    "handle": "mookaite",
+    "target_assignments": 6,
+    "actual_explicit_assignments": 0,
+    "count_difference": -6
+  },
+  {
+    "title": "Moonstone",
+    "handle": "moonstone",
+    "target_assignments": 12,
+    "actual_explicit_assignments": 0,
+    "count_difference": -12
+  },
+  {
+    "title": "Morganite",
+    "handle": "morganite",
+    "target_assignments": 1,
+    "actual_explicit_assignments": 0,
+    "count_difference": -1
+  },
+  {
+    "title": "Moss Agate",
+    "handle": "moss-agate",
+    "target_assignments": 23,
+    "actual_explicit_assignments": 0,
+    "count_difference": -23
+  },
+  {
+    "title": "Multi Tourmaline",
+    "handle": "multi-tourmaline",
+    "target_assignments": 1,
+    "actual_explicit_assignments": 0,
+    "count_difference": -1
+  },
+  {
+    "title": "Onyx",
+    "handle": "onyx",
+    "target_assignments": 9,
+    "actual_explicit_assignments": 0,
+    "count_difference": -9
+  },
+  {
+    "title": "Opal",
+    "handle": "opal",
+    "target_assignments": 12,
+    "actual_explicit_assignments": 0,
+    "count_difference": -12
+  },
+  {
+    "title": "Peridot",
+    "handle": "peridot",
+    "target_assignments": 5,
+    "actual_explicit_assignments": 0,
+    "count_difference": -5
+  },
+  {
+    "title": "Prehnite",
+    "handle": "prehnite",
+    "target_assignments": 1,
+    "actual_explicit_assignments": 0,
+    "count_difference": -1
+  },
+  {
+    "title": "Pyrite",
+    "handle": "pyrite",
+    "target_assignments": 71,
+    "actual_explicit_assignments": 0,
+    "count_difference": -71
+  },
+  {
+    "title": "Red Jasper",
+    "handle": "red-jasper",
+    "target_assignments": 27,
+    "actual_explicit_assignments": 0,
+    "count_difference": -27
+  },
+  {
+    "title": "Rhodonite",
+    "handle": "rhodonite",
+    "target_assignments": 12,
+    "actual_explicit_assignments": 0,
+    "count_difference": -12
+  },
+  {
+    "title": "Rose Quartz",
+    "handle": "rose-quartz",
+    "target_assignments": 57,
+    "actual_explicit_assignments": 0,
+    "count_difference": -57
+  },
+  {
+    "title": "Ruby Zoisite",
+    "handle": "ruby-zoisite",
+    "target_assignments": 4,
+    "actual_explicit_assignments": 0,
+    "count_difference": -4
+  },
+  {
+    "title": "Selenite",
+    "handle": "selenite",
+    "target_assignments": 53,
+    "actual_explicit_assignments": 0,
+    "count_difference": -53
+  },
+  {
+    "title": "Serpentine",
+    "handle": "serpentine",
+    "target_assignments": 6,
+    "actual_explicit_assignments": 0,
+    "count_difference": -6
+  },
+  {
+    "title": "Smoky Quartz",
+    "handle": "smoky-quartz",
+    "target_assignments": 5,
+    "actual_explicit_assignments": 0,
+    "count_difference": -5
+  },
+  {
+    "title": "Snowflake Obsidian",
+    "handle": "snowflake-obsidian",
+    "target_assignments": 3,
+    "actual_explicit_assignments": 0,
+    "count_difference": -3
+  },
+  {
+    "title": "Sodalite",
+    "handle": "sodalite",
+    "target_assignments": 20,
+    "actual_explicit_assignments": 0,
+    "count_difference": -20
+  },
+  {
+    "title": "Sphatik",
+    "handle": "sphatik",
+    "target_assignments": 45,
+    "actual_explicit_assignments": 36,
+    "count_difference": -9
+  },
+  {
+    "title": "Sunstone",
+    "handle": "sunstone",
+    "target_assignments": 15,
+    "actual_explicit_assignments": 0,
+    "count_difference": -15
+  },
+  {
+    "title": "Tiger’s Eye",
+    "handle": "tiger-s-eye",
+    "target_assignments": 46,
+    "actual_explicit_assignments": 0,
+    "count_difference": -46
+  },
+  {
+    "title": "Turquoise",
+    "handle": "turquoise",
+    "target_assignments": 5,
+    "actual_explicit_assignments": 0,
+    "count_difference": -5
+  },
+  {
+    "title": "Tree Line Agate",
+    "handle": "tree-line-agate",
+    "target_assignments": 1,
+    "actual_explicit_assignments": 0,
+    "count_difference": -1
+  },
+  {
+    "title": "Unakite",
+    "handle": "unakite",
+    "target_assignments": 9,
+    "actual_explicit_assignments": 0,
+    "count_difference": -9
+  },
+  {
+    "title": "Zibu",
+    "handle": "zibu",
+    "target_assignments": 25,
+    "actual_explicit_assignments": 0,
+    "count_difference": -25
+  },
+  {
+    "title": "Home Decor/Vastu",
+    "handle": "home-decor-vastu",
+    "target_assignments": 163,
+    "actual_explicit_assignments": 0,
+    "count_difference": -163
+  },
+  {
+    "title": "Under 499 Rs",
+    "handle": "under-499-rs",
+    "target_assignments": 110,
+    "actual_explicit_assignments": 0,
+    "count_difference": -110
+  },
+  {
+    "title": "Malas & Jap Malas",
+    "handle": "malas-jap-malas",
+    "target_assignments": 142,
+    "actual_explicit_assignments": 0,
+    "count_difference": -142
+  },
+  {
+    "title": "Zodiac",
+    "handle": "zodiac",
+    "target_assignments": 59,
+    "actual_explicit_assignments": 0,
+    "count_difference": -59
+  },
+  {
+    "title": "Gifts",
+    "handle": "gifts",
+    "target_assignments": 21,
+    "actual_explicit_assignments": 11,
+    "count_difference": -10
+  },
+  {
+    "title": "Kawach/Yantra",
+    "handle": "kawach-yantra",
+    "target_assignments": 51,
+    "actual_explicit_assignments": 0,
+    "count_difference": -51
+  }
+]

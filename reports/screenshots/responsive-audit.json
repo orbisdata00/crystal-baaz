@@ -1,0 +1,574 @@
+{
+  "previewUrl": "http://127.0.0.1:4174/",
+  "viewports": [
+    {
+      "viewport": 320,
+      "documentWidth": 320,
+      "scrollWidth": 320,
+      "horizontalOverflow": false,
+      "categories": {
+        "trackWidth": 294,
+        "scrollWidth": 1419,
+        "clientWidth": 294,
+        "cardCount": 16,
+        "fullyVisibleCards": 3,
+        "nextCardPeekPercent": 34,
+        "scrollSnapType": "x"
+      },
+      "products": {
+        "trackWidth": 294,
+        "scrollWidth": 2189,
+        "clientWidth": 294,
+        "cardCount": 12,
+        "fullyVisibleCards": 1,
+        "nextCardPeekPercent": 63,
+        "scrollSnapType": "x mandatory"
+      },
+      "stickyPosition": "static",
+      "categoryTabsOverflow": true,
+      "categoryTiles": 16,
+      "intentionTiles": 0,
+      "exploreTiles": 0
+    },
+    {
+      "viewport": 360,
+      "documentWidth": 360,
+      "scrollWidth": 360,
+      "horizontalOverflow": false,
+      "categories": {
+        "trackWidth": 334,
+        "scrollWidth": 1419,
+        "clientWidth": 334,
+        "cardCount": 16,
+        "fullyVisibleCards": 3,
+        "nextCardPeekPercent": 84,
+        "scrollSnapType": "x"
+      },
+      "products": {
+        "trackWidth": 334,
+        "scrollWidth": 2189,
+        "clientWidth": 334,
+        "cardCount": 12,
+        "fullyVisibleCards": 1,
+        "nextCardPeekPercent": 86,
+        "scrollSnapType": "x mandatory"
+      },
+      "stickyPosition": "static",
+      "categoryTabsOverflow": true,
+      "categoryTiles": 16,
+      "intentionTiles": 0,
+      "exploreTiles": 0
+    },
+    {
+      "viewport": 375,
+      "documentWidth": 375,
+      "scrollWidth": 375,
+      "horizontalOverflow": false,
+      "categories": {
+        "trackWidth": 349,
+        "scrollWidth": 1419,
+        "clientWidth": 349,
+        "cardCount": 16,
+        "fullyVisibleCards": 4,
+        "nextCardPeekPercent": 0,
+        "scrollSnapType": "x"
+      },
+      "products": {
+        "trackWidth": 349,
+        "scrollWidth": 2189,
+        "clientWidth": 349,
+        "cardCount": 12,
+        "fullyVisibleCards": 1,
+        "nextCardPeekPercent": 95,
+        "scrollSnapType": "x mandatory"
+      },
+      "stickyPosition": "static",
+      "categoryTabsOverflow": true,
+      "categoryTiles": 16,
+      "intentionTiles": 0,
+      "exploreTiles": 0
+    },
+    {
+      "viewport": 390,
+      "documentWidth": 390,
+      "scrollWidth": 390,
+      "horizontalOverflow": false,
+      "categories": {
+        "trackWidth": 364,
+        "scrollWidth": 1419,
+        "clientWidth": 364,
+        "cardCount": 16,
+        "fullyVisibleCards": 4,
+        "nextCardPeekPercent": 10,
+        "scrollSnapType": "x"
+      },
+      "products": {
+        "trackWidth": 364,
+        "scrollWidth": 2189,
+        "clientWidth": 364,
+        "cardCount": 12,
+        "fullyVisibleCards": 2,
+        "nextCardPeekPercent": 0,
+        "scrollSnapType": "x mandatory"
+      },
+      "stickyPosition": "static",
+      "categoryTabsOverflow": true,
+      "categoryTiles": 16,
+      "intentionTiles": 0,
+      "exploreTiles": 0
+    },
+    {
+      "viewport": 414,
+      "documentWidth": 414,
+      "scrollWidth": 414,
+      "horizontalOverflow": false,
+      "categories": {
+        "trackWidth": 382,
+        "scrollWidth": 1560,
+        "clientWidth": 382,
+        "cardCount": 16,
+        "fullyVisibleCards": 4,
+        "nextCardPeekPercent": 0,
+        "scrollSnapType": "x"
+      },
+      "products": {
+        "trackWidth": 382,
+        "scrollWidth": 2213,
+        "clientWidth": 382,
+        "cardCount": 12,
+        "fullyVisibleCards": 2,
+        "nextCardPeekPercent": 6,
+        "scrollSnapType": "x mandatory"
+      },
+      "stickyPosition": "static",
+      "categoryTabsOverflow": true,
+      "categoryTiles": 16,
+      "intentionTiles": 0,
+      "exploreTiles": 0
+    },
+    {
+      "viewport": 427,
+      "documentWidth": 427,
+      "scrollWidth": 427,
+      "horizontalOverflow": false,
+      "categories": {
+        "trackWidth": 395,
+        "scrollWidth": 1560,
+        "clientWidth": 395,
+        "cardCount": 16,
+        "fullyVisibleCards": 4,
+        "nextCardPeekPercent": 3,
+        "scrollSnapType": "x"
+      },
+      "products": {
+        "trackWidth": 395,
+        "scrollWidth": 2213,
+        "clientWidth": 395,
+        "cardCount": 12,
+        "fullyVisibleCards": 2,
+        "nextCardPeekPercent": 14,
+        "scrollSnapType": "x mandatory"
+      },
+      "stickyPosition": "static",
+      "categoryTabsOverflow": false,
+      "categoryTiles": 16,
+      "intentionTiles": 0,
+      "exploreTiles": 0
+    },
+    {
+      "viewport": 430,
+      "documentWidth": 430,
+      "scrollWidth": 430,
+      "horizontalOverflow": false,
+      "categories": {
+        "trackWidth": 398,
+        "scrollWidth": 1560,
+        "clientWidth": 398,
+        "cardCount": 16,
+        "fullyVisibleCards": 4,
+        "nextCardPeekPercent": 7,
+        "scrollSnapType": "x"
+      },
+      "products": {
+        "trackWidth": 398,
+        "scrollWidth": 2217,
+        "clientWidth": 398,
+        "cardCount": 12,
+        "fullyVisibleCards": 2,
+        "nextCardPeekPercent": 15,
+        "scrollSnapType": "x mandatory"
+      },
+      "stickyPosition": "static",
+      "categoryTabsOverflow": false,
+      "categoryTiles": 16,
+      "intentionTiles": 0,
+      "exploreTiles": 0
+    },
+    {
+      "viewport": 440,
+      "documentWidth": 440,
+      "scrollWidth": 440,
+      "horizontalOverflow": false,
+      "categories": {
+        "trackWidth": 408,
+        "scrollWidth": 1560,
+        "clientWidth": 408,
+        "cardCount": 16,
+        "fullyVisibleCards": 4,
+        "nextCardPeekPercent": 19,
+        "scrollSnapType": "x"
+      },
+      "products": {
+        "trackWidth": 408,
+        "scrollWidth": 2266,
+        "clientWidth": 408,
+        "cardCount": 12,
+        "fullyVisibleCards": 2,
+        "nextCardPeekPercent": 16,
+        "scrollSnapType": "x mandatory"
+      },
+      "stickyPosition": "static",
+      "categoryTabsOverflow": false,
+      "categoryTiles": 16,
+      "intentionTiles": 0,
+      "exploreTiles": 0
+    },
+    {
+      "viewport": 768,
+      "documentWidth": 768,
+      "scrollWidth": 768,
+      "horizontalOverflow": false,
+      "categories": {
+        "trackWidth": 736,
+        "scrollWidth": 1560,
+        "clientWidth": 736,
+        "cardCount": 16,
+        "fullyVisibleCards": 7,
+        "nextCardPeekPercent": 58,
+        "scrollSnapType": "x"
+      },
+      "products": {
+        "trackWidth": 736,
+        "scrollWidth": 2453,
+        "clientWidth": 736,
+        "cardCount": 12,
+        "fullyVisibleCards": 3,
+        "nextCardPeekPercent": 61,
+        "scrollSnapType": "x mandatory"
+      },
+      "stickyPosition": "static",
+      "categoryTabsOverflow": false,
+      "categoryTiles": 16,
+      "intentionTiles": 0,
+      "exploreTiles": 0
+    },
+    {
+      "viewport": 1024,
+      "documentWidth": 1009,
+      "scrollWidth": 1009,
+      "horizontalOverflow": false,
+      "categories": {
+        "trackWidth": 908,
+        "scrollWidth": 908,
+        "clientWidth": 908,
+        "cardCount": 16,
+        "fullyVisibleCards": 16,
+        "nextCardPeekPercent": 0,
+        "scrollSnapType": "none"
+      },
+      "products": {
+        "trackWidth": 948,
+        "scrollWidth": 2348,
+        "clientWidth": 948,
+        "cardCount": 12,
+        "fullyVisibleCards": 4,
+        "nextCardPeekPercent": 87,
+        "scrollSnapType": "x mandatory"
+      },
+      "stickyPosition": "static",
+      "categoryTabsOverflow": false,
+      "categoryTiles": 16,
+      "intentionTiles": 0,
+      "exploreTiles": 0
+    },
+    {
+      "viewport": 1280,
+      "documentWidth": 1265,
+      "scrollWidth": 1265,
+      "horizontalOverflow": false,
+      "categories": {
+        "trackWidth": 1100,
+        "scrollWidth": 1100,
+        "clientWidth": 1100,
+        "cardCount": 16,
+        "fullyVisibleCards": 16,
+        "nextCardPeekPercent": 0,
+        "scrollSnapType": "none"
+      },
+      "products": {
+        "trackWidth": 1189,
+        "scrollWidth": 2896,
+        "clientWidth": 1189,
+        "cardCount": 12,
+        "fullyVisibleCards": 4,
+        "nextCardPeekPercent": 95,
+        "scrollSnapType": "x mandatory"
+      },
+      "stickyPosition": "static",
+      "categoryTabsOverflow": false,
+      "categoryTiles": 16,
+      "intentionTiles": 0,
+      "exploreTiles": 0
+    },
+    {
+      "viewport": 1440,
+      "documentWidth": 1425,
+      "scrollWidth": 1425,
+      "horizontalOverflow": false,
+      "categories": {
+        "trackWidth": 1100,
+        "scrollWidth": 1100,
+        "clientWidth": 1100,
+        "cardCount": 16,
+        "fullyVisibleCards": 16,
+        "nextCardPeekPercent": 0,
+        "scrollSnapType": "none"
+      },
+      "products": {
+        "trackWidth": 1340,
+        "scrollWidth": 2896,
+        "clientWidth": 1340,
+        "cardCount": 12,
+        "fullyVisibleCards": 5,
+        "nextCardPeekPercent": 55,
+        "scrollSnapType": "x mandatory"
+      },
+      "stickyPosition": "static",
+      "categoryTabsOverflow": false,
+      "categoryTiles": 16,
+      "intentionTiles": 0,
+      "exploreTiles": 0
+    }
+  ],
+  "loadedImagesAtCapture": 15,
+  "imageStatesAtCapture": [
+    {
+      "title": "Rashi Rings",
+      "loaded": true,
+      "hidden": false,
+      "display": "block"
+    },
+    {
+      "title": "Bracelets",
+      "loaded": true,
+      "hidden": false,
+      "display": "block"
+    },
+    {
+      "title": "Zodiac Bracelets",
+      "loaded": false,
+      "hidden": false,
+      "display": "none"
+    },
+    {
+      "title": "Mala",
+      "loaded": true,
+      "hidden": false,
+      "display": "block"
+    },
+    {
+      "title": "Earrings & Tops",
+      "loaded": true,
+      "hidden": false,
+      "display": "block"
+    },
+    {
+      "title": "Pendants",
+      "loaded": true,
+      "hidden": false,
+      "display": "block"
+    },
+    {
+      "title": "Anklet",
+      "loaded": true,
+      "hidden": false,
+      "display": "block"
+    },
+    {
+      "title": "Frames",
+      "loaded": true,
+      "hidden": false,
+      "display": "block"
+    },
+    {
+      "title": "Spheres & Balls",
+      "loaded": true,
+      "hidden": false,
+      "display": "block"
+    },
+    {
+      "title": "Pyramids",
+      "loaded": true,
+      "hidden": false,
+      "display": "block"
+    },
+    {
+      "title": "Clusters",
+      "loaded": true,
+      "hidden": false,
+      "display": "block"
+    },
+    {
+      "title": "Rings",
+      "loaded": true,
+      "hidden": false,
+      "display": "block"
+    },
+    {
+      "title": "Bangles",
+      "loaded": true,
+      "hidden": false,
+      "display": "block"
+    },
+    {
+      "title": "Agate Slices",
+      "loaded": true,
+      "hidden": false,
+      "display": "block"
+    },
+    {
+      "title": "Angels",
+      "loaded": true,
+      "hidden": false,
+      "display": "block"
+    },
+    {
+      "title": "Puja Essentials",
+      "loaded": true,
+      "hidden": false,
+      "display": "block"
+    }
+  ],
+  "routeCheck": {
+    "hash": "#collection/bracelets",
+    "title": "Bracelets",
+    "tileCount": 48
+  },
+  "categoryTabCheck": {
+    "hash": "#collection/rings",
+    "title": "Rings"
+  },
+  "carouselScrollCheck": {
+    "available": true,
+    "moved": 180,
+    "keyboardPosition": 159,
+    "otherStayedAtStart": true,
+    "categoriesSnap": "x"
+  },
+  "stickyCheck": {
+    "visible": false,
+    "top": 0,
+    "headerBottom": 70,
+    "position": "static"
+  },
+  "cartInteractionCheck": {
+    "available": true,
+    "beforeScroll": 182,
+    "afterInteractionScroll": 182,
+    "afterAdd": "1",
+    "afterPlus": "2",
+    "afterMinus": "1",
+    "cartCount": 0,
+    "returnedToAdd": true
+  },
+  "backToTopCheck": {
+    "visible": true,
+    "position": "fixed"
+  },
+  "backToTopReturned": true,
+  "searchCheck": {
+    "hash": "#search/",
+    "title": "Search results",
+    "resultCount": 24
+  },
+  "searchSuggestionCount": 24,
+  "mobileNavigationCheck": {
+    "opened": true,
+    "groupCount": 8,
+    "browseAll": true,
+    "firstGroupExpanded": true
+  },
+  "desktopNavigationCheck": {
+    "opened": true,
+    "menuTitle": "Best Seller",
+    "linkCount": 11
+  },
+  "selectedProduct": "Amethyst Vase",
+  "productDetailCheck": {
+    "route": "#product/amethyst-vase",
+    "title": "Amethyst Vase",
+    "imageCount": 2,
+    "addEnabled": true,
+    "wishlistAction": true
+  },
+  "wishlistCheck": {
+    "route": "#wishlist",
+    "savedCount": 2,
+    "containsSelectedProduct": true
+  },
+  "cartBeforeReloadCheck": {
+    "lineCount": 1,
+    "quantity": "1",
+    "checkoutDisabled": true,
+    "checkoutText": "Checkout unavailable in preview"
+  },
+  "cartQuantityUpdateCheck": "2",
+  "cartPersistenceCheck": {
+    "lineCount": 1,
+    "quantity": "2"
+  },
+  "cartRemovalCheck": true,
+  "wishlistPersistenceCheck": true,
+  "pwaCheck": {
+    "manifestStatus": 200,
+    "appName": "Crystal Bazz",
+    "display": "standalone",
+    "icons": 3,
+    "iconStatuses": [
+      200,
+      200,
+      200
+    ],
+    "offlineStatus": 200,
+    "serviceWorkerStatus": 200,
+    "registered": true,
+    "controlled": true,
+    "workerState": "activated",
+    "cacheEntries": [
+      {
+        "name": "crystal-bazz-public-v3",
+        "urls": [
+          "/offline.html",
+          "/manifest.webmanifest",
+          "/assets/pwa-icon-180.png",
+          "/assets/pwa-icon-192.png",
+          "/assets/pwa-icon-512.png",
+          "/assets/product-placeholder.svg",
+          "/assets/index-CIKDK3HP.js",
+          "/assets/index-Ces-Ltfc.css",
+          "/"
+        ]
+      }
+    ]
+  },
+  "initiallyControlled": true,
+  "offlineFetchCheck": {
+    "status": 200,
+    "containsOfflineCopy": true
+  },
+  "offlineCheck": {
+    "homeSearch": true,
+    "pageTitle": "Crystal Bazz — Client catalog preview",
+    "offlineFallback": false
+  }
+}

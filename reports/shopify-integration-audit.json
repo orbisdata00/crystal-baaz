@@ -1,0 +1,252 @@
+{
+  "status": "authenticated_catalog_reconciled",
+  "storeDomain": "crystalbaaz.myshopify.com",
+  "apiVersion": "2026-10",
+  "connectionReport": "shopify-connection-report.json",
+  "currentFrontendMode": "workbook preview",
+  "checkoutEnabled": false,
+  "uiChanged": false,
+  "preflight": {
+    "endpointReachable": true,
+    "storefrontQueryAuthorized": true,
+    "actualHttpStatus": 200,
+    "actualGraphqlErrors": [],
+    "actualRequestWasAuthenticated": true,
+    "shop": {
+      "name": "My Store 2",
+      "primaryDomain": {
+        "host": "crystalbaaz.myshopify.com",
+        "url": "https://crystalbaaz.myshopify.com"
+      }
+    },
+    "initialProductsReturned": 5,
+    "initialCollectionsReturned": 1,
+    "totalShopifyProductsReturned": 1520,
+    "totalShopifyCollectionsReturned": 1,
+    "storefrontAccessPermissions": {
+      "shop": "succeeded",
+      "products": "succeeded; 1520 accessible products returned across all pages",
+      "collections": "succeeded; 1 accessible collections returned across all pages",
+      "adminChannelConfiguration": "not exposed through these Storefront API reads"
+    }
+  },
+  "verification": {
+    "authenticatedShopQuery": "passed",
+    "authenticatedProductsQuery": "passed; 1520 accessible products paginated",
+    "authenticatedCollectionsQuery": "passed; 1 accessible collections paginated",
+    "catalogReconciliation": "completed against the imported Excel workbook registry",
+    "liveProductQueries": "Storefront product reads passed; React catalog remains in workbook preview mode",
+    "liveCollectionQueries": "Storefront collection reads passed; React catalog remains in workbook preview mode",
+    "search": "passed in Chrome; rudraksha query showed 24 first-page cards (page-size limited)",
+    "cartMutations": "passed on temporary cart; create, add, quantity update, and remove verified; no checkout or order",
+    "hostedCheckout": "not tested; checkout remains disabled",
+    "pwaAndVisualRegression": "passed in Chrome across 320, 360, 390, 427, 440, 768, 1024, 1280, 1440, and 1920px; no horizontal overflow, visible broken images, console warnings, or uncaught page errors",
+    "existingTests": "passed (19/19)",
+    "productionBuild": "passed; Vite emitted the existing large-chunk advisory",
+    "mappingReports": [
+      "reports/shopify-product-mapping.csv",
+      "reports/shopify-sku-mapping.csv",
+      "reports/shopify-variant-mapping.csv",
+      "reports/shopify-variant-live-data.csv",
+      "reports/shopify-collection-mapping.csv"
+    ],
+    "freshDevelopmentServer": "temporary audit-only Vite server used ephemeral VITE_CATALOG_SOURCE=shopify with checkout disabled; default preview configuration was preserved",
+    "productDetail": "passed; full Shopify variant data loaded and exact workbook SKU availability enforced",
+    "desktopMobileVisualAudit": "passed; mobile sticky header/bottom navigation and desktop main navigation verified",
+    "localDefaultMode": "preview; .env.local remains without VITE_CATALOG_SOURCE",
+    "publication": "not published; no authorization to publish was given",
+    "publicTokenType": "accepted by the public Storefront API header; Shopify Admin credential metadata was not independently inspected"
+  },
+  "nextSteps": [
+    "Review and resolve 3 workbook-only product handles and 661 unmatched workbook handle/SKU variant pairs with the catalog owner before considering live catalog mode.",
+    "Assign or confirm products for the 65 workbook collection routes that have no exact workbook product assignments; do not infer membership.",
+    "Repair or replace the listed Shopify CDN image URLs that failed in Chrome; UI image fallback handled the failed requests.",
+    "Verify token credential classification in Shopify Admin; the public header request succeeded but does not expose Admin credential metadata.",
+    "Keep workbook preview as the default and checkout disabled until data gaps are resolved and separately approved."
+  ],
+  "mappingReadiness": "complete_comparison_with_catalog_gaps_or_conflicts",
+  "shopifyRecordCounts": {
+    "productsReturned": 1520,
+    "productPages": 38,
+    "collectionsReturned": 1,
+    "collectionPages": 1,
+    "variantSkuPairs": 1915,
+    "variantsWithoutSku": 12,
+    "productRecordsWithoutHandle": 0,
+    "collectionRecordsWithoutHandle": 0
+  },
+  "mappingCounts": {
+    "products": {
+      "unionRows": 1523,
+      "statuses": {
+        "matched": 1520,
+        "workbook_only": 3
+      }
+    },
+    "skus": {
+      "unionRows": 2512,
+      "statuses": {
+        "matched": 1864,
+        "workbook_only": 648
+      }
+    },
+    "variants": {
+      "unionRows": 2576,
+      "statuses": {
+        "matched": 1915,
+        "workbook_only": 661
+      }
+    },
+    "collections": {
+      "unionRows": 112,
+      "statuses": {
+        "workbook_only": 111,
+        "shopify_only": 1
+      }
+    },
+    "titleConflicts": {
+      "products": 0,
+      "collections": 0
+    },
+    "skuHandleConflicts": 0,
+    "skuHandleConflictSamples": [],
+    "liveVariantData": {
+      "returnedVariantRows": 1915,
+      "workbookOnlyVariantRows": 661,
+      "skuAbsentFromAnyShopifyHandle": 661,
+      "skuPresentOnDifferentShopifyHandle": 0,
+      "variantsAvailableForSale": 1915,
+      "variantsUnavailableForSale": 0,
+      "variantFieldsQueried": [
+        "sku",
+        "title",
+        "selectedOptions",
+        "price",
+        "compareAtPrice",
+        "availableForSale"
+      ]
+    }
+  },
+  "liveApplicationSmokeTest": {
+    "checkedAt": "2026-11-04T09:13:25.573Z",
+    "result": "passed",
+    "authenticatedRequestHeader": "X-Shopify-Storefront-Access-Token",
+    "tokenValueLogged": false,
+    "appModeDuringSmokeTest": "shopify (ephemeral Vite SSR test override)",
+    "defaultAppMode": "preview (VITE_CATALOG_SOURCE remains unset in .env.local)",
+    "checkoutEnabled": false,
+    "shopifyProductsRead": 1520,
+    "workbookProducts": 1523,
+    "exactHandleMatchesRendered": 1520,
+    "workbookProductsMissingFromShopify": 3,
+    "workbookCollectionRoutesAvailable": 111,
+    "collectionsWithMatchedProducts": 46,
+    "collectionsWithoutMatchedProducts": 65,
+    "searchQuery": "rudraksha",
+    "searchResults": 37,
+    "productDetailRoute": "passed with an available exact-SKU match",
+    "graphqlErrors": []
+  },
+  "liveCartSmokeTest": {
+    "checkedAt": "2026-11-04T09:13:25.573Z",
+    "status": "passed",
+    "operations": [
+      "cartCreate",
+      "cartLinesAdd",
+      "cartLinesUpdate",
+      "cartLinesRemove"
+    ],
+    "quantitiesByStage": {
+      "created": 1,
+      "afterAdd": 2,
+      "afterUpdate": 3,
+      "afterRemovingOneLine": 2,
+      "afterFinalCleanup": 0
+    },
+    "exactWorkbookMatchedVariantsUsed": 2,
+    "finalCartEmpty": true,
+    "cartIdLogged": false,
+    "checkoutOrOrderAttempted": false
+  },
+  "checkedAt": "2026-11-04T11:09:05.613Z",
+  "browserAudit": {
+    "report": "reports/shopify-live-browser-audit.json",
+    "generatedAt": "2026-11-04T11:09:05.613Z",
+    "mode": "local Vite server with ephemeral VITE_CATALOG_SOURCE=shopify and checkout disabled",
+    "checkoutEnabled": false,
+    "widths": [
+      320,
+      360,
+      390,
+      427,
+      440,
+      768,
+      1024,
+      1280,
+      1440,
+      1920
+    ],
+    "horizontalOverflowWidths": [],
+    "allCollectionRoutes": {
+      "tested": 111,
+      "passed": 111,
+      "mappedRoutes": 46,
+      "emptyRoutes": 65,
+      "mismatches": []
+    },
+    "categoriesDirectoryCount": 111,
+    "collectionPagination": {
+      "route": "#collection/bracelets",
+      "total": 347,
+      "beforeLoadMore": 24,
+      "afterLoadMore": 48,
+      "passed": true
+    },
+    "search": {
+      "route": "#search/rudraksha",
+      "resultCards": 24,
+      "inputVisible": true
+    },
+    "productDetail": {
+      "route": "#product/7-chakra-angel-1-inch",
+      "title": "7 Chakra Angel",
+      "optionCount": 3,
+      "enabledOptions": 3,
+      "selectedOption": "Variant 3 · ₹490",
+      "renderedPrice": "₹490",
+      "selectedVariantPrice": 490,
+      "expectedLowestAvailableMatchedVariantPrice": 290,
+      "imageElements": 1,
+      "passed": true
+    },
+    "wishlist": {
+      "savedProduct": "Amethyst Vase",
+      "itemVisibleOnWishlist": true,
+      "passed": true
+    },
+    "cart": {
+      "added": true,
+      "lineCountAfterAdd": 1,
+      "subtotalAfterAdd": "₹490",
+      "updatedQuantity": "2",
+      "subtotalAfterUpdate": "₹980",
+      "removedAndEmpty": true,
+      "checkoutDisabled": true,
+      "passed": true
+    },
+    "graphqlStatuses": [
+      200
+    ],
+    "consoleErrors": 0,
+    "uncaughtPageErrors": 0,
+    "visibleBrokenImages": 0,
+    "blockedShopifyImageUrls": [
+      "https://cdn.shopify.com/s/files/1/0657/3948/9391/files/5mukhiRudrakshabraceletgoldenmagneticlock_superquality.png",
+      "https://cdn.shopify.com/s/files/1/0657/3948/9391/files/Karungalichainbracelet.jpg",
+      "https://cdn.shopify.com/s/files/1/0657/3948/9391/files/Rudrakshakarungalibraceletblackdori8mm.jpg",
+      "https://cdn.shopify.com/s/files/1/0657/3948/9391/files/C3765-1.png",
+      "https://cdn.shopify.com/s/files/1/0657/3948/9391/files/C3784-1.png"
+    ],
+    "passed": true
+  }
+}

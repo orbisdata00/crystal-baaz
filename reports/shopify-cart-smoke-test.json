@@ -1,0 +1,72 @@
+{
+  "generatedAt": "2026-11-04T08:37:32.731Z",
+  "storeDomain": "crystalbaaz.myshopify.com",
+  "apiVersion": "2026-10",
+  "tokenVariable": "VITE_SHOPIFY_STOREFRONT_PUBLIC_TOKEN",
+  "tokenPresent": true,
+  "tokenValueLogged": false,
+  "publicHeader": "X-Shopify-Storefront-Access-Token",
+  "cartTest": {
+    "status": "passed",
+    "operations": [
+      {
+        "name": "cartCreate",
+        "httpStatus": 200,
+        "graphqlErrors": [],
+        "userErrors": []
+      },
+      {
+        "name": "cartLinesAdd",
+        "httpStatus": 200,
+        "graphqlErrors": [],
+        "userErrors": []
+      },
+      {
+        "name": "cartLinesUpdate",
+        "httpStatus": 200,
+        "graphqlErrors": [],
+        "userErrors": []
+      },
+      {
+        "name": "cartLinesRemove",
+        "httpStatus": 200,
+        "graphqlErrors": [],
+        "userErrors": []
+      }
+    ],
+    "testProductHandle": "5-mukhi-rudraksha-bracelet",
+    "startingQuantity": 1,
+    "updatedQuantity": 2,
+    "finalQuantity": 0,
+    "finalCartEmpty": true,
+    "temporaryCartIdCreated": true,
+    "cartIdLogged": false,
+    "checkoutUrlRequested": false,
+    "checkoutOpened": false,
+    "placedOrder": false,
+    "note": "Temporary cart was created, populated, quantity-updated, and emptied; no checkout or order was initiated."
+  },
+  "preflight": {
+    "httpStatus": 200,
+    "graphqlErrors": [],
+    "authenticated": true,
+    "shop": {
+      "name": "My Store 2",
+      "primaryDomain": {
+        "host": "crystalbaaz.myshopify.com",
+        "url": "https://crystalbaaz.myshopify.com"
+      }
+    },
+    "products": {
+      "requested": 5,
+      "returned": 5,
+      "hasNextPage": true
+    },
+    "collections": {
+      "requested": 5,
+      "returned": 1,
+      "hasNextPage": false
+    }
+  },
+  "status": "passed"
+}

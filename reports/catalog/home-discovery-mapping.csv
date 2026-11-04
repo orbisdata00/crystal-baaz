@@ -1,0 +1,23 @@
+section,label,mapping_type,workbook_reference,matched_products,status,notes
+Crystal Categories,Tumble Stones & Chips,collection,tumbles,40,Partial direct mapping,Chips have no separate mapped collection
+Crystal Categories,Crystal Bracelets,collection,bracelets,347,Mapped,
+Crystal Categories,Crystal Towers & Points,collection,pencil-towers,24,Partial direct mapping,Points have no separate mapped collection
+Crystal Categories,Crystal Spheres & Shapes,collection,sphere,38,Partial direct mapping,Other shapes have no separate mapped collection
+Crystal Categories,Crystal Rings,collection,rings,64,Mapped,
+Crystal Categories,Crystal Pendants,collection,pendants,202,Mapped,
+Crystal Categories,Statues & God Idols,collections,statue-murti; ganesh-ji-murti,27,Mapped,Products are deduplicated across both workbook collections
+Crystal Categories,Home Decor & Vastu,collection,home-decor-vastu,0,Collection exists with no product assignments,Workbook membership is empty
+By Intention,Protection & Negativity Shield,collection,nazar,46,Mapped,Collection name is Nazar
+By Intention,Wealth & Abundance,collection,money,99,Mapped,Collection name is Money
+By Intention,Love & Relationships,collection,love,69,Mapped,Collection name is Love
+By Intention,Chakra Healing & Balance,title search,7 chakra,39,Title search only,No matching intention collection; title matches do not verify claims
+By Intention,Healing & Wellness,title search,healing,24,Title search only,No matching intention collection; title matches do not verify health claims
+By Intention,Peace & Calm,title search,peace and calm,1,Title search only,One matching product title; no outcome is verified
+By Intention,Success & Career,title search,success,5,Partial title search,Career has no separate mapping; title matches only
+By Intention,Good Luck & New Beginnings,title search,luck,4,Partial title search,New beginnings has no separate mapping; title matches only
+More to Explore,Malas & Jap Mala,collections,mala; jaap-mala,138,Mapped,Products are deduplicated across both workbook collections
+More to Explore,Keyrings & Accessories,collection,keyrings,1,Partial direct mapping,Keyrings mapped; other accessories are not separately mapped
+More to Explore,Crystal Sprays & Oils,collection,aura-spray,4,Partial direct mapping,Sprays mapped; oils have no separate collection
+More to Explore,Gift Sets & Combos,collections,gifts; sets,13,Partial direct mapping,Gifts and Sets collections mapped; combo category needs review
+More to Explore,Rudraksha,title search,rudraksha,24,Title search only,Exact product title matches; no collection assignment is inferred
+More to Explore,Puja Essentials,collections,"shaligram; ganesh-ji-murti; shivling; yantra; jaap-mala; diyas",151,Mapped,Products deduplicated across six workbook collections

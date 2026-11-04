@@ -1,0 +1,157 @@
+{
+  "source_workbook": "New Website Product Catalog (1).xlsx",
+  "catalog_file": "src/data/client-catalog.json",
+  "products_compared": 1523,
+  "catalog_products": 1523,
+  "product_handles_missing_from_catalog": [],
+  "catalog_handles_not_in_listing": [],
+  "field_rows": 28937,
+  "field_status_counts": {
+    "MATCH": 19048,
+    "SOURCE INCOMPLETE": 9889
+  },
+  "field_status_counts_by_field": {
+    "SEO metadata": {
+      "SOURCE INCOMPLETE": 1523
+    },
+    "attributes": {
+      "MATCH": 1321,
+      "SOURCE INCOMPLETE": 202
+    },
+    "catalog_type": {
+      "MATCH": 1287,
+      "SOURCE INCOMPLETE": 236
+    },
+    "collection_assignments": {
+      "MATCH": 1339,
+      "SOURCE INCOMPLETE": 184
+    },
+    "collection_titles": {
+      "MATCH": 1339,
+      "SOURCE INCOMPLETE": 184
+    },
+    "curated_group_ids": {
+      "MATCH": 450,
+      "SOURCE INCOMPLETE": 1073
+    },
+    "description": {
+      "MATCH": 1493,
+      "SOURCE INCOMPLETE": 30
+    },
+    "handle": {
+      "MATCH": 1523
+    },
+    "images": {
+      "MATCH": 1496,
+      "SOURCE INCOMPLETE": 27
+    },
+    "keywords": {
+      "MATCH": 833,
+      "SOURCE INCOMPLETE": 690
+    },
+    "primary_category": {
+      "MATCH": 1339,
+      "SOURCE INCOMPLETE": 184
+    },
+    "ratings_reviews": {
+      "SOURCE INCOMPLETE": 1523
+    },
+    "stock_availability": {
+      "SOURCE INCOMPLETE": 1523
+    },
+    "tags": {
+      "MATCH": 807,
+      "SOURCE INCOMPLETE": 716
+    },
+    "title": {
+      "MATCH": 1521,
+      "SOURCE INCOMPLETE": 2
+    },
+    "variant_mrp": {
+      "MATCH": 1395,
+      "SOURCE INCOMPLETE": 128
+    },
+    "variant_prices": {
+      "MATCH": 1395,
+      "SOURCE INCOMPLETE": 128
+    },
+    "variant_skus": {
+      "MATCH": 1510,
+      "SOURCE INCOMPLETE": 13
+    },
+    "variant_weights": {
+      "SOURCE INCOMPLETE": 1523
+    }
+  },
+  "variant_rows": 2576,
+  "variant_price_status_counts": {
+    "MATCH": 1915,
+    "SOURCE INCOMPLETE": 661
+  },
+  "unpriced_variants": 661,
+  "unpriced_variant_causes": {
+    "Blank source price in Listing and/or exact Common SKU row.": 648,
+    "Duplicate/conflicting SKU or missing handle join; Common row cannot safely enrich this product handle.": 13
+  },
+  "unpriced_duplicate_or_join_variants": 13,
+  "source_sheet_disagreements_in_unpriced_variants": 0,
+  "collection_rows": 111,
+  "collection_count_discrepancies": 87,
+  "collection_explanation_counts": {
+    "explicit_assignments_exceed_registry": 20,
+    "registry_count_only_no_explicit_mappings": 65,
+    "registry_target_exceeds_explicit_mappings": 2
+  },
+  "collection_diff_values": {
+    "18": 1,
+    "17": 1,
+    "7": 1,
+    "15": 1,
+    "10": 1,
+    "22": 1,
+    "9": 1,
+    "4": 2,
+    "1": 4,
+    "26": 1,
+    "3": 1,
+    "5": 1,
+    "8": 1,
+    "6": 2,
+    "2": 1,
+    "-74": 1,
+    "-4": 4,
+    "-9": 6,
+    "-5": 7,
+    "-23": 2,
+    "-1": 7,
+    "-2": 6,
+    "-27": 2,
+    "-42": 1,
+    "-15": 2,
+    "-6": 4,
+    "-8": 3,
+    "-34": 1,
+    "-16": 1,
+    "-11": 1,
+    "-37": 1,
+    "-35": 1,
+    "-3": 2,
+    "-12": 3,
+    "-71": 1,
+    "-57": 1,
+    "-53": 1,
+    "-20": 1,
+    "-46": 1,
+    "-25": 1,
+    "-163": 1,
+    "-110": 1,
+    "-142": 1,
+    "-59": 1,
+    "-10": 1,
+    "-51": 1
+  },
+  "explicit_membership_rows": 1858,
+  "publication_ready": false,
+  "ui_verification": "See catalog-ui-audit.json; generated separately by browser audit.",
+  "all_customer_facing_field_checks_pass": false
+}

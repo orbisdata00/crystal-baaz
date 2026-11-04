@@ -1,0 +1,1135 @@
+{
+  "generatedAt": "2026-11-04T11:09:05.613Z",
+  "source": "src/data/client-catalog.json imported from New Website Product Catalog (1).xlsx; product matches from authenticated Storefront API reconciliation",
+  "workbookCollectionRoutes": 111,
+  "routesWithWorkbookAssignments": 46,
+  "routesWithShopifyMatchedProducts": 46,
+  "emptyRouteCount": 65,
+  "emptyReasonCounts": {
+    "no_exact_workbook_product_assignments": 65
+  },
+  "routesWithExactWorkbookAssignmentsButNoShopifyProducts": 0,
+  "shopifyCollectionsVisible": 1,
+  "shopifyCollectionMappingNote": "The public Storefront API currently returns only the frontpage collection; the 111 workbook collection routes are application routes, not evidence that 111 Shopify collections are published.",
+  "interpretation": "An aggregate target count does not identify product membership. Empty routes with no exact workbook assignments remain empty until the client supplies explicit handles/SKUs or verified Shopify collection membership. No product membership was inferred.",
+  "routes": [
+    {
+      "handle": "agate-slices",
+      "title": "Agate slices",
+      "registry_expected_count": 12,
+      "workbook_explicit_product_count": 12,
+      "shopify_matched_product_count": 12,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": null
+    },
+    {
+      "handle": "love",
+      "title": "Love",
+      "registry_expected_count": 51,
+      "workbook_explicit_product_count": 69,
+      "shopify_matched_product_count": 69,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": null
+    },
+    {
+      "handle": "angels",
+      "title": "Angels",
+      "registry_expected_count": 2,
+      "workbook_explicit_product_count": 19,
+      "shopify_matched_product_count": 19,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": null
+    },
+    {
+      "handle": "anklet",
+      "title": "Anklet",
+      "registry_expected_count": 6,
+      "workbook_explicit_product_count": 6,
+      "shopify_matched_product_count": 6,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": null
+    },
+    {
+      "handle": "nazar",
+      "title": "Nazar",
+      "registry_expected_count": 39,
+      "workbook_explicit_product_count": 46,
+      "shopify_matched_product_count": 46,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": null
+    },
+    {
+      "handle": "confidence-1",
+      "title": "Confidence",
+      "registry_expected_count": 41,
+      "workbook_explicit_product_count": 56,
+      "shopify_matched_product_count": 56,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": null
+    },
+    {
+      "handle": "aura-spray",
+      "title": "Aura Spray",
+      "registry_expected_count": 4,
+      "workbook_explicit_product_count": 4,
+      "shopify_matched_product_count": 4,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": null
+    },
+    {
+      "handle": "money",
+      "title": "Money",
+      "registry_expected_count": 89,
+      "workbook_explicit_product_count": 99,
+      "shopify_matched_product_count": 99,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": null
+    },
+    {
+      "handle": "bangle",
+      "title": "Bangle",
+      "registry_expected_count": 1,
+      "workbook_explicit_product_count": 1,
+      "shopify_matched_product_count": 1,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": null
+    },
+    {
+      "handle": "bowl",
+      "title": "Bowl",
+      "registry_expected_count": 1,
+      "workbook_explicit_product_count": 1,
+      "shopify_matched_product_count": 1,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": null
+    },
+    {
+      "handle": "bracelets",
+      "title": "Bracelets",
+      "registry_expected_count": 325,
+      "workbook_explicit_product_count": 347,
+      "shopify_matched_product_count": 347,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": null
+    },
+    {
+      "handle": "focus",
+      "title": "Focus",
+      "registry_expected_count": 70,
+      "workbook_explicit_product_count": 79,
+      "shopify_matched_product_count": 79,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": null
+    },
+    {
+      "handle": "business-losses",
+      "title": "Business Losses",
+      "registry_expected_count": 38,
+      "workbook_explicit_product_count": 42,
+      "shopify_matched_product_count": 42,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": null
+    },
+    {
+      "handle": "sets",
+      "title": "Sets",
+      "registry_expected_count": 1,
+      "workbook_explicit_product_count": 2,
+      "shopify_matched_product_count": 2,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": null
+    },
+    {
+      "handle": "karungali",
+      "title": "Karungali",
+      "registry_expected_count": 4,
+      "workbook_explicit_product_count": 8,
+      "shopify_matched_product_count": 8,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": null
+    },
+    {
+      "handle": "clock-watch",
+      "title": "Clock/Watch",
+      "registry_expected_count": 1,
+      "workbook_explicit_product_count": 1,
+      "shopify_matched_product_count": 1,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": null
+    },
+    {
+      "handle": "cluster",
+      "title": "Cluster",
+      "registry_expected_count": 36,
+      "workbook_explicit_product_count": 62,
+      "shopify_matched_product_count": 62,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": null
+    },
+    {
+      "handle": "diyas",
+      "title": "Diyas",
+      "registry_expected_count": 8,
+      "workbook_explicit_product_count": 8,
+      "shopify_matched_product_count": 8,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": null
+    },
+    {
+      "handle": "earrings-tops",
+      "title": "Earrings/Tops",
+      "registry_expected_count": 73,
+      "workbook_explicit_product_count": 76,
+      "shopify_matched_product_count": 76,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": null
+    },
+    {
+      "handle": "frames",
+      "title": "Frames",
+      "registry_expected_count": 9,
+      "workbook_explicit_product_count": 9,
+      "shopify_matched_product_count": 9,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": null
+    },
+    {
+      "handle": "ganesh-ji-murti",
+      "title": "Ganesh ji murti",
+      "registry_expected_count": 24,
+      "workbook_explicit_product_count": 24,
+      "shopify_matched_product_count": 24,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": null
+    },
+    {
+      "handle": "statue-murti",
+      "title": "Statue/Murti",
+      "registry_expected_count": 24,
+      "workbook_explicit_product_count": 24,
+      "shopify_matched_product_count": 24,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": null
+    },
+    {
+      "handle": "pendants",
+      "title": "Pendants",
+      "registry_expected_count": 197,
+      "workbook_explicit_product_count": 202,
+      "shopify_matched_product_count": 202,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": null
+    },
+    {
+      "handle": "glass",
+      "title": "Glass",
+      "registry_expected_count": 1,
+      "workbook_explicit_product_count": 1,
+      "shopify_matched_product_count": 1,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": null
+    },
+    {
+      "handle": "hanger",
+      "title": "Hanger",
+      "registry_expected_count": 1,
+      "workbook_explicit_product_count": 1,
+      "shopify_matched_product_count": 1,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": null
+    },
+    {
+      "handle": "jaap-mala",
+      "title": "Jaap mala",
+      "registry_expected_count": 39,
+      "workbook_explicit_product_count": 47,
+      "shopify_matched_product_count": 47,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": null
+    },
+    {
+      "handle": "mala",
+      "title": "Mala",
+      "registry_expected_count": 132,
+      "workbook_explicit_product_count": 138,
+      "shopify_matched_product_count": 138,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": null
+    },
+    {
+      "handle": "keyrings",
+      "title": "Keyrings",
+      "registry_expected_count": 1,
+      "workbook_explicit_product_count": 1,
+      "shopify_matched_product_count": 1,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": null
+    },
+    {
+      "handle": "knife",
+      "title": "Knife",
+      "registry_expected_count": 6,
+      "workbook_explicit_product_count": 6,
+      "shopify_matched_product_count": 6,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": null
+    },
+    {
+      "handle": "pencil-towers",
+      "title": "Pencil/Towers",
+      "registry_expected_count": 24,
+      "workbook_explicit_product_count": 24,
+      "shopify_matched_product_count": 24,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": null
+    },
+    {
+      "handle": "pyramid",
+      "title": "Pyramid",
+      "registry_expected_count": 35,
+      "workbook_explicit_product_count": 36,
+      "shopify_matched_product_count": 36,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": null
+    },
+    {
+      "handle": "rings",
+      "title": "Rings",
+      "registry_expected_count": 58,
+      "workbook_explicit_product_count": 64,
+      "shopify_matched_product_count": 64,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": null
+    },
+    {
+      "handle": "rollers",
+      "title": "Rollers",
+      "registry_expected_count": 3,
+      "workbook_explicit_product_count": 3,
+      "shopify_matched_product_count": 3,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": null
+    },
+    {
+      "handle": "selenite-plates",
+      "title": "Selenite plates",
+      "registry_expected_count": 19,
+      "workbook_explicit_product_count": 19,
+      "shopify_matched_product_count": 19,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": null
+    },
+    {
+      "handle": "shaligram",
+      "title": "Shaligram",
+      "registry_expected_count": 10,
+      "workbook_explicit_product_count": 10,
+      "shopify_matched_product_count": 10,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": null
+    },
+    {
+      "handle": "shankh",
+      "title": "Shankh",
+      "registry_expected_count": 4,
+      "workbook_explicit_product_count": 4,
+      "shopify_matched_product_count": 4,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": null
+    },
+    {
+      "handle": "shivling",
+      "title": "Shivling",
+      "registry_expected_count": 9,
+      "workbook_explicit_product_count": 9,
+      "shopify_matched_product_count": 9,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": null
+    },
+    {
+      "handle": "tumbles",
+      "title": "Tumbles",
+      "registry_expected_count": 40,
+      "workbook_explicit_product_count": 40,
+      "shopify_matched_product_count": 40,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": null
+    },
+    {
+      "handle": "sphere",
+      "title": "Sphere",
+      "registry_expected_count": 37,
+      "workbook_explicit_product_count": 38,
+      "shopify_matched_product_count": 38,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": null
+    },
+    {
+      "handle": "tortoise-turtle",
+      "title": "Tortoise/Turtle",
+      "registry_expected_count": 18,
+      "workbook_explicit_product_count": 18,
+      "shopify_matched_product_count": 18,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": null
+    },
+    {
+      "handle": "trees",
+      "title": "Trees",
+      "registry_expected_count": 73,
+      "workbook_explicit_product_count": 73,
+      "shopify_matched_product_count": 73,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": null
+    },
+    {
+      "handle": "vase",
+      "title": "Vase",
+      "registry_expected_count": 6,
+      "workbook_explicit_product_count": 6,
+      "shopify_matched_product_count": 6,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": null
+    },
+    {
+      "handle": "yantra",
+      "title": "Yantra",
+      "registry_expected_count": 51,
+      "workbook_explicit_product_count": 53,
+      "shopify_matched_product_count": 53,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": null
+    },
+    {
+      "handle": "zibu-coins",
+      "title": "Zibu coins",
+      "registry_expected_count": 22,
+      "workbook_explicit_product_count": 23,
+      "shopify_matched_product_count": 23,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": null
+    },
+    {
+      "handle": "amethyst",
+      "title": "Amethyst",
+      "registry_expected_count": 74,
+      "workbook_explicit_product_count": 0,
+      "shopify_matched_product_count": 0,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": "no_exact_workbook_product_assignments"
+    },
+    {
+      "handle": "amber",
+      "title": "Amber",
+      "registry_expected_count": 4,
+      "workbook_explicit_product_count": 0,
+      "shopify_matched_product_count": 0,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": "no_exact_workbook_product_assignments"
+    },
+    {
+      "handle": "amazonite",
+      "title": "Amazonite",
+      "registry_expected_count": 9,
+      "workbook_explicit_product_count": 0,
+      "shopify_matched_product_count": 0,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": "no_exact_workbook_product_assignments"
+    },
+    {
+      "handle": "aquamarine",
+      "title": "Aquamarine",
+      "registry_expected_count": 4,
+      "workbook_explicit_product_count": 0,
+      "shopify_matched_product_count": 0,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": "no_exact_workbook_product_assignments"
+    },
+    {
+      "handle": "black-obsidian",
+      "title": "Black Obsidian",
+      "registry_expected_count": 5,
+      "workbook_explicit_product_count": 0,
+      "shopify_matched_product_count": 0,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": "no_exact_workbook_product_assignments"
+    },
+    {
+      "handle": "black-tourmaline",
+      "title": "Black Tourmaline",
+      "registry_expected_count": 23,
+      "workbook_explicit_product_count": 0,
+      "shopify_matched_product_count": 0,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": "no_exact_workbook_product_assignments"
+    },
+    {
+      "handle": "bloodstone",
+      "title": "Bloodstone",
+      "registry_expected_count": 5,
+      "workbook_explicit_product_count": 0,
+      "shopify_matched_product_count": 0,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": "no_exact_workbook_product_assignments"
+    },
+    {
+      "handle": "blue-apatite",
+      "title": "Blue Apatite",
+      "registry_expected_count": 1,
+      "workbook_explicit_product_count": 0,
+      "shopify_matched_product_count": 0,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": "no_exact_workbook_product_assignments"
+    },
+    {
+      "handle": "blue-goldstone",
+      "title": "Blue Goldstone",
+      "registry_expected_count": 2,
+      "workbook_explicit_product_count": 0,
+      "shopify_matched_product_count": 0,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": "no_exact_workbook_product_assignments"
+    },
+    {
+      "handle": "blue-lace-agate",
+      "title": "Blue Lace Agate",
+      "registry_expected_count": 2,
+      "workbook_explicit_product_count": 0,
+      "shopify_matched_product_count": 0,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": "no_exact_workbook_product_assignments"
+    },
+    {
+      "handle": "blue-tigers-eye",
+      "title": "Blue Tiger's Eye",
+      "registry_expected_count": 2,
+      "workbook_explicit_product_count": 0,
+      "shopify_matched_product_count": 0,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": "no_exact_workbook_product_assignments"
+    },
+    {
+      "handle": "calcite",
+      "title": "Calcite",
+      "registry_expected_count": 2,
+      "workbook_explicit_product_count": 0,
+      "shopify_matched_product_count": 0,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": "no_exact_workbook_product_assignments"
+    },
+    {
+      "handle": "carnelian",
+      "title": "Carnelian",
+      "registry_expected_count": 27,
+      "workbook_explicit_product_count": 0,
+      "shopify_matched_product_count": 0,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": "no_exact_workbook_product_assignments"
+    },
+    {
+      "handle": "cats-eye",
+      "title": "Cat's Eye",
+      "registry_expected_count": 9,
+      "workbook_explicit_product_count": 0,
+      "shopify_matched_product_count": 0,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": "no_exact_workbook_product_assignments"
+    },
+    {
+      "handle": "citrine",
+      "title": "Citrine",
+      "registry_expected_count": 42,
+      "workbook_explicit_product_count": 0,
+      "shopify_matched_product_count": 0,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": "no_exact_workbook_product_assignments"
+    },
+    {
+      "handle": "coral",
+      "title": "Coral",
+      "registry_expected_count": 15,
+      "workbook_explicit_product_count": 0,
+      "shopify_matched_product_count": 0,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": "no_exact_workbook_product_assignments"
+    },
+    {
+      "handle": "cherry-quartz",
+      "title": "Cherry Quartz",
+      "registry_expected_count": 4,
+      "workbook_explicit_product_count": 0,
+      "shopify_matched_product_count": 0,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": "no_exact_workbook_product_assignments"
+    },
+    {
+      "handle": "chrysocolla",
+      "title": "Chrysocolla",
+      "registry_expected_count": 2,
+      "workbook_explicit_product_count": 0,
+      "shopify_matched_product_count": 0,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": "no_exact_workbook_product_assignments"
+    },
+    {
+      "handle": "dalmatian-jasper",
+      "title": "Dalmatian Jasper",
+      "registry_expected_count": 6,
+      "workbook_explicit_product_count": 0,
+      "shopify_matched_product_count": 0,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": "no_exact_workbook_product_assignments"
+    },
+    {
+      "handle": "evil-eye-symbol",
+      "title": "Evil Eye (Symbol)",
+      "registry_expected_count": 9,
+      "workbook_explicit_product_count": 0,
+      "shopify_matched_product_count": 0,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": "no_exact_workbook_product_assignments"
+    },
+    {
+      "handle": "fluorite",
+      "title": "Fluorite",
+      "registry_expected_count": 6,
+      "workbook_explicit_product_count": 0,
+      "shopify_matched_product_count": 0,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": "no_exact_workbook_product_assignments"
+    },
+    {
+      "handle": "garnet",
+      "title": "Garnet",
+      "registry_expected_count": 8,
+      "workbook_explicit_product_count": 0,
+      "shopify_matched_product_count": 0,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": "no_exact_workbook_product_assignments"
+    },
+    {
+      "handle": "golden-obsidian",
+      "title": "Golden Obsidian",
+      "registry_expected_count": 5,
+      "workbook_explicit_product_count": 0,
+      "shopify_matched_product_count": 0,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": "no_exact_workbook_product_assignments"
+    },
+    {
+      "handle": "green-aventurine",
+      "title": "Green Aventurine",
+      "registry_expected_count": 34,
+      "workbook_explicit_product_count": 0,
+      "shopify_matched_product_count": 0,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": "no_exact_workbook_product_assignments"
+    },
+    {
+      "handle": "green-agate",
+      "title": "Green Agate",
+      "registry_expected_count": 2,
+      "workbook_explicit_product_count": 0,
+      "shopify_matched_product_count": 0,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": "no_exact_workbook_product_assignments"
+    },
+    {
+      "handle": "green-jade",
+      "title": "Green Jade",
+      "registry_expected_count": 16,
+      "workbook_explicit_product_count": 0,
+      "shopify_matched_product_count": 0,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": "no_exact_workbook_product_assignments"
+    },
+    {
+      "handle": "hematite",
+      "title": "Hematite",
+      "registry_expected_count": 11,
+      "workbook_explicit_product_count": 0,
+      "shopify_matched_product_count": 0,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": "no_exact_workbook_product_assignments"
+    },
+    {
+      "handle": "howlite",
+      "title": "Howlite",
+      "registry_expected_count": 8,
+      "workbook_explicit_product_count": 0,
+      "shopify_matched_product_count": 0,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": "no_exact_workbook_product_assignments"
+    },
+    {
+      "handle": "labradorite",
+      "title": "Labradorite",
+      "registry_expected_count": 37,
+      "workbook_explicit_product_count": 0,
+      "shopify_matched_product_count": 0,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": "no_exact_workbook_product_assignments"
+    },
+    {
+      "handle": "lapis-lazuli",
+      "title": "Lapis Lazuli",
+      "registry_expected_count": 35,
+      "workbook_explicit_product_count": 0,
+      "shopify_matched_product_count": 0,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": "no_exact_workbook_product_assignments"
+    },
+    {
+      "handle": "larvikite",
+      "title": "Larvikite",
+      "registry_expected_count": 1,
+      "workbook_explicit_product_count": 0,
+      "shopify_matched_product_count": 0,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": "no_exact_workbook_product_assignments"
+    },
+    {
+      "handle": "lava",
+      "title": "Lava",
+      "registry_expected_count": 3,
+      "workbook_explicit_product_count": 0,
+      "shopify_matched_product_count": 0,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": "no_exact_workbook_product_assignments"
+    },
+    {
+      "handle": "lepidolite",
+      "title": "Lepidolite",
+      "registry_expected_count": 1,
+      "workbook_explicit_product_count": 0,
+      "shopify_matched_product_count": 0,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": "no_exact_workbook_product_assignments"
+    },
+    {
+      "handle": "mahogany-obsidian",
+      "title": "Mahogany Obsidian",
+      "registry_expected_count": 5,
+      "workbook_explicit_product_count": 0,
+      "shopify_matched_product_count": 0,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": "no_exact_workbook_product_assignments"
+    },
+    {
+      "handle": "malachite",
+      "title": "Malachite",
+      "registry_expected_count": 8,
+      "workbook_explicit_product_count": 0,
+      "shopify_matched_product_count": 0,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": "no_exact_workbook_product_assignments"
+    },
+    {
+      "handle": "mookaite",
+      "title": "Mookaite",
+      "registry_expected_count": 6,
+      "workbook_explicit_product_count": 0,
+      "shopify_matched_product_count": 0,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": "no_exact_workbook_product_assignments"
+    },
+    {
+      "handle": "moonstone",
+      "title": "Moonstone",
+      "registry_expected_count": 12,
+      "workbook_explicit_product_count": 0,
+      "shopify_matched_product_count": 0,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": "no_exact_workbook_product_assignments"
+    },
+    {
+      "handle": "morganite",
+      "title": "Morganite",
+      "registry_expected_count": 1,
+      "workbook_explicit_product_count": 0,
+      "shopify_matched_product_count": 0,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": "no_exact_workbook_product_assignments"
+    },
+    {
+      "handle": "moss-agate",
+      "title": "Moss Agate",
+      "registry_expected_count": 23,
+      "workbook_explicit_product_count": 0,
+      "shopify_matched_product_count": 0,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": "no_exact_workbook_product_assignments"
+    },
+    {
+      "handle": "multi-tourmaline",
+      "title": "Multi Tourmaline",
+      "registry_expected_count": 1,
+      "workbook_explicit_product_count": 0,
+      "shopify_matched_product_count": 0,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": "no_exact_workbook_product_assignments"
+    },
+    {
+      "handle": "onyx",
+      "title": "Onyx",
+      "registry_expected_count": 9,
+      "workbook_explicit_product_count": 0,
+      "shopify_matched_product_count": 0,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": "no_exact_workbook_product_assignments"
+    },
+    {
+      "handle": "opal",
+      "title": "Opal",
+      "registry_expected_count": 12,
+      "workbook_explicit_product_count": 0,
+      "shopify_matched_product_count": 0,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": "no_exact_workbook_product_assignments"
+    },
+    {
+      "handle": "peridot",
+      "title": "Peridot",
+      "registry_expected_count": 5,
+      "workbook_explicit_product_count": 0,
+      "shopify_matched_product_count": 0,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": "no_exact_workbook_product_assignments"
+    },
+    {
+      "handle": "prehnite",
+      "title": "Prehnite",
+      "registry_expected_count": 1,
+      "workbook_explicit_product_count": 0,
+      "shopify_matched_product_count": 0,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": "no_exact_workbook_product_assignments"
+    },
+    {
+      "handle": "pyrite",
+      "title": "Pyrite",
+      "registry_expected_count": 71,
+      "workbook_explicit_product_count": 0,
+      "shopify_matched_product_count": 0,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": "no_exact_workbook_product_assignments"
+    },
+    {
+      "handle": "red-jasper",
+      "title": "Red Jasper",
+      "registry_expected_count": 27,
+      "workbook_explicit_product_count": 0,
+      "shopify_matched_product_count": 0,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": "no_exact_workbook_product_assignments"
+    },
+    {
+      "handle": "rhodonite",
+      "title": "Rhodonite",
+      "registry_expected_count": 12,
+      "workbook_explicit_product_count": 0,
+      "shopify_matched_product_count": 0,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": "no_exact_workbook_product_assignments"
+    },
+    {
+      "handle": "rose-quartz",
+      "title": "Rose Quartz",
+      "registry_expected_count": 57,
+      "workbook_explicit_product_count": 0,
+      "shopify_matched_product_count": 0,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": "no_exact_workbook_product_assignments"
+    },
+    {
+      "handle": "ruby-zoisite",
+      "title": "Ruby Zoisite",
+      "registry_expected_count": 4,
+      "workbook_explicit_product_count": 0,
+      "shopify_matched_product_count": 0,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": "no_exact_workbook_product_assignments"
+    },
+    {
+      "handle": "selenite",
+      "title": "Selenite",
+      "registry_expected_count": 53,
+      "workbook_explicit_product_count": 0,
+      "shopify_matched_product_count": 0,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": "no_exact_workbook_product_assignments"
+    },
+    {
+      "handle": "serpentine",
+      "title": "Serpentine",
+      "registry_expected_count": 6,
+      "workbook_explicit_product_count": 0,
+      "shopify_matched_product_count": 0,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": "no_exact_workbook_product_assignments"
+    },
+    {
+      "handle": "smoky-quartz",
+      "title": "Smoky Quartz",
+      "registry_expected_count": 5,
+      "workbook_explicit_product_count": 0,
+      "shopify_matched_product_count": 0,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": "no_exact_workbook_product_assignments"
+    },
+    {
+      "handle": "snowflake-obsidian",
+      "title": "Snowflake Obsidian",
+      "registry_expected_count": 3,
+      "workbook_explicit_product_count": 0,
+      "shopify_matched_product_count": 0,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": "no_exact_workbook_product_assignments"
+    },
+    {
+      "handle": "sodalite",
+      "title": "Sodalite",
+      "registry_expected_count": 20,
+      "workbook_explicit_product_count": 0,
+      "shopify_matched_product_count": 0,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": "no_exact_workbook_product_assignments"
+    },
+    {
+      "handle": "sphatik",
+      "title": "Sphatik",
+      "registry_expected_count": 45,
+      "workbook_explicit_product_count": 36,
+      "shopify_matched_product_count": 36,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": null
+    },
+    {
+      "handle": "sunstone",
+      "title": "Sunstone",
+      "registry_expected_count": 15,
+      "workbook_explicit_product_count": 0,
+      "shopify_matched_product_count": 0,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": "no_exact_workbook_product_assignments"
+    },
+    {
+      "handle": "tiger-s-eye",
+      "title": "Tiger’s Eye",
+      "registry_expected_count": 46,
+      "workbook_explicit_product_count": 0,
+      "shopify_matched_product_count": 0,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": "no_exact_workbook_product_assignments"
+    },
+    {
+      "handle": "turquoise",
+      "title": "Turquoise",
+      "registry_expected_count": 5,
+      "workbook_explicit_product_count": 0,
+      "shopify_matched_product_count": 0,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": "no_exact_workbook_product_assignments"
+    },
+    {
+      "handle": "tree-line-agate",
+      "title": "Tree Line Agate",
+      "registry_expected_count": 1,
+      "workbook_explicit_product_count": 0,
+      "shopify_matched_product_count": 0,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": "no_exact_workbook_product_assignments"
+    },
+    {
+      "handle": "unakite",
+      "title": "Unakite",
+      "registry_expected_count": 9,
+      "workbook_explicit_product_count": 0,
+      "shopify_matched_product_count": 0,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": "no_exact_workbook_product_assignments"
+    },
+    {
+      "handle": "zibu",
+      "title": "Zibu",
+      "registry_expected_count": 25,
+      "workbook_explicit_product_count": 0,
+      "shopify_matched_product_count": 0,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": "no_exact_workbook_product_assignments"
+    },
+    {
+      "handle": "home-decor-vastu",
+      "title": "Home Decor/Vastu",
+      "registry_expected_count": 163,
+      "workbook_explicit_product_count": 0,
+      "shopify_matched_product_count": 0,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": "no_exact_workbook_product_assignments"
+    },
+    {
+      "handle": "under-499-rs",
+      "title": "Under 499 Rs",
+      "registry_expected_count": 110,
+      "workbook_explicit_product_count": 0,
+      "shopify_matched_product_count": 0,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": "no_exact_workbook_product_assignments"
+    },
+    {
+      "handle": "malas-jap-malas",
+      "title": "Malas & Jap Malas",
+      "registry_expected_count": 142,
+      "workbook_explicit_product_count": 0,
+      "shopify_matched_product_count": 0,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": "no_exact_workbook_product_assignments"
+    },
+    {
+      "handle": "zodiac",
+      "title": "Zodiac",
+      "registry_expected_count": 59,
+      "workbook_explicit_product_count": 0,
+      "shopify_matched_product_count": 0,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": "no_exact_workbook_product_assignments"
+    },
+    {
+      "handle": "gifts",
+      "title": "Gifts",
+      "registry_expected_count": 21,
+      "workbook_explicit_product_count": 11,
+      "shopify_matched_product_count": 11,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": null
+    },
+    {
+      "handle": "kawach-yantra",
+      "title": "Kawach/Yantra",
+      "registry_expected_count": 51,
+      "workbook_explicit_product_count": 0,
+      "shopify_matched_product_count": 0,
+      "products_missing_from_shopify": [],
+      "shopify_collection_handle_present": false,
+      "empty_reason": "no_exact_workbook_product_assignments"
+    }
+  ],
+  "browserVerification": {
+    "testedRoutes": 111,
+    "passedRoutes": 111,
+    "mappedRoutes": 46,
+    "emptyRoutes": 65,
+    "mismatches": [],
+    "report": "reports/shopify-live-browser-audit.json"
+  }
+}

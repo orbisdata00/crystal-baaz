@@ -1,0 +1,1557 @@
+{
+  "generatedAt": "2026-11-04T11:09:05.613Z",
+  "browser": {
+    "name": "Google Chrome",
+    "executable": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+    "playwrightVersion": "1.56.1",
+    "mode": "local Vite server with ephemeral VITE_CATALOG_SOURCE=shopify and checkout disabled",
+    "baseUrl": "http://127.0.0.1:4176/"
+  },
+  "safeguards": {
+    "previewDefaultChanged": false,
+    "checkoutEnabled": false,
+    "juspayTouched": false,
+    "published": false,
+    "shopifyAdminOrCatalogModified": false,
+    "checkoutOrOrderAttempted": false,
+    "cartTestType": "temporary Shopify cart only; add/update/remove; emptied before exit"
+  },
+  "dataVerification": {
+    "shopifyProductsMapped": 1520,
+    "workbookProducts": 1523,
+    "exactMatchedHandles": 1520,
+    "workbookOnlyProductHandles": 3,
+    "variantRows": 2576,
+    "matchedVariantPairs": 1915,
+    "unmatchedWorkbookVariantPairs": 661,
+    "chosenPdpHandle": "7-chakra-angel-1-inch",
+    "chosenPdpAvailableMatchedVariantCount": 3,
+    "chosenPdpExpectedLowestPrice": 290
+  },
+  "viewportWidths": [
+    320,
+    360,
+    390,
+    427,
+    440,
+    768,
+    1024,
+    1280,
+    1440,
+    1920
+  ],
+  "viewportChecks": [
+    {
+      "width": 320,
+      "height": 844,
+      "viewport": 320,
+      "documentWidth": 320,
+      "bodyWidth": 320,
+      "header": {
+        "top": 0,
+        "height": 70
+      },
+      "hero": {
+        "left": 12,
+        "right": 332,
+        "width": 320
+      },
+      "bottomNavVisible": true,
+      "visibleProductCards": 12,
+      "totalHomeCards": 60,
+      "visibleBrokenImages": 0,
+      "oversizedImages": 0,
+      "visibleImages": 78,
+      "allImageSources": [],
+      "sections": 15,
+      "horizontalOverflow": false
+    },
+    {
+      "width": 360,
+      "height": 844,
+      "viewport": 360,
+      "documentWidth": 360,
+      "bodyWidth": 360,
+      "header": {
+        "top": 0,
+        "height": 70
+      },
+      "hero": {
+        "left": 12,
+        "right": 372,
+        "width": 360
+      },
+      "bottomNavVisible": true,
+      "visibleProductCards": 12,
+      "totalHomeCards": 60,
+      "visibleBrokenImages": 0,
+      "oversizedImages": 0,
+      "visibleImages": 78,
+      "allImageSources": [],
+      "sections": 15,
+      "horizontalOverflow": false
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "viewport": 390,
+      "documentWidth": 390,
+      "bodyWidth": 390,
+      "header": {
+        "top": 0,
+        "height": 70
+      },
+      "hero": {
+        "left": 12,
+        "right": 402,
+        "width": 390
+      },
+      "bottomNavVisible": true,
+      "visibleProductCards": 12,
+      "totalHomeCards": 60,
+      "visibleBrokenImages": 0,
+      "oversizedImages": 0,
+      "visibleImages": 78,
+      "allImageSources": [],
+      "sections": 15,
+      "horizontalOverflow": false
+    },
+    {
+      "width": 427,
+      "height": 844,
+      "viewport": 427,
+      "documentWidth": 427,
+      "bodyWidth": 427,
+      "header": {
+        "top": 0,
+        "height": 70
+      },
+      "hero": {
+        "left": 12,
+        "right": 439,
+        "width": 427
+      },
+      "bottomNavVisible": true,
+      "visibleProductCards": 12,
+      "totalHomeCards": 60,
+      "visibleBrokenImages": 0,
+      "oversizedImages": 0,
+      "visibleImages": 78,
+      "allImageSources": [],
+      "sections": 15,
+      "horizontalOverflow": false
+    },
+    {
+      "width": 440,
+      "height": 844,
+      "viewport": 440,
+      "documentWidth": 440,
+      "bodyWidth": 440,
+      "header": {
+        "top": 0,
+        "height": 70
+      },
+      "hero": {
+        "left": 12,
+        "right": 452,
+        "width": 440
+      },
+      "bottomNavVisible": true,
+      "visibleProductCards": 12,
+      "totalHomeCards": 60,
+      "visibleBrokenImages": 0,
+      "oversizedImages": 0,
+      "visibleImages": 78,
+      "allImageSources": [],
+      "sections": 15,
+      "horizontalOverflow": false
+    },
+    {
+      "width": 768,
+      "height": 960,
+      "viewport": 768,
+      "documentWidth": 768,
+      "bodyWidth": 768,
+      "header": {
+        "top": 0,
+        "height": 70
+      },
+      "hero": {
+        "left": 12,
+        "right": 780,
+        "width": 768
+      },
+      "bottomNavVisible": true,
+      "visibleProductCards": 12,
+      "totalHomeCards": 60,
+      "visibleBrokenImages": 0,
+      "oversizedImages": 0,
+      "visibleImages": 78,
+      "allImageSources": [],
+      "sections": 15,
+      "horizontalOverflow": false
+    },
+    {
+      "width": 1024,
+      "height": 1000,
+      "viewport": 1024,
+      "documentWidth": 1024,
+      "bodyWidth": 1024,
+      "header": {
+        "top": 26,
+        "height": 94
+      },
+      "hero": {
+        "left": 0,
+        "right": 1024,
+        "width": 1024
+      },
+      "bottomNavVisible": false,
+      "visibleProductCards": 12,
+      "totalHomeCards": 60,
+      "visibleBrokenImages": 0,
+      "oversizedImages": 0,
+      "visibleImages": 78,
+      "allImageSources": [],
+      "sections": 15,
+      "horizontalOverflow": false
+    },
+    {
+      "width": 1280,
+      "height": 1000,
+      "viewport": 1280,
+      "documentWidth": 1280,
+      "bodyWidth": 1280,
+      "header": {
+        "top": 26,
+        "height": 94
+      },
+      "hero": {
+        "left": 0,
+        "right": 1280,
+        "width": 1280
+      },
+      "bottomNavVisible": false,
+      "visibleProductCards": 12,
+      "totalHomeCards": 60,
+      "visibleBrokenImages": 0,
+      "oversizedImages": 0,
+      "visibleImages": 78,
+      "allImageSources": [],
+      "sections": 15,
+      "horizontalOverflow": false
+    },
+    {
+      "width": 1440,
+      "height": 1000,
+      "viewport": 1440,
+      "documentWidth": 1440,
+      "bodyWidth": 1440,
+      "header": {
+        "top": 26,
+        "height": 94
+      },
+      "hero": {
+        "left": 0,
+        "right": 1440,
+        "width": 1440
+      },
+      "bottomNavVisible": false,
+      "visibleProductCards": 12,
+      "totalHomeCards": 60,
+      "visibleBrokenImages": 0,
+      "oversizedImages": 0,
+      "visibleImages": 78,
+      "allImageSources": [],
+      "sections": 15,
+      "horizontalOverflow": false
+    },
+    {
+      "width": 1920,
+      "height": 1000,
+      "viewport": 1920,
+      "documentWidth": 1920,
+      "bodyWidth": 1920,
+      "header": {
+        "top": 26,
+        "height": 94
+      },
+      "hero": {
+        "left": 0,
+        "right": 1920,
+        "width": 1920
+      },
+      "bottomNavVisible": false,
+      "visibleProductCards": 12,
+      "totalHomeCards": 60,
+      "visibleBrokenImages": 0,
+      "oversizedImages": 0,
+      "visibleImages": 78,
+      "allImageSources": [],
+      "sections": 15,
+      "horizontalOverflow": false
+    }
+  ],
+  "keyPages": {
+    "categories": {
+      "route": "#collections",
+      "visibleDirectoryCards": 111,
+      "expectedWorkbookCollections": 111,
+      "passed": true
+    },
+    "allCollections": {
+      "tested": 111,
+      "passed": 111,
+      "mappedRoutes": 46,
+      "emptyRoutes": 65,
+      "mismatches": []
+    },
+    "collectionPagination": {
+      "route": "#collection/bracelets",
+      "total": 347,
+      "beforeLoadMore": 24,
+      "afterLoadMore": 48,
+      "passed": true
+    },
+    "search": {
+      "route": "#search/rudraksha",
+      "resultCards": 24,
+      "inputVisible": true
+    },
+    "productDetail": {
+      "route": "#product/7-chakra-angel-1-inch",
+      "title": "7 Chakra Angel",
+      "optionCount": 3,
+      "enabledOptions": 3,
+      "selectedOption": "Variant 3 · ₹490",
+      "renderedPrice": "₹490",
+      "selectedVariantPrice": 490,
+      "expectedLowestAvailableMatchedVariantPrice": 290,
+      "imageElements": 1,
+      "passed": true
+    },
+    "profile": {
+      "route": "#account",
+      "welcomeVisible": true,
+      "menuRows": 6
+    },
+    "desktopHome": {
+      "width": 1440,
+      "documentWidth": 1440,
+      "bottomNavVisible": false,
+      "desktopNavVisible": true
+    }
+  },
+  "collectionRouteChecks": [
+    {
+      "handle": "agate-slices",
+      "title": "Agate slices",
+      "expectedShopifyMatchedProducts": 12,
+      "displayedTotal": 12,
+      "renderedFirstPageProducts": 12,
+      "expectedFirstPageProducts": 12,
+      "emptyStateCount": 0,
+      "passed": true
+    },
+    {
+      "handle": "love",
+      "title": "Love",
+      "expectedShopifyMatchedProducts": 69,
+      "displayedTotal": 69,
+      "renderedFirstPageProducts": 24,
+      "expectedFirstPageProducts": 24,
+      "emptyStateCount": 0,
+      "passed": true
+    },
+    {
+      "handle": "angels",
+      "title": "Angels",
+      "expectedShopifyMatchedProducts": 19,
+      "displayedTotal": 19,
+      "renderedFirstPageProducts": 19,
+      "expectedFirstPageProducts": 19,
+      "emptyStateCount": 0,
+      "passed": true
+    },
+    {
+      "handle": "anklet",
+      "title": "Anklet",
+      "expectedShopifyMatchedProducts": 6,
+      "displayedTotal": 6,
+      "renderedFirstPageProducts": 6,
+      "expectedFirstPageProducts": 6,
+      "emptyStateCount": 0,
+      "passed": true
+    },
+    {
+      "handle": "nazar",
+      "title": "Nazar",
+      "expectedShopifyMatchedProducts": 46,
+      "displayedTotal": 46,
+      "renderedFirstPageProducts": 24,
+      "expectedFirstPageProducts": 24,
+      "emptyStateCount": 0,
+      "passed": true
+    },
+    {
+      "handle": "confidence-1",
+      "title": "Confidence",
+      "expectedShopifyMatchedProducts": 56,
+      "displayedTotal": 56,
+      "renderedFirstPageProducts": 24,
+      "expectedFirstPageProducts": 24,
+      "emptyStateCount": 0,
+      "passed": true
+    },
+    {
+      "handle": "aura-spray",
+      "title": "Aura Spray",
+      "expectedShopifyMatchedProducts": 4,
+      "displayedTotal": 4,
+      "renderedFirstPageProducts": 4,
+      "expectedFirstPageProducts": 4,
+      "emptyStateCount": 0,
+      "passed": true
+    },
+    {
+      "handle": "money",
+      "title": "Money",
+      "expectedShopifyMatchedProducts": 99,
+      "displayedTotal": 99,
+      "renderedFirstPageProducts": 24,
+      "expectedFirstPageProducts": 24,
+      "emptyStateCount": 0,
+      "passed": true
+    },
+    {
+      "handle": "bangle",
+      "title": "Bangle",
+      "expectedShopifyMatchedProducts": 1,
+      "displayedTotal": 1,
+      "renderedFirstPageProducts": 1,
+      "expectedFirstPageProducts": 1,
+      "emptyStateCount": 0,
+      "passed": true
+    },
+    {
+      "handle": "bowl",
+      "title": "Bowl",
+      "expectedShopifyMatchedProducts": 1,
+      "displayedTotal": 1,
+      "renderedFirstPageProducts": 1,
+      "expectedFirstPageProducts": 1,
+      "emptyStateCount": 0,
+      "passed": true
+    },
+    {
+      "handle": "bracelets",
+      "title": "Bracelets",
+      "expectedShopifyMatchedProducts": 347,
+      "displayedTotal": 347,
+      "renderedFirstPageProducts": 24,
+      "expectedFirstPageProducts": 24,
+      "emptyStateCount": 0,
+      "passed": true
+    },
+    {
+      "handle": "focus",
+      "title": "Focus",
+      "expectedShopifyMatchedProducts": 79,
+      "displayedTotal": 79,
+      "renderedFirstPageProducts": 24,
+      "expectedFirstPageProducts": 24,
+      "emptyStateCount": 0,
+      "passed": true
+    },
+    {
+      "handle": "business-losses",
+      "title": "Business Losses",
+      "expectedShopifyMatchedProducts": 42,
+      "displayedTotal": 42,
+      "renderedFirstPageProducts": 24,
+      "expectedFirstPageProducts": 24,
+      "emptyStateCount": 0,
+      "passed": true
+    },
+    {
+      "handle": "sets",
+      "title": "Sets",
+      "expectedShopifyMatchedProducts": 2,
+      "displayedTotal": 2,
+      "renderedFirstPageProducts": 2,
+      "expectedFirstPageProducts": 2,
+      "emptyStateCount": 0,
+      "passed": true
+    },
+    {
+      "handle": "karungali",
+      "title": "Karungali",
+      "expectedShopifyMatchedProducts": 8,
+      "displayedTotal": 8,
+      "renderedFirstPageProducts": 8,
+      "expectedFirstPageProducts": 8,
+      "emptyStateCount": 0,
+      "passed": true
+    },
+    {
+      "handle": "clock-watch",
+      "title": "Clock/Watch",
+      "expectedShopifyMatchedProducts": 1,
+      "displayedTotal": 1,
+      "renderedFirstPageProducts": 1,
+      "expectedFirstPageProducts": 1,
+      "emptyStateCount": 0,
+      "passed": true
+    },
+    {
+      "handle": "cluster",
+      "title": "Cluster",
+      "expectedShopifyMatchedProducts": 62,
+      "displayedTotal": 62,
+      "renderedFirstPageProducts": 24,
+      "expectedFirstPageProducts": 24,
+      "emptyStateCount": 0,
+      "passed": true
+    },
+    {
+      "handle": "diyas",
+      "title": "Diyas",
+      "expectedShopifyMatchedProducts": 8,
+      "displayedTotal": 8,
+      "renderedFirstPageProducts": 8,
+      "expectedFirstPageProducts": 8,
+      "emptyStateCount": 0,
+      "passed": true
+    },
+    {
+      "handle": "earrings-tops",
+      "title": "Earrings/Tops",
+      "expectedShopifyMatchedProducts": 76,
+      "displayedTotal": 76,
+      "renderedFirstPageProducts": 24,
+      "expectedFirstPageProducts": 24,
+      "emptyStateCount": 0,
+      "passed": true
+    },
+    {
+      "handle": "frames",
+      "title": "Frames",
+      "expectedShopifyMatchedProducts": 9,
+      "displayedTotal": 9,
+      "renderedFirstPageProducts": 9,
+      "expectedFirstPageProducts": 9,
+      "emptyStateCount": 0,
+      "passed": true
+    },
+    {
+      "handle": "ganesh-ji-murti",
+      "title": "Ganesh ji murti",
+      "expectedShopifyMatchedProducts": 24,
+      "displayedTotal": 24,
+      "renderedFirstPageProducts": 24,
+      "expectedFirstPageProducts": 24,
+      "emptyStateCount": 0,
+      "passed": true
+    },
+    {
+      "handle": "statue-murti",
+      "title": "Statue/Murti",
+      "expectedShopifyMatchedProducts": 24,
+      "displayedTotal": 24,
+      "renderedFirstPageProducts": 24,
+      "expectedFirstPageProducts": 24,
+      "emptyStateCount": 0,
+      "passed": true
+    },
+    {
+      "handle": "pendants",
+      "title": "Pendants",
+      "expectedShopifyMatchedProducts": 202,
+      "displayedTotal": 202,
+      "renderedFirstPageProducts": 24,
+      "expectedFirstPageProducts": 24,
+      "emptyStateCount": 0,
+      "passed": true
+    },
+    {
+      "handle": "glass",
+      "title": "Glass",
+      "expectedShopifyMatchedProducts": 1,
+      "displayedTotal": 1,
+      "renderedFirstPageProducts": 1,
+      "expectedFirstPageProducts": 1,
+      "emptyStateCount": 0,
+      "passed": true
+    },
+    {
+      "handle": "hanger",
+      "title": "Hanger",
+      "expectedShopifyMatchedProducts": 1,
+      "displayedTotal": 1,
+      "renderedFirstPageProducts": 1,
+      "expectedFirstPageProducts": 1,
+      "emptyStateCount": 0,
+      "passed": true
+    },
+    {
+      "handle": "jaap-mala",
+      "title": "Jaap mala",
+      "expectedShopifyMatchedProducts": 47,
+      "displayedTotal": 47,
+      "renderedFirstPageProducts": 24,
+      "expectedFirstPageProducts": 24,
+      "emptyStateCount": 0,
+      "passed": true
+    },
+    {
+      "handle": "mala",
+      "title": "Mala",
+      "expectedShopifyMatchedProducts": 138,
+      "displayedTotal": 138,
+      "renderedFirstPageProducts": 24,
+      "expectedFirstPageProducts": 24,
+      "emptyStateCount": 0,
+      "passed": true
+    },
+    {
+      "handle": "keyrings",
+      "title": "Keyrings",
+      "expectedShopifyMatchedProducts": 1,
+      "displayedTotal": 1,
+      "renderedFirstPageProducts": 1,
+      "expectedFirstPageProducts": 1,
+      "emptyStateCount": 0,
+      "passed": true
+    },
+    {
+      "handle": "knife",
+      "title": "Knife",
+      "expectedShopifyMatchedProducts": 6,
+      "displayedTotal": 6,
+      "renderedFirstPageProducts": 6,
+      "expectedFirstPageProducts": 6,
+      "emptyStateCount": 0,
+      "passed": true
+    },
+    {
+      "handle": "pencil-towers",
+      "title": "Pencil/Towers",
+      "expectedShopifyMatchedProducts": 24,
+      "displayedTotal": 24,
+      "renderedFirstPageProducts": 24,
+      "expectedFirstPageProducts": 24,
+      "emptyStateCount": 0,
+      "passed": true
+    },
+    {
+      "handle": "pyramid",
+      "title": "Pyramid",
+      "expectedShopifyMatchedProducts": 36,
+      "displayedTotal": 36,
+      "renderedFirstPageProducts": 24,
+      "expectedFirstPageProducts": 24,
+      "emptyStateCount": 0,
+      "passed": true
+    },
+    {
+      "handle": "rings",
+      "title": "Rings",
+      "expectedShopifyMatchedProducts": 64,
+      "displayedTotal": 64,
+      "renderedFirstPageProducts": 24,
+      "expectedFirstPageProducts": 24,
+      "emptyStateCount": 0,
+      "passed": true
+    },
+    {
+      "handle": "rollers",
+      "title": "Rollers",
+      "expectedShopifyMatchedProducts": 3,
+      "displayedTotal": 3,
+      "renderedFirstPageProducts": 3,
+      "expectedFirstPageProducts": 3,
+      "emptyStateCount": 0,
+      "passed": true
+    },
+    {
+      "handle": "selenite-plates",
+      "title": "Selenite plates",
+      "expectedShopifyMatchedProducts": 19,
+      "displayedTotal": 19,
+      "renderedFirstPageProducts": 19,
+      "expectedFirstPageProducts": 19,
+      "emptyStateCount": 0,
+      "passed": true
+    },
+    {
+      "handle": "shaligram",
+      "title": "Shaligram",
+      "expectedShopifyMatchedProducts": 10,
+      "displayedTotal": 10,
+      "renderedFirstPageProducts": 10,
+      "expectedFirstPageProducts": 10,
+      "emptyStateCount": 0,
+      "passed": true
+    },
+    {
+      "handle": "shankh",
+      "title": "Shankh",
+      "expectedShopifyMatchedProducts": 4,
+      "displayedTotal": 4,
+      "renderedFirstPageProducts": 4,
+      "expectedFirstPageProducts": 4,
+      "emptyStateCount": 0,
+      "passed": true
+    },
+    {
+      "handle": "shivling",
+      "title": "Shivling",
+      "expectedShopifyMatchedProducts": 9,
+      "displayedTotal": 9,
+      "renderedFirstPageProducts": 9,
+      "expectedFirstPageProducts": 9,
+      "emptyStateCount": 0,
+      "passed": true
+    },
+    {
+      "handle": "tumbles",
+      "title": "Tumbles",
+      "expectedShopifyMatchedProducts": 40,
+      "displayedTotal": 40,
+      "renderedFirstPageProducts": 24,
+      "expectedFirstPageProducts": 24,
+      "emptyStateCount": 0,
+      "passed": true
+    },
+    {
+      "handle": "sphere",
+      "title": "Sphere",
+      "expectedShopifyMatchedProducts": 38,
+      "displayedTotal": 38,
+      "renderedFirstPageProducts": 24,
+      "expectedFirstPageProducts": 24,
+      "emptyStateCount": 0,
+      "passed": true
+    },
+    {
+      "handle": "tortoise-turtle",
+      "title": "Tortoise/Turtle",
+      "expectedShopifyMatchedProducts": 18,
+      "displayedTotal": 18,
+      "renderedFirstPageProducts": 18,
+      "expectedFirstPageProducts": 18,
+      "emptyStateCount": 0,
+      "passed": true
+    },
+    {
+      "handle": "trees",
+      "title": "Trees",
+      "expectedShopifyMatchedProducts": 73,
+      "displayedTotal": 73,
+      "renderedFirstPageProducts": 24,
+      "expectedFirstPageProducts": 24,
+      "emptyStateCount": 0,
+      "passed": true
+    },
+    {
+      "handle": "vase",
+      "title": "Vase",
+      "expectedShopifyMatchedProducts": 6,
+      "displayedTotal": 6,
+      "renderedFirstPageProducts": 6,
+      "expectedFirstPageProducts": 6,
+      "emptyStateCount": 0,
+      "passed": true
+    },
+    {
+      "handle": "yantra",
+      "title": "Yantra",
+      "expectedShopifyMatchedProducts": 53,
+      "displayedTotal": 53,
+      "renderedFirstPageProducts": 24,
+      "expectedFirstPageProducts": 24,
+      "emptyStateCount": 0,
+      "passed": true
+    },
+    {
+      "handle": "zibu-coins",
+      "title": "Zibu coins",
+      "expectedShopifyMatchedProducts": 23,
+      "displayedTotal": 23,
+      "renderedFirstPageProducts": 23,
+      "expectedFirstPageProducts": 23,
+      "emptyStateCount": 0,
+      "passed": true
+    },
+    {
+      "handle": "amethyst",
+      "title": "Amethyst",
+      "expectedShopifyMatchedProducts": 0,
+      "displayedTotal": 0,
+      "renderedFirstPageProducts": 0,
+      "expectedFirstPageProducts": 0,
+      "emptyStateCount": 1,
+      "passed": true
+    },
+    {
+      "handle": "amber",
+      "title": "Amber",
+      "expectedShopifyMatchedProducts": 0,
+      "displayedTotal": 0,
+      "renderedFirstPageProducts": 0,
+      "expectedFirstPageProducts": 0,
+      "emptyStateCount": 1,
+      "passed": true
+    },
+    {
+      "handle": "amazonite",
+      "title": "Amazonite",
+      "expectedShopifyMatchedProducts": 0,
+      "displayedTotal": 0,
+      "renderedFirstPageProducts": 0,
+      "expectedFirstPageProducts": 0,
+      "emptyStateCount": 1,
+      "passed": true
+    },
+    {
+      "handle": "aquamarine",
+      "title": "Aquamarine",
+      "expectedShopifyMatchedProducts": 0,
+      "displayedTotal": 0,
+      "renderedFirstPageProducts": 0,
+      "expectedFirstPageProducts": 0,
+      "emptyStateCount": 1,
+      "passed": true
+    },
+    {
+      "handle": "black-obsidian",
+      "title": "Black Obsidian",
+      "expectedShopifyMatchedProducts": 0,
+      "displayedTotal": 0,
+      "renderedFirstPageProducts": 0,
+      "expectedFirstPageProducts": 0,
+      "emptyStateCount": 1,
+      "passed": true
+    },
+    {
+      "handle": "black-tourmaline",
+      "title": "Black Tourmaline",
+      "expectedShopifyMatchedProducts": 0,
+      "displayedTotal": 0,
+      "renderedFirstPageProducts": 0,
+      "expectedFirstPageProducts": 0,
+      "emptyStateCount": 1,
+      "passed": true
+    },
+    {
+      "handle": "bloodstone",
+      "title": "Bloodstone",
+      "expectedShopifyMatchedProducts": 0,
+      "displayedTotal": 0,
+      "renderedFirstPageProducts": 0,
+      "expectedFirstPageProducts": 0,
+      "emptyStateCount": 1,
+      "passed": true
+    },
+    {
+      "handle": "blue-apatite",
+      "title": "Blue Apatite",
+      "expectedShopifyMatchedProducts": 0,
+      "displayedTotal": 0,
+      "renderedFirstPageProducts": 0,
+      "expectedFirstPageProducts": 0,
+      "emptyStateCount": 1,
+      "passed": true
+    },
+    {
+      "handle": "blue-goldstone",
+      "title": "Blue Goldstone",
+      "expectedShopifyMatchedProducts": 0,
+      "displayedTotal": 0,
+      "renderedFirstPageProducts": 0,
+      "expectedFirstPageProducts": 0,
+      "emptyStateCount": 1,
+      "passed": true
+    },
+    {
+      "handle": "blue-lace-agate",
+      "title": "Blue Lace Agate",
+      "expectedShopifyMatchedProducts": 0,
+      "displayedTotal": 0,
+      "renderedFirstPageProducts": 0,
+      "expectedFirstPageProducts": 0,
+      "emptyStateCount": 1,
+      "passed": true
+    },
+    {
+      "handle": "blue-tigers-eye",
+      "title": "Blue Tiger's Eye",
+      "expectedShopifyMatchedProducts": 0,
+      "displayedTotal": 0,
+      "renderedFirstPageProducts": 0,
+      "expectedFirstPageProducts": 0,
+      "emptyStateCount": 1,
+      "passed": true
+    },
+    {
+      "handle": "calcite",
+      "title": "Calcite",
+      "expectedShopifyMatchedProducts": 0,
+      "displayedTotal": 0,
+      "renderedFirstPageProducts": 0,
+      "expectedFirstPageProducts": 0,
+      "emptyStateCount": 1,
+      "passed": true
+    },
+    {
+      "handle": "carnelian",
+      "title": "Carnelian",
+      "expectedShopifyMatchedProducts": 0,
+      "displayedTotal": 0,
+      "renderedFirstPageProducts": 0,
+      "expectedFirstPageProducts": 0,
+      "emptyStateCount": 1,
+      "passed": true
+    },
+    {
+      "handle": "cats-eye",
+      "title": "Cat's Eye",
+      "expectedShopifyMatchedProducts": 0,
+      "displayedTotal": 0,
+      "renderedFirstPageProducts": 0,
+      "expectedFirstPageProducts": 0,
+      "emptyStateCount": 1,
+      "passed": true
+    },
+    {
+      "handle": "citrine",
+      "title": "Citrine",
+      "expectedShopifyMatchedProducts": 0,
+      "displayedTotal": 0,
+      "renderedFirstPageProducts": 0,
+      "expectedFirstPageProducts": 0,
+      "emptyStateCount": 1,
+      "passed": true
+    },
+    {
+      "handle": "coral",
+      "title": "Coral",
+      "expectedShopifyMatchedProducts": 0,
+      "displayedTotal": 0,
+      "renderedFirstPageProducts": 0,
+      "expectedFirstPageProducts": 0,
+      "emptyStateCount": 1,
+      "passed": true
+    },
+    {
+      "handle": "cherry-quartz",
+      "title": "Cherry Quartz",
+      "expectedShopifyMatchedProducts": 0,
+      "displayedTotal": 0,
+      "renderedFirstPageProducts": 0,
+      "expectedFirstPageProducts": 0,
+      "emptyStateCount": 1,
+      "passed": true
+    },
+    {
+      "handle": "chrysocolla",
+      "title": "Chrysocolla",
+      "expectedShopifyMatchedProducts": 0,
+      "displayedTotal": 0,
+      "renderedFirstPageProducts": 0,
+      "expectedFirstPageProducts": 0,
+      "emptyStateCount": 1,
+      "passed": true
+    },
+    {
+      "handle": "dalmatian-jasper",
+      "title": "Dalmatian Jasper",
+      "expectedShopifyMatchedProducts": 0,
+      "displayedTotal": 0,
+      "renderedFirstPageProducts": 0,
+      "expectedFirstPageProducts": 0,
+      "emptyStateCount": 1,
+      "passed": true
+    },
+    {
+      "handle": "evil-eye-symbol",
+      "title": "Evil Eye (Symbol)",
+      "expectedShopifyMatchedProducts": 0,
+      "displayedTotal": 0,
+      "renderedFirstPageProducts": 0,
+      "expectedFirstPageProducts": 0,
+      "emptyStateCount": 1,
+      "passed": true
+    },
+    {
+      "handle": "fluorite",
+      "title": "Fluorite",
+      "expectedShopifyMatchedProducts": 0,
+      "displayedTotal": 0,
+      "renderedFirstPageProducts": 0,
+      "expectedFirstPageProducts": 0,
+      "emptyStateCount": 1,
+      "passed": true
+    },
+    {
+      "handle": "garnet",
+      "title": "Garnet",
+      "expectedShopifyMatchedProducts": 0,
+      "displayedTotal": 0,
+      "renderedFirstPageProducts": 0,
+      "expectedFirstPageProducts": 0,
+      "emptyStateCount": 1,
+      "passed": true
+    },
+    {
+      "handle": "golden-obsidian",
+      "title": "Golden Obsidian",
+      "expectedShopifyMatchedProducts": 0,
+      "displayedTotal": 0,
+      "renderedFirstPageProducts": 0,
+      "expectedFirstPageProducts": 0,
+      "emptyStateCount": 1,
+      "passed": true
+    },
+    {
+      "handle": "green-aventurine",
+      "title": "Green Aventurine",
+      "expectedShopifyMatchedProducts": 0,
+      "displayedTotal": 0,
+      "renderedFirstPageProducts": 0,
+      "expectedFirstPageProducts": 0,
+      "emptyStateCount": 1,
+      "passed": true
+    },
+    {
+      "handle": "green-agate",
+      "title": "Green Agate",
+      "expectedShopifyMatchedProducts": 0,
+      "displayedTotal": 0,
+      "renderedFirstPageProducts": 0,
+      "expectedFirstPageProducts": 0,
+      "emptyStateCount": 1,
+      "passed": true
+    },
+    {
+      "handle": "green-jade",
+      "title": "Green Jade",
+      "expectedShopifyMatchedProducts": 0,
+      "displayedTotal": 0,
+      "renderedFirstPageProducts": 0,
+      "expectedFirstPageProducts": 0,
+      "emptyStateCount": 1,
+      "passed": true
+    },
+    {
+      "handle": "hematite",
+      "title": "Hematite",
+      "expectedShopifyMatchedProducts": 0,
+      "displayedTotal": 0,
+      "renderedFirstPageProducts": 0,
+      "expectedFirstPageProducts": 0,
+      "emptyStateCount": 1,
+      "passed": true
+    },
+    {
+      "handle": "howlite",
+      "title": "Howlite",
+      "expectedShopifyMatchedProducts": 0,
+      "displayedTotal": 0,
+      "renderedFirstPageProducts": 0,
+      "expectedFirstPageProducts": 0,
+      "emptyStateCount": 1,
+      "passed": true
+    },
+    {
+      "handle": "labradorite",
+      "title": "Labradorite",
+      "expectedShopifyMatchedProducts": 0,
+      "displayedTotal": 0,
+      "renderedFirstPageProducts": 0,
+      "expectedFirstPageProducts": 0,
+      "emptyStateCount": 1,
+      "passed": true
+    },
+    {
+      "handle": "lapis-lazuli",
+      "title": "Lapis Lazuli",
+      "expectedShopifyMatchedProducts": 0,
+      "displayedTotal": 0,
+      "renderedFirstPageProducts": 0,
+      "expectedFirstPageProducts": 0,
+      "emptyStateCount": 1,
+      "passed": true
+    },
+    {
+      "handle": "larvikite",
+      "title": "Larvikite",
+      "expectedShopifyMatchedProducts": 0,
+      "displayedTotal": 0,
+      "renderedFirstPageProducts": 0,
+      "expectedFirstPageProducts": 0,
+      "emptyStateCount": 1,
+      "passed": true
+    },
+    {
+      "handle": "lava",
+      "title": "Lava",
+      "expectedShopifyMatchedProducts": 0,
+      "displayedTotal": 0,
+      "renderedFirstPageProducts": 0,
+      "expectedFirstPageProducts": 0,
+      "emptyStateCount": 1,
+      "passed": true
+    },
+    {
+      "handle": "lepidolite",
+      "title": "Lepidolite",
+      "expectedShopifyMatchedProducts": 0,
+      "displayedTotal": 0,
+      "renderedFirstPageProducts": 0,
+      "expectedFirstPageProducts": 0,
+      "emptyStateCount": 1,
+      "passed": true
+    },
+    {
+      "handle": "mahogany-obsidian",
+      "title": "Mahogany Obsidian",
+      "expectedShopifyMatchedProducts": 0,
+      "displayedTotal": 0,
+      "renderedFirstPageProducts": 0,
+      "expectedFirstPageProducts": 0,
+      "emptyStateCount": 1,
+      "passed": true
+    },
+    {
+      "handle": "malachite",
+      "title": "Malachite",
+      "expectedShopifyMatchedProducts": 0,
+      "displayedTotal": 0,
+      "renderedFirstPageProducts": 0,
+      "expectedFirstPageProducts": 0,
+      "emptyStateCount": 1,
+      "passed": true
+    },
+    {
+      "handle": "mookaite",
+      "title": "Mookaite",
+      "expectedShopifyMatchedProducts": 0,
+      "displayedTotal": 0,
+      "renderedFirstPageProducts": 0,
+      "expectedFirstPageProducts": 0,
+      "emptyStateCount": 1,
+      "passed": true
+    },
+    {
+      "handle": "moonstone",
+      "title": "Moonstone",
+      "expectedShopifyMatchedProducts": 0,
+      "displayedTotal": 0,
+      "renderedFirstPageProducts": 0,
+      "expectedFirstPageProducts": 0,
+      "emptyStateCount": 1,
+      "passed": true
+    },
+    {
+      "handle": "morganite",
+      "title": "Morganite",
+      "expectedShopifyMatchedProducts": 0,
+      "displayedTotal": 0,
+      "renderedFirstPageProducts": 0,
+      "expectedFirstPageProducts": 0,
+      "emptyStateCount": 1,
+      "passed": true
+    },
+    {
+      "handle": "moss-agate",
+      "title": "Moss Agate",
+      "expectedShopifyMatchedProducts": 0,
+      "displayedTotal": 0,
+      "renderedFirstPageProducts": 0,
+      "expectedFirstPageProducts": 0,
+      "emptyStateCount": 1,
+      "passed": true
+    },
+    {
+      "handle": "multi-tourmaline",
+      "title": "Multi Tourmaline",
+      "expectedShopifyMatchedProducts": 0,
+      "displayedTotal": 0,
+      "renderedFirstPageProducts": 0,
+      "expectedFirstPageProducts": 0,
+      "emptyStateCount": 1,
+      "passed": true
+    },
+    {
+      "handle": "onyx",
+      "title": "Onyx",
+      "expectedShopifyMatchedProducts": 0,
+      "displayedTotal": 0,
+      "renderedFirstPageProducts": 0,
+      "expectedFirstPageProducts": 0,
+      "emptyStateCount": 1,
+      "passed": true
+    },
+    {
+      "handle": "opal",
+      "title": "Opal",
+      "expectedShopifyMatchedProducts": 0,
+      "displayedTotal": 0,
+      "renderedFirstPageProducts": 0,
+      "expectedFirstPageProducts": 0,
+      "emptyStateCount": 1,
+      "passed": true
+    },
+    {
+      "handle": "peridot",
+      "title": "Peridot",
+      "expectedShopifyMatchedProducts": 0,
+      "displayedTotal": 0,
+      "renderedFirstPageProducts": 0,
+      "expectedFirstPageProducts": 0,
+      "emptyStateCount": 1,
+      "passed": true
+    },
+    {
+      "handle": "prehnite",
+      "title": "Prehnite",
+      "expectedShopifyMatchedProducts": 0,
+      "displayedTotal": 0,
+      "renderedFirstPageProducts": 0,
+      "expectedFirstPageProducts": 0,
+      "emptyStateCount": 1,
+      "passed": true
+    },
+    {
+      "handle": "pyrite",
+      "title": "Pyrite",
+      "expectedShopifyMatchedProducts": 0,
+      "displayedTotal": 0,
+      "renderedFirstPageProducts": 0,
+      "expectedFirstPageProducts": 0,
+      "emptyStateCount": 1,
+      "passed": true
+    },
+    {
+      "handle": "red-jasper",
+      "title": "Red Jasper",
+      "expectedShopifyMatchedProducts": 0,
+      "displayedTotal": 0,
+      "renderedFirstPageProducts": 0,
+      "expectedFirstPageProducts": 0,
+      "emptyStateCount": 1,
+      "passed": true
+    },
+    {
+      "handle": "rhodonite",
+      "title": "Rhodonite",
+      "expectedShopifyMatchedProducts": 0,
+      "displayedTotal": 0,
+      "renderedFirstPageProducts": 0,
+      "expectedFirstPageProducts": 0,
+      "emptyStateCount": 1,
+      "passed": true
+    },
+    {
+      "handle": "rose-quartz",
+      "title": "Rose Quartz",
+      "expectedShopifyMatchedProducts": 0,
+      "displayedTotal": 0,
+      "renderedFirstPageProducts": 0,
+      "expectedFirstPageProducts": 0,
+      "emptyStateCount": 1,
+      "passed": true
+    },
+    {
+      "handle": "ruby-zoisite",
+      "title": "Ruby Zoisite",
+      "expectedShopifyMatchedProducts": 0,
+      "displayedTotal": 0,
+      "renderedFirstPageProducts": 0,
+      "expectedFirstPageProducts": 0,
+      "emptyStateCount": 1,
+      "passed": true
+    },
+    {
+      "handle": "selenite",
+      "title": "Selenite",
+      "expectedShopifyMatchedProducts": 0,
+      "displayedTotal": 0,
+      "renderedFirstPageProducts": 0,
+      "expectedFirstPageProducts": 0,
+      "emptyStateCount": 1,
+      "passed": true
+    },
+    {
+      "handle": "serpentine",
+      "title": "Serpentine",
+      "expectedShopifyMatchedProducts": 0,
+      "displayedTotal": 0,
+      "renderedFirstPageProducts": 0,
+      "expectedFirstPageProducts": 0,
+      "emptyStateCount": 1,
+      "passed": true
+    },
+    {
+      "handle": "smoky-quartz",
+      "title": "Smoky Quartz",
+      "expectedShopifyMatchedProducts": 0,
+      "displayedTotal": 0,
+      "renderedFirstPageProducts": 0,
+      "expectedFirstPageProducts": 0,
+      "emptyStateCount": 1,
+      "passed": true
+    },
+    {
+      "handle": "snowflake-obsidian",
+      "title": "Snowflake Obsidian",
+      "expectedShopifyMatchedProducts": 0,
+      "displayedTotal": 0,
+      "renderedFirstPageProducts": 0,
+      "expectedFirstPageProducts": 0,
+      "emptyStateCount": 1,
+      "passed": true
+    },
+    {
+      "handle": "sodalite",
+      "title": "Sodalite",
+      "expectedShopifyMatchedProducts": 0,
+      "displayedTotal": 0,
+      "renderedFirstPageProducts": 0,
+      "expectedFirstPageProducts": 0,
+      "emptyStateCount": 1,
+      "passed": true
+    },
+    {
+      "handle": "sphatik",
+      "title": "Sphatik",
+      "expectedShopifyMatchedProducts": 36,
+      "displayedTotal": 36,
+      "renderedFirstPageProducts": 24,
+      "expectedFirstPageProducts": 24,
+      "emptyStateCount": 0,
+      "passed": true
+    },
+    {
+      "handle": "sunstone",
+      "title": "Sunstone",
+      "expectedShopifyMatchedProducts": 0,
+      "displayedTotal": 0,
+      "renderedFirstPageProducts": 0,
+      "expectedFirstPageProducts": 0,
+      "emptyStateCount": 1,
+      "passed": true
+    },
+    {
+      "handle": "tiger-s-eye",
+      "title": "Tiger’s Eye",
+      "expectedShopifyMatchedProducts": 0,
+      "displayedTotal": 0,
+      "renderedFirstPageProducts": 0,
+      "expectedFirstPageProducts": 0,
+      "emptyStateCount": 1,
+      "passed": true
+    },
+    {
+      "handle": "turquoise",
+      "title": "Turquoise",
+      "expectedShopifyMatchedProducts": 0,
+      "displayedTotal": 0,
+      "renderedFirstPageProducts": 0,
+      "expectedFirstPageProducts": 0,
+      "emptyStateCount": 1,
+      "passed": true
+    },
+    {
+      "handle": "tree-line-agate",
+      "title": "Tree Line Agate",
+      "expectedShopifyMatchedProducts": 0,
+      "displayedTotal": 0,
+      "renderedFirstPageProducts": 0,
+      "expectedFirstPageProducts": 0,
+      "emptyStateCount": 1,
+      "passed": true
+    },
+    {
+      "handle": "unakite",
+      "title": "Unakite",
+      "expectedShopifyMatchedProducts": 0,
+      "displayedTotal": 0,
+      "renderedFirstPageProducts": 0,
+      "expectedFirstPageProducts": 0,
+      "emptyStateCount": 1,
+      "passed": true
+    },
+    {
+      "handle": "zibu",
+      "title": "Zibu",
+      "expectedShopifyMatchedProducts": 0,
+      "displayedTotal": 0,
+      "renderedFirstPageProducts": 0,
+      "expectedFirstPageProducts": 0,
+      "emptyStateCount": 1,
+      "passed": true
+    },
+    {
+      "handle": "home-decor-vastu",
+      "title": "Home Decor/Vastu",
+      "expectedShopifyMatchedProducts": 0,
+      "displayedTotal": 0,
+      "renderedFirstPageProducts": 0,
+      "expectedFirstPageProducts": 0,
+      "emptyStateCount": 1,
+      "passed": true
+    },
+    {
+      "handle": "under-499-rs",
+      "title": "Under 499 Rs",
+      "expectedShopifyMatchedProducts": 0,
+      "displayedTotal": 0,
+      "renderedFirstPageProducts": 0,
+      "expectedFirstPageProducts": 0,
+      "emptyStateCount": 1,
+      "passed": true
+    },
+    {
+      "handle": "malas-jap-malas",
+      "title": "Malas & Jap Malas",
+      "expectedShopifyMatchedProducts": 0,
+      "displayedTotal": 0,
+      "renderedFirstPageProducts": 0,
+      "expectedFirstPageProducts": 0,
+      "emptyStateCount": 1,
+      "passed": true
+    },
+    {
+      "handle": "zodiac",
+      "title": "Zodiac",
+      "expectedShopifyMatchedProducts": 0,
+      "displayedTotal": 0,
+      "renderedFirstPageProducts": 0,
+      "expectedFirstPageProducts": 0,
+      "emptyStateCount": 1,
+      "passed": true
+    },
+    {
+      "handle": "gifts",
+      "title": "Gifts",
+      "expectedShopifyMatchedProducts": 11,
+      "displayedTotal": 11,
+      "renderedFirstPageProducts": 11,
+      "expectedFirstPageProducts": 11,
+      "emptyStateCount": 0,
+      "passed": true
+    },
+    {
+      "handle": "kawach-yantra",
+      "title": "Kawach/Yantra",
+      "expectedShopifyMatchedProducts": 0,
+      "displayedTotal": 0,
+      "renderedFirstPageProducts": 0,
+      "expectedFirstPageProducts": 0,
+      "emptyStateCount": 1,
+      "passed": true
+    }
+  ],
+  "interactions": {
+    "wishlist": {
+      "savedProduct": "Amethyst Vase",
+      "itemVisibleOnWishlist": true,
+      "passed": true
+    },
+    "cart": {
+      "added": true,
+      "lineCountAfterAdd": 1,
+      "subtotalAfterAdd": "₹490",
+      "updatedQuantity": "2",
+      "subtotalAfterUpdate": "₹980",
+      "removedAndEmpty": true,
+      "checkoutDisabled": true,
+      "passed": true
+    }
+  },
+  "navigation": {
+    "stickyHeader": {
+      "cssPosition": "sticky",
+      "topAfterScroll": 0,
+      "passed": true
+    },
+    "mobileBottomNavVisible": true,
+    "desktopMenuOpened": true
+  },
+  "requestAudit": {
+    "graphqlResponseCount": 22,
+    "graphqlStatuses": [
+      200
+    ],
+    "failedRequestCount": 9,
+    "failedRequests": [
+      {
+        "url": "http://127.0.0.1:4176/src/data/client-catalog.json",
+        "error": "net::ERR_ABORTED"
+      },
+      {
+        "url": "https://fonts.gstatic.com/s/cormorantgaramond/v21/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYqXtKky2F7g.woff2",
+        "error": "net::ERR_ABORTED"
+      },
+      {
+        "url": "https://fonts.gstatic.com/s/dmsans/v17/rP2Yp2ywxg089UriI5-g4vlH9VoD8Cmcqbu0-K6z9mXg.woff2",
+        "error": "net::ERR_ABORTED"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0657/3948/9391/files/5mukhiRudrakshabraceletgoldenmagneticlock_superquality.png",
+        "error": "net::ERR_BLOCKED_BY_ORB"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0657/3948/9391/files/Karungalichainbracelet.jpg",
+        "error": "net::ERR_BLOCKED_BY_ORB"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0657/3948/9391/files/Rudrakshakarungalibraceletblackdori8mm.jpg",
+        "error": "net::ERR_BLOCKED_BY_ORB"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0657/3948/9391/files/C3765-1.png",
+        "error": "net::ERR_BLOCKED_BY_ORB"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0657/3948/9391/files/5mukhiRudrakshabraceletgoldenmagneticlock_superquality.png",
+        "error": "net::ERR_BLOCKED_BY_ORB"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0657/3948/9391/files/C3784-1.png",
+        "error": "net::ERR_BLOCKED_BY_ORB"
+      }
+    ],
+    "consoleErrorCount": 0,
+    "consoleErrors": [],
+    "uncaughtPageErrors": []
+  },
+  "conclusions": {
+    "horizontalOverflowWidths": [],
+    "visibleBrokenImageObservationsAcrossViewportChecks": 0,
+    "all111CollectionCountsMatch": true,
+    "checkoutRemainedDisabled": true,
+    "passed": true
+  },
+  "screenshots": [
+    "reports/screenshots/shopify-live/home-320.png",
+    "reports/screenshots/shopify-live/home-360.png",
+    "reports/screenshots/shopify-live/home-390.png",
+    "reports/screenshots/shopify-live/home-427.png",
+    "reports/screenshots/shopify-live/home-440.png",
+    "reports/screenshots/shopify-live/home-768.png",
+    "reports/screenshots/shopify-live/home-1024.png",
+    "reports/screenshots/shopify-live/home-1280.png",
+    "reports/screenshots/shopify-live/home-1440.png",
+    "reports/screenshots/shopify-live/home-1920.png",
+    "reports/screenshots/shopify-live/collection-bracelets-390.png",
+    "reports/screenshots/shopify-live/home-390-full.png",
+    "reports/screenshots/shopify-live/home-1440-full.png",
+    "reports/screenshots/shopify-live/categories-390.png",
+    "reports/screenshots/shopify-live/search-rudraksha-390.png",
+    "reports/screenshots/shopify-live/product-7-chakra-angel-1-inch-390.png",
+    "reports/screenshots/shopify-live/cart-empty-390.png"
+  ]
+}
