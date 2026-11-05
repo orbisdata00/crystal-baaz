@@ -1,0 +1,94 @@
+{
+  "date": "2026-11-05",
+  "source": "Shopify",
+  "tests": {
+    "command": "npm test",
+    "passed": 26,
+    "failed": 0
+  },
+  "build": {
+    "command": "npm run build -- --outDir /private/tmp/crystal-baaz-redesign-build",
+    "passed": true,
+    "mainScript": "index-BwZ_elEz.js",
+    "mainScriptBytes": 566060,
+    "optionalWorkbookPreviewFetched": false,
+    "warning": "Main and optional preview chunks exceed Vite\u2019s 500 KB warning threshold."
+  },
+  "chrome": {
+    "responsivePass": true,
+    "parents": 12,
+    "selections": 202,
+    "widths": [
+      320,
+      360,
+      375,
+      390,
+      414,
+      427,
+      440,
+      768,
+      1024,
+      1280,
+      1366,
+      1440,
+      1600,
+      1920
+    ],
+    "productionPass": true,
+    "finalUiPass": true,
+    "runtimeIssues": []
+  },
+  "shopify": {
+    "shopifyProducts": 1520,
+    "matchedProducts": 1520,
+    "unmatchedShopifyProducts": 0,
+    "workbookProductsMissingFromShopify": 3,
+    "products": 1520,
+    "allShopify": true,
+    "placeholderImages": 0
+  },
+  "cart": {
+    "initial": {
+      "lines": 1,
+      "quantity": "1",
+      "subtotal": "\u20b911,900",
+      "checkoutDisabled": true
+    },
+    "updated": {
+      "quantity": "2",
+      "subtotal": "\u20b923,800"
+    },
+    "persisted": "2",
+    "removed": true
+  },
+  "pwa": {
+    "manifestStatus": 200,
+    "name": "Crystal Baaz",
+    "display": "standalone",
+    "icons": [
+      {
+        "size": "192x192",
+        "status": 200
+      },
+      {
+        "size": "512x512",
+        "status": 200
+      },
+      {
+        "size": "512x512",
+        "status": 200
+      }
+    ],
+    "worker": "activated",
+    "controlled": true,
+    "previewChunkFetched": false
+  },
+  "pending": {
+    "malaPearlRubyHierarchy": "No explicit child/product assignments supplied; Mala remains a direct 138-product listing.",
+    "missingIconSlots": 209,
+    "details": "../category-hierarchy-audit.json"
+  },
+  "published": false,
+  "checkoutEnabled": false,
+  "physicalMobileInstallTested": false
+}

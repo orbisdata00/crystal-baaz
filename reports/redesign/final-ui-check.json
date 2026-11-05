@@ -1,0 +1,26 @@
+{
+  "accounts": [
+    {
+      "width": 390,
+      "title": "Your account",
+      "overflow": false,
+      "oldPreviewWording": false
+    },
+    {
+      "width": 1440,
+      "title": "Your account",
+      "overflow": false,
+      "oldPreviewWording": false
+    }
+  ],
+  "modal": {
+    "open": true,
+    "bodyLocked": true,
+    "focusInside": true,
+    "tabTrapped": true,
+    "closedAndUnlocked": true
+  },
+  "buildScript": "index-BwZ_elEz.js",
+  "runtimeIssues": [],
+  "pass": true
+}

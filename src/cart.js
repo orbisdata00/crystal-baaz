@@ -66,3 +66,15 @@ export function calculateCart(lines, catalog) {
     count: items.reduce((sum, line) => sum + line.quantity, 0),
   };
 }
+
+// Shopify can adjust requested quantities to match available inventory.
+export function reconcileShopifyCartLines(lines, remoteCart) {
+  if (!remoteCart) return lines;
+  const nodes = remoteCart.lines?.nodes || remoteCart.lines?.edges?.map(edge => edge.node) || [];
+  const quantities = new Map(nodes.map(line => [line.merchandise?.id, line.quantity]));
+  const reconciled = lines.flatMap(line => {
+    const quantity = quantities.get(line.variantId);
+    return Number.isInteger(quantity) && quantity > 0 ? [{ ...line, quantity }] : [];
+  });
+  return reconciled.length === lines.length && reconciled.every((line, index) => line.quantity === lines[index].quantity) ? lines : reconciled;
+}

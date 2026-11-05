@@ -2,8 +2,8 @@
 // Private Storefront tokens must stay in a server-side runtime and are not read here.
 const env = import.meta.env || {};
 
-// Shopify is opt-in for local verification. Production and unspecified builds stay on preview.
-export const catalogProvider = env.VITE_CATALOG_SOURCE === "shopify" ? "shopify" : "preview";
+// Live Shopify data is the default. Workbook preview must be explicitly selected.
+export const catalogProvider = env.VITE_CATALOG_SOURCE === "preview" ? "preview" : "shopify";
 
 export const shopifyConfig = {
   storeDomain: env.VITE_SHOPIFY_STORE_DOMAIN || "crystalbaaz.myshopify.com",

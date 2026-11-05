@@ -1,0 +1,77 @@
+{
+  "generatedAt": "2026-11-05T08:27:27.669Z",
+  "failures": [],
+  "screenshots": [
+    "reports/redesign/production-home-390.png",
+    "reports/redesign/production-overview-390.png",
+    "reports/redesign/production-products-390.png",
+    "reports/redesign/mala-products-390.png",
+    "reports/redesign/production-home-1440.png",
+    "reports/redesign/production-overview-1440.png",
+    "reports/redesign/production-products-1440.png",
+    "reports/redesign/mala-products-1440.png",
+    "reports/redesign/product-detail-390.png",
+    "reports/redesign/shopify-error-retry-390.png",
+    "reports/redesign/variant-selector-390.png",
+    "reports/redesign/cart-mobile-390.png",
+    "reports/redesign/cart-desktop-1440.png",
+    "reports/redesign/offline-390.png"
+  ],
+  "buildScript": "index-BwZ_elEz.js",
+  "pwa": {
+    "manifestStatus": 200,
+    "name": "Crystal Baaz",
+    "display": "standalone",
+    "icons": [
+      {
+        "size": "192x192",
+        "status": 200
+      },
+      {
+        "size": "512x512",
+        "status": 200
+      },
+      {
+        "size": "512x512",
+        "status": 200
+      }
+    ],
+    "worker": "activated",
+    "controlled": true,
+    "previewChunkFetched": false
+  },
+  "mala390": {
+    "state": "products",
+    "title": "Mala",
+    "count": "138 products",
+    "active": "Mala"
+  },
+  "mala1440": {
+    "state": "products",
+    "title": "Mala",
+    "count": "138 products",
+    "active": "Mala"
+  },
+  "failureState": {
+    "message": "Products couldn’t be loadedFailed to fetchRetry",
+    "productCards": 0,
+    "placeholder": 0
+  },
+  "retrySucceeded": true,
+  "variantSheet": {
+    "title": "7 Chakra Angel",
+    "options": 3
+  },
+  "cartConfirmed": {
+    "subtotal": "₹11,900",
+    "disabled": true,
+    "toastVisible": false
+  },
+  "offline": {
+    "text": "Products couldn’t be loadedYou are offline. Reconnect to load current Shopify products and prices.Retry",
+    "cards": 0,
+    "source": "shopify"
+  },
+  "runtimeIssues": [],
+  "pass": true
+}

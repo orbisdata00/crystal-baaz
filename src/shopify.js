@@ -75,7 +75,7 @@ export async function loadShopifyProducts({ first = 24, after = null, query = ""
 }
 
 const CATALOG_PRODUCT_FIELDS = `
-  id title handle description productType tags availableForSale
+  id title handle productType tags availableForSale
   images(first: 1) { nodes { url altText } }
   priceRange { minVariantPrice { amount currencyCode } }
   variants(first: 5) {

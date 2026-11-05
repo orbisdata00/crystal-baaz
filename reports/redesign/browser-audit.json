@@ -1,0 +1,648 @@
+{
+  "generatedAt": "2026-11-05T08:02:00.755Z",
+  "source": "live Shopify Storefront",
+  "reference": {
+    "url": "https://blinkit.com/",
+    "chromeResult": "Cloudflare Just a moment challenge; client screenshots used for shopping visuals"
+  },
+  "categories": [
+    {
+      "parent": "all",
+      "entry": {
+        "state": "overview",
+        "parent": "all",
+        "sidebar": 78,
+        "options": 122
+      },
+      "childrenChecked": 122,
+      "membershipFailures": 0,
+      "backForward": true
+    },
+    {
+      "parent": "mala",
+      "entry": {
+        "state": "products",
+        "parent": "mala",
+        "sidebar": 78,
+        "options": 0
+      },
+      "childrenChecked": 1,
+      "membershipFailures": 0,
+      "backForward": false
+    },
+    {
+      "parent": "rashi-rings",
+      "entry": {
+        "state": "products",
+        "parent": "rashi-rings",
+        "sidebar": 78,
+        "options": 0
+      },
+      "childrenChecked": 1,
+      "membershipFailures": 0,
+      "backForward": false
+    },
+    {
+      "parent": "rashi-pendants",
+      "entry": {
+        "state": "products",
+        "parent": "rashi-pendants",
+        "sidebar": 78,
+        "options": 0
+      },
+      "childrenChecked": 1,
+      "membershipFailures": 0,
+      "backForward": false
+    },
+    {
+      "parent": "zodiac",
+      "entry": {
+        "state": "overview",
+        "parent": "zodiac",
+        "sidebar": 78,
+        "options": 12
+      },
+      "childrenChecked": 12,
+      "membershipFailures": 0,
+      "backForward": true
+    },
+    {
+      "parent": "rudraksha",
+      "entry": {
+        "state": "overview",
+        "parent": "rudraksha",
+        "sidebar": 78,
+        "options": 5
+      },
+      "childrenChecked": 5,
+      "membershipFailures": 0,
+      "backForward": true
+    },
+    {
+      "parent": "crystals",
+      "entry": {
+        "state": "overview",
+        "parent": "crystals",
+        "sidebar": 78,
+        "options": 39
+      },
+      "childrenChecked": 39,
+      "membershipFailures": 0,
+      "backForward": true
+    },
+    {
+      "parent": "bracelets",
+      "entry": {
+        "state": "overview",
+        "parent": "bracelets",
+        "sidebar": 78,
+        "options": 7
+      },
+      "childrenChecked": 7,
+      "membershipFailures": 0,
+      "backForward": true
+    },
+    {
+      "parent": "pendants",
+      "entry": {
+        "state": "products",
+        "parent": "pendants",
+        "sidebar": 78,
+        "options": 0
+      },
+      "childrenChecked": 1,
+      "membershipFailures": 0,
+      "backForward": false
+    },
+    {
+      "parent": "pooja",
+      "entry": {
+        "state": "overview",
+        "parent": "pooja",
+        "sidebar": 78,
+        "options": 6
+      },
+      "childrenChecked": 6,
+      "membershipFailures": 0,
+      "backForward": true
+    },
+    {
+      "parent": "decor",
+      "entry": {
+        "state": "products",
+        "parent": "decor",
+        "sidebar": 78,
+        "options": 0
+      },
+      "childrenChecked": 1,
+      "membershipFailures": 0,
+      "backForward": false
+    },
+    {
+      "parent": "intentions",
+      "entry": {
+        "state": "overview",
+        "parent": "intentions",
+        "sidebar": 78,
+        "options": 6
+      },
+      "childrenChecked": 6,
+      "membershipFailures": 0,
+      "backForward": true
+    }
+  ],
+  "widths": [
+    {
+      "width": 320,
+      "overview": {
+        "overflow": false,
+        "sidebar": 78,
+        "content": 242,
+        "columns": 2,
+        "sidebarBottom": 783,
+        "bottomNavTop": 782
+      },
+      "products": {
+        "overflow": false,
+        "columns": 2,
+        "heights": [
+          214,
+          214,
+          214,
+          214,
+          214,
+          214,
+          214,
+          214
+        ],
+        "images": true,
+        "sidebarVisible": true,
+        "priceOverlap": false
+      },
+      "nextCardPeekPercent": 40
+    },
+    {
+      "width": 360,
+      "overview": {
+        "overflow": false,
+        "sidebar": 78,
+        "content": 282,
+        "columns": 3,
+        "sidebarBottom": 783,
+        "bottomNavTop": 782
+      },
+      "products": {
+        "overflow": false,
+        "columns": 2,
+        "heights": [
+          234,
+          234,
+          234,
+          234,
+          234,
+          234,
+          234,
+          234
+        ],
+        "images": true,
+        "sidebarVisible": true,
+        "priceOverlap": false
+      },
+      "nextCardPeekPercent": 53
+    },
+    {
+      "width": 375,
+      "overview": {
+        "overflow": false,
+        "sidebar": 78,
+        "content": 297,
+        "columns": 3,
+        "sidebarBottom": 783,
+        "bottomNavTop": 782
+      },
+      "products": {
+        "overflow": false,
+        "columns": 2,
+        "heights": [
+          241,
+          241,
+          241,
+          241,
+          241,
+          241,
+          241,
+          241
+        ],
+        "images": true,
+        "sidebarVisible": true,
+        "priceOverlap": false
+      },
+      "nextCardPeekPercent": 54
+    },
+    {
+      "width": 390,
+      "overview": {
+        "overflow": false,
+        "sidebar": 78,
+        "content": 312,
+        "columns": 3,
+        "sidebarBottom": 783,
+        "bottomNavTop": 782
+      },
+      "products": {
+        "overflow": false,
+        "columns": 2,
+        "heights": [
+          249,
+          249,
+          249,
+          249,
+          249,
+          249,
+          249,
+          249
+        ],
+        "images": true,
+        "sidebarVisible": true,
+        "priceOverlap": false
+      },
+      "nextCardPeekPercent": 55
+    },
+    {
+      "width": 414,
+      "overview": {
+        "overflow": false,
+        "sidebar": 78,
+        "content": 336,
+        "columns": 4,
+        "sidebarBottom": 782,
+        "bottomNavTop": 782
+      },
+      "products": {
+        "overflow": false,
+        "columns": 2,
+        "heights": [
+          261,
+          261,
+          261,
+          261,
+          261,
+          261,
+          261,
+          261
+        ],
+        "images": true,
+        "sidebarVisible": true,
+        "priceOverlap": false
+      },
+      "nextCardPeekPercent": 56
+    },
+    {
+      "width": 427,
+      "overview": {
+        "overflow": false,
+        "sidebar": 78,
+        "content": 349,
+        "columns": 4,
+        "sidebarBottom": 782,
+        "bottomNavTop": 782
+      },
+      "products": {
+        "overflow": false,
+        "columns": 2,
+        "heights": [
+          267,
+          267,
+          267,
+          267,
+          267,
+          267,
+          267,
+          267
+        ],
+        "images": true,
+        "sidebarVisible": true,
+        "priceOverlap": false
+      },
+      "nextCardPeekPercent": 57
+    },
+    {
+      "width": 440,
+      "overview": {
+        "overflow": false,
+        "sidebar": 78,
+        "content": 362,
+        "columns": 4,
+        "sidebarBottom": 782,
+        "bottomNavTop": 782
+      },
+      "products": {
+        "overflow": false,
+        "columns": 2,
+        "heights": [
+          274,
+          274,
+          274,
+          274,
+          274,
+          274,
+          274,
+          274
+        ],
+        "images": true,
+        "sidebarVisible": true,
+        "priceOverlap": false
+      },
+      "nextCardPeekPercent": 58
+    },
+    {
+      "width": 768,
+      "overview": {
+        "overflow": false,
+        "sidebar": 100,
+        "content": 668,
+        "columns": 8,
+        "sidebarBottom": 782,
+        "bottomNavTop": 782
+      },
+      "products": {
+        "overflow": false,
+        "columns": 3,
+        "heights": [
+          317,
+          317,
+          317,
+          317,
+          317,
+          317,
+          317,
+          317
+        ],
+        "images": true,
+        "sidebarVisible": true,
+        "priceOverlap": false
+      },
+      "nextCardPeekPercent": 67
+    },
+    {
+      "width": 1024,
+      "overview": {
+        "overflow": false,
+        "sidebar": 180,
+        "content": 829,
+        "columns": 5,
+        "sidebarBottom": 950,
+        "bottomNavTop": 0
+      },
+      "products": {
+        "overflow": false,
+        "columns": 4,
+        "heights": [
+          278,
+          278,
+          278,
+          278,
+          278,
+          278,
+          278,
+          278
+        ],
+        "images": true,
+        "sidebarVisible": true,
+        "priceOverlap": false
+      },
+      "nextCardPeekPercent": 0
+    },
+    {
+      "width": 1280,
+      "overview": {
+        "overflow": false,
+        "sidebar": 200,
+        "content": 1065,
+        "columns": 6,
+        "sidebarBottom": 950,
+        "bottomNavTop": 0
+      },
+      "products": {
+        "overflow": false,
+        "columns": 4,
+        "heights": [
+          334,
+          334,
+          334,
+          334,
+          334,
+          334,
+          334,
+          334
+        ],
+        "images": true,
+        "sidebarVisible": true,
+        "priceOverlap": false
+      },
+      "nextCardPeekPercent": 29
+    },
+    {
+      "width": 1366,
+      "overview": {
+        "overflow": false,
+        "sidebar": 200,
+        "content": 1151,
+        "columns": 7,
+        "sidebarBottom": 950,
+        "bottomNavTop": 0
+      },
+      "products": {
+        "overflow": false,
+        "columns": 4,
+        "heights": [
+          356,
+          356,
+          356,
+          356,
+          356,
+          356,
+          356,
+          356
+        ],
+        "images": true,
+        "sidebarVisible": true,
+        "priceOverlap": false
+      },
+      "nextCardPeekPercent": 64
+    },
+    {
+      "width": 1440,
+      "overview": {
+        "overflow": false,
+        "sidebar": 200,
+        "content": 1225,
+        "columns": 7,
+        "sidebarBottom": 950,
+        "bottomNavTop": 0
+      },
+      "products": {
+        "overflow": false,
+        "columns": 5,
+        "heights": [
+          315,
+          315,
+          315,
+          315,
+          315,
+          315,
+          315,
+          315
+        ],
+        "images": true,
+        "sidebarVisible": true,
+        "priceOverlap": false
+      },
+      "nextCardPeekPercent": 64
+    },
+    {
+      "width": 1600,
+      "overview": {
+        "overflow": false,
+        "sidebar": 200,
+        "content": 1240,
+        "columns": 7,
+        "sidebarBottom": 950,
+        "bottomNavTop": 0
+      },
+      "products": {
+        "overflow": false,
+        "columns": 5,
+        "heights": [
+          318,
+          318,
+          318,
+          318,
+          318,
+          318,
+          318,
+          318
+        ],
+        "images": true,
+        "sidebarVisible": true,
+        "priceOverlap": false
+      },
+      "nextCardPeekPercent": 64
+    },
+    {
+      "width": 1920,
+      "overview": {
+        "overflow": false,
+        "sidebar": 200,
+        "content": 1240,
+        "columns": 7,
+        "sidebarBottom": 950,
+        "bottomNavTop": 0
+      },
+      "products": {
+        "overflow": false,
+        "columns": 6,
+        "heights": [
+          279,
+          279,
+          279,
+          279,
+          279,
+          279,
+          279,
+          279
+        ],
+        "images": true,
+        "sidebarVisible": true,
+        "priceOverlap": false
+      },
+      "nextCardPeekPercent": 64
+    }
+  ],
+  "screenshots": [
+    "reports/redesign/category-overview-390.png",
+    "reports/redesign/subcategory-products-390.png",
+    "reports/redesign/home-390.png",
+    "reports/redesign/product-rail-390.png",
+    "reports/redesign/category-overview-1440.png",
+    "reports/redesign/subcategory-products-1440.png",
+    "reports/redesign/home-1440.png",
+    "reports/redesign/product-rail-1440.png",
+    "reports/redesign/cart-mobile-390.png",
+    "reports/redesign/cart-desktop-1440.png"
+  ],
+  "failures": [],
+  "mapping": {
+    "shopifyProducts": 1520,
+    "matchedProducts": 1520,
+    "unmatchedShopifyProducts": 0,
+    "workbookProductsMissingFromShopify": 3,
+    "products": 1520,
+    "allShopify": true,
+    "placeholderImages": 0
+  },
+  "sort": {
+    "url": "#collection/bracelets?sort=price-low",
+    "prices": [
+      190,
+      190,
+      250,
+      290,
+      290,
+      290,
+      290,
+      290,
+      290,
+      290,
+      290,
+      290,
+      290,
+      290,
+      290,
+      290,
+      290,
+      290,
+      290,
+      290,
+      290,
+      290,
+      290,
+      290
+    ]
+  },
+  "filter": true,
+  "refresh": {
+    "hash": "#collections?group=pooja&category=collection%3Ashaligram",
+    "title": "Shaligram",
+    "sidebar": true
+  },
+  "product": {
+    "handle": "1-mukhi-rudraksha-gol-nepali-under-develop-regular",
+    "title": "1 Mukhi Rudraksha Gol Nepali (Under Develop) Regular",
+    "placeholderImages": 0
+  },
+  "wishlist": true,
+  "search": {
+    "cards": 1,
+    "title": "Search results for “1 Mukhi Rudraksha Gol Nepali (Under Develop) Regular”"
+  },
+  "cart": {
+    "initial": {
+      "lines": 1,
+      "quantity": "1",
+      "subtotal": "₹11,900",
+      "checkoutDisabled": true
+    },
+    "updated": {
+      "quantity": "2",
+      "subtotal": "₹23,800"
+    },
+    "persisted": "2",
+    "removed": true
+  },
+  "offline": {
+    "message": "Products couldn’t be loadedYou are offline. Reconnect to load current Shopify products and prices.Retry",
+    "productCards": 0
+  },
+  "pass": true
+}

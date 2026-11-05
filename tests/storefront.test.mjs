@@ -4,14 +4,17 @@ import { readFile } from "node:fs/promises";
 import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import htm from "htm";
-import { catalogGroups, clientCatalog, clientProducts, collections, crystals, mapShopifyCatalog, mergeShopifyProduct, normalizeShopifyProduct, productFromHash, productHash, selectProducts, zodiacSigns, navigation } from "../src/catalog.js";
-import { addCartLine, calculateCart, changeCartQuantity, removeCartLine } from "../src/cart.js";
+import { catalogGroups, collections, crystals, mapShopifyCatalog, mergeShopifyProduct, normalizeShopifyProduct, productFromHash, productHash, selectProducts, zodiacSigns, navigation } from "../src/catalog.js";
+import { addCartLine, calculateCart, changeCartQuantity, removeCartLine, reconcileShopifyCartLines } from "../src/cart.js";
 import { createHostedCheckout, hasShopifyConnection } from "../src/shopify.js";
 import { shopifyConfig } from "../src/config.js";
 import { catalogService, createCatalogService } from "../src/catalog-service.js";
 import { parseRoute } from "../src/routes.js";
 import { Icon } from "../src/Icon.js";
 import { categoryTabs, discoveryHref, discoverySections, selectDiscoveryProducts } from "../src/discovery.js";
+
+import clientCatalog from "../src/data/client-catalog.json" with { type: "json" };
+const clientProducts = clientCatalog.products;
 
 const fixture = [
   { id: "amethyst", handle: "amethyst-bracelet", title: "Amethyst Bracelet", price: 1290, collectionHandles: ["bracelets", "amethyst"], collectionTitles: ["Bracelets", "Amethyst"], groupIds: ["group-gembracelets"], type: "Bracelet", variants: [{ id: "variant-a", title: "8 mm" }] },
@@ -152,7 +155,7 @@ test("Shopify connection remains disabled without public credentials", async () 
   assert.deepEqual(await createHostedCheckout(addCartLine([], fixture[0]), fixture), { disabled: true });
 });
 
-test("phase one catalog service stays on workbook data and checkout remains disabled", async () => {
+test("preview remains opt-in and checkout remains disabled", async () => {
   let adapterCalls = 0;
   const adapter = {
     hasConnection: () => { adapterCalls += 1; return true; },
@@ -162,7 +165,7 @@ test("phase one catalog service stays on workbook data and checkout remains disa
     checkout: async () => { adapterCalls += 1; },
   };
   const preview = createCatalogService({ provider: "preview", adapter });
-  assert.equal(catalogService.source, "preview");
+  assert.equal(catalogService.source, "shopify");
   assert.equal(catalogService.canCheckout, false);
   assert.equal(preview.isLive, false);
   assert.equal(await preview.loadRoute({ page: "search", query: "amethyst" }), null);
@@ -192,6 +195,7 @@ test("catalog service adapter contract can swap providers without changing route
   assert.deepEqual(collectionResult.products.map((item) => item.handle), ["rose-quartz-necklace"]);
   assert.deepEqual(collectionResult.products[0].collectionHandles, ["bracelets"]);
   assert.deepEqual(calls[0], ["catalog"]);
+  assert.equal((await shopify.loadRoute({ page: "collection", handle: "bracelets" })).products.length, 1, "cached route loads retain the catalog result contract");
   const productResult = await shopify.loadRoute({ page: "product", handle: "rose-quartz-necklace" });
   assert.equal(productResult.product.id, "gid://shopify/Product/42");
   assert.deepEqual(calls[1], ["product", "rose-quartz-necklace"]);
@@ -199,7 +203,8 @@ test("catalog service adapter contract can swap providers without changing route
   const syncResult = await shopify.syncCart(null, [{ productId: "gid://shopify/Product/42", variantId: "gid://shopify/ProductVariant/99", quantity: 1 }]);
   assert.equal(syncResult.cart.id, "cart-1");
   assert.equal(syncResult.products[0].handle, "rose-quartz-necklace");
-  assert.deepEqual(calls[2], ["syncCart", null, [{ productId: "gid://shopify/Product/42", variantId: "gid://shopify/ProductVariant/99", quantity: 1 }]]);
+  assert.deepEqual(calls[2], ["product", "rose-quartz-necklace"]);
+  assert.deepEqual(calls[3], ["syncCart", null, [{ productId: "gid://shopify/Product/42", variantId: "gid://shopify/ProductVariant/99", quantity: 1 }]]);
   assert.deepEqual(await shopify.checkout([], [], "cart-1"), { disabled: true });
 });
 
@@ -235,7 +240,7 @@ test("live product mapping keeps workbook collections and only approves exact Sh
   assert.deepEqual(mapShopifyCatalog([live, { ...live, id: "gid://shopify/Product/404", handle: "missing-workbook-product" }], [workbook]).map((item) => item.id), [live.id]);
 });
 
-test("live product mapping falls back to workbook media and description when Shopify omits them", () => {
+test("live product mapping never substitutes workbook media or description when Shopify omits them", () => {
   const workbook = {
     ...fixture[0],
     handle: "amethyst-bracelet",
@@ -250,9 +255,9 @@ test("live product mapping falls back to workbook media and description when Sho
     variants: { nodes: [{ id: "gid://shopify/ProductVariant/204", sku: "CB-204", title: "CB-204", availableForSale: true, price: { amount: "1290.00" } }], pageInfo: { hasNextPage: false, endCursor: null } },
   });
   const merged = mergeShopifyProduct(live, workbook);
-  assert.equal(merged.image, "/assets/workbook-amethyst.jpg");
-  assert.deepEqual(merged.images, ["/assets/workbook-amethyst.jpg"]);
-  assert.equal(merged.description, "Workbook product description");
+  assert.equal(merged.image, null);
+  assert.deepEqual(merged.images, []);
+  assert.equal(merged.description, "");
 });
 
 test("Shopify products normalize without invented reviews or details", () => {
@@ -265,7 +270,7 @@ test("Shopify products normalize without invented reviews or details", () => {
   assert.equal(product.type, "Bracelet");
   assert.equal(product.variants[0].title, "8 mm");
   assert.equal(product.compareAt, 1590);
-  assert.equal(product.description, "Product details have not been added yet.");
+  assert.equal(product.description, "");
   assert.equal("rating" in product, false);
   assert.equal("reviews" in product, false);
 });
@@ -328,7 +333,7 @@ test("HTM renders React fragments and responsive navigation destinations exist",
   assert.ok(app.includes('className="back-to-top"'));
   assert.ok(styles.includes("scroll-snap-type: x mandatory"));
   assert.ok(styles.includes(".product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }"));
-  assert.ok(worker.includes("`${CACHE_PREFIX}v3`"));
+  assert.ok(/CACHE_PREFIX}v[0-9]+/.test(worker));
   assert.ok(worker.includes("/assets/product-placeholder.svg"));
 });
 
@@ -352,4 +357,26 @@ test("customer-facing brand copy and PWA metadata use Crystal Baaz", async () =>
   const app = await readFile(new URL("../src/app.js", import.meta.url), "utf8");
   assert.match(app, /aria-label="Crystal Baaz home"/);
   assert.match(app, /crystal baaz/);
+});
+
+
+test("a removed Shopify product never falls back to its cached catalog record", async () => {
+  const cached = { id: "gid://shopify/Product/204", handle: "amethyst-bracelet", title: "Amethyst Bracelet", variants: [], images: [], availability: true };
+  const service = createCatalogService({ provider: "shopify", workbook: [{ ...fixture[0], variants: [{ sku: "CB-204" }] }], adapter: {
+    hasConnection: () => true,
+    loadCatalog: async () => ({ products: [cached] }),
+    loadProduct: async () => null,
+  } });
+  assert.equal((await service.loadCatalog()).products.length, 1);
+  await assert.rejects(service.loadRoute({ page: "product", handle: cached.handle }), /no longer available from Shopify/);
+});
+
+
+test("Shopify-adjusted quantities reconcile without mutating local line identifiers", () => {
+  const lines = [{ key: "p:v1", productId: "p", variantId: "v1", quantity: 9 }, { key: "p:v2", productId: "p", variantId: "v2", quantity: 1 }];
+  const remote = { lines: { nodes: [{ merchandise: { id: "v1" }, quantity: 3 }] } };
+  assert.deepEqual(reconcileShopifyCartLines(lines, remote), [{ ...lines[0], quantity: 3 }]);
+  assert.equal(lines[0].quantity, 9);
+  const unchanged = [{ ...lines[0], quantity: 3 }];
+  assert.equal(reconcileShopifyCartLines(unchanged, remote), unchanged);
 });

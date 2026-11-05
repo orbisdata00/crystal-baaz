@@ -19,15 +19,16 @@ export function createCatalogService({ provider = catalogProvider, adapter = sho
   const isLive = requestedLive && adapter.hasConnection();
   let catalogPromise = null;
   let mappedCatalog = null;
+  let catalogResult = null;
 
   async function loadCatalog() {
     if (!isLive) throw new Error("Shopify mode is selected, but public Storefront API configuration is missing.");
-    if (mappedCatalog) return mappedCatalog;
+    if (mappedCatalog) return { ...catalogResult, products: mappedCatalog };
     if (!catalogPromise) {
       catalogPromise = adapter.loadCatalog().then((result) => {
         const sourceProducts = result?.products || [];
         mappedCatalog = mapShopifyCatalog(sourceProducts, workbook);
-        return {
+        catalogResult = {
           products: mappedCatalog,
           pageInfo: { hasNextPage: false, endCursor: null },
           mapping: {
@@ -38,6 +39,7 @@ export function createCatalogService({ provider = catalogProvider, adapter = sho
           },
           cached: Boolean(result?.cached),
         };
+        return catalogResult;
       }).finally(() => { catalogPromise = null; });
     }
     const result = await catalogPromise;
@@ -60,6 +62,7 @@ export function createCatalogService({ provider = catalogProvider, adapter = sho
         if (!isLive) throw new Error("Shopify mode is selected, but public Storefront API configuration is missing.");
         const catalog = await loadCatalog();
         const liveProduct = await adapter.loadProduct(route.handle);
+        if (!liveProduct) throw new Error("This product is no longer available from Shopify.");
         const workbookProduct = workbook.find((product) => product.handle === route.handle);
         return { ...catalog, product: mergeShopifyProduct(liveProduct, workbookProduct) };
       }
@@ -79,7 +82,7 @@ export function createCatalogService({ provider = catalogProvider, adapter = sho
         let product = productsById.get(productId);
         if (!product) throw new Error("A cart item is not part of the verified Shopify catalog.");
         const productLines = lines.filter((line) => line.productId === productId);
-        if (!product.variantsComplete || productLines.some((line) => !product.variants.some((variant) => variant.id === line.variantId))) {
+        if (productLines.length) {
           const liveProduct = await adapter.loadProduct(product.handle);
           product = mergeShopifyProduct(liveProduct, workbook.find((item) => item.handle === product.handle));
           if (!product) throw new Error("A cart item could not be verified against its workbook product handle.");

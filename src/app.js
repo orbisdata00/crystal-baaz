@@ -3,10 +3,13 @@ import { createRoot } from "react-dom/client";
 import htm from "htm";
 import { Icon } from "./Icon.js";
 import { catalogGroups, clientProducts, collections, navigation, productHash, selectProducts, zodiacSigns } from "./catalog.js";
-import { addCartLine, calculateCart, changeCartQuantity, removeCartLine, selectVariant } from "./cart.js";
+import { addCartLine, calculateCart, changeCartQuantity, removeCartLine, selectVariant, reconcileShopifyCartLines } from "./cart.js";
 import { categoryTabs, discoveryById, discoverySections, discoveryHref, selectDiscoveryProducts } from "./discovery.js";
 import { catalogService } from "./catalog-service.js";
 import { parseRoute } from "./routes.js";
+import { loadPreviewCatalog } from "./catalog.js";
+import { categoryParents, getParentCategory, hierarchyHref } from "./category-hierarchy.js";
+import { ShoppingHeader, ShoppingHome, ShoppingBrowse, ShoppingResults, ShoppingProduct, ShoppingCart, ShoppingFooter, ShoppingBottom, ShoppingInformation } from "./shopping-ui.js";
 
 const html = htm.bind(React.createElement);
 const money = (amount) => new Intl.NumberFormat("en-IN", { style: "currency", currency: "INR", maximumFractionDigits: 0 }).format(Number(amount || 0));
@@ -797,11 +800,14 @@ function HomePage({ catalog, onNavigate, onSearch, onOpen, onAdd, saved, onSave,
 function App() {
   const [route, setRoute] = useState(() => parseRoute(window.location.hash));
   const productReturnHash = useRef("#collections");
-  const [catalog, setCatalog] = useState(() => catalogService.source === "shopify" ? [] : clientProducts.map((product) => ({
-    ...product,
-    type: product.type || "Catalog item",
-    category: product.category || (product.collectionTitles || []).join(" "),
-  })));
+  const [catalog, setCatalog] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [online, setOnline] = useState(navigator.onLine);
+  useEffect(() => { const update = () => setOnline(navigator.onLine); window.addEventListener("online", update); window.addEventListener("offline", update); return () => { window.removeEventListener("online", update); window.removeEventListener("offline", update); }; }, []);
+  const [retryTick, setRetryTick] = useState(0);
+  const [cartError, setCartError] = useState("");
+  const [cartRetry, setCartRetry] = useState(0);
+  const cartReturnHash = useRef("#home");
   const [liveCatalog, setLiveCatalog] = useState(false);
   const [pageInfo, setPageInfo] = useState({ hasNextPage: false, endCursor: null });
   const [catalogError, setCatalogError] = useState(() => catalogService.source === "shopify" && !catalogService.hasConnection ? "Shopify mode is selected, but public Storefront API configuration is missing." : "");
@@ -826,12 +832,12 @@ function App() {
   const navigate = (hash) => {
     window.history.pushState({}, "", hash || "#home");
     const next = parseRoute(hash || "#home");
-    setRoute(next); setSort(next.sort || "featured"); setTypeFilter(next.facet || "");
+    setRoute(next); setSort(next.sort || "featured"); setTypeFilter(next.facet || ""); setPageSize(24);
     if (next.page === "search") setQuery(next.query);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
   useEffect(() => {
-    const syncRoute = () => { const next = parseRoute(window.location.hash); setRoute(next); setSort(next.sort || "featured"); setTypeFilter(next.facet || ""); if (next.page === "search") setQuery(next.query); };
+    const syncRoute = () => { const next = parseRoute(window.location.hash); setRoute(next); setSort(next.sort || "featured"); setTypeFilter(next.facet || ""); setPageSize(24); if (next.page === "search") setQuery(next.query); };
     window.addEventListener("popstate", syncRoute); window.addEventListener("hashchange", syncRoute);
     return () => { window.removeEventListener("popstate", syncRoute); window.removeEventListener("hashchange", syncRoute); };
   }, []);
@@ -850,7 +856,7 @@ function App() {
     const wasEmpty = previousCartRef.current.length === 0;
     previousCartRef.current = cart;
     if (cart.length === 0 && (wasEmpty || !cartIdRef.current)) return;
-    setCartSyncing(true);
+    setCartError(""); setCartSyncing(true);
     cartSyncQueue.current = cartSyncQueue.current.catch(() => {}).then(async () => {
       const lines = cartRef.current;
       const result = await catalogService.syncCart(cartIdRef.current || null, lines);
@@ -862,19 +868,24 @@ function App() {
       cartIdRef.current = remoteCart?.id || "";
       setCartId(cartIdRef.current);
       setShopifyCart(remoteCart);
+      if (remoteCart && cartRef.current === lines) { const reconciled = reconcileShopifyCartLines(lines, remoteCart); if (reconciled !== lines) setCart(reconciled); }
       setCartSyncing(false);
     }).catch((error) => {
       setCartSyncing(false);
+      setCartError(error.message || "The Shopify cart could not be updated. Please try again.");
       setToast(error.message || "The Shopify cart could not be updated. Please try again.");
     });
-  }, [cart]);
+  }, [cart, cartRetry]);
 
   useEffect(() => {
     let active = true;
     const loadRouteCatalog = async () => {
-      if (catalogService.source !== "shopify") return;
-      if (!catalogService.isLive) { setCatalogError("Shopify mode is selected, but public Storefront API configuration is missing."); return; }
-      setCatalogError("");
+      if (catalogService.source !== "shopify") {
+        try { const previewProducts = await loadPreviewCatalog(); if (active) setCatalog(previewProducts); } catch { if (active) setCatalogError("Preview catalog could not be loaded."); } finally { if (active) setLoading(false); }
+        return;
+      }
+      if (!catalogService.isLive) { setCatalogError("Shopify Storefront API configuration is missing."); setLoading(false); return; }
+      setCatalogError(""); setLoading(true);
       try {
         const result = await catalogService.loadRoute(route, { sort });
         if (!active || !result) return;
@@ -890,18 +901,20 @@ function App() {
             if (!result.products.some((item) => item.id === product.id)) setCatalog((current) => [product, ...current]);
           }
         }
-      } catch (error) { if (active) setCatalogError(error.message || "The Shopify catalog could not be loaded."); }
+      } catch (error) { if (active) setCatalogError(error.message || "The Shopify catalog could not be loaded."); } finally { if (active) setLoading(false); }
     };
     loadRouteCatalog();
     return () => { active = false; };
-  }, [route.page, route.handle, route.query, sort]);
+  }, [route.page, route.handle, retryTick]);
 
   const addToCart = async (product, variantSelector, quantity = 1) => {
+    if (!navigator.onLine) { setToast("Reconnect to update your Shopify cart."); return false; }
     let selectedProduct = product;
     if (catalogService.isLive && !product.variantsComplete) {
       try {
         const result = await catalogService.loadRoute({ page: "product", handle: product.handle });
-        selectedProduct = result?.product || product;
+        if (!result?.product) { setToast("This product could not be verified with Shopify."); return false; }
+        selectedProduct = result.product;
         if (result?.products) setCatalog((current) => {
           const details = new Map(result.products.map((item) => [item.handle, item]));
           details.set(selectedProduct.handle, selectedProduct);
@@ -913,14 +926,15 @@ function App() {
       }
     }
     let variant = selectVariant(selectedProduct, variantSelector);
-    if (catalogService.isLive && variant?.canPurchase !== true) variant = selectVariant(selectedProduct);
+
     const price = Number(variant?.price ?? selectedProduct.price);
     if (!Number.isFinite(price) || price <= 0 || variant?.canPurchase === false || variant?.available === false || (catalogService.isLive && variant?.canPurchase !== true)) {
       setToast(catalogService.isLive ? "No exact, available Shopify variant matches this workbook SKU." : "This SKU has no valid workbook price or is blocked for review.");
       return;
     }
     setCart((items) => addCartLine(items, selectedProduct, variant?.id || variant?.title || "One size", quantity));
-    setToast(`${selectedProduct.title} added to the ${catalogService.isLive ? "Shopify" : "preview"} bag`);
+    setToast(`${selectedProduct.title} added to cart`);
+    return true;
   };
   const updateCart = (key, delta) => setCart((items) => changeCartQuantity(items, key, delta));
   const removeCart = (key) => setCart((items) => removeCartLine(items, key));
@@ -937,7 +951,7 @@ function App() {
     if (value && value !== "featured") params.set(name, value); else params.delete(name);
     const nextHash = `${path}${params.size ? `?${params.toString()}` : ""}`;
     window.history.replaceState({}, "", nextHash);
-    const next = parseRoute(nextHash); setRoute(next); setSort(next.sort || "featured"); setTypeFilter(next.facet || "");
+    const next = parseRoute(nextHash); setRoute(next); setSort(next.sort || "featured"); setTypeFilter(next.facet || ""); setPageSize(24);
   };
   const loadMore = async () => {
     if (liveCatalog && pageInfo.hasNextPage && pageInfo.endCursor) {
@@ -998,29 +1012,34 @@ function App() {
   const products = sort === "featured" ? rawProducts : selectProducts(rawProducts, { sort });
   const activeProduct = route.page === "product" ? catalog.find((product) => product.handle === route.handle || product.id === route.handle) : null;
   const cartCount = calculateCart(cart, catalog).count;
+  const retryCatalog = () => setRetryTick(value => value + 1);
+  const openCart = () => { if (route.page !== "cart") cartReturnHash.current = window.location.hash || "#home"; navigate("#cart"); };
+  const shared = { onOpen: openProduct, onAdd: addToCart, onSave: toggleSaved, saved, cart, onUpdate: updateCart, onNavigate: navigate };
+  const dataState = { loading, error: !online ? "You are offline. Reconnect to load current Shopify products and prices." : catalogError, onRetry: retryCatalog };
+  const sortProducts = value => { setSort(value); setPageSize(24); updateViewOption("sort", value); };
   const pageContent = () => {
-    if (route.page === "home") return html`<${HomePage} catalog=${catalog} route=${route} onNavigate=${navigate} onSearch=${(term) => navigate(`#search/${encodeURIComponent(term || "")}`)} onOpen=${openProduct} onAdd=${addToCart} saved=${saved} onSave=${toggleSaved} cart=${cart} onUpdate=${updateCart}/>`;
-    if (route.page === "collections") return html`<${CollectionDirectory} route=${route} catalog=${catalog} sort=${sort} setSort=${(value) => { setSort(value); setPageSize(24); updateViewOption("sort", value); }} typeFilter=${typeFilter} setTypeFilter=${(value) => { setTypeFilter(value); setPageSize(24); updateViewOption("facet", value); }} pageSize=${pageSize} onMore=${loadMore} onOpen=${openProduct} onAdd=${addToCart} saved=${saved} onSave=${toggleSaved} cart=${cart} onUpdate=${updateCart} error=${catalogError} onNavigate=${navigate} onOpenCollection=${(handle) => navigate(`#collection/${encodeURIComponent(handle)}`)}/>`;
-    if (route.page === "zodiac") return html`<${ZodiacHub} selectedSign=${route.sign} products=${catalog} onSelectSign=${(sign) => navigate(`#zodiac/${encodeURIComponent(sign)}`)} onOpen=${openProduct} onAdd=${addToCart} saved=${saved} onSave=${toggleSaved} cart=${cart} onUpdate=${updateCart}/>`;
-    if (route.page === "crystals") return html`<${CrystalHub} onOpenCollection=${(handle) => navigate(`#collection/${encodeURIComponent(handle)}`)}/>`;
-    if (route.page === "cart") return html`<${CartPage} cart=${cart} catalog=${catalog} onUpdate=${updateCart} onRemove=${removeCart} onCheckout=${checkout} checkoutBusy=${checkoutBusy} checkoutEnabled=${catalogService.canCheckout} serverSubtotal=${!cartSyncing && shopifyCart?.cost?.subtotalAmount?.amount != null ? Number(shopifyCart.cost.subtotalAmount.amount) : undefined}/>`;
-    if (route.page === "search") return html`<${SearchPage} catalog=${catalog} query=${query} setQuery=${setQuery} onOpen=${openProduct} onAdd=${addToCart} saved=${saved} onSave=${toggleSaved} cart=${cart} onUpdate=${updateCart}/>`;
-    if (route.page === "account") return html`<${ProfilePage} onNavigate=${navigate} onNotice=${setToast}/>`;
-    if (["about", "contact", "faq", "policies", "account", "orders", "copilot"].includes(route.page)) return html`<${ContentPage} page=${route.page} onNavigate=${navigate}/>`;
-    if (route.page === "product") return html`<${ProductPage} product=${activeProduct} products=${catalog} onBack=${() => navigate(productReturnHash.current || "#collections")} onOpen=${openProduct} onAdd=${addToCart} onSave=${toggleSaved} onNotice=${setToast} isSaved=${activeProduct && saved.includes(activeProduct.id)} cart=${cart} onUpdate=${updateCart}/>`;
-    return html`<${CatalogPage} title=${title} eyebrow=${eyebrow} description=${description} products=${products} total=${products.length} sort=${sort} setSort=${(value) => { setSort(value); setPageSize(24); updateViewOption("sort", value); }} typeFilter=${typeFilter} setTypeFilter=${(value) => { setTypeFilter(value); setPageSize(24); updateViewOption("facet", value); }} typeOptions=${typeOptions} pageSize=${pageSize} hasNextPage=${liveCatalog && pageInfo.hasNextPage} onMore=${loadMore} onOpen=${openProduct} onAdd=${addToCart} saved=${saved} onSave=${toggleSaved} cart=${cart} onUpdate=${updateCart} pending=${pending} liveCatalog=${liveCatalog} error=${catalogError} route=${route} catalog=${catalog} onNavigate=${navigate}/>`;
+    if (["home", "cart"].includes(route.page)) return html`<${ShoppingHome} catalog=${catalog} ...${shared} ...${dataState}/>`;
+    let browseRoute = route;
+    if (route.page === "nav" && getParentCategory(route.label)) browseRoute = { ...route, page: "collections", group: getParentCategory(route.label).id };
+    if (route.page === "crystals") browseRoute = { ...route, page: "collections", group: "crystals" };
+    if (route.page === "zodiac") browseRoute = { ...route, page: "collections", group: "zodiac", category: route.sign ? `zodiac:${route.sign}` : "" };
+    if (["collections", "collection", "group"].includes(browseRoute.page)) return html`<${ShoppingBrowse} route=${browseRoute} catalog=${catalog} sort=${sort} onSort=${sortProducts} pageSize=${pageSize} onMore=${loadMore} ...${shared} ...${dataState}/>`;
+    if (route.page === "product") return html`<${ShoppingProduct} key=${route.handle} product=${activeProduct} catalog=${catalog} onBack=${() => navigate(productReturnHash.current || "#collections")} ...${shared} ...${dataState}/>`;
+    if (route.page === "search" || route.page === "wishlist") return html`<${ShoppingResults} catalog=${catalog} title=${route.page === "wishlist" ? "Your wishlist" : route.query ? `Search results for “${route.query}”` : "Search products"} query=${route.query || ""} savedOnly=${route.page === "wishlist"} pageSize=${pageSize} onMore=${loadMore} sort=${sort} onSort=${sortProducts} ...${shared} ...${dataState}/>`;
+    if (route.page === "nav" || route.page === "discovery") {
+      const items = routeNav ? [...(routeNav.items || []), ...(routeNav.formItems || [])].filter(item => ["collection", "group"].includes(item.kind)) : (routeDiscovery?.collectionHandles || []).map(target => ({ kind: "collection", target }));
+      const verified = [...new Map(items.flatMap(item => getItemProducts(catalog,item)).map(product => [product.id, product])).values()];
+      return html`<${ShoppingResults} catalog=${verified} title=${title} pageSize=${pageSize} onMore=${loadMore} sort=${sort} onSort=${sortProducts} ...${shared} ...${dataState}/>`;
+    }
+    return html`<${ShoppingInformation} page=${route.page} onNavigate=${navigate}/>`;
   };
-
-  const showMobileGroupNavigation = ["collections", "collection", "group", "discovery", "nav", "crystals", "zodiac"].includes(route.page);
-
-  return html`<div className=${`site-shell ${route.page === "collections" ? "site-shell--mobile-categories" : ""}`}>
-    <${Header} cartCount=${cartCount} savedCount=${saved.length} onCart=${() => navigate("#cart")} onWishlist=${() => navigate("#wishlist")} onAccount=${() => navigate("#account")} onHome=${() => navigate("#home")} onNavigate=${navigate} onSearch=${(term) => navigate(`#search/${encodeURIComponent(term || "")}`)} query=${query} setQuery=${setQuery}/>
-    ${showMobileGroupNavigation && html`<${MobileCategoryNavigation} className="mobile-category-navigation--global" route=${route} onNavigate=${navigate}/>`}
+  return html`<div className="shopping-shell" data-catalog-source=${catalogService.source} data-catalog-loaded=${liveCatalog}>
+    <${ShoppingHeader} catalog=${catalog} query=${query} setQuery=${setQuery} onSearch=${term => navigate(`#search/${encodeURIComponent(term || "")}`)} onNavigate=${navigate} onCart=${openCart} cartCount=${cartCount} savedCount=${saved.length} loading=${loading}/>
     ${pageContent()}
-    <${Footer} onNavigate=${navigate}/>
-    ${toast && html`<div className="toast" role="status"><span><${Icon} name="check" size=${16}/></span>${toast}</div>`}
-    <${BackToTop}/>
-    <${MobileBottomNavigation} route=${route} cartCount=${cartCount} savedCount=${saved.length} onNavigate=${navigate}/>
+    <${ShoppingFooter} onNavigate=${navigate}/>
+    ${toast && route.page !== "cart" && html`<div className="toast" role="status">${toast}</div>`}
+    <${ShoppingBottom} route=${route} onNavigate=${navigate} onCart=${openCart} count=${cartCount}/>
+    ${route.page === "cart" && html`<${ShoppingCart} cart=${cart} catalog=${catalog} remoteCart=${shopifyCart} syncing=${cartSyncing} error=${!online ? "Reconnect to update your Shopify cart." : cartError} onRetry=${() => setCartRetry(value => value + 1)} onClose=${() => navigate(cartReturnHash.current)} onUpdate=${updateCart} onRemove=${removeCart}/>`}
   </div>`;
 }
 

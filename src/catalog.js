@@ -1,4 +1,7 @@
-import clientCatalog from "./data/client-catalog.json" with { type: "json" };
+import registry from "./data/catalog-registry.json" with { type: "json" };
+import productMapping from "./data/product-mapping.json" with { type: "json" };
+const clientCatalog = { ...registry, products: productMapping };
+export const loadPreviewCatalog = () => import("./data/client-catalog.json").then(module => module.default.products);
 
 export { clientCatalog };
 export const collections = clientCatalog.collections;
@@ -94,7 +97,7 @@ export function normalizeShopifyProduct(node) {
     category: (node.productType || "").toLowerCase(),
     price: amount > 0 ? amount : null,
     compareAt: compareAt > amount ? compareAt : null,
-    image: images[0] || "/assets/product-placeholder.svg",
+    image: images[0] || null,
     images,
     imagePosition: "center",
     collectionHandles: collectionNodes.map((collection) => collection.handle),
@@ -105,7 +108,7 @@ export function normalizeShopifyProduct(node) {
     availability: typeof node.availableForSale === "boolean" ? node.availableForSale : Boolean(available.length),
     variantsComplete: Boolean(node.variants?.pageInfo && !node.variants.pageInfo.hasNextPage),
     previewOnly: false,
-    description: node.description || "Product details have not been added yet.",
+    description: node.description || "",
     variants: variants.map((variant) => ({
       id: variant.id,
       sku: variant.sku || "",
@@ -145,18 +148,17 @@ export function mergeShopifyProduct(liveProduct, workbookProduct) {
   const hasShopifyDescription = liveProduct.description && liveProduct.description !== "Product details have not been added yet.";
   const hasShopifyImages = (liveProduct.images || []).length > 0;
   return {
-    ...workbookProduct,
     ...liveProduct,
     id: liveProduct.id,
     workbookId: workbookProduct.id,
     handle: liveProduct.handle,
-    title: liveProduct.title || workbookProduct.title,
-    type: liveProduct.type || workbookProduct.type || "Catalog item",
-    productType: liveProduct.stone || workbookProduct.productType || "",
-    category: liveProduct.category || workbookProduct.category || workbookProduct.primaryCategory || "",
-    image: hasShopifyImages ? liveProduct.image : workbookProduct.image || liveProduct.image,
-    images: hasShopifyImages ? liveProduct.images : workbookProduct.images || [],
-    description: hasShopifyDescription ? liveProduct.description : workbookProduct.description || liveProduct.description,
+    title: liveProduct.title || "",
+    type: liveProduct.type || "",
+    productType: liveProduct.stone || "",
+    category: liveProduct.category || "",
+    image: hasShopifyImages ? liveProduct.image : null,
+    images: hasShopifyImages ? liveProduct.images : [],
+    description: hasShopifyDescription ? liveProduct.description : "",
     collectionHandles,
     collectionTitles: collectionHandles.map((handle) => collectionTitleByHandle.get(handle)).filter(Boolean),
     groupIds: workbookProduct.groupIds || [],
@@ -168,9 +170,9 @@ export function mergeShopifyProduct(liveProduct, workbookProduct) {
     availability: liveProduct.availability,
     previewOnly: false,
     variantsComplete: liveProduct.variantsComplete === true,
-    tags: [...new Set([...(liveProduct.tags || []), ...(workbookProduct.tags || [])])],
-    keywords: workbookProduct.keywords || [],
-    attributes: workbookProduct.attributes || [],
+    tags: liveProduct.tags || [],
+    keywords: [],
+    attributes: [],
   };
 }
 
