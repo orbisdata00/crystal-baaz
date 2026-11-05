@@ -1,3 +1,4 @@
+import { selectProductMedia } from "./product-media.js";
 import registry from "./data/catalog-registry.json" with { type: "json" };
 import productMapping from "./data/product-mapping.json" with { type: "json" };
 const clientCatalog = { ...registry, products: productMapping };
@@ -86,7 +87,8 @@ export function normalizeShopifyProduct(node) {
   const selectedVariant = available.find((variant) => Number(variant.price?.amount) === amount)
     || variants.find((variant) => Number(variant.price?.amount) === amount);
   const compareAt = Number(selectedVariant?.compareAtPrice?.amount || 0);
-  const images = node.images?.nodes?.map((image) => image.url).filter(Boolean) || [];
+  const media = selectProductMedia(node);
+  const images = media.images;
   const collectionNodes = node.collections?.nodes || [];
   return {
     id: node.id,
@@ -97,12 +99,15 @@ export function normalizeShopifyProduct(node) {
     category: (node.productType || "").toLowerCase(),
     price: amount > 0 ? amount : null,
     compareAt: compareAt > amount ? compareAt : null,
-    image: images[0] || null,
+    ...media,
+    currencyCode: selectedVariant?.price?.currencyCode || node.priceRange?.minVariantPrice?.currencyCode || null,
+    compareAtCurrencyCode: selectedVariant?.compareAtPrice?.currencyCode || null,
     images,
     imagePosition: "center",
     collectionHandles: collectionNodes.map((collection) => collection.handle),
     collectionTitles: collectionNodes.map((collection) => collection.title),
     groupIds: [],
+    vendor: node.vendor || "",
     skuCount: variants.length,
     canPurchase: Boolean(available.length && amount > 0),
     availability: typeof node.availableForSale === "boolean" ? node.availableForSale : Boolean(available.length),
@@ -113,8 +118,11 @@ export function normalizeShopifyProduct(node) {
       id: variant.id,
       sku: variant.sku || "",
       title: variant.title,
+      image: variant.image?.url || null,
       selectedOptions: variant.selectedOptions || [],
-      price: Number(variant.price?.amount || amount || 0),
+      price: Number(variant.price?.amount || 0),
+      currencyCode: variant.price?.currencyCode || null,
+      compareAtCurrencyCode: variant.compareAtPrice?.currencyCode || null,
       compareAt: Number(variant.compareAtPrice?.amount || 0) || null,
       available: variant.availableForSale,
     })),

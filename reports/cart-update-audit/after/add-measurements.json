@@ -1,0 +1,36 @@
+[
+  {
+    "sample": 1,
+    "title": "2 Mukhi Rudraksha Mala",
+    "before": 3,
+    "after": 4,
+    "feedbackMs": 51.099999994039536,
+    "confirmedMs": 969.5,
+    "requests": [
+      {
+        "op": "CrystalBazzCartLinesAdd",
+        "method": "POST",
+        "status": 200,
+        "bytes": 2127,
+        "durationMs": 887.6
+      }
+    ]
+  },
+  {
+    "sample": 2,
+    "title": "7 Chakra Bracelet Oval",
+    "before": 4,
+    "after": 5,
+    "feedbackMs": 47.900000005960464,
+    "confirmedMs": 858.1000000238419,
+    "requests": [
+      {
+        "op": "CrystalBazzCartLinesAdd",
+        "method": "POST",
+        "status": 200,
+        "bytes": 2218,
+        "durationMs": 798.9
+      }
+    ]
+  }
+]

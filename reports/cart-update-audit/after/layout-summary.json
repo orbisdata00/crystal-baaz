@@ -1,0 +1,332 @@
+{
+  "loaded": {
+    "ready": "complete",
+    "cards": 68,
+    "lines": 3
+  },
+  "layouts": [
+    {
+      "width": 1024,
+      "viewportWidth": 1009,
+      "productCards": 68,
+      "visibleCard": true,
+      "article": {
+        "x": 24,
+        "y": 793,
+        "w": 176,
+        "h": 308,
+        "border": "0px none rgb(31, 31, 31)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "radius": "0px"
+      },
+      "imageTile": {
+        "x": 32,
+        "y": 801,
+        "w": 160,
+        "h": 190,
+        "border": "1px solid rgb(232, 232, 232)",
+        "bg": "rgb(255, 255, 255)",
+        "radius": "9px"
+      },
+      "add": {
+        "x": 128,
+        "y": 956,
+        "w": 58,
+        "h": 31,
+        "border": "1px solid rgb(12, 131, 31)",
+        "bg": "rgb(247, 255, 248)",
+        "radius": "6px"
+      },
+      "footerHasStandaloneINR": false,
+      "rupeePrice": "\u20b9290"
+    },
+    {
+      "width": 1280,
+      "viewportWidth": 1265,
+      "productCards": 68,
+      "visibleCard": true,
+      "article": {
+        "x": 33,
+        "y": 158,
+        "w": 176,
+        "h": 308,
+        "border": "0px none rgb(31, 31, 31)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "radius": "0px"
+      },
+      "imageTile": {
+        "x": 41,
+        "y": 166,
+        "w": 160,
+        "h": 190,
+        "border": "1px solid rgb(232, 232, 232)",
+        "bg": "rgb(255, 255, 255)",
+        "radius": "9px"
+      },
+      "add": {
+        "x": 137,
+        "y": 321,
+        "w": 58,
+        "h": 31,
+        "border": "1px solid rgb(12, 131, 31)",
+        "bg": "rgb(247, 255, 248)",
+        "radius": "6px"
+      },
+      "footerHasStandaloneINR": false,
+      "rupeePrice": "\u20b9290"
+    },
+    {
+      "width": 1440,
+      "viewportWidth": 1425,
+      "productCards": 68,
+      "visibleCard": true,
+      "article": {
+        "x": 113,
+        "y": 158,
+        "w": 176,
+        "h": 308,
+        "border": "0px none rgb(31, 31, 31)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "radius": "0px"
+      },
+      "imageTile": {
+        "x": 121,
+        "y": 166,
+        "w": 160,
+        "h": 190,
+        "border": "1px solid rgb(232, 232, 232)",
+        "bg": "rgb(255, 255, 255)",
+        "radius": "9px"
+      },
+      "add": {
+        "x": 217,
+        "y": 321,
+        "w": 58,
+        "h": 31,
+        "border": "1px solid rgb(12, 131, 31)",
+        "bg": "rgb(247, 255, 248)",
+        "radius": "6px"
+      },
+      "footerHasStandaloneINR": false,
+      "rupeePrice": "\u20b9290"
+    },
+    {
+      "width": 1920,
+      "viewportWidth": 1905,
+      "productCards": 68,
+      "visibleCard": true,
+      "article": {
+        "x": 353,
+        "y": 158,
+        "w": 176,
+        "h": 308,
+        "border": "0px none rgb(31, 31, 31)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "radius": "0px"
+      },
+      "imageTile": {
+        "x": 361,
+        "y": 166,
+        "w": 160,
+        "h": 190,
+        "border": "1px solid rgb(232, 232, 232)",
+        "bg": "rgb(255, 255, 255)",
+        "radius": "9px"
+      },
+      "add": {
+        "x": 457,
+        "y": 321,
+        "w": 58,
+        "h": 31,
+        "border": "1px solid rgb(12, 131, 31)",
+        "bg": "rgb(247, 255, 248)",
+        "radius": "6px"
+      },
+      "footerHasStandaloneINR": false,
+      "rupeePrice": "\u20b9290"
+    },
+    {
+      "width": 320,
+      "viewportWidth": 320,
+      "productCards": 68,
+      "visibleCard": true,
+      "article": {
+        "x": 14,
+        "y": 92,
+        "w": 104,
+        "h": 248,
+        "border": "0px none rgb(31, 31, 31)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "radius": "0px"
+      },
+      "imageTile": {
+        "x": 14,
+        "y": 92,
+        "w": 104,
+        "h": 145,
+        "border": "1px solid rgb(232, 232, 232)",
+        "bg": "rgb(255, 255, 255)",
+        "radius": "10px"
+      },
+      "add": {
+        "x": 61,
+        "y": 203,
+        "w": 52,
+        "h": 30,
+        "border": "1px solid rgb(12, 131, 31)",
+        "bg": "rgb(247, 255, 248)",
+        "radius": "6px"
+      },
+      "footerHasStandaloneINR": false,
+      "rupeePrice": "\u20b9290"
+    },
+    {
+      "width": 360,
+      "viewportWidth": 360,
+      "productCards": 68,
+      "visibleCard": true,
+      "article": {
+        "x": 14,
+        "y": 113,
+        "w": 104,
+        "h": 253,
+        "border": "0px none rgb(31, 31, 31)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "radius": "0px"
+      },
+      "imageTile": {
+        "x": 14,
+        "y": 113,
+        "w": 104,
+        "h": 145,
+        "border": "1px solid rgb(232, 232, 232)",
+        "bg": "rgb(255, 255, 255)",
+        "radius": "10px"
+      },
+      "add": {
+        "x": 61,
+        "y": 224,
+        "w": 52,
+        "h": 30,
+        "border": "1px solid rgb(12, 131, 31)",
+        "bg": "rgb(247, 255, 248)",
+        "radius": "6px"
+      },
+      "footerHasStandaloneINR": false,
+      "rupeePrice": "\u20b9290"
+    },
+    {
+      "width": 390,
+      "viewportWidth": 390,
+      "productCards": 68,
+      "visibleCard": true,
+      "article": {
+        "x": 14,
+        "y": 113,
+        "w": 109,
+        "h": 260,
+        "border": "0px none rgb(31, 31, 31)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "radius": "0px"
+      },
+      "imageTile": {
+        "x": 14,
+        "y": 113,
+        "w": 109,
+        "h": 152,
+        "border": "1px solid rgb(232, 232, 232)",
+        "bg": "rgb(255, 255, 255)",
+        "radius": "10px"
+      },
+      "add": {
+        "x": 66,
+        "y": 231,
+        "w": 52,
+        "h": 30,
+        "border": "1px solid rgb(12, 131, 31)",
+        "bg": "rgb(247, 255, 248)",
+        "radius": "6px"
+      },
+      "footerHasStandaloneINR": false,
+      "rupeePrice": "\u20b9290"
+    },
+    {
+      "width": 427,
+      "viewportWidth": 427,
+      "productCards": 68,
+      "visibleCard": true,
+      "article": {
+        "x": 14,
+        "y": 113,
+        "w": 120,
+        "h": 275,
+        "border": "0px none rgb(31, 31, 31)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "radius": "0px"
+      },
+      "imageTile": {
+        "x": 14,
+        "y": 113,
+        "w": 120,
+        "h": 167,
+        "border": "1px solid rgb(232, 232, 232)",
+        "bg": "rgb(255, 255, 255)",
+        "radius": "10px"
+      },
+      "add": {
+        "x": 77,
+        "y": 246,
+        "w": 52,
+        "h": 30,
+        "border": "1px solid rgb(12, 131, 31)",
+        "bg": "rgb(247, 255, 248)",
+        "radius": "6px"
+      },
+      "footerHasStandaloneINR": false,
+      "rupeePrice": "\u20b9290"
+    },
+    {
+      "width": 440,
+      "viewportWidth": 440,
+      "productCards": 68,
+      "visibleCard": true,
+      "article": {
+        "x": 14,
+        "y": 113,
+        "w": 123,
+        "h": 278,
+        "border": "0px none rgb(31, 31, 31)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "radius": "0px"
+      },
+      "imageTile": {
+        "x": 14,
+        "y": 113,
+        "w": 123,
+        "h": 170,
+        "border": "1px solid rgb(232, 232, 232)",
+        "bg": "rgb(255, 255, 255)",
+        "radius": "10px"
+      },
+      "add": {
+        "x": 80,
+        "y": 249,
+        "w": 52,
+        "h": 30,
+        "border": "1px solid rgb(12, 131, 31)",
+        "bg": "rgb(247, 255, 248)",
+        "radius": "6px"
+      },
+      "footerHasStandaloneINR": false,
+      "rupeePrice": "\u20b9290"
+    }
+  ],
+  "cart": {
+    "rows": 3,
+    "hasTotal": true,
+    "text": "Cart confirmed. Checkout is currently unavailable.",
+    "rupee": true,
+    "updating": false,
+    "footerINR": false
+  }
+}

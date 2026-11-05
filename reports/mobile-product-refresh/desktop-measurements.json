@@ -1,0 +1,52 @@
+{
+  "metrics": {
+    "source": "shopify",
+    "loaded": "true",
+    "viewport": 1440,
+    "cards": 68,
+    "card": {
+      "x": 112.5,
+      "y": 792.59375,
+      "width": 176,
+      "height": 310.40625,
+      "bottom": 1103
+    },
+    "tile": {
+      "x": 121.5,
+      "y": 801.59375,
+      "width": 158,
+      "height": 190,
+      "bottom": 991.59375
+    },
+    "add": {
+      "x": 215.5,
+      "y": 956.59375,
+      "width": 58,
+      "height": 31,
+      "bottom": 987.59375
+    },
+    "addInsideTile": true,
+    "title": {
+      "x": 122.5,
+      "y": 1041.1875,
+      "width": 156,
+      "height": 17.15625,
+      "bottom": 1058.34375
+    },
+    "copy": {
+      "x": 113.5,
+      "y": 991.59375,
+      "width": 174,
+      "height": 110.40625,
+      "bottom": 1102
+    },
+    "overflow": false
+  },
+  "railScrollY": 636.59375,
+  "variantSelector": {
+    "opened": true,
+    "options": 2,
+    "modal": "true"
+  },
+  "serviceWorkerActive": false
+}

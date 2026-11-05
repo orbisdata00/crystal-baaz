@@ -1,87 +1,24 @@
 {
-  "source": "Client workbook navigation declarations, registered collections and explicit collection/group product memberships",
+  "source": "Complete client workbook MAIN declarations, registered collections and explicit collection/group product memberships",
   "scope": "This audits relationship metadata, not current Shopify inventory, prices or availability. Live Shopify product handles must be matched separately.",
   "rules": [
     "No parent/child relationship is inferred from product titles, tags or crystal names.",
-    "Only collectionHandles and groupIds filter products. Zodiac title matching and text-search categories are disabled in the hierarchy.",
+    "Collection/group memberships plus the explicitly declared MAIN Money Magnet and Kavach rules only; rules require identified workbook-matched live Shopify products. Zodiac title matching remains disabled.",
     "A parent without declared child categories opens its direct mapped product listing.",
-    "The Bracelets parent intersects child collection membership with explicit Bracelets membership.",
-    "Rudraksha's broad collection children remain empty until Rudraksha-specific parent membership is supplied.",
+    "MAIN has no Bracelets children; it opens the explicit Bracelets product collection.",
+    "Rudraksha Bracelet/Mala use explicit curated groups; remaining broad forms stay pending without scoped membership.",
     "No client category icon assets were supplied; text-only category controls are used."
   ],
-  "parentCount": 12,
+  "parentCount": 8,
   "parents": [
     {
-      "id": "all",
-      "label": "All Categories",
-      "source": "workbook:collections-and-groups",
+      "id": "best-seller",
+      "label": "Best Seller",
+      "source": "MAIN:2",
       "stateOnOpen": "overview",
-      "childCount": 122,
-      "explicitWorkbookProductCount": null,
+      "childCount": 9,
+      "explicitWorkbookProductCount": 401,
       "children": [
-        {
-          "id": "collection:agate-slices",
-          "label": "Agate slices",
-          "kind": "collection",
-          "target": "agate-slices",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 12
-        },
-        {
-          "id": "collection:love",
-          "label": "Love",
-          "kind": "collection",
-          "target": "love",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 69
-        },
-        {
-          "id": "collection:angels",
-          "label": "Angels",
-          "kind": "collection",
-          "target": "angels",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 19
-        },
-        {
-          "id": "collection:anklet",
-          "label": "Anklet",
-          "kind": "collection",
-          "target": "anklet",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 6
-        },
-        {
-          "id": "collection:nazar",
-          "label": "Nazar",
-          "kind": "collection",
-          "target": "nazar",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 46
-        },
-        {
-          "id": "collection:confidence-1",
-          "label": "Confidence",
-          "kind": "collection",
-          "target": "confidence-1",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 56
-        },
-        {
-          "id": "collection:aura-spray",
-          "label": "Aura Spray",
-          "kind": "collection",
-          "target": "aura-spray",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 4
-        },
         {
           "id": "collection:money",
           "label": "Money",
@@ -92,913 +29,50 @@
           "explicitWorkbookProductCount": 99
         },
         {
-          "id": "collection:bangle",
-          "label": "Bangle",
-          "kind": "collection",
-          "target": "bangle",
+          "id": "group:group-rashirings",
+          "label": "Rashi Rings",
+          "kind": "group",
+          "target": "group-rashirings",
           "membershipVerified": true,
           "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 1
+          "explicitWorkbookProductCount": 17
         },
         {
-          "id": "collection:bowl",
-          "label": "Bowl",
-          "kind": "collection",
-          "target": "bowl",
+          "id": "group:group-gembracelets",
+          "label": "Gems Bracelets",
+          "kind": "group",
+          "target": "group-gembracelets",
           "membershipVerified": true,
           "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 1
+          "explicitWorkbookProductCount": 295
         },
         {
-          "id": "collection:bracelets",
-          "label": "Bracelets",
-          "kind": "collection",
-          "target": "bracelets",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 347
-        },
-        {
-          "id": "collection:focus",
-          "label": "Focus",
-          "kind": "collection",
-          "target": "focus",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 79
-        },
-        {
-          "id": "collection:business-losses",
-          "label": "Business Losses",
-          "kind": "collection",
-          "target": "business-losses",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 42
-        },
-        {
-          "id": "collection:sets",
-          "label": "Sets",
-          "kind": "collection",
-          "target": "sets",
+          "id": "group:group-rudrakshamala",
+          "label": "Rudraksha Mala",
+          "kind": "group",
+          "target": "group-rudrakshamala",
           "membershipVerified": true,
           "parentCollectionConstraint": null,
           "explicitWorkbookProductCount": 2
         },
         {
-          "id": "collection:karungali",
-          "label": "Karungali",
-          "kind": "collection",
-          "target": "karungali",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 8
-        },
-        {
-          "id": "collection:clock-watch",
-          "label": "Clock/Watch",
-          "kind": "collection",
-          "target": "clock-watch",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 1
-        },
-        {
-          "id": "collection:cluster",
-          "label": "Cluster",
-          "kind": "collection",
-          "target": "cluster",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 62
-        },
-        {
-          "id": "collection:diyas",
-          "label": "Diyas",
-          "kind": "collection",
-          "target": "diyas",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 8
-        },
-        {
-          "id": "collection:earrings-tops",
-          "label": "Earrings/Tops",
-          "kind": "collection",
-          "target": "earrings-tops",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 76
-        },
-        {
-          "id": "collection:frames",
-          "label": "Frames",
-          "kind": "collection",
-          "target": "frames",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 9
-        },
-        {
-          "id": "collection:ganesh-ji-murti",
-          "label": "Ganesh ji murti",
-          "kind": "collection",
-          "target": "ganesh-ji-murti",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 24
-        },
-        {
-          "id": "collection:statue-murti",
-          "label": "Statue/Murti",
-          "kind": "collection",
-          "target": "statue-murti",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 24
-        },
-        {
-          "id": "collection:pendants",
-          "label": "Pendants",
-          "kind": "collection",
-          "target": "pendants",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 202
-        },
-        {
-          "id": "collection:glass",
-          "label": "Glass",
-          "kind": "collection",
-          "target": "glass",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 1
-        },
-        {
-          "id": "collection:hanger",
-          "label": "Hanger",
-          "kind": "collection",
-          "target": "hanger",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 1
-        },
-        {
-          "id": "collection:jaap-mala",
-          "label": "Jaap mala",
-          "kind": "collection",
-          "target": "jaap-mala",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 47
-        },
-        {
-          "id": "collection:mala",
-          "label": "Mala",
-          "kind": "collection",
-          "target": "mala",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 138
-        },
-        {
-          "id": "collection:keyrings",
-          "label": "Keyrings",
-          "kind": "collection",
-          "target": "keyrings",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 1
-        },
-        {
-          "id": "collection:knife",
-          "label": "Knife",
-          "kind": "collection",
-          "target": "knife",
+          "id": "group:group-rudrakshabracelet",
+          "label": "Rudraksha Bracelet",
+          "kind": "group",
+          "target": "group-rudrakshabracelet",
           "membershipVerified": true,
           "parentCollectionConstraint": null,
           "explicitWorkbookProductCount": 6
         },
         {
-          "id": "collection:pencil-towers",
-          "label": "Pencil/Towers",
-          "kind": "collection",
-          "target": "pencil-towers",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 24
-        },
-        {
-          "id": "collection:pyramid",
-          "label": "Pyramid",
-          "kind": "collection",
-          "target": "pyramid",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 36
-        },
-        {
-          "id": "collection:rings",
-          "label": "Rings",
-          "kind": "collection",
-          "target": "rings",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 64
-        },
-        {
-          "id": "collection:rollers",
-          "label": "Rollers",
-          "kind": "collection",
-          "target": "rollers",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 3
-        },
-        {
-          "id": "collection:selenite-plates",
-          "label": "Selenite plates",
-          "kind": "collection",
-          "target": "selenite-plates",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 19
-        },
-        {
-          "id": "collection:shaligram",
-          "label": "Shaligram",
-          "kind": "collection",
-          "target": "shaligram",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 10
-        },
-        {
-          "id": "collection:shankh",
-          "label": "Shankh",
-          "kind": "collection",
-          "target": "shankh",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 4
-        },
-        {
-          "id": "collection:shivling",
-          "label": "Shivling",
-          "kind": "collection",
-          "target": "shivling",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 9
-        },
-        {
-          "id": "collection:tumbles",
-          "label": "Tumbles",
-          "kind": "collection",
-          "target": "tumbles",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 40
-        },
-        {
-          "id": "collection:sphere",
-          "label": "Sphere",
-          "kind": "collection",
-          "target": "sphere",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 38
-        },
-        {
-          "id": "collection:tortoise-turtle",
-          "label": "Tortoise/Turtle",
-          "kind": "collection",
-          "target": "tortoise-turtle",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 18
-        },
-        {
-          "id": "collection:trees",
-          "label": "Trees",
-          "kind": "collection",
-          "target": "trees",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 73
-        },
-        {
-          "id": "collection:vase",
-          "label": "Vase",
-          "kind": "collection",
-          "target": "vase",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 6
-        },
-        {
-          "id": "collection:yantra",
-          "label": "Yantra",
-          "kind": "collection",
-          "target": "yantra",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 53
-        },
-        {
-          "id": "collection:zibu-coins",
-          "label": "Zibu coins",
-          "kind": "collection",
-          "target": "zibu-coins",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 23
-        },
-        {
-          "id": "collection:amethyst",
-          "label": "Amethyst",
-          "kind": "collection",
-          "target": "amethyst",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:amber",
-          "label": "Amber",
-          "kind": "collection",
-          "target": "amber",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:amazonite",
-          "label": "Amazonite",
-          "kind": "collection",
-          "target": "amazonite",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:aquamarine",
-          "label": "Aquamarine",
-          "kind": "collection",
-          "target": "aquamarine",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:black-obsidian",
-          "label": "Black Obsidian",
-          "kind": "collection",
-          "target": "black-obsidian",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:black-tourmaline",
-          "label": "Black Tourmaline",
-          "kind": "collection",
-          "target": "black-tourmaline",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:bloodstone",
-          "label": "Bloodstone",
-          "kind": "collection",
-          "target": "bloodstone",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:blue-apatite",
-          "label": "Blue Apatite",
-          "kind": "collection",
-          "target": "blue-apatite",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:blue-goldstone",
-          "label": "Blue Goldstone",
-          "kind": "collection",
-          "target": "blue-goldstone",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:blue-lace-agate",
-          "label": "Blue Lace Agate",
-          "kind": "collection",
-          "target": "blue-lace-agate",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:blue-tigers-eye",
-          "label": "Blue Tiger's Eye",
-          "kind": "collection",
-          "target": "blue-tigers-eye",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:calcite",
-          "label": "Calcite",
-          "kind": "collection",
-          "target": "calcite",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:carnelian",
-          "label": "Carnelian",
-          "kind": "collection",
-          "target": "carnelian",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:cats-eye",
-          "label": "Cat's Eye",
-          "kind": "collection",
-          "target": "cats-eye",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:citrine",
-          "label": "Citrine",
-          "kind": "collection",
-          "target": "citrine",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:coral",
-          "label": "Coral",
-          "kind": "collection",
-          "target": "coral",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:cherry-quartz",
-          "label": "Cherry Quartz",
-          "kind": "collection",
-          "target": "cherry-quartz",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:chrysocolla",
-          "label": "Chrysocolla",
-          "kind": "collection",
-          "target": "chrysocolla",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:dalmatian-jasper",
-          "label": "Dalmatian Jasper",
-          "kind": "collection",
-          "target": "dalmatian-jasper",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:evil-eye-symbol",
-          "label": "Evil Eye (Symbol)",
-          "kind": "collection",
-          "target": "evil-eye-symbol",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:fluorite",
-          "label": "Fluorite",
-          "kind": "collection",
-          "target": "fluorite",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:garnet",
-          "label": "Garnet",
-          "kind": "collection",
-          "target": "garnet",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:golden-obsidian",
-          "label": "Golden Obsidian",
-          "kind": "collection",
-          "target": "golden-obsidian",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:green-aventurine",
-          "label": "Green Aventurine",
-          "kind": "collection",
-          "target": "green-aventurine",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:green-agate",
-          "label": "Green Agate",
-          "kind": "collection",
-          "target": "green-agate",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:green-jade",
-          "label": "Green Jade",
-          "kind": "collection",
-          "target": "green-jade",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:hematite",
-          "label": "Hematite",
-          "kind": "collection",
-          "target": "hematite",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:howlite",
-          "label": "Howlite",
-          "kind": "collection",
-          "target": "howlite",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:labradorite",
-          "label": "Labradorite",
-          "kind": "collection",
-          "target": "labradorite",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:lapis-lazuli",
-          "label": "Lapis Lazuli",
-          "kind": "collection",
-          "target": "lapis-lazuli",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:larvikite",
-          "label": "Larvikite",
-          "kind": "collection",
-          "target": "larvikite",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:lava",
-          "label": "Lava",
-          "kind": "collection",
-          "target": "lava",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:lepidolite",
-          "label": "Lepidolite",
-          "kind": "collection",
-          "target": "lepidolite",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:mahogany-obsidian",
-          "label": "Mahogany Obsidian",
-          "kind": "collection",
-          "target": "mahogany-obsidian",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:malachite",
-          "label": "Malachite",
-          "kind": "collection",
-          "target": "malachite",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:mookaite",
-          "label": "Mookaite",
-          "kind": "collection",
-          "target": "mookaite",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:moonstone",
-          "label": "Moonstone",
-          "kind": "collection",
-          "target": "moonstone",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:morganite",
-          "label": "Morganite",
-          "kind": "collection",
-          "target": "morganite",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:moss-agate",
-          "label": "Moss Agate",
-          "kind": "collection",
-          "target": "moss-agate",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:multi-tourmaline",
-          "label": "Multi Tourmaline",
-          "kind": "collection",
-          "target": "multi-tourmaline",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:onyx",
-          "label": "Onyx",
-          "kind": "collection",
-          "target": "onyx",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:opal",
-          "label": "Opal",
-          "kind": "collection",
-          "target": "opal",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:peridot",
-          "label": "Peridot",
-          "kind": "collection",
-          "target": "peridot",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:prehnite",
-          "label": "Prehnite",
-          "kind": "collection",
-          "target": "prehnite",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:pyrite",
-          "label": "Pyrite",
-          "kind": "collection",
-          "target": "pyrite",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:red-jasper",
-          "label": "Red Jasper",
-          "kind": "collection",
-          "target": "red-jasper",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:rhodonite",
-          "label": "Rhodonite",
-          "kind": "collection",
-          "target": "rhodonite",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:rose-quartz",
-          "label": "Rose Quartz",
-          "kind": "collection",
-          "target": "rose-quartz",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:ruby-zoisite",
-          "label": "Ruby Zoisite",
-          "kind": "collection",
-          "target": "ruby-zoisite",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:selenite",
-          "label": "Selenite",
-          "kind": "collection",
-          "target": "selenite",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:serpentine",
-          "label": "Serpentine",
-          "kind": "collection",
-          "target": "serpentine",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:smoky-quartz",
-          "label": "Smoky Quartz",
-          "kind": "collection",
-          "target": "smoky-quartz",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:snowflake-obsidian",
-          "label": "Snowflake Obsidian",
-          "kind": "collection",
-          "target": "snowflake-obsidian",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:sodalite",
-          "label": "Sodalite",
-          "kind": "collection",
-          "target": "sodalite",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:sphatik",
-          "label": "Sphatik",
-          "kind": "collection",
-          "target": "sphatik",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 36
-        },
-        {
-          "id": "collection:sunstone",
-          "label": "Sunstone",
-          "kind": "collection",
-          "target": "sunstone",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:tiger-s-eye",
-          "label": "Tiger’s Eye",
-          "kind": "collection",
-          "target": "tiger-s-eye",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:turquoise",
-          "label": "Turquoise",
-          "kind": "collection",
-          "target": "turquoise",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:tree-line-agate",
-          "label": "Tree Line Agate",
-          "kind": "collection",
-          "target": "tree-line-agate",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:unakite",
-          "label": "Unakite",
-          "kind": "collection",
-          "target": "unakite",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:zibu",
-          "label": "Zibu",
-          "kind": "collection",
-          "target": "zibu",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:home-decor-vastu",
-          "label": "Home Decor/Vastu",
-          "kind": "collection",
-          "target": "home-decor-vastu",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:under-499-rs",
-          "label": "Under 499 Rs",
-          "kind": "collection",
-          "target": "under-499-rs",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:malas-jap-malas",
-          "label": "Malas & Jap Malas",
-          "kind": "collection",
-          "target": "malas-jap-malas",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:zodiac",
-          "label": "Zodiac",
-          "kind": "collection",
-          "target": "zodiac",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
+          "id": "pending:zodiacbracelets",
+          "label": "Zodiac bracelets",
+          "kind": "pending",
+          "target": "zodiacbracelets",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
         },
         {
           "id": "collection:gifts",
@@ -1010,55 +84,10 @@
           "explicitWorkbookProductCount": 11
         },
         {
-          "id": "collection:kawach-yantra",
-          "label": "Kawach/Yantra",
-          "kind": "collection",
-          "target": "kawach-yantra",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "group:group-charanpadukabox",
-          "label": "Charan Paduka box",
-          "kind": "group",
-          "target": "group-charanpadukabox",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "group:group-festival",
-          "label": "Festival",
-          "kind": "group",
-          "target": "group-festival",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 13
-        },
-        {
-          "id": "group:group-gembracelets",
-          "label": "Gem Bracelets",
-          "kind": "group",
-          "target": "group-gembracelets",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 295
-        },
-        {
-          "id": "group:group-parad",
-          "label": "Parad",
-          "kind": "group",
-          "target": "group-parad",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 2
-        },
-        {
-          "id": "group:group-paradlaxmiandganeshji",
-          "label": "Parad laxmi and ganesh ji",
-          "kind": "group",
-          "target": "group-paradlaxmiandganeshji",
+          "id": "rule:kavach-main",
+          "label": "Kavach",
+          "kind": "rule",
+          "target": "kavach-main",
           "membershipVerified": true,
           "parentCollectionConstraint": null,
           "explicitWorkbookProductCount": 0
@@ -1071,10 +100,39 @@
           "membershipVerified": true,
           "parentCollectionConstraint": null,
           "explicitWorkbookProductCount": 0
+        }
+      ]
+    },
+    {
+      "id": "new-arrivals",
+      "label": "New Arrivals",
+      "source": "MAIN:3",
+      "stateOnOpen": "products",
+      "childCount": 0,
+      "explicitWorkbookProductCount": 0,
+      "children": []
+    },
+    {
+      "id": "zodiac",
+      "label": "Rashi / Zodiac",
+      "source": "MAIN:4",
+      "stateOnOpen": "overview",
+      "childCount": 6,
+      "explicitWorkbookProductCount": 17,
+      "children": [
+        {
+          "id": "pending:rashibracelets",
+          "label": "Bracelet",
+          "kind": "pending",
+          "target": "rashibracelets",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
         },
         {
           "id": "group:group-rashirings",
-          "label": "Rashi Rings",
+          "label": "Ring",
           "kind": "group",
           "target": "group-rashirings",
           "membershipVerified": true,
@@ -1082,26 +140,84 @@
           "explicitWorkbookProductCount": 17
         },
         {
-          "id": "group:group-remedy",
-          "label": "Remedy",
+          "id": "group:group-rashipendants",
+          "label": "Pendant",
           "kind": "group",
-          "target": "group-remedy",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 115
-        },
-        {
-          "id": "group:group-rudraksha121mukhi",
-          "label": "Rudraksha 1-21 Mukhi",
-          "kind": "group",
-          "target": "group-rudraksha121mukhi",
+          "target": "group-rashipendants",
           "membershipVerified": true,
           "parentCollectionConstraint": null,
           "explicitWorkbookProductCount": 0
         },
         {
+          "id": "category:zodiac-signs",
+          "label": "Shop by rashi",
+          "kind": "category",
+          "target": "zodiac-signs",
+          "membershipVerified": true,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0
+        },
+        {
+          "id": "pending:yantra",
+          "label": "Yantra",
+          "kind": "pending",
+          "target": "yantra",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0
+        },
+        {
+          "id": "pending:pen",
+          "label": "Pen",
+          "kind": "pending",
+          "target": "pen",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        }
+      ]
+    },
+    {
+      "id": "bracelets",
+      "label": "Bracelets",
+      "source": "MAIN:5",
+      "stateOnOpen": "products",
+      "childCount": 0,
+      "explicitWorkbookProductCount": 347,
+      "children": []
+    },
+    {
+      "id": "rudraksha",
+      "label": "Rudraksha",
+      "source": "MAIN:6",
+      "stateOnOpen": "overview",
+      "childCount": 7,
+      "explicitWorkbookProductCount": 8,
+      "children": [
+        {
+          "id": "pending:121mukhi",
+          "label": "1-21 Mukhi",
+          "kind": "pending",
+          "target": "121mukhi",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "id": "pending:kavach",
+          "label": "Kavach",
+          "kind": "pending",
+          "target": "kavach",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
           "id": "group:group-rudrakshabracelet",
-          "label": "Rudraksha Bracelet",
+          "label": "Bracelets",
           "kind": "group",
           "target": "group-rudrakshabracelet",
           "membershipVerified": true,
@@ -1110,218 +226,22 @@
         },
         {
           "id": "group:group-rudrakshamala",
-          "label": "Rudraksha Mala",
+          "label": "Mala",
           "kind": "group",
           "target": "group-rudrakshamala",
           "membershipVerified": true,
           "parentCollectionConstraint": null,
           "explicitWorkbookProductCount": 2
-        }
-      ]
-    },
-    {
-      "id": "mala",
-      "label": "Mala",
-      "source": "collection:mala",
-      "stateOnOpen": "products",
-      "childCount": 0,
-      "explicitWorkbookProductCount": 138,
-      "children": []
-    },
-    {
-      "id": "rashi-rings",
-      "label": "Rashi Rings",
-      "source": "group:group-rashirings",
-      "stateOnOpen": "products",
-      "childCount": 0,
-      "explicitWorkbookProductCount": 17,
-      "children": []
-    },
-    {
-      "id": "rashi-pendants",
-      "label": "Rashi Pendants",
-      "source": "group:group-rashipendants",
-      "stateOnOpen": "products",
-      "childCount": 0,
-      "explicitWorkbookProductCount": 0,
-      "children": []
-    },
-    {
-      "id": "zodiac",
-      "label": "Zodiac Signs",
-      "source": "navigation:Rashi | Zodiac",
-      "stateOnOpen": "overview",
-      "childCount": 12,
-      "explicitWorkbookProductCount": null,
-      "children": [
-        {
-          "id": "zodiac:Aries",
-          "label": "Aries",
-          "kind": "zodiac",
-          "target": "Aries",
-          "membershipVerified": false,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0,
-          "mappingIssue": "The sign is listed in navigation; explicit product-to-sign membership is missing."
         },
         {
-          "id": "zodiac:Taurus",
-          "label": "Taurus",
-          "kind": "zodiac",
-          "target": "Taurus",
+          "id": "pending:sidhmala",
+          "label": "Sidh Mala",
+          "kind": "pending",
+          "target": "sidhmala",
           "membershipVerified": false,
           "parentCollectionConstraint": null,
           "explicitWorkbookProductCount": 0,
-          "mappingIssue": "The sign is listed in navigation; explicit product-to-sign membership is missing."
-        },
-        {
-          "id": "zodiac:Gemini",
-          "label": "Gemini",
-          "kind": "zodiac",
-          "target": "Gemini",
-          "membershipVerified": false,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0,
-          "mappingIssue": "The sign is listed in navigation; explicit product-to-sign membership is missing."
-        },
-        {
-          "id": "zodiac:Cancer",
-          "label": "Cancer",
-          "kind": "zodiac",
-          "target": "Cancer",
-          "membershipVerified": false,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0,
-          "mappingIssue": "The sign is listed in navigation; explicit product-to-sign membership is missing."
-        },
-        {
-          "id": "zodiac:Leo",
-          "label": "Leo",
-          "kind": "zodiac",
-          "target": "Leo",
-          "membershipVerified": false,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0,
-          "mappingIssue": "The sign is listed in navigation; explicit product-to-sign membership is missing."
-        },
-        {
-          "id": "zodiac:Virgo",
-          "label": "Virgo",
-          "kind": "zodiac",
-          "target": "Virgo",
-          "membershipVerified": false,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0,
-          "mappingIssue": "The sign is listed in navigation; explicit product-to-sign membership is missing."
-        },
-        {
-          "id": "zodiac:Libra",
-          "label": "Libra",
-          "kind": "zodiac",
-          "target": "Libra",
-          "membershipVerified": false,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0,
-          "mappingIssue": "The sign is listed in navigation; explicit product-to-sign membership is missing."
-        },
-        {
-          "id": "zodiac:Scorpio",
-          "label": "Scorpio",
-          "kind": "zodiac",
-          "target": "Scorpio",
-          "membershipVerified": false,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0,
-          "mappingIssue": "The sign is listed in navigation; explicit product-to-sign membership is missing."
-        },
-        {
-          "id": "zodiac:Sagittarius",
-          "label": "Sagittarius",
-          "kind": "zodiac",
-          "target": "Sagittarius",
-          "membershipVerified": false,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0,
-          "mappingIssue": "The sign is listed in navigation; explicit product-to-sign membership is missing."
-        },
-        {
-          "id": "zodiac:Capricorn",
-          "label": "Capricorn",
-          "kind": "zodiac",
-          "target": "Capricorn",
-          "membershipVerified": false,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0,
-          "mappingIssue": "The sign is listed in navigation; explicit product-to-sign membership is missing."
-        },
-        {
-          "id": "zodiac:Aquarius",
-          "label": "Aquarius",
-          "kind": "zodiac",
-          "target": "Aquarius",
-          "membershipVerified": false,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0,
-          "mappingIssue": "The sign is listed in navigation; explicit product-to-sign membership is missing."
-        },
-        {
-          "id": "zodiac:Pisces",
-          "label": "Pisces",
-          "kind": "zodiac",
-          "target": "Pisces",
-          "membershipVerified": false,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0,
-          "mappingIssue": "The sign is listed in navigation; explicit product-to-sign membership is missing."
-        }
-      ]
-    },
-    {
-      "id": "rudraksha",
-      "label": "Rudraksha",
-      "source": "navigation:Rudraksha",
-      "stateOnOpen": "overview",
-      "childCount": 5,
-      "explicitWorkbookProductCount": null,
-      "children": [
-        {
-          "id": "group:group-rudraksha121mukhi",
-          "label": "1-21 Mukhi",
-          "kind": "group",
-          "target": "group-rudraksha121mukhi",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:kawach-yantra",
-          "label": "Kavach",
-          "kind": "collection",
-          "target": "kawach-yantra",
-          "membershipVerified": false,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0,
-          "mappingIssue": "Rudraksha-specific product membership has not been supplied for this collection."
-        },
-        {
-          "id": "collection:bracelets",
-          "label": "Bracelets",
-          "kind": "collection",
-          "target": "bracelets",
-          "membershipVerified": false,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0,
-          "mappingIssue": "Rudraksha-specific product membership has not been supplied for this collection."
-        },
-        {
-          "id": "collection:mala",
-          "label": "Mala",
-          "kind": "collection",
-          "target": "mala",
-          "membershipVerified": false,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0,
-          "mappingIssue": "Rudraksha-specific product membership has not been supplied for this collection."
+          "mappingIssue": "Product selection is being prepared."
         },
         {
           "id": "collection:pendants",
@@ -1331,90 +251,28 @@
           "membershipVerified": false,
           "parentCollectionConstraint": null,
           "explicitWorkbookProductCount": 0,
-          "mappingIssue": "Rudraksha-specific product membership has not been supplied for this collection."
+          "mappingIssue": "Rudraksha-specific membership has not been supplied for this form."
+        },
+        {
+          "id": "pending:other",
+          "label": "Other",
+          "kind": "pending",
+          "target": "other",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
         }
       ]
     },
     {
       "id": "crystals",
-      "label": "Crystals",
-      "source": "navigation:Crystal",
+      "label": "Crystal",
+      "source": "MAIN:7",
       "stateOnOpen": "overview",
-      "childCount": 39,
-      "explicitWorkbookProductCount": null,
+      "childCount": 35,
+      "explicitWorkbookProductCount": 1288,
       "children": [
-        {
-          "id": "collection:amethyst",
-          "label": "Amethyst",
-          "kind": "collection",
-          "target": "amethyst",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:pyrite",
-          "label": "Pyrite",
-          "kind": "collection",
-          "target": "pyrite",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:rose-quartz",
-          "label": "Rose quartz",
-          "kind": "collection",
-          "target": "rose-quartz",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:citrine",
-          "label": "Citrine",
-          "kind": "collection",
-          "target": "citrine",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:black-tourmaline",
-          "label": "Black tourmaline",
-          "kind": "collection",
-          "target": "black-tourmaline",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:sphatik",
-          "label": "Sphatik",
-          "kind": "collection",
-          "target": "sphatik",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 36
-        },
-        {
-          "id": "collection:tiger-s-eye",
-          "label": "Tiger’s eye",
-          "kind": "collection",
-          "target": "tiger-s-eye",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:green-aventurine",
-          "label": "Green aventurine",
-          "kind": "collection",
-          "target": "green-aventurine",
-          "membershipVerified": true,
-          "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 0
-        },
         {
           "id": "collection:bracelets",
           "label": "Bracelets",
@@ -1569,6 +427,16 @@
           "explicitWorkbookProductCount": 1
         },
         {
+          "id": "pending:heart",
+          "label": "Heart",
+          "kind": "pending",
+          "target": "heart",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
           "id": "collection:keyrings",
           "label": "Keyrings",
           "kind": "collection",
@@ -1576,6 +444,16 @@
           "membershipVerified": true,
           "parentCollectionConstraint": null,
           "explicitWorkbookProductCount": 1
+        },
+        {
+          "id": "pending:pens",
+          "label": "Pens",
+          "kind": "pending",
+          "target": "pens",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
         },
         {
           "id": "collection:pencil-towers",
@@ -1659,6 +537,16 @@
           "explicitWorkbookProductCount": 23
         },
         {
+          "id": "pending:owl",
+          "label": "Owl",
+          "kind": "pending",
+          "target": "owl",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
           "id": "collection:clock-watch",
           "label": "Clock/Watch",
           "kind": "collection",
@@ -1675,6 +563,16 @@
           "membershipVerified": true,
           "parentCollectionConstraint": null,
           "explicitWorkbookProductCount": 6
+        },
+        {
+          "id": "pending:potli",
+          "label": "Potli",
+          "kind": "pending",
+          "target": "potli",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
         },
         {
           "id": "collection:bowl",
@@ -1697,94 +595,12 @@
       ]
     },
     {
-      "id": "bracelets",
-      "label": "Bracelets",
-      "source": "navigation:Bracelets",
-      "stateOnOpen": "overview",
-      "childCount": 7,
-      "explicitWorkbookProductCount": 347,
-      "children": [
-        {
-          "id": "collection:pyrite",
-          "label": "Pyrite",
-          "kind": "collection",
-          "target": "pyrite",
-          "membershipVerified": true,
-          "parentCollectionConstraint": "bracelets",
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:rose-quartz",
-          "label": "Rose quartz",
-          "kind": "collection",
-          "target": "rose-quartz",
-          "membershipVerified": true,
-          "parentCollectionConstraint": "bracelets",
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:amethyst",
-          "label": "Amethyst",
-          "kind": "collection",
-          "target": "amethyst",
-          "membershipVerified": true,
-          "parentCollectionConstraint": "bracelets",
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:green-aventurine",
-          "label": "Green aventurine",
-          "kind": "collection",
-          "target": "green-aventurine",
-          "membershipVerified": true,
-          "parentCollectionConstraint": "bracelets",
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:tiger-s-eye",
-          "label": "Tiger eye",
-          "kind": "collection",
-          "target": "tiger-s-eye",
-          "membershipVerified": true,
-          "parentCollectionConstraint": "bracelets",
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:citrine",
-          "label": "Citrine",
-          "kind": "collection",
-          "target": "citrine",
-          "membershipVerified": true,
-          "parentCollectionConstraint": "bracelets",
-          "explicitWorkbookProductCount": 0
-        },
-        {
-          "id": "collection:sphatik",
-          "label": "Sphatik",
-          "kind": "collection",
-          "target": "sphatik",
-          "membershipVerified": true,
-          "parentCollectionConstraint": "bracelets",
-          "explicitWorkbookProductCount": 5
-        }
-      ]
-    },
-    {
-      "id": "pendants",
-      "label": "Pendants",
-      "source": "collection:pendants",
-      "stateOnOpen": "products",
-      "childCount": 0,
-      "explicitWorkbookProductCount": 202,
-      "children": []
-    },
-    {
       "id": "pooja",
-      "label": "Pooja",
-      "source": "navigation:Puja",
+      "label": "Puja",
+      "source": "MAIN:8",
       "stateOnOpen": "overview",
-      "childCount": 6,
-      "explicitWorkbookProductCount": null,
+      "childCount": 8,
+      "explicitWorkbookProductCount": 151,
       "children": [
         {
           "id": "collection:shaligram",
@@ -1839,29 +655,38 @@
           "membershipVerified": true,
           "parentCollectionConstraint": null,
           "explicitWorkbookProductCount": 8
+        },
+        {
+          "id": "group:group-paradlaxmiandganeshji",
+          "label": "Parad laxmi and ganesh ji",
+          "kind": "group",
+          "target": "group-paradlaxmiandganeshji",
+          "membershipVerified": true,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0
+        },
+        {
+          "id": "group:group-charanpadukabox",
+          "label": "Charan Paduka box",
+          "kind": "group",
+          "target": "group-charanpadukabox",
+          "membershipVerified": true,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0
         }
       ]
     },
     {
-      "id": "decor",
-      "label": "Home Decor / Vastu",
-      "source": "collection:home-decor-vastu",
-      "stateOnOpen": "products",
-      "childCount": 0,
-      "explicitWorkbookProductCount": 0,
-      "children": []
-    },
-    {
       "id": "intentions",
-      "label": "Problem / Intention",
-      "source": "navigation:Remedy",
+      "label": "Remedy",
+      "source": "MAIN:9",
       "stateOnOpen": "overview",
-      "childCount": 6,
-      "explicitWorkbookProductCount": null,
+      "childCount": 69,
+      "explicitWorkbookProductCount": 99,
       "children": [
         {
           "id": "collection:money",
-          "label": "Money",
+          "label": "Money Magnet",
           "kind": "collection",
           "target": "money",
           "membershipVerified": true,
@@ -1869,72 +694,705 @@
           "explicitWorkbookProductCount": 99
         },
         {
-          "id": "collection:focus",
-          "label": "Focus",
-          "kind": "collection",
-          "target": "focus",
-          "membershipVerified": true,
+          "id": "pending:depressionandstressrelief",
+          "label": "Depression and Stress Relief",
+          "kind": "pending",
+          "target": "depressionandstressrelief",
+          "membershipVerified": false,
           "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 79
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
         },
         {
-          "id": "collection:confidence-1",
-          "label": "Confidence",
-          "kind": "collection",
-          "target": "confidence-1",
-          "membershipVerified": true,
+          "id": "pending:angercontrol",
+          "label": "Anger Control",
+          "kind": "pending",
+          "target": "angercontrol",
+          "membershipVerified": false,
           "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 56
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
         },
         {
-          "id": "collection:love",
-          "label": "Love",
-          "kind": "collection",
-          "target": "love",
-          "membershipVerified": true,
+          "id": "pending:memoryfocusandconcentration",
+          "label": "Memory, Focus and Concentration",
+          "kind": "pending",
+          "target": "memoryfocusandconcentration",
+          "membershipVerified": false,
           "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 69
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
         },
         {
-          "id": "collection:nazar",
-          "label": "Nazar",
-          "kind": "collection",
-          "target": "nazar",
-          "membershipVerified": true,
+          "id": "pending:loneliness",
+          "label": "Loneliness",
+          "kind": "pending",
+          "target": "loneliness",
+          "membershipVerified": false,
           "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 46
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
         },
         {
-          "id": "collection:business-losses",
-          "label": "Business Losses",
-          "kind": "collection",
-          "target": "business-losses",
-          "membershipVerified": true,
+          "id": "pending:patiencetolerance",
+          "label": "Patience & Tolerance",
+          "kind": "pending",
+          "target": "patiencetolerance",
+          "membershipVerified": false,
           "parentCollectionConstraint": null,
-          "explicitWorkbookProductCount": 42
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "id": "pending:confidenceselfesteem",
+          "label": "Confidence & Self Esteem",
+          "kind": "pending",
+          "target": "confidenceselfesteem",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "id": "pending:leadership",
+          "label": "Leadership",
+          "kind": "pending",
+          "target": "leadership",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "id": "pending:studylearningeducation",
+          "label": "Study, Learning & Education",
+          "kind": "pending",
+          "target": "studylearningeducation",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "id": "pending:loverelationship",
+          "label": "Love & Relationship",
+          "kind": "pending",
+          "target": "loverelationship",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "id": "pending:marriageproblemsdesiredlove",
+          "label": "Marriage Problems & Desired Love",
+          "kind": "pending",
+          "target": "marriageproblemsdesiredlove",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "id": "pending:backpainrelief",
+          "label": "Back Pain Relief",
+          "kind": "pending",
+          "target": "backpainrelief",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "id": "pending:bodypainreleif",
+          "label": "Body pain releif",
+          "kind": "pending",
+          "target": "bodypainreleif",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "id": "pending:blackmagicprotection",
+          "label": "Black Magic Protection",
+          "kind": "pending",
+          "target": "blackmagicprotection",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "id": "pending:harmonyinhome",
+          "label": "Harmony in Home",
+          "kind": "pending",
+          "target": "harmonyinhome",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "id": "pending:tophealers",
+          "label": "Top Healers",
+          "kind": "pending",
+          "target": "tophealers",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "id": "pending:motivation",
+          "label": "Motivation",
+          "kind": "pending",
+          "target": "motivation",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "id": "pending:addictionrelief",
+          "label": "Addiction Relief",
+          "kind": "pending",
+          "target": "addictionrelief",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "id": "pending:weightcontrol",
+          "label": "Weight Control",
+          "kind": "pending",
+          "target": "weightcontrol",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "id": "pending:weightgain",
+          "label": "Weight Gain",
+          "kind": "pending",
+          "target": "weightgain",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "id": "pending:recoveryafterillnessorinjury",
+          "label": "Recovery After Illness or Injury",
+          "kind": "pending",
+          "target": "recoveryafterillnessorinjury",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "id": "pending:goodsleep",
+          "label": "Good Sleep",
+          "kind": "pending",
+          "target": "goodsleep",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "id": "pending:protectionfromnegativeenergies",
+          "label": "Protection from Negative Energies",
+          "kind": "pending",
+          "target": "protectionfromnegativeenergies",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "id": "pending:success",
+          "label": "Success",
+          "kind": "pending",
+          "target": "success",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "id": "pending:beginners",
+          "label": "Beginners",
+          "kind": "pending",
+          "target": "beginners",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "id": "pending:bloodpressurerelief",
+          "label": "Blood Pressure Relief",
+          "kind": "pending",
+          "target": "bloodpressurerelief",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "id": "pending:healthoveralllongevity",
+          "label": "Health (Overall) & Longevity",
+          "kind": "pending",
+          "target": "healthoveralllongevity",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "id": "pending:kidneyhealthoverall",
+          "label": "Kidney Health (Overall)",
+          "kind": "pending",
+          "target": "kidneyhealthoverall",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "id": "pending:migraineheadacherelief",
+          "label": "Migraine & Headache Relief",
+          "kind": "pending",
+          "target": "migraineheadacherelief",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "id": "pending:thyroidrelief",
+          "label": "Thyroid Relief",
+          "kind": "pending",
+          "target": "thyroidrelief",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "id": "pending:diabetesrelief",
+          "label": "Diabetes Relief",
+          "kind": "pending",
+          "target": "diabetesrelief",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "id": "pending:cholesterolrelief",
+          "label": "Cholesterol Relief",
+          "kind": "pending",
+          "target": "cholesterolrelief",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "id": "pending:arthritispainrelief",
+          "label": "Arthritis Pain Relief",
+          "kind": "pending",
+          "target": "arthritispainrelief",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "id": "pending:asthmabreatheeasy",
+          "label": "Asthma & Breathe Easy",
+          "kind": "pending",
+          "target": "asthmabreatheeasy",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "id": "pending:allergyrelief",
+          "label": "Allergy Relief",
+          "kind": "pending",
+          "target": "allergyrelief",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "id": "pending:fertilitypregnancy",
+          "label": "Fertility & Pregnancy",
+          "kind": "pending",
+          "target": "fertilitypregnancy",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "id": "pending:pcodpcosproblem",
+          "label": "PCOD - PCOS Problem",
+          "kind": "pending",
+          "target": "pcodpcosproblem",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "id": "pending:courtcaselegalissues",
+          "label": "Court Case & Legal Issues",
+          "kind": "pending",
+          "target": "courtcaselegalissues",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "id": "pending:positiveenergy",
+          "label": "Positive Energy",
+          "kind": "pending",
+          "target": "positiveenergy",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "id": "pending:ariesrashibraceletmeshzodiacrashibracelets",
+          "label": "Aries Rashi Bracelet | मेष राशि (Mesh) (Zodiac Rashi Bracelets)",
+          "kind": "pending",
+          "target": "ariesrashibraceletmeshzodiacrashibracelets",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "id": "pending:taurusrashibraceletvrishabhzodiacrashibracelets",
+          "label": "Taurus Rashi Bracelet | वृषभ राशि (Vrishabh) (Zodiac Rashi Bracelets)",
+          "kind": "pending",
+          "target": "taurusrashibraceletvrishabhzodiacrashibracelets",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "id": "pending:geminirashibraceletmithunzodiacrashibracelets",
+          "label": "Gemini Rashi Bracelet | मिथुन राशि (Mithun) (Zodiac Rashi Bracelets)",
+          "kind": "pending",
+          "target": "geminirashibraceletmithunzodiacrashibracelets",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "id": "pending:cancerrashibraceletkarkzodiacrashibracelets",
+          "label": "Cancer Rashi Bracelet | कर्क राशि (Kark) (Zodiac Rashi Bracelets)",
+          "kind": "pending",
+          "target": "cancerrashibraceletkarkzodiacrashibracelets",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "id": "pending:leorashibraceletsinghzodiacrashibracelets",
+          "label": "Leo Rashi Bracelet | सिंह राशि (Singh) (Zodiac Rashi Bracelets)",
+          "kind": "pending",
+          "target": "leorashibraceletsinghzodiacrashibracelets",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "id": "pending:virgorashibraceletkanyazodiacrashibracelets",
+          "label": "Virgo Rashi Bracelet | कन्या राशि (Kanya) (Zodiac Rashi Bracelets)",
+          "kind": "pending",
+          "target": "virgorashibraceletkanyazodiacrashibracelets",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "id": "pending:sagittariusrashibraceletdhanuzodiacrashibracelets",
+          "label": "Sagittarius Rashi Bracelet | धनु राशि (Dhanu) (Zodiac Rashi Bracelets)",
+          "kind": "pending",
+          "target": "sagittariusrashibraceletdhanuzodiacrashibracelets",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "id": "pending:librarashibracelettulazodiacrashibracelets",
+          "label": "Libra Rashi Bracelet | तुला राशि (Tula) (Zodiac Rashi Bracelets)",
+          "kind": "pending",
+          "target": "librarashibracelettulazodiacrashibracelets",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "id": "pending:scorpiorashibraceletvrishchikzodiacrashibracelets",
+          "label": "Scorpio Rashi Bracelet | वृश्चिक राशि (Vrishchik) (Zodiac Rashi Bracelets)",
+          "kind": "pending",
+          "target": "scorpiorashibraceletvrishchikzodiacrashibracelets",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "id": "pending:capricornrashibraceletmakarzodiacrashibracelets",
+          "label": "Capricorn Rashi Bracelet | मकर राशि (Makar) (Zodiac Rashi Bracelets)",
+          "kind": "pending",
+          "target": "capricornrashibraceletmakarzodiacrashibracelets",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "id": "pending:aquariusrashibraceletkumbhzodiacrashibracelets",
+          "label": "Aquarius Rashi Bracelet | कुंभ राशि (Kumbh) (Zodiac Rashi Bracelets)",
+          "kind": "pending",
+          "target": "aquariusrashibraceletkumbhzodiacrashibracelets",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "id": "pending:piscesrashibraceletmeenzodiacrashibracelets",
+          "label": "Pisces Rashi Bracelet | मीन राशि (Meen) (Zodiac Rashi Bracelets)",
+          "kind": "pending",
+          "target": "piscesrashibraceletmeenzodiacrashibracelets",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "id": "pending:rulingnumber1",
+          "label": "Ruling Number 1",
+          "kind": "pending",
+          "target": "rulingnumber1",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "id": "pending:rulingnumber2",
+          "label": "Ruling Number 2",
+          "kind": "pending",
+          "target": "rulingnumber2",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "id": "pending:rulingnumber3",
+          "label": "Ruling Number 3",
+          "kind": "pending",
+          "target": "rulingnumber3",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "id": "pending:rulingnumber4",
+          "label": "Ruling Number 4",
+          "kind": "pending",
+          "target": "rulingnumber4",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "id": "pending:rulingnumber5",
+          "label": "Ruling Number 5",
+          "kind": "pending",
+          "target": "rulingnumber5",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "id": "pending:rulingnumber6",
+          "label": "Ruling Number 6",
+          "kind": "pending",
+          "target": "rulingnumber6",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "id": "pending:rulingnumber7",
+          "label": "Ruling Number 7",
+          "kind": "pending",
+          "target": "rulingnumber7",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "id": "pending:rulingnumber8",
+          "label": "Ruling Number 8",
+          "kind": "pending",
+          "target": "rulingnumber8",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "id": "pending:rulingnumber9",
+          "label": "Ruling Number 9",
+          "kind": "pending",
+          "target": "rulingnumber9",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "id": "pending:missingnumber1",
+          "label": "Missing Number 1",
+          "kind": "pending",
+          "target": "missingnumber1",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "id": "pending:missingnumber2",
+          "label": "Missing Number 2",
+          "kind": "pending",
+          "target": "missingnumber2",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "id": "pending:missingnumber3",
+          "label": "Missing Number 3",
+          "kind": "pending",
+          "target": "missingnumber3",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "id": "pending:missingnumber4",
+          "label": "Missing Number 4",
+          "kind": "pending",
+          "target": "missingnumber4",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "id": "pending:missingnumber5",
+          "label": "Missing Number 5",
+          "kind": "pending",
+          "target": "missingnumber5",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "id": "pending:missingnumber6",
+          "label": "Missing Number 6",
+          "kind": "pending",
+          "target": "missingnumber6",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "id": "pending:missingnumber7",
+          "label": "Missing Number 7",
+          "kind": "pending",
+          "target": "missingnumber7",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "id": "pending:missingnumber8",
+          "label": "Missing Number 8",
+          "kind": "pending",
+          "target": "missingnumber8",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "id": "pending:missingnumber9",
+          "label": "Missing Number 9",
+          "kind": "pending",
+          "target": "missingnumber9",
+          "membershipVerified": false,
+          "parentCollectionConstraint": null,
+          "explicitWorkbookProductCount": 0,
+          "mappingIssue": "Product selection is being prepared."
         }
       ]
     }
   ],
   "requestedExampleStatus": {
     "flow": "Mala → Pearl Mala → Ruby Mala",
-    "status": "blocked-by-missing-verified-hierarchy",
+    "status": "pending-product-membership",
     "malaExists": true,
     "malaExplicitWorkbookProducts": 138,
-    "declaredMalaChildren": 0,
+    "declaredMalaChildren": 2,
     "requestedChildrenNotCreated": [
-      "Pearl Mala",
-      "Ruby Mala",
       "Emerald Mala",
       "Blue Sapphire Mala"
     ],
-    "currentBehavior": "Mala opens its real mapped product listing directly. No 25-child hierarchy or crystal-name membership has been invented.",
+    "currentBehavior": "The client-requested Pearl and Ruby navigation labels now open honest pending states with sibling switching. Product memberships are unverified; the direct Mala collection URL still opens its actual mapped products.",
     "clientAction": "Provide approved Mala child definitions, explicit product handles or SKU memberships for each child, display order, and actual icon files."
   },
   "unresolved": [
     {
       "category": "Mala",
-      "issue": "No parent-to-child relationships supplied; expected approximately 25 types cannot be verified."
+      "issue": "Pearl and Ruby navigation explicitly requested by client; their product assignments and icons remain unverified. Other types are not invented."
     },
     {
       "category": "Rashi Rings",
@@ -1950,7 +1408,7 @@
     },
     {
       "category": "Rudraksha",
-      "issue": "Parent collection handle is absent; linking all Bracelets, Mala or Pendants would include unrelated products. These scoped memberships need approval."
+      "issue": "Bracelets and Mala use explicit curated Rudraksha groups. Other broad form links remain empty without scoped memberships."
     },
     {
       "category": "Home Decor / Vastu",
@@ -1962,85 +1420,85 @@
       "parent": "Best Seller",
       "label": "Zodiac bracelets",
       "target": "Zodiac bracelets",
-      "reason": "Text search is not a verified category-to-product relationship; omitted from hierarchy."
+      "reason": "Legacy Structure search is not used as a MAIN membership mapping; MAIN keeps the declared node pending."
     },
     {
       "parent": "Best Seller",
       "label": "Rudraksha By Mukhi",
       "target": "Rudraksha By Mukhi",
-      "reason": "Text search is not a verified category-to-product relationship; omitted from hierarchy."
+      "reason": "Legacy Structure search is not used as a MAIN membership mapping; MAIN keeps the declared node pending."
     },
     {
       "parent": "Best Seller",
       "label": "Rudraksha Karungali",
       "target": "Rudraksha Karungali",
-      "reason": "Text search is not a verified category-to-product relationship; omitted from hierarchy."
+      "reason": "Legacy Structure search is not used as a MAIN membership mapping; MAIN keeps the declared node pending."
     },
     {
       "parent": "New Arrivals",
       "label": "Automatic. You can start with these products:",
       "target": "Automatic. You can start with these products:",
-      "reason": "Text search is not a verified category-to-product relationship; omitted from hierarchy."
+      "reason": "Legacy Structure search is not used as a MAIN membership mapping; MAIN keeps the declared node pending."
     },
     {
       "parent": "New Arrivals",
       "label": "Watch",
       "target": "Watch",
-      "reason": "Text search is not a verified category-to-product relationship; omitted from hierarchy."
+      "reason": "Legacy Structure search is not used as a MAIN membership mapping; MAIN keeps the declared node pending."
     },
     {
       "parent": "New Arrivals",
       "label": "Clock",
       "target": "Clock",
-      "reason": "Text search is not a verified category-to-product relationship; omitted from hierarchy."
+      "reason": "Legacy Structure search is not used as a MAIN membership mapping; MAIN keeps the declared node pending."
     },
     {
       "parent": "New Arrivals",
       "label": "Chain bracelets",
       "target": "Chain bracelets",
-      "reason": "Text search is not a verified category-to-product relationship; omitted from hierarchy."
+      "reason": "Legacy Structure search is not used as a MAIN membership mapping; MAIN keeps the declared node pending."
     },
     {
       "parent": "New Arrivals",
       "label": "Charan paduka",
       "target": "Charan paduka",
-      "reason": "Text search is not a verified category-to-product relationship; omitted from hierarchy."
+      "reason": "Legacy Structure search is not used as a MAIN membership mapping; MAIN keeps the declared node pending."
     },
     {
       "parent": "New Arrivals",
       "label": "Pearl earrings",
       "target": "Pearl earrings",
-      "reason": "Text search is not a verified category-to-product relationship; omitted from hierarchy."
+      "reason": "Legacy Structure search is not used as a MAIN membership mapping; MAIN keeps the declared node pending."
     },
     {
       "parent": "New Arrivals",
       "label": "Shell pearl mala - colourful ones",
       "target": "Shell pearl mala - colourful ones",
-      "reason": "Text search is not a verified category-to-product relationship; omitted from hierarchy."
+      "reason": "Legacy Structure search is not used as a MAIN membership mapping; MAIN keeps the declared node pending."
     },
     {
       "parent": "Rashi | Zodiac",
       "label": "Rashi bracelets",
       "target": "rashi bracelet",
-      "reason": "Text search is not a verified category-to-product relationship; omitted from hierarchy."
+      "reason": "Legacy Structure search is not used as a MAIN membership mapping; MAIN keeps the declared node pending."
     },
     {
       "parent": "Rashi | Zodiac",
       "label": "Pen",
       "target": "Pen",
-      "reason": "Text search is not a verified category-to-product relationship; omitted from hierarchy."
+      "reason": "Legacy Structure search is not used as a MAIN membership mapping; MAIN keeps the declared node pending."
     },
     {
       "parent": "Rudraksha",
       "label": "Sidh Mala",
       "target": "Sidh Mala",
-      "reason": "Text search is not a verified category-to-product relationship; omitted from hierarchy."
+      "reason": "Legacy Structure search is not used as a MAIN membership mapping; MAIN keeps the declared node pending."
     },
     {
       "parent": "Rudraksha",
       "label": "Other",
       "target": "Other",
-      "reason": "Text search is not a verified category-to-product relationship; omitted from hierarchy."
+      "reason": "Legacy Structure search is not used as a MAIN membership mapping; MAIN keeps the declared node pending."
     }
   ]
 }

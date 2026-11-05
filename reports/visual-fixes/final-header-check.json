@@ -1,0 +1,25 @@
+{
+  "rows": [
+    {
+      "width": 820,
+      "cartLabelVisible": true,
+      "overflow": false
+    },
+    {
+      "width": 1024,
+      "cartLabelVisible": true,
+      "overflow": false
+    },
+    {
+      "width": 1280,
+      "cartLabelVisible": true,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "cartLabelVisible": true,
+      "overflow": false
+    }
+  ],
+  "pass": true
+}

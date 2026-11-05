@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Crystal Baaz cart and product card audit</title>
+  <style>
+    body{margin:0;padding:28px;background:#f6f7f6;color:#202420;font:16px/1.5 system-ui,sans-serif}
+    h1{margin:0 0 8px;font-size:26px}p{margin:0 0 20px;color:#5e665e}
+    main{max-width:1500px;margin:auto}.pair{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:18px 0 36px}
+    figure{margin:0;padding:12px;border:1px solid #dce2dc;border-radius:10px;background:white}
+    figcaption{margin:0 0 10px;font-weight:700}img{display:block;width:100%;height:auto;border:1px solid #eee}
+    .mobile{max-width:440px}.screens{display:flex;flex-wrap:wrap;gap:18px;align-items:flex-start}
+    @media(max-width:760px){body{padding:16px}.pair{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<main>
+  <h1>Crystal Baaz: before and after</h1>
+  <p>Live Storefront catalog screenshots captured in an isolated browser profile. The before desktop image shows the full card border nested around the image tile; the after image keeps the tile boundary and opens the product copy area.</p>
+  <section class="pair" aria-label="Desktop product cards">
+    <figure><figcaption>Before · desktop rail · 1440 px</figcaption><img src="../mobile-product-refresh/desktop-rail-1440.png" alt="Desktop product rail with bordered product cards surrounding bordered image tiles"></figure>
+    <figure><figcaption>After · desktop rail · 1440 px</figcaption><img src="after/products-1440.png" alt="Desktop product rail with one border around each image and action tile"></figure>
+  </section>
+  <section class="screens" aria-label="Mobile product cards and cart states">
+    <figure class="mobile"><figcaption>After · mobile product rail · 390 px</figcaption><img src="after/products-390.png" alt="Mobile image tiles with product information below"></figure>
+    <figure class="mobile"><figcaption>Cart removal pending · 390 px</figcaption><img src="after/cart-removing-390.png" alt="Cart row removed optimistically while remaining items and controls stay visible"></figure>
+    <figure class="mobile"><figcaption>Failed removal rolled back · 390 px</figcaption><img src="after/cart-error-rollback-390.png" alt="Cart item restored after simulated Shopify failure, with a retry button"></figure>
+    <figure class="mobile"><figcaption>Confirmed empty cart · 390 px</figcaption><img src="after/cart-empty-390.png" alt="Confirmed empty cart after the final item was removed"></figure>
+  </section>
+</main>
+</body>
+</html>

@@ -1,0 +1,141 @@
+{
+  "ready": {
+    "ready": true,
+    "cards": 68,
+    "lines": 5
+  },
+  "slowAddStart": {
+    "before": 5,
+    "title": "7 Chakra Chip Bracelet",
+    "feedbackMs": 31.599999994039536,
+    "label": "Adding\u2026",
+    "disabled": true,
+    "enabledOtherAdds": 49,
+    "cartPending": true
+  },
+  "slowAddPending": {
+    "lines": 5,
+    "label": "Adding\u2026",
+    "pending": "true",
+    "enabledOtherAdds": 49
+  },
+  "slowAddDone": {
+    "lines": 6,
+    "pending": false
+  },
+  "slowAddRequests": [
+    {
+      "op": "CrystalBazzCartLinesAdd",
+      "method": "POST",
+      "status": 200,
+      "bytes": 2287,
+      "durationMs": 886.9
+    }
+  ],
+  "cartOpen": {
+    "rows": 6
+  },
+  "beforeRemove": {
+    "rows": 6,
+    "lines": 6
+  },
+  "removePending": {
+    "rows": 5,
+    "storageLines": 6,
+    "status": "Removing 5 Mukhi Rudraksha 10mm\u2026",
+    "removeButtons": 5,
+    "enabledRemoveButtons": 5,
+    "pending": "true",
+    "updating": false,
+    "totalLabel": "\u20b91,950.00\nESTIMATED ITEM TOTAL\nCheckout unavailable"
+  },
+  "removeDone": {
+    "lines": 5,
+    "pending": false,
+    "rows": 5
+  },
+  "slowRemoveRequests": [
+    {
+      "op": "CrystalBazzCartLinesRemove",
+      "method": "POST",
+      "status": 200,
+      "bytes": 2226,
+      "durationMs": 900.4
+    }
+  ],
+  "errorBefore": {
+    "rows": 5,
+    "lines": 5
+  },
+  "errorRollback": {
+    "rows": 5,
+    "lines": 5,
+    "error": "Your cart could not be confirmed. Check your connection and retry.\n\nRetry cart update",
+    "retry": true,
+    "pending": false
+  },
+  "retry": {
+    "lines": 4,
+    "rows": 4,
+    "error": false
+  },
+  "retryRequests": [
+    {
+      "op": "CrystalBazzCart",
+      "method": "POST",
+      "status": 200,
+      "bytes": 2175,
+      "durationMs": 497.3
+    },
+    {
+      "op": "CrystalBazzCartLinesRemove",
+      "method": "POST",
+      "status": 200,
+      "bytes": 2163,
+      "durationMs": 698.6
+    }
+  ],
+  "quantityBefore": {
+    "quantity": "1",
+    "lines": 4
+  },
+  "increased": {
+    "quantity": "2"
+  },
+  "decreased": {
+    "quantity": "1"
+  },
+  "removals": [
+    {
+      "lines": 3,
+      "rows": 3
+    },
+    {
+      "lines": 2,
+      "rows": 2
+    },
+    {
+      "lines": 1,
+      "rows": 1
+    },
+    {
+      "lines": 0,
+      "rows": 0
+    }
+  ],
+  "empty": {
+    "rows": 0,
+    "empty": true,
+    "text": "Cart confirmed. Checkout is currently unavailable.",
+    "lines": 0,
+    "cartIdSaved": true,
+    "updating": false
+  },
+  "afterReload": {
+    "route": "cart",
+    "rows": 0,
+    "lines": 0,
+    "cartIdSaved": true,
+    "empty": true
+  }
+}

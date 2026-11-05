@@ -1,0 +1,35 @@
+{
+  "width": 320,
+  "viewportWidth": 320,
+  "productCards": 68,
+  "visibleCard": true,
+  "article": {
+    "x": 14,
+    "y": 92,
+    "w": 104,
+    "h": 248,
+    "border": "0px none rgb(31, 31, 31)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "radius": "0px"
+  },
+  "imageTile": {
+    "x": 14,
+    "y": 92,
+    "w": 104,
+    "h": 145,
+    "border": "1px solid rgb(232, 232, 232)",
+    "bg": "rgb(255, 255, 255)",
+    "radius": "10px"
+  },
+  "add": {
+    "x": 61,
+    "y": 203,
+    "w": 52,
+    "h": 30,
+    "border": "1px solid rgb(12, 131, 31)",
+    "bg": "rgb(247, 255, 248)",
+    "radius": "6px"
+  },
+  "footerHasStandaloneINR": false,
+  "rupeePrice": "\u20b9290"
+}

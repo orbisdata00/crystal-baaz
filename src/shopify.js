@@ -8,13 +8,15 @@ const CATALOG_PAGE_SIZE = 100;
 const CATALOG_CACHE_AGE = 30 * 60 * 1000;
 
 const PRODUCT_FIELDS = `
-  id title handle description productType tags availableForSale
-  images(first: 12) { nodes { url altText } }
+  id title handle description vendor productType tags availableForSale
+  featuredImage { url altText width height }
+  images(first: 100) { nodes { url altText width height } pageInfo { hasNextPage endCursor } }
   priceRange { minVariantPrice { amount currencyCode } }
   collections(first: 50) { nodes { handle title } }
   variants(first: 100) {
     nodes {
       id sku title availableForSale
+      image { url altText }
       selectedOptions { name value }
       price { amount currencyCode }
       compareAtPrice { amount currencyCode }
@@ -25,10 +27,11 @@ const PRODUCT_FIELDS = `
 
 const CART_FIELDS = `
   id totalQuantity
-  cost { subtotalAmount { amount currencyCode } totalAmount { amount currencyCode } }
+  cost { subtotalAmount { amount currencyCode } subtotalAmountEstimated totalAmount { amount currencyCode } totalAmountEstimated }
   lines(first: 100) {
     nodes {
       id quantity
+      cost { amountPerQuantity { amount currencyCode } compareAtAmountPerQuantity { amount currencyCode } subtotalAmount { amount currencyCode } totalAmount { amount currencyCode } }
       merchandise {
         ... on ProductVariant {
           id title availableForSale
@@ -76,11 +79,13 @@ export async function loadShopifyProducts({ first = 24, after = null, query = ""
 
 const CATALOG_PRODUCT_FIELDS = `
   id title handle productType tags availableForSale
-  images(first: 1) { nodes { url altText } }
+  featuredImage { url altText width height }
+  images(first: 100) { nodes { url altText width height } pageInfo { hasNextPage endCursor } }
   priceRange { minVariantPrice { amount currencyCode } }
   variants(first: 5) {
     nodes {
       id sku title availableForSale
+      image { url altText }
       selectedOptions { name value }
       price { amount currencyCode }
       compareAtPrice { amount currencyCode }
@@ -114,7 +119,7 @@ let catalogRequest = null;
 export async function loadAllShopifyProducts({ forceRefresh = false } = {}) {
   if (!configured()) throw new Error("Shopify Storefront API settings are not configured.");
   const domain = shopifyConfig.storeDomain.replace(/^https?:\/\//, "").replace(/\/$/, "");
-  const cacheKey = `${domain}:${shopifyConfig.apiVersion}:products-v1`;
+  const cacheKey = `${domain}:${shopifyConfig.apiVersion}:products-v3-full-media`;
   if (!forceRefresh) {
     const cached = await getCatalogCache(cacheKey, CATALOG_CACHE_AGE);
     if (cached) return { products: cached, pageInfo: { hasNextPage: false, endCursor: null }, cached: true };
@@ -167,12 +172,24 @@ export async function loadShopifyProduct(handle) {
   const data = await storefrontRequest(gql, { handle });
   if (!data.product) return null;
   let product = data.product;
+  const images = connectionNodes(product.images);
+  let imagePageInfo = product.images?.pageInfo;
+  while (imagePageInfo?.hasNextPage && imagePageInfo.endCursor) {
+    const imageData = await storefrontRequest(`query CrystalBaazProductImages($handle:String!,$after:String) {
+      product(handle:$handle) { images(first:100,after:$after) { nodes {url altText width height} pageInfo {hasNextPage endCursor} } }
+    }`, { handle, after:imagePageInfo.endCursor });
+    const connection = imageData.product?.images;
+    images.push(...connectionNodes(connection));
+    imagePageInfo = connection?.pageInfo;
+  }
+  product = { ...product, images: { nodes:images, pageInfo:imagePageInfo } };
   const variants = connectionNodes(product.variants);
   let pageInfo = product.variants?.pageInfo;
   while (pageInfo?.hasNextPage && pageInfo.endCursor) {
     const variantsQuery = `query CrystalBazzProductVariants($handle: String!, $first: Int!, $after: String) {
       product(handle: $handle) { variants(first: $first, after: $after) {
-        nodes { id sku title availableForSale selectedOptions { name value } price { amount currencyCode } compareAtPrice { amount currencyCode } }
+        nodes { id sku title availableForSale
+      image { url altText } selectedOptions { name value } price { amount currencyCode } compareAtPrice { amount currencyCode } }
         pageInfo { hasNextPage endCursor }
       } }
     }`;
@@ -232,13 +249,15 @@ async function removeCartLines(cartId, lineIds) {
   return storeErrors(data.cartLinesRemove, "Removing cart lines");
 }
 
-export async function syncShopifyCart(cartId, localLines) {
+export async function syncShopifyCart(cartId, localLines, knownCart = null) {
   if (!configured()) return null;
   const lines = localLines
     .filter((line) => variantIdPattern.test(line.variantId) && Number.isInteger(line.quantity) && line.quantity > 0)
     .map((line) => ({ merchandiseId: line.variantId, quantity: line.quantity }));
   if (lines.length !== localLines.length) throw new Error("Remove preview-only items before checking out.");
-  let cart = cartId ? await fetchShopifyCart(cartId) : null;
+  // A cart returned by the previous mutation is already authoritative. Reuse it
+  // to avoid a read-before-write request for every add, quantity change, or remove.
+  let cart = cartId && knownCart?.id === cartId ? knownCart : cartId ? await fetchShopifyCart(cartId) : null;
   if (!lines.length) {
     if (!cart) return null;
     const current = connectionNodes(cart.lines);
@@ -263,8 +282,8 @@ export async function syncShopifyCart(cartId, localLines) {
   }
   for (const line of currentByVariant.values()) removals.push(line.id);
   if (removals.length) cart = await removeCartLines(cart.id, removals);
-  if (updates.length) cart = await updateCartLines(cartId, updates);
-  if (additions.length) cart = await addCartLines(cartId, additions);
+  if (updates.length) cart = await updateCartLines(cart.id, updates);
+  if (additions.length) cart = await addCartLines(cart.id, additions);
   return cart || await fetchShopifyCart(cartId);
 }
 

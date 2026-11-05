@@ -20,7 +20,6 @@ export function createCatalogService({ provider = catalogProvider, adapter = sho
   let catalogPromise = null;
   let mappedCatalog = null;
   let catalogResult = null;
-
   async function loadCatalog() {
     if (!isLive) throw new Error("Shopify mode is selected, but public Storefront API configuration is missing.");
     if (mappedCatalog) return { ...catalogResult, products: mappedCatalog };
@@ -61,10 +60,12 @@ export function createCatalogService({ provider = catalogProvider, adapter = sho
       if (route.page === "product") {
         if (!isLive) throw new Error("Shopify mode is selected, but public Storefront API configuration is missing.");
         const catalog = await loadCatalog();
+        const workbookProduct = workbook.find((product) => product.handle === route.handle);
         const liveProduct = await adapter.loadProduct(route.handle);
         if (!liveProduct) throw new Error("This product is no longer available from Shopify.");
-        const workbookProduct = workbook.find((product) => product.handle === route.handle);
-        return { ...catalog, product: mergeShopifyProduct(liveProduct, workbookProduct) };
+        const product = mergeShopifyProduct(liveProduct, workbookProduct);
+        if (!product) throw new Error("This product is no longer available from Shopify.");
+        return { ...catalog, product };
       }
       return loadCatalog();
     },
@@ -73,29 +74,31 @@ export function createCatalogService({ provider = catalogProvider, adapter = sho
       return null;
     },
 
-    async syncCart(cartId, lines) {
+    async syncCart(cartId, lines, knownCart = null, { verified = false } = {}) {
       if (!isLive) throw new Error("Live Shopify cart is unavailable until Storefront API configuration is present.");
-      await loadCatalog();
+      if (!mappedCatalog) await loadCatalog();
       const productsById = new Map(mappedCatalog.map((product) => [product.id, product]));
       const cartProductIds = [...new Set(lines.map((line) => line.productId))];
       for (const productId of cartProductIds) {
         let product = productsById.get(productId);
         if (!product) throw new Error("A cart item is not part of the verified Shopify catalog.");
-        const productLines = lines.filter((line) => line.productId === productId);
-        if (productLines.length) {
+        if (!verified) {
           const liveProduct = await adapter.loadProduct(product.handle);
+          if (!liveProduct) throw new Error("A cart item is no longer available from Shopify.");
           product = mergeShopifyProduct(liveProduct, workbook.find((item) => item.handle === product.handle));
           if (!product) throw new Error("A cart item could not be verified against its workbook product handle.");
           productsById.set(product.id, product);
         }
       }
-      for (const line of lines) {
-        const variant = productsById.get(line.productId)?.variants.find((item) => item.id === line.variantId);
-        if (variant?.canPurchase !== true) throw new Error("A cart variant no longer has an exact, available workbook SKU match.");
+      if (!verified) {
+        for (const line of lines) {
+          const variant = productsById.get(line.productId)?.variants.find((item) => item.id === line.variantId);
+          if (variant?.canPurchase !== true) throw new Error("A cart variant no longer has an exact, available workbook SKU match.");
+        }
       }
       mappedCatalog = mappedCatalog.map((product) => productsById.get(product.id) || product);
-      const cart = await adapter.syncCart(cartId, lines);
-      return { cart, products: cartProductIds.map((id) => productsById.get(id)).filter(Boolean) };
+      const cart = await adapter.syncCart(cartId, lines, knownCart);
+      return { cart, products: verified ? [] : cartProductIds.map((id) => productsById.get(id)).filter(Boolean) };
     },
 
     async checkout() {

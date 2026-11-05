@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { createRoot } from "react-dom/client";
 import htm from "htm";
 import { Icon } from "./Icon.js";
@@ -9,6 +9,8 @@ import { catalogService } from "./catalog-service.js";
 import { parseRoute } from "./routes.js";
 import { loadPreviewCatalog } from "./catalog.js";
 import { categoryParents, getParentCategory, hierarchyHref } from "./category-hierarchy.js";
+import { useShopifyCart } from "./use-shopify-cart.js";
+import { ShoppingExperience, useExperience } from "./shopping-experience.js";
 import { ShoppingHeader, ShoppingHome, ShoppingBrowse, ShoppingResults, ShoppingProduct, ShoppingCart, ShoppingFooter, ShoppingBottom, ShoppingInformation } from "./shopping-ui.js";
 
 const html = htm.bind(React.createElement);
@@ -743,7 +745,7 @@ function ContentPage({ page, onNavigate }) {
 }
 
 function Footer({ onNavigate }) {
-  return html`<footer className="site-footer catalog-footer"><div className="footer-main"><div className="footer-brand-col"><span className="brand-name">crystal baaz<span className="brand-dot">.</span></span><small className="footer-preview-note">Client catalog preview · inventory and checkout are under verification.</small></div><div className="footer-links"><div><b>Browse</b><button type="button" onClick=${() => onNavigate("#collections")}>All collections</button><button type="button" onClick=${() => onNavigate("#zodiac")}>Rashi / Zodiac</button><button type="button" onClick=${() => onNavigate("#crystals")}>Crystal types</button><button type="button" onClick=${() => onNavigate("#wishlist")}>Wishlist</button></div><div><b>Information</b><button type="button" onClick=${() => onNavigate("#about")}>About</button><button type="button" onClick=${() => onNavigate("#contact")}>Contact</button><button type="button" onClick=${() => onNavigate("#faq")}>FAQs</button><button type="button" onClick=${() => onNavigate("#policies")}>Policies</button></div></div></div><div className="footer-bottom"><span>© ${new Date().getFullYear()} Crystal Baaz</span><span>INR</span></div></footer>`;
+  return html`<footer className="site-footer catalog-footer"><div className="footer-main"><div className="footer-brand-col"><span className="brand-name">crystal baaz<span className="brand-dot">.</span></span><small className="footer-preview-note">Client catalog preview · inventory and checkout are under verification.</small></div><div className="footer-links"><div><b>Browse</b><button type="button" onClick=${() => onNavigate("#collections")}>All collections</button><button type="button" onClick=${() => onNavigate("#zodiac")}>Rashi / Zodiac</button><button type="button" onClick=${() => onNavigate("#crystals")}>Crystal types</button><button type="button" onClick=${() => onNavigate("#wishlist")}>Wishlist</button></div><div><b>Information</b><button type="button" onClick=${() => onNavigate("#about")}>About</button><button type="button" onClick=${() => onNavigate("#contact")}>Contact</button><button type="button" onClick=${() => onNavigate("#faq")}>FAQs</button><button type="button" onClick=${() => onNavigate("#policies")}>Policies</button></div></div></div><div className="footer-bottom"><span>© ${new Date().getFullYear()} Crystal Baaz</span></div></footer>`;
 }
 
 function HomePage({ catalog, onNavigate, onSearch, onOpen, onAdd, saved, onSave, cart, onUpdate, route }) {
@@ -797,7 +799,8 @@ function HomePage({ catalog, onNavigate, onSearch, onOpen, onAdd, saved, onSave,
   </main>`;
 }
 
-function App() {
+function StoreApp() {
+  const experience = useExperience();
   const [route, setRoute] = useState(() => parseRoute(window.location.hash));
   const productReturnHash = useRef("#collections");
   const [catalog, setCatalog] = useState([]);
@@ -805,8 +808,6 @@ function App() {
   const [online, setOnline] = useState(navigator.onLine);
   useEffect(() => { const update = () => setOnline(navigator.onLine); window.addEventListener("online", update); window.addEventListener("offline", update); return () => { window.removeEventListener("online", update); window.removeEventListener("offline", update); }; }, []);
   const [retryTick, setRetryTick] = useState(0);
-  const [cartError, setCartError] = useState("");
-  const [cartRetry, setCartRetry] = useState(0);
   const cartReturnHash = useRef("#home");
   const [liveCatalog, setLiveCatalog] = useState(false);
   const [pageInfo, setPageInfo] = useState({ hasNextPage: false, endCursor: null });
@@ -815,27 +816,19 @@ function App() {
   const [sort, setSort] = useState(() => parseRoute(window.location.hash).sort || "featured");
   const [typeFilter, setTypeFilter] = useState(() => parseRoute(window.location.hash).facet || "");
   const [query, setQuery] = useState(() => parseRoute(window.location.hash).query || "");
-  const cartStorageKey = catalogService.source === "shopify" ? "crystal-baaz-shopify-cart-lines" : "crystal-bazz-cart";
-  const cartIdStorageKey = catalogService.source === "shopify" ? "crystal-baaz-shopify-cart-id" : "crystal-bazz-shopify-cart";
-  const [cart, setCart] = useState(() => { try { return JSON.parse(localStorage.getItem(cartStorageKey) || "[]"); } catch { return []; } });
-  const [cartId, setCartId] = useState(() => localStorage.getItem(cartIdStorageKey) || "");
-  const [shopifyCart, setShopifyCart] = useState(null);
-  const [cartSyncing, setCartSyncing] = useState(false);
-  const cartSyncQueue = useRef(Promise.resolve());
-  const cartRef = useRef(cart);
-  const cartIdRef = useRef(cartId);
-  const previousCartRef = useRef(cart);
   const [saved, setSaved] = useState(() => { try { return JSON.parse(localStorage.getItem("crystal-bazz-saved") || "[]"); } catch { return []; } });
   const [checkoutBusy, setCheckoutBusy] = useState(false);
   const [toast, setToast] = useState("");
+  const cartState = useShopifyCart({ catalog, setCatalog, onNotice: setToast });
+  const { cart, remoteCart: shopifyCart, pending: cartSyncing, pendingKeys: cartPendingKeys, pendingOperations: cartPendingOperations, error: cartError } = cartState;
 
-  const navigate = (hash) => {
+  const navigate = useCallback((hash) => {
     window.history.pushState({}, "", hash || "#home");
     const next = parseRoute(hash || "#home");
     setRoute(next); setSort(next.sort || "featured"); setTypeFilter(next.facet || ""); setPageSize(24);
     if (next.page === "search") setQuery(next.query);
     window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+  }, []);
   useEffect(() => {
     const syncRoute = () => { const next = parseRoute(window.location.hash); setRoute(next); setSort(next.sort || "featured"); setTypeFilter(next.facet || ""); setPageSize(24); if (next.page === "search") setQuery(next.query); };
     window.addEventListener("popstate", syncRoute); window.addEventListener("hashchange", syncRoute);
@@ -844,38 +837,8 @@ function App() {
   useEffect(() => {
     if (import.meta.env.PROD && "serviceWorker" in navigator) navigator.serviceWorker.register("/service-worker.js").catch(() => {});
   }, []);
-  cartRef.current = cart;
-  cartIdRef.current = cartId;
-  useEffect(() => { localStorage.setItem(cartStorageKey, JSON.stringify(cart)); }, [cart, cartStorageKey]);
   useEffect(() => { localStorage.setItem("crystal-bazz-saved", JSON.stringify(saved)); }, [saved]);
-  useEffect(() => { if (cartId) localStorage.setItem(cartIdStorageKey, cartId); else localStorage.removeItem(cartIdStorageKey); }, [cartId, cartIdStorageKey]);
   useEffect(() => { if (toast) { const timer = setTimeout(() => setToast(""), 3200); return () => clearTimeout(timer); } }, [toast]);
-
-  useEffect(() => {
-    if (!catalogService.isLive) return;
-    const wasEmpty = previousCartRef.current.length === 0;
-    previousCartRef.current = cart;
-    if (cart.length === 0 && (wasEmpty || !cartIdRef.current)) return;
-    setCartError(""); setCartSyncing(true);
-    cartSyncQueue.current = cartSyncQueue.current.catch(() => {}).then(async () => {
-      const lines = cartRef.current;
-      const result = await catalogService.syncCart(cartIdRef.current || null, lines);
-      const remoteCart = result?.cart || null;
-      if (result?.products?.length) setCatalog((current) => {
-        const details = new Map(result.products.map((product) => [product.id, product]));
-        return current.map((product) => details.get(product.id) || product);
-      });
-      cartIdRef.current = remoteCart?.id || "";
-      setCartId(cartIdRef.current);
-      setShopifyCart(remoteCart);
-      if (remoteCart && cartRef.current === lines) { const reconciled = reconcileShopifyCartLines(lines, remoteCart); if (reconciled !== lines) setCart(reconciled); }
-      setCartSyncing(false);
-    }).catch((error) => {
-      setCartSyncing(false);
-      setCartError(error.message || "The Shopify cart could not be updated. Please try again.");
-      setToast(error.message || "The Shopify cart could not be updated. Please try again.");
-    });
-  }, [cart, cartRetry]);
 
   useEffect(() => {
     let active = true;
@@ -907,7 +870,7 @@ function App() {
     return () => { active = false; };
   }, [route.page, route.handle, retryTick]);
 
-  const addToCart = async (product, variantSelector, quantity = 1) => {
+  const addToCart = useCallback(async (product, variantSelector, quantity = 1) => {
     if (!navigator.onLine) { setToast("Reconnect to update your Shopify cart."); return false; }
     let selectedProduct = product;
     if (catalogService.isLive && !product.variantsComplete) {
@@ -932,14 +895,12 @@ function App() {
       setToast(catalogService.isLive ? "No exact, available Shopify variant matches this workbook SKU." : "This SKU has no valid workbook price or is blocked for review.");
       return;
     }
-    setCart((items) => addCartLine(items, selectedProduct, variant?.id || variant?.title || "One size", quantity));
-    setToast(`${selectedProduct.title} added to cart`);
-    return true;
-  };
-  const updateCart = (key, delta) => setCart((items) => changeCartQuantity(items, key, delta));
-  const removeCart = (key) => setCart((items) => removeCartLine(items, key));
-  const toggleSaved = (id) => setSaved((items) => items.includes(id) ? items.filter((item) => item !== id) : [...items, id]);
-  const openProduct = (product) => { productReturnHash.current = window.location.hash || "#collections"; navigate(productHash(product)); };
+    return cartState.add(selectedProduct, variant.id, quantity);
+  }, [cartState.add]);
+  const updateCart = useCallback((key, delta, label) => cartState.update(key, delta, label), [cartState.update]);
+  const removeCart = useCallback((key, label) => cartState.remove(key, label), [cartState.remove]);
+  const toggleSaved = useCallback((id) => setSaved((items) => items.includes(id) ? items.filter((item) => item !== id) : [...items, id]), []);
+  const openProduct = useCallback((product) => { productReturnHash.current = window.location.hash || "#collections"; navigate(productHash(product)); }, [navigate]);
   const checkout = async () => {
     setToast("Checkout remains disabled while the live catalog is being verified.");
   };
@@ -1014,7 +975,7 @@ function App() {
   const cartCount = calculateCart(cart, catalog).count;
   const retryCatalog = () => setRetryTick(value => value + 1);
   const openCart = () => { if (route.page !== "cart") cartReturnHash.current = window.location.hash || "#home"; navigate("#cart"); };
-  const shared = { onOpen: openProduct, onAdd: addToCart, onSave: toggleSaved, saved, cart, onUpdate: updateCart, onNavigate: navigate };
+  const shared = { onOpen: openProduct, onAdd: addToCart, onSave: toggleSaved, saved, cart, pendingKeys: cartPendingKeys, pendingOperations: cartPendingOperations, onUpdate: updateCart, onNavigate: navigate };
   const dataState = { loading, error: !online ? "You are offline. Reconnect to load current Shopify products and prices." : catalogError, onRetry: retryCatalog };
   const sortProducts = value => { setSort(value); setPageSize(24); updateViewOption("sort", value); };
   const pageContent = () => {
@@ -1033,14 +994,15 @@ function App() {
     }
     return html`<${ShoppingInformation} page=${route.page} onNavigate=${navigate}/>`;
   };
-  return html`<div className="shopping-shell" data-catalog-source=${catalogService.source} data-catalog-loaded=${liveCatalog}>
-    <${ShoppingHeader} catalog=${catalog} query=${query} setQuery=${setQuery} onSearch=${term => navigate(`#search/${encodeURIComponent(term || "")}`)} onNavigate=${navigate} onCart=${openCart} cartCount=${cartCount} savedCount=${saved.length} loading=${loading}/>
+  return html`<div className="shopping-shell" data-catalog-source=${catalogService.source} data-catalog-loaded=${liveCatalog} data-route=${route.page} data-cart-pending=${cartSyncing} data-mobile-mode=${experience.mode(route.page, cartCount)}>
+    <${ShoppingHeader} route=${route} onBack=${() => navigate(productReturnHash.current)} catalog=${catalog} query=${query} setQuery=${setQuery} onSearch=${term => navigate(`#search/${encodeURIComponent(term || "")}`)} onNavigate=${navigate} onCart=${openCart} cartCount=${cartCount} remoteCart=${shopifyCart} pending=${cartSyncing} cartError=${cartError} savedCount=${saved.length} loading=${loading}/>
     ${pageContent()}
     <${ShoppingFooter} onNavigate=${navigate}/>
-    ${toast && route.page !== "cart" && html`<div className="toast" role="status">${toast}</div>`}
+    ${toast && route.page !== "cart" && html`<div className="toast" role=${cartError ? "alert" : "status"}><span>${toast}</span>${cartError && html`<button type="button" onClick=${() => { setToast(""); void cartState.retry(); }}>Retry</button>`}</div>`}
+    <${experience.Controls} route=${route} count=${cartCount} remoteCart=${shopifyCart} pending=${cartSyncing} error=${cartError} onCart=${openCart}/>
     <${ShoppingBottom} route=${route} onNavigate=${navigate} onCart=${openCart} count=${cartCount}/>
-    ${route.page === "cart" && html`<${ShoppingCart} cart=${cart} catalog=${catalog} remoteCart=${shopifyCart} syncing=${cartSyncing} error=${!online ? "Reconnect to update your Shopify cart." : cartError} onRetry=${() => setCartRetry(value => value + 1)} onClose=${() => navigate(cartReturnHash.current)} onUpdate=${updateCart} onRemove=${removeCart}/>`}
+    ${route.page === "cart" && html`<${ShoppingCart} cart=${cart} catalog=${catalog} remoteCart=${shopifyCart} syncing=${cartSyncing} pendingKeys=${cartPendingKeys} pendingOperations=${cartPendingOperations} error=${!online ? "Reconnect to update your Shopify cart." : cartError} onRetry=${cartState.retry} onClose=${() => navigate(cartReturnHash.current)} onUpdate=${updateCart} onRemove=${removeCart}/>`}
   </div>`;
 }
 
-createRoot(document.getElementById("root")).render(html`<${App}/>`);
+createRoot(document.getElementById("root")).render(html`<${ShoppingExperience}><${StoreApp}/><//>`);

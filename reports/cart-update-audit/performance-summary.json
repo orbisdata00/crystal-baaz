@@ -1,0 +1,84 @@
+{
+  "environment": {
+    "source": "Live Shopify Storefront API in an isolated temporary Chrome profile",
+    "checkout": "Not used",
+    "profileCart": "Temporary test cart only; emptied and reloaded successfully"
+  },
+  "before": {
+    "samples": [
+      {
+        "case": "First add; no cart existed",
+        "cartLinesBefore": 0,
+        "visibleFeedbackMs": 143,
+        "clickToConfirmedMs": 1611,
+        "graphqlOperations": [
+          { "name": "CrystalBazzProduct", "durationMs": 431.1 },
+          { "name": "CrystalBazzCartCreate", "durationMs": 932.4 }
+        ],
+        "otherStorefrontRequestMs": 233.6
+      },
+      {
+        "case": "Add to existing cart with three lines",
+        "cartLinesBefore": 3,
+        "visibleFeedbackMs": 106.8,
+        "clickToConfirmedMs": 2267.7,
+        "graphqlOperations": [
+          { "name": "CrystalBazzProduct", "durationMs": 383.6 },
+          { "name": "CrystalBazzProduct", "durationMs": 218.8 },
+          { "name": "CrystalBazzProduct", "durationMs": 200.5 },
+          { "name": "CrystalBazzProduct", "durationMs": 279.2 },
+          { "name": "CrystalBazzCart", "durationMs": 207.9 },
+          { "name": "CrystalBazzCartLinesAdd", "durationMs": 769.2 }
+        ]
+      }
+    ],
+    "derived": {
+      "clickToConfirmedMedianMs": 1939.4,
+      "clickToConfirmedSlowestMs": 2267.7,
+      "visibleFeedbackMedianMs": 124.9,
+      "visibleFeedbackSlowestMs": 143,
+      "graphqlOperationDurationMedianMs": 331.4,
+      "graphqlOperationSlowestMs": 932.4,
+      "graphqlOperationsPerAddMedian": 4,
+      "graphqlOperationsPerAddRange": [2, 6]
+    }
+  },
+  "after": {
+    "samples": [
+      {
+        "case": "Add to existing cart with three lines",
+        "cartLinesBefore": 3,
+        "visibleFeedbackMs": 51.1,
+        "clickToConfirmedMs": 969.5,
+        "graphqlOperations": [
+          { "name": "CrystalBazzCartLinesAdd", "durationMs": 887.6 }
+        ]
+      },
+      {
+        "case": "Add to existing cart with four lines",
+        "cartLinesBefore": 4,
+        "visibleFeedbackMs": 47.9,
+        "clickToConfirmedMs": 858.1,
+        "graphqlOperations": [
+          { "name": "CrystalBazzCartLinesAdd", "durationMs": 798.9 }
+        ]
+      }
+    ],
+    "derived": {
+      "clickToConfirmedMedianMs": 913.8,
+      "clickToConfirmedSlowestMs": 969.5,
+      "visibleFeedbackMedianMs": 49.5,
+      "visibleFeedbackSlowestMs": 51.1,
+      "graphqlOperationDurationMedianMs": 843.3,
+      "graphqlOperationSlowestMs": 887.6,
+      "graphqlOperationsPerAddMedian": 1,
+      "graphqlOperationsPerAddRange": [1, 1]
+    }
+  },
+  "comparison": {
+    "populatedCartGraphqlOperations": { "before": 6, "after": 1 },
+    "populatedCartClickToConfirmedMs": { "before": 2267.7, "after": 969.5 },
+    "visibleFeedbackMedianMs": { "before": 124.9, "after": 49.5 },
+    "note": "The after samples used already verified variants. A product with an incomplete variant listing may still require its necessary product verification query before the one cart mutation. The baseline includes first-time CORS setup in one request marked as non-GraphQL; it is excluded from GraphQL counts."
+  }
+}

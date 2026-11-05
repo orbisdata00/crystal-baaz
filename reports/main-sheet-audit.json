@@ -1,0 +1,2874 @@
+{
+  "sourceWorkbook": "New Website Product Catalog (1).xlsx",
+  "mainSequence": [
+    "Best Seller",
+    "New Arrivals",
+    "Rashi | Zodiac",
+    "Bracelets",
+    "Rudraksha",
+    "Crystal",
+    "Puja",
+    "Remedy"
+  ],
+  "mainCategories": [
+    {
+      "id": "best-seller",
+      "label": "Best Seller",
+      "displayOrder": 0,
+      "sourceSheet": "MAIN",
+      "sourceColumn": "Main Categories",
+      "sourceRow": 2,
+      "items": [
+        {
+          "label": "Money",
+          "sourceSheet": "MAIN",
+          "sourceRow": 2,
+          "sourceColumn": "Best Seller",
+          "kind": "collection",
+          "target": "money",
+          "membershipVerified": true,
+          "rule": "money-magnet-main"
+        },
+        {
+          "label": "Rashi Rings",
+          "sourceSheet": "MAIN",
+          "sourceRow": 3,
+          "sourceColumn": "Best Seller",
+          "kind": "group",
+          "target": "group-rashirings",
+          "membershipVerified": true
+        },
+        {
+          "label": "Gems Bracelets",
+          "sourceSheet": "MAIN",
+          "sourceRow": 4,
+          "sourceColumn": "Best Seller",
+          "kind": "group",
+          "target": "group-gembracelets",
+          "membershipVerified": true
+        },
+        {
+          "label": "Rudraksha Mala",
+          "sourceSheet": "MAIN",
+          "sourceRow": 5,
+          "sourceColumn": "Best Seller",
+          "kind": "group",
+          "target": "group-rudrakshamala",
+          "membershipVerified": true
+        },
+        {
+          "label": "Rudraksha Bracelet",
+          "sourceSheet": "MAIN",
+          "sourceRow": 6,
+          "sourceColumn": "Best Seller",
+          "kind": "group",
+          "target": "group-rudrakshabracelet",
+          "membershipVerified": true
+        },
+        {
+          "label": "Zodiac bracelets",
+          "sourceSheet": "MAIN",
+          "sourceRow": 7,
+          "sourceColumn": "Best Seller",
+          "kind": "pending",
+          "target": "zodiacbracelets",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Gifts",
+          "sourceSheet": "MAIN",
+          "sourceRow": 8,
+          "sourceColumn": "Best Seller",
+          "kind": "collection",
+          "target": "gifts",
+          "membershipVerified": true
+        },
+        {
+          "label": "Kavach",
+          "sourceSheet": "MAIN",
+          "sourceRow": 9,
+          "sourceColumn": "Best Seller",
+          "kind": "rule",
+          "target": "kavach-main",
+          "membershipVerified": true,
+          "rule": "kavach-main"
+        },
+        {
+          "label": "Rashi Pendants",
+          "sourceSheet": "MAIN",
+          "sourceRow": 10,
+          "sourceColumn": "Best Seller",
+          "kind": "group",
+          "target": "group-rashipendants",
+          "membershipVerified": true
+        }
+      ],
+      "kind": "category",
+      "target": "best-seller",
+      "membershipVerified": true
+    },
+    {
+      "id": "new-arrivals",
+      "label": "New Arrivals",
+      "displayOrder": 1,
+      "sourceSheet": "MAIN",
+      "sourceColumn": "Main Categories",
+      "sourceRow": 3,
+      "items": [],
+      "kind": "category",
+      "target": "new-arrivals",
+      "membershipVerified": false,
+      "pendingReason": "New arrivals are being curated.",
+      "mappingIssue": "No merchant-approved arrival list or trustworthy original arrival dates supplied; bulk import timestamps are excluded."
+    },
+    {
+      "id": "zodiac",
+      "label": "Rashi / Zodiac",
+      "displayOrder": 2,
+      "sourceSheet": "MAIN",
+      "sourceColumn": "Main Categories",
+      "sourceRow": 4,
+      "items": [
+        {
+          "label": "Bracelet",
+          "sourceSheet": "MAIN",
+          "sourceRow": 2,
+          "sourceColumn": "Rashi | Zodiac",
+          "kind": "pending",
+          "target": "rashibracelets",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Ring",
+          "sourceSheet": "MAIN",
+          "sourceRow": 3,
+          "sourceColumn": "Rashi | Zodiac",
+          "kind": "group",
+          "target": "group-rashirings",
+          "membershipVerified": true
+        },
+        {
+          "label": "Pendant",
+          "sourceSheet": "MAIN",
+          "sourceRow": 4,
+          "sourceColumn": "Rashi | Zodiac",
+          "kind": "group",
+          "target": "group-rashipendants",
+          "membershipVerified": true
+        },
+        {
+          "label": "Shop by rashi",
+          "sourceSheet": "MAIN",
+          "sourceRow": 5,
+          "sourceColumn": "Rashi | Zodiac",
+          "kind": "category",
+          "target": "zodiac-signs",
+          "membershipVerified": true,
+          "relatedParentId": "zodiac-signs"
+        },
+        {
+          "label": "Yantra",
+          "sourceSheet": "MAIN",
+          "sourceRow": 6,
+          "sourceColumn": "Rashi | Zodiac",
+          "kind": "pending",
+          "target": "yantra",
+          "membershipVerified": false
+        },
+        {
+          "label": "Pen",
+          "sourceSheet": "MAIN",
+          "sourceRow": 7,
+          "sourceColumn": "Rashi | Zodiac",
+          "kind": "pending",
+          "target": "pen",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        }
+      ],
+      "kind": "category",
+      "target": "zodiac",
+      "membershipVerified": true
+    },
+    {
+      "id": "bracelets",
+      "label": "Bracelets",
+      "displayOrder": 3,
+      "sourceSheet": "MAIN",
+      "sourceColumn": "Main Categories",
+      "sourceRow": 5,
+      "items": [],
+      "kind": "collection",
+      "target": "bracelets",
+      "membershipVerified": true
+    },
+    {
+      "id": "rudraksha",
+      "label": "Rudraksha",
+      "displayOrder": 4,
+      "sourceSheet": "MAIN",
+      "sourceColumn": "Main Categories",
+      "sourceRow": 6,
+      "items": [
+        {
+          "label": "1-21 Mukhi",
+          "sourceSheet": "MAIN",
+          "sourceRow": 2,
+          "sourceColumn": "Rudraksha",
+          "kind": "pending",
+          "target": "121mukhi",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Kavach",
+          "sourceSheet": "MAIN",
+          "sourceRow": 3,
+          "sourceColumn": "Rudraksha",
+          "kind": "pending",
+          "target": "kavach",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Bracelets",
+          "sourceSheet": "MAIN",
+          "sourceRow": 4,
+          "sourceColumn": "Rudraksha",
+          "kind": "group",
+          "target": "group-rudrakshabracelet",
+          "membershipVerified": true
+        },
+        {
+          "label": "Mala",
+          "sourceSheet": "MAIN",
+          "sourceRow": 5,
+          "sourceColumn": "Rudraksha",
+          "kind": "group",
+          "target": "group-rudrakshamala",
+          "membershipVerified": true
+        },
+        {
+          "label": "Sidh Mala",
+          "sourceSheet": "MAIN",
+          "sourceRow": 6,
+          "sourceColumn": "Rudraksha",
+          "kind": "pending",
+          "target": "sidhmala",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Pendants",
+          "sourceSheet": "MAIN",
+          "sourceRow": 7,
+          "sourceColumn": "Rudraksha",
+          "kind": "collection",
+          "target": "pendants",
+          "membershipVerified": false,
+          "mappingIssue": "Rudraksha-specific membership has not been supplied for this form."
+        },
+        {
+          "label": "Other",
+          "sourceSheet": "MAIN",
+          "sourceRow": 8,
+          "sourceColumn": "Rudraksha",
+          "kind": "pending",
+          "target": "other",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        }
+      ],
+      "kind": "category",
+      "target": "rudraksha",
+      "membershipVerified": true
+    },
+    {
+      "id": "crystals",
+      "label": "Crystal",
+      "displayOrder": 5,
+      "sourceSheet": "MAIN",
+      "sourceColumn": "Main Categories",
+      "sourceRow": 7,
+      "items": [
+        {
+          "label": "Bracelets",
+          "sourceSheet": "MAIN",
+          "sourceRow": 2,
+          "sourceColumn": "Crystal",
+          "kind": "collection",
+          "target": "bracelets",
+          "membershipVerified": true
+        },
+        {
+          "label": "Mala",
+          "sourceSheet": "MAIN",
+          "sourceRow": 3,
+          "sourceColumn": "Crystal",
+          "kind": "collection",
+          "target": "mala",
+          "membershipVerified": true
+        },
+        {
+          "label": "Earrings/Tops",
+          "sourceSheet": "MAIN",
+          "sourceRow": 4,
+          "sourceColumn": "Crystal",
+          "kind": "collection",
+          "target": "earrings-tops",
+          "membershipVerified": true
+        },
+        {
+          "label": "Pendants",
+          "sourceSheet": "MAIN",
+          "sourceRow": 5,
+          "sourceColumn": "Crystal",
+          "kind": "collection",
+          "target": "pendants",
+          "membershipVerified": true
+        },
+        {
+          "label": "Anklets",
+          "sourceSheet": "MAIN",
+          "sourceRow": 6,
+          "sourceColumn": "Crystal",
+          "kind": "collection",
+          "target": "anklet",
+          "membershipVerified": true
+        },
+        {
+          "label": "Frames",
+          "sourceSheet": "MAIN",
+          "sourceRow": 7,
+          "sourceColumn": "Crystal",
+          "kind": "collection",
+          "target": "frames",
+          "membershipVerified": true
+        },
+        {
+          "label": "Sphere",
+          "sourceSheet": "MAIN",
+          "sourceRow": 8,
+          "sourceColumn": "Crystal",
+          "kind": "collection",
+          "target": "sphere",
+          "membershipVerified": true
+        },
+        {
+          "label": "Pyramid",
+          "sourceSheet": "MAIN",
+          "sourceRow": 9,
+          "sourceColumn": "Crystal",
+          "kind": "collection",
+          "target": "pyramid",
+          "membershipVerified": true
+        },
+        {
+          "label": "Cluster",
+          "sourceSheet": "MAIN",
+          "sourceRow": 10,
+          "sourceColumn": "Crystal",
+          "kind": "collection",
+          "target": "cluster",
+          "membershipVerified": true
+        },
+        {
+          "label": "Rings",
+          "sourceSheet": "MAIN",
+          "sourceRow": 11,
+          "sourceColumn": "Crystal",
+          "kind": "collection",
+          "target": "rings",
+          "membershipVerified": true
+        },
+        {
+          "label": "Bangle",
+          "sourceSheet": "MAIN",
+          "sourceRow": 12,
+          "sourceColumn": "Crystal",
+          "kind": "collection",
+          "target": "bangle",
+          "membershipVerified": true
+        },
+        {
+          "label": "Agate slices",
+          "sourceSheet": "MAIN",
+          "sourceRow": 13,
+          "sourceColumn": "Crystal",
+          "kind": "collection",
+          "target": "agate-slices",
+          "membershipVerified": true
+        },
+        {
+          "label": "Angels",
+          "sourceSheet": "MAIN",
+          "sourceRow": 14,
+          "sourceColumn": "Crystal",
+          "kind": "collection",
+          "target": "angels",
+          "membershipVerified": true
+        },
+        {
+          "label": "Knife",
+          "sourceSheet": "MAIN",
+          "sourceRow": 15,
+          "sourceColumn": "Crystal",
+          "kind": "collection",
+          "target": "knife",
+          "membershipVerified": true
+        },
+        {
+          "label": "Diyas",
+          "sourceSheet": "MAIN",
+          "sourceRow": 16,
+          "sourceColumn": "Crystal",
+          "kind": "collection",
+          "target": "diyas",
+          "membershipVerified": true
+        },
+        {
+          "label": "Glass",
+          "sourceSheet": "MAIN",
+          "sourceRow": 17,
+          "sourceColumn": "Crystal",
+          "kind": "collection",
+          "target": "glass",
+          "membershipVerified": true
+        },
+        {
+          "label": "Hanger",
+          "sourceSheet": "MAIN",
+          "sourceRow": 18,
+          "sourceColumn": "Crystal",
+          "kind": "collection",
+          "target": "hanger",
+          "membershipVerified": true
+        },
+        {
+          "label": "Heart",
+          "sourceSheet": "MAIN",
+          "sourceRow": 19,
+          "sourceColumn": "Crystal",
+          "kind": "pending",
+          "target": "heart",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Keyrings",
+          "sourceSheet": "MAIN",
+          "sourceRow": 20,
+          "sourceColumn": "Crystal",
+          "kind": "collection",
+          "target": "keyrings",
+          "membershipVerified": true
+        },
+        {
+          "label": "Pens",
+          "sourceSheet": "MAIN",
+          "sourceRow": 21,
+          "sourceColumn": "Crystal",
+          "kind": "pending",
+          "target": "pens",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Pencil/Towers",
+          "sourceSheet": "MAIN",
+          "sourceRow": 22,
+          "sourceColumn": "Crystal",
+          "kind": "collection",
+          "target": "pencil-towers",
+          "membershipVerified": true
+        },
+        {
+          "label": "Rollers",
+          "sourceSheet": "MAIN",
+          "sourceRow": 23,
+          "sourceColumn": "Crystal",
+          "kind": "collection",
+          "target": "rollers",
+          "membershipVerified": true
+        },
+        {
+          "label": "Selenite plates",
+          "sourceSheet": "MAIN",
+          "sourceRow": 24,
+          "sourceColumn": "Crystal",
+          "kind": "collection",
+          "target": "selenite-plates",
+          "membershipVerified": true
+        },
+        {
+          "label": "Statue/Murti",
+          "sourceSheet": "MAIN",
+          "sourceRow": 25,
+          "sourceColumn": "Crystal",
+          "kind": "collection",
+          "target": "statue-murti",
+          "membershipVerified": true
+        },
+        {
+          "label": "Tortoise/Turtle",
+          "sourceSheet": "MAIN",
+          "sourceRow": 26,
+          "sourceColumn": "Crystal",
+          "kind": "collection",
+          "target": "tortoise-turtle",
+          "membershipVerified": true
+        },
+        {
+          "label": "Trees",
+          "sourceSheet": "MAIN",
+          "sourceRow": 27,
+          "sourceColumn": "Crystal",
+          "kind": "collection",
+          "target": "trees",
+          "membershipVerified": true
+        },
+        {
+          "label": "Tumbles",
+          "sourceSheet": "MAIN",
+          "sourceRow": 28,
+          "sourceColumn": "Crystal",
+          "kind": "collection",
+          "target": "tumbles",
+          "membershipVerified": true
+        },
+        {
+          "label": "Yantra",
+          "sourceSheet": "MAIN",
+          "sourceRow": 29,
+          "sourceColumn": "Crystal",
+          "kind": "collection",
+          "target": "yantra",
+          "membershipVerified": true
+        },
+        {
+          "label": "Zibu coins",
+          "sourceSheet": "MAIN",
+          "sourceRow": 30,
+          "sourceColumn": "Crystal",
+          "kind": "collection",
+          "target": "zibu-coins",
+          "membershipVerified": true
+        },
+        {
+          "label": "Owl",
+          "sourceSheet": "MAIN",
+          "sourceRow": 31,
+          "sourceColumn": "Crystal",
+          "kind": "pending",
+          "target": "owl",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Clock/Watch",
+          "sourceSheet": "MAIN",
+          "sourceRow": 32,
+          "sourceColumn": "Crystal",
+          "kind": "collection",
+          "target": "clock-watch",
+          "membershipVerified": true
+        },
+        {
+          "label": "Vase",
+          "sourceSheet": "MAIN",
+          "sourceRow": 33,
+          "sourceColumn": "Crystal",
+          "kind": "collection",
+          "target": "vase",
+          "membershipVerified": true
+        },
+        {
+          "label": "Potli",
+          "sourceSheet": "MAIN",
+          "sourceRow": 34,
+          "sourceColumn": "Crystal",
+          "kind": "pending",
+          "target": "potli",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Bowl",
+          "sourceSheet": "MAIN",
+          "sourceRow": 35,
+          "sourceColumn": "Crystal",
+          "kind": "collection",
+          "target": "bowl",
+          "membershipVerified": true
+        },
+        {
+          "label": "Shivling",
+          "sourceSheet": "MAIN",
+          "sourceRow": 36,
+          "sourceColumn": "Crystal",
+          "kind": "collection",
+          "target": "shivling",
+          "membershipVerified": true
+        }
+      ],
+      "kind": "category",
+      "target": "crystals",
+      "membershipVerified": true
+    },
+    {
+      "id": "pooja",
+      "label": "Puja",
+      "displayOrder": 6,
+      "sourceSheet": "MAIN",
+      "sourceColumn": "Main Categories",
+      "sourceRow": 8,
+      "items": [
+        {
+          "label": "Shaligram",
+          "sourceSheet": "MAIN",
+          "sourceRow": 2,
+          "sourceColumn": "Puja",
+          "kind": "collection",
+          "target": "shaligram",
+          "membershipVerified": true
+        },
+        {
+          "label": "Ganesh ji murti",
+          "sourceSheet": "MAIN",
+          "sourceRow": 3,
+          "sourceColumn": "Puja",
+          "kind": "collection",
+          "target": "ganesh-ji-murti",
+          "membershipVerified": true
+        },
+        {
+          "label": "Shivling",
+          "sourceSheet": "MAIN",
+          "sourceRow": 4,
+          "sourceColumn": "Puja",
+          "kind": "collection",
+          "target": "shivling",
+          "membershipVerified": true
+        },
+        {
+          "label": "Yantra",
+          "sourceSheet": "MAIN",
+          "sourceRow": 5,
+          "sourceColumn": "Puja",
+          "kind": "collection",
+          "target": "yantra",
+          "membershipVerified": true
+        },
+        {
+          "label": "Jaap mala",
+          "sourceSheet": "MAIN",
+          "sourceRow": 6,
+          "sourceColumn": "Puja",
+          "kind": "collection",
+          "target": "jaap-mala",
+          "membershipVerified": true
+        },
+        {
+          "label": "Diya",
+          "sourceSheet": "MAIN",
+          "sourceRow": 7,
+          "sourceColumn": "Puja",
+          "kind": "collection",
+          "target": "diyas",
+          "membershipVerified": true
+        },
+        {
+          "label": "Parad laxmi and ganesh ji",
+          "sourceSheet": "MAIN",
+          "sourceRow": 8,
+          "sourceColumn": "Puja",
+          "kind": "group",
+          "target": "group-paradlaxmiandganeshji",
+          "membershipVerified": true
+        },
+        {
+          "label": "Charan Paduka box",
+          "sourceSheet": "MAIN",
+          "sourceRow": 9,
+          "sourceColumn": "Puja",
+          "kind": "group",
+          "target": "group-charanpadukabox",
+          "membershipVerified": true
+        }
+      ],
+      "kind": "category",
+      "target": "pooja",
+      "membershipVerified": true
+    },
+    {
+      "id": "intentions",
+      "label": "Remedy",
+      "displayOrder": 7,
+      "sourceSheet": "MAIN",
+      "sourceColumn": "Main Categories",
+      "sourceRow": 9,
+      "items": [
+        {
+          "label": "Money Magnet",
+          "sourceSheet": "MAIN",
+          "sourceRow": 2,
+          "sourceColumn": "Remedy",
+          "kind": "collection",
+          "target": "money",
+          "membershipVerified": true
+        },
+        {
+          "label": "Depression and Stress Relief",
+          "sourceSheet": "MAIN",
+          "sourceRow": 3,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "depressionandstressrelief",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Anger Control",
+          "sourceSheet": "MAIN",
+          "sourceRow": 4,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "angercontrol",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Memory, Focus and Concentration",
+          "sourceSheet": "MAIN",
+          "sourceRow": 5,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "memoryfocusandconcentration",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Loneliness",
+          "sourceSheet": "MAIN",
+          "sourceRow": 6,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "loneliness",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Patience & Tolerance",
+          "sourceSheet": "MAIN",
+          "sourceRow": 7,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "patiencetolerance",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Confidence & Self Esteem",
+          "sourceSheet": "MAIN",
+          "sourceRow": 8,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "confidenceselfesteem",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Leadership",
+          "sourceSheet": "MAIN",
+          "sourceRow": 9,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "leadership",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Study, Learning & Education",
+          "sourceSheet": "MAIN",
+          "sourceRow": 10,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "studylearningeducation",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Love & Relationship",
+          "sourceSheet": "MAIN",
+          "sourceRow": 11,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "loverelationship",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Marriage Problems & Desired Love",
+          "sourceSheet": "MAIN",
+          "sourceRow": 12,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "marriageproblemsdesiredlove",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Back Pain Relief",
+          "sourceSheet": "MAIN",
+          "sourceRow": 13,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "backpainrelief",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Body pain releif",
+          "sourceSheet": "MAIN",
+          "sourceRow": 14,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "bodypainreleif",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Black Magic Protection",
+          "sourceSheet": "MAIN",
+          "sourceRow": 15,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "blackmagicprotection",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Harmony in Home",
+          "sourceSheet": "MAIN",
+          "sourceRow": 16,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "harmonyinhome",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Top Healers",
+          "sourceSheet": "MAIN",
+          "sourceRow": 17,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "tophealers",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Motivation",
+          "sourceSheet": "MAIN",
+          "sourceRow": 18,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "motivation",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Addiction Relief",
+          "sourceSheet": "MAIN",
+          "sourceRow": 19,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "addictionrelief",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Weight Control",
+          "sourceSheet": "MAIN",
+          "sourceRow": 20,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "weightcontrol",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Weight Gain",
+          "sourceSheet": "MAIN",
+          "sourceRow": 21,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "weightgain",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Recovery After Illness or Injury",
+          "sourceSheet": "MAIN",
+          "sourceRow": 22,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "recoveryafterillnessorinjury",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Good Sleep",
+          "sourceSheet": "MAIN",
+          "sourceRow": 23,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "goodsleep",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Protection from Negative Energies",
+          "sourceSheet": "MAIN",
+          "sourceRow": 24,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "protectionfromnegativeenergies",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Success",
+          "sourceSheet": "MAIN",
+          "sourceRow": 25,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "success",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Beginners",
+          "sourceSheet": "MAIN",
+          "sourceRow": 26,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "beginners",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Blood Pressure Relief",
+          "sourceSheet": "MAIN",
+          "sourceRow": 27,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "bloodpressurerelief",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Health (Overall) & Longevity",
+          "sourceSheet": "MAIN",
+          "sourceRow": 28,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "healthoveralllongevity",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Kidney Health (Overall)",
+          "sourceSheet": "MAIN",
+          "sourceRow": 29,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "kidneyhealthoverall",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Migraine & Headache Relief",
+          "sourceSheet": "MAIN",
+          "sourceRow": 30,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "migraineheadacherelief",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Thyroid Relief",
+          "sourceSheet": "MAIN",
+          "sourceRow": 31,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "thyroidrelief",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Diabetes Relief",
+          "sourceSheet": "MAIN",
+          "sourceRow": 32,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "diabetesrelief",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Cholesterol Relief",
+          "sourceSheet": "MAIN",
+          "sourceRow": 33,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "cholesterolrelief",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Arthritis Pain Relief",
+          "sourceSheet": "MAIN",
+          "sourceRow": 34,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "arthritispainrelief",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Asthma & Breathe Easy",
+          "sourceSheet": "MAIN",
+          "sourceRow": 35,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "asthmabreatheeasy",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Allergy Relief",
+          "sourceSheet": "MAIN",
+          "sourceRow": 36,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "allergyrelief",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Fertility & Pregnancy",
+          "sourceSheet": "MAIN",
+          "sourceRow": 37,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "fertilitypregnancy",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "PCOD - PCOS Problem",
+          "sourceSheet": "MAIN",
+          "sourceRow": 38,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "pcodpcosproblem",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Court Case & Legal Issues",
+          "sourceSheet": "MAIN",
+          "sourceRow": 39,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "courtcaselegalissues",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Positive Energy",
+          "sourceSheet": "MAIN",
+          "sourceRow": 40,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "positiveenergy",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Aries Rashi Bracelet | मेष राशि (Mesh) (Zodiac Rashi Bracelets)",
+          "sourceSheet": "MAIN",
+          "sourceRow": 41,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "ariesrashibraceletmeshzodiacrashibracelets",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Taurus Rashi Bracelet | वृषभ राशि (Vrishabh) (Zodiac Rashi Bracelets)",
+          "sourceSheet": "MAIN",
+          "sourceRow": 42,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "taurusrashibraceletvrishabhzodiacrashibracelets",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Gemini Rashi Bracelet | मिथुन राशि (Mithun) (Zodiac Rashi Bracelets)",
+          "sourceSheet": "MAIN",
+          "sourceRow": 43,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "geminirashibraceletmithunzodiacrashibracelets",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Cancer Rashi Bracelet | कर्क राशि (Kark) (Zodiac Rashi Bracelets)",
+          "sourceSheet": "MAIN",
+          "sourceRow": 44,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "cancerrashibraceletkarkzodiacrashibracelets",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Leo Rashi Bracelet | सिंह राशि (Singh) (Zodiac Rashi Bracelets)",
+          "sourceSheet": "MAIN",
+          "sourceRow": 45,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "leorashibraceletsinghzodiacrashibracelets",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Virgo Rashi Bracelet | कन्या राशि (Kanya) (Zodiac Rashi Bracelets)",
+          "sourceSheet": "MAIN",
+          "sourceRow": 46,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "virgorashibraceletkanyazodiacrashibracelets",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Sagittarius Rashi Bracelet | धनु राशि (Dhanu) (Zodiac Rashi Bracelets)",
+          "sourceSheet": "MAIN",
+          "sourceRow": 47,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "sagittariusrashibraceletdhanuzodiacrashibracelets",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Libra Rashi Bracelet | तुला राशि (Tula) (Zodiac Rashi Bracelets)",
+          "sourceSheet": "MAIN",
+          "sourceRow": 48,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "librarashibracelettulazodiacrashibracelets",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Scorpio Rashi Bracelet | वृश्चिक राशि (Vrishchik) (Zodiac Rashi Bracelets)",
+          "sourceSheet": "MAIN",
+          "sourceRow": 49,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "scorpiorashibraceletvrishchikzodiacrashibracelets",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Capricorn Rashi Bracelet | मकर राशि (Makar) (Zodiac Rashi Bracelets)",
+          "sourceSheet": "MAIN",
+          "sourceRow": 50,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "capricornrashibraceletmakarzodiacrashibracelets",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Aquarius Rashi Bracelet | कुंभ राशि (Kumbh) (Zodiac Rashi Bracelets)",
+          "sourceSheet": "MAIN",
+          "sourceRow": 51,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "aquariusrashibraceletkumbhzodiacrashibracelets",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Pisces Rashi Bracelet | मीन राशि (Meen) (Zodiac Rashi Bracelets)",
+          "sourceSheet": "MAIN",
+          "sourceRow": 52,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "piscesrashibraceletmeenzodiacrashibracelets",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Ruling Number 1",
+          "sourceSheet": "MAIN",
+          "sourceRow": 53,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "rulingnumber1",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Ruling Number 2",
+          "sourceSheet": "MAIN",
+          "sourceRow": 54,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "rulingnumber2",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Ruling Number 3",
+          "sourceSheet": "MAIN",
+          "sourceRow": 55,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "rulingnumber3",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Ruling Number 4",
+          "sourceSheet": "MAIN",
+          "sourceRow": 56,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "rulingnumber4",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Ruling Number 5",
+          "sourceSheet": "MAIN",
+          "sourceRow": 57,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "rulingnumber5",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Ruling Number 6",
+          "sourceSheet": "MAIN",
+          "sourceRow": 58,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "rulingnumber6",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Ruling Number 7",
+          "sourceSheet": "MAIN",
+          "sourceRow": 59,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "rulingnumber7",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Ruling Number 8",
+          "sourceSheet": "MAIN",
+          "sourceRow": 60,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "rulingnumber8",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Ruling Number 9",
+          "sourceSheet": "MAIN",
+          "sourceRow": 61,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "rulingnumber9",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Missing Number 1",
+          "sourceSheet": "MAIN",
+          "sourceRow": 62,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "missingnumber1",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Missing Number 2",
+          "sourceSheet": "MAIN",
+          "sourceRow": 63,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "missingnumber2",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Missing Number 3",
+          "sourceSheet": "MAIN",
+          "sourceRow": 64,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "missingnumber3",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Missing Number 4",
+          "sourceSheet": "MAIN",
+          "sourceRow": 65,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "missingnumber4",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Missing Number 5",
+          "sourceSheet": "MAIN",
+          "sourceRow": 66,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "missingnumber5",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Missing Number 6",
+          "sourceSheet": "MAIN",
+          "sourceRow": 67,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "missingnumber6",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Missing Number 7",
+          "sourceSheet": "MAIN",
+          "sourceRow": 68,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "missingnumber7",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Missing Number 8",
+          "sourceSheet": "MAIN",
+          "sourceRow": 69,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "missingnumber8",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        },
+        {
+          "label": "Missing Number 9",
+          "sourceSheet": "MAIN",
+          "sourceRow": 70,
+          "sourceColumn": "Remedy",
+          "kind": "pending",
+          "target": "missingnumber9",
+          "membershipVerified": false,
+          "mappingIssue": "Product selection is being prepared."
+        }
+      ],
+      "kind": "category",
+      "target": "intentions",
+      "membershipVerified": true
+    }
+  ],
+  "zodiacSigns": [
+    {
+      "label": "Aries - मेष",
+      "kind": "zodiac",
+      "target": "Aries",
+      "membershipVerified": false,
+      "sourceRow": 2,
+      "mappingIssue": "Explicit product-to-sign membership is not supplied."
+    },
+    {
+      "label": "Taurus - वृषभ",
+      "kind": "zodiac",
+      "target": "Taurus",
+      "membershipVerified": false,
+      "sourceRow": 3,
+      "mappingIssue": "Explicit product-to-sign membership is not supplied."
+    },
+    {
+      "label": "Gemini – मिथुन",
+      "kind": "zodiac",
+      "target": "Gemini",
+      "membershipVerified": false,
+      "sourceRow": 4,
+      "mappingIssue": "Explicit product-to-sign membership is not supplied."
+    },
+    {
+      "label": "Cancer – कर्क",
+      "kind": "zodiac",
+      "target": "Cancer",
+      "membershipVerified": false,
+      "sourceRow": 5,
+      "mappingIssue": "Explicit product-to-sign membership is not supplied."
+    },
+    {
+      "label": "Leo – सिंह",
+      "kind": "zodiac",
+      "target": "Leo",
+      "membershipVerified": false,
+      "sourceRow": 6,
+      "mappingIssue": "Explicit product-to-sign membership is not supplied."
+    },
+    {
+      "label": "Virgo – कन्या",
+      "kind": "zodiac",
+      "target": "Virgo",
+      "membershipVerified": false,
+      "sourceRow": 7,
+      "mappingIssue": "Explicit product-to-sign membership is not supplied."
+    },
+    {
+      "label": "Libra – तुला",
+      "kind": "zodiac",
+      "target": "Libra",
+      "membershipVerified": false,
+      "sourceRow": 8,
+      "mappingIssue": "Explicit product-to-sign membership is not supplied."
+    },
+    {
+      "label": "Scorpio – वृश्चिक",
+      "kind": "zodiac",
+      "target": "Scorpio",
+      "membershipVerified": false,
+      "sourceRow": 9,
+      "mappingIssue": "Explicit product-to-sign membership is not supplied."
+    },
+    {
+      "label": "Sagittarius– धनु",
+      "kind": "zodiac",
+      "target": "Sagittarius–",
+      "membershipVerified": false,
+      "sourceRow": 10,
+      "mappingIssue": "Explicit product-to-sign membership is not supplied."
+    },
+    {
+      "label": "Capricorn – मकर",
+      "kind": "zodiac",
+      "target": "Capricorn",
+      "membershipVerified": false,
+      "sourceRow": 11,
+      "mappingIssue": "Explicit product-to-sign membership is not supplied."
+    },
+    {
+      "label": "Aquarius – कुंभ",
+      "kind": "zodiac",
+      "target": "Aquarius",
+      "membershipVerified": false,
+      "sourceRow": 12,
+      "mappingIssue": "Explicit product-to-sign membership is not supplied."
+    },
+    {
+      "label": "Pisces – मीन",
+      "kind": "zodiac",
+      "target": "Pisces",
+      "membershipVerified": false,
+      "sourceRow": 13,
+      "mappingIssue": "Explicit product-to-sign membership is not supplied."
+    }
+  ],
+  "allPopulatedMainCells": [
+    {
+      "cell": "A1",
+      "value": "Main Categories"
+    },
+    {
+      "cell": "C1",
+      "value": "Best Seller"
+    },
+    {
+      "cell": "F1",
+      "value": "Rashi | Zodiac"
+    },
+    {
+      "cell": "H1",
+      "value": "Shop By rashi"
+    },
+    {
+      "cell": "J1",
+      "value": "Bracelets"
+    },
+    {
+      "cell": "L1",
+      "value": "Rudraksha"
+    },
+    {
+      "cell": "N1",
+      "value": "Crystal"
+    },
+    {
+      "cell": "P1",
+      "value": "Puja"
+    },
+    {
+      "cell": "R1",
+      "value": "Remedy"
+    },
+    {
+      "cell": "U1",
+      "value": "Fixed Products in each category"
+    },
+    {
+      "cell": "AB1",
+      "value": "Rashi Pendants"
+    },
+    {
+      "cell": "AD1",
+      "value": "Gem Bracelets in best seller category"
+    },
+    {
+      "cell": "A2",
+      "value": "Best Seller"
+    },
+    {
+      "cell": "C2",
+      "value": "Money"
+    },
+    {
+      "cell": "D2",
+      "value": "Add all pyrite items and titles including money, dhan word in them. I will share fixed products"
+    },
+    {
+      "cell": "F2",
+      "value": "Bracelet"
+    },
+    {
+      "cell": "H2",
+      "value": "Aries - मेष"
+    },
+    {
+      "cell": "L2",
+      "value": "1-21 Mukhi"
+    },
+    {
+      "cell": "N2",
+      "value": "Bracelets"
+    },
+    {
+      "cell": "P2",
+      "value": "Shaligram"
+    },
+    {
+      "cell": "R2",
+      "value": "Money Magnet"
+    },
+    {
+      "cell": "U2",
+      "value": "Money & Abundance"
+    },
+    {
+      "cell": "V2",
+      "value": "Rudraksh Bracelet"
+    },
+    {
+      "cell": "W2",
+      "value": "Rudraksha Mala"
+    },
+    {
+      "cell": "X2",
+      "value": "Karungali"
+    },
+    {
+      "cell": "Y2",
+      "value": "Rashi Rings"
+    },
+    {
+      "cell": "Z2",
+      "value": "Gems Bracelets"
+    },
+    {
+      "cell": "AB2",
+      "value": "These are in the process of making. You can create a category. Listings will be provided soon."
+    },
+    {
+      "cell": "AD2",
+      "value": "Fixed products are given, besides those add these as well:"
+    },
+    {
+      "cell": "A3",
+      "value": "New Arrivals"
+    },
+    {
+      "cell": "C3",
+      "value": "Rashi Rings"
+    },
+    {
+      "cell": "D3",
+      "value": "List given"
+    },
+    {
+      "cell": "F3",
+      "value": "Ring"
+    },
+    {
+      "cell": "H3",
+      "value": "Taurus - वृषभ "
+    },
+    {
+      "cell": "L3",
+      "value": "Kavach"
+    },
+    {
+      "cell": "N3",
+      "value": "Mala"
+    },
+    {
+      "cell": "P3",
+      "value": "Ganesh ji murti"
+    },
+    {
+      "cell": "R3",
+      "value": "Depression and Stress Relief"
+    },
+    {
+      "cell": "U3",
+      "value": "https://rudrakshalife.com/products/money-magnet-advance"
+    },
+    {
+      "cell": "V3",
+      "value": "https://rudrakshalife.com/products/rudraksha-bracelet-1"
+    },
+    {
+      "cell": "W3",
+      "value": "https://rudrakshalife.com/products/5-mukhi-rudraksha-mala-6mm"
+    },
+    {
+      "cell": "X3",
+      "value": "https://rudrakshalife.com/products/karungali-shreeyantra-rudraksha-mala-6mm"
+    },
+    {
+      "cell": "Y3",
+      "value": "https://rudrakshalife.com/products/natural-emerald-panna-ring-7-ratti"
+    },
+    {
+      "cell": "Z3",
+      "value": "Pyrite: https://rudrakshalife.com/products/pyrite-bracelet-high-energy-money-magnet"
+    },
+    {
+      "cell": "A4",
+      "value": "Rashi | Zodiac"
+    },
+    {
+      "cell": "C4",
+      "value": "Gems Bracelets"
+    },
+    {
+      "cell": "D4",
+      "value": "I will share fixed products"
+    },
+    {
+      "cell": "F4",
+      "value": "Pendant"
+    },
+    {
+      "cell": "H4",
+      "value": "Gemini – मिथुन"
+    },
+    {
+      "cell": "L4",
+      "value": "Bracelets"
+    },
+    {
+      "cell": "N4",
+      "value": "Earrings/Tops"
+    },
+    {
+      "cell": "P4",
+      "value": "Shivling"
+    },
+    {
+      "cell": "R4",
+      "value": "Anger Control"
+    },
+    {
+      "cell": "U4",
+      "value": "https://certifiedcrystal.com/products/money-amp-luck-bracelet"
+    },
+    {
+      "cell": "V4",
+      "value": "https://rudrakshalife.com/products/5-mukhi-rudraksha-bracelet-indonesia"
+    },
+    {
+      "cell": "W4",
+      "value": "https://rudrakshalife.com/products/5-mukhi-rudraksha-jaap-mala"
+    },
+    {
+      "cell": "X4",
+      "value": "https://rudrakshalife.com/products/karungali-jaap-mala-8mm-with-knot"
+    },
+    {
+      "cell": "Y4",
+      "value": "https://rudrakshalife.com/products/pearl-moti-ring-7-ratti"
+    },
+    {
+      "cell": "Z4",
+      "value": "Money Magnet: https://rudrakshalife.com/products/money-magnet-advance"
+    },
+    {
+      "cell": "A5",
+      "value": "Bracelets"
+    },
+    {
+      "cell": "C5",
+      "value": "Rudraksha Mala"
+    },
+    {
+      "cell": "D5",
+      "value": "I will share fixed products"
+    },
+    {
+      "cell": "F5",
+      "value": "Shop by rashi"
+    },
+    {
+      "cell": "H5",
+      "value": "Cancer – कर्क"
+    },
+    {
+      "cell": "L5",
+      "value": "Mala"
+    },
+    {
+      "cell": "N5",
+      "value": "Pendants"
+    },
+    {
+      "cell": "P5",
+      "value": "Yantra"
+    },
+    {
+      "cell": "R5",
+      "value": "Memory, Focus and Concentration"
+    },
+    {
+      "cell": "U5",
+      "value": "https://rudrakshalife.com/products/pyrite-bracelet-high-energy-money-magnet"
+    },
+    {
+      "cell": "V5",
+      "value": "https://rudrakshalife.com/products/5-mukhi-rudraksha-bracelet-golden-magnetic-lock-super-quality"
+    },
+    {
+      "cell": "W5",
+      "value": "https://rudrakshalife.com/products/parad-mala"
+    },
+    {
+      "cell": "X5",
+      "value": "https://rudrakshalife.com/products/5-mukhi-rudraksha-karungali-jaap-mala-8mm"
+    },
+    {
+      "cell": "Y5",
+      "value": "https://rudrakshalife.com/products/blue-sapphire-ring-5-ratti-1"
+    },
+    {
+      "cell": "Z5",
+      "value": "Amethyst: https://rudrakshalife.com/products/amethyst-bracelet"
+    },
+    {
+      "cell": "A6",
+      "value": "Rudraksha"
+    },
+    {
+      "cell": "C6",
+      "value": "Rudraksha Bracelet"
+    },
+    {
+      "cell": "D6",
+      "value": "I will share fixed products"
+    },
+    {
+      "cell": "F6",
+      "value": "Yantra"
+    },
+    {
+      "cell": "H6",
+      "value": "Leo – सिंह"
+    },
+    {
+      "cell": "L6",
+      "value": "Sidh Mala"
+    },
+    {
+      "cell": "N6",
+      "value": "Anklets"
+    },
+    {
+      "cell": "P6",
+      "value": "Jaap mala"
+    },
+    {
+      "cell": "R6",
+      "value": "Loneliness"
+    },
+    {
+      "cell": "U6",
+      "value": "https://rudrakshalife.com/products/pyrite-stone-anklet-payal-sunehri-pyrite-bead-anklet-for-wealth-money-abundance-jewelry-abundance-success-gift-healing-crystal-anklet"
+    },
+    {
+      "cell": "V6",
+      "value": "https://rudrakshalife.com/products/5-mukhi-rudraksha-chain-bracelet-super-quality-golden-metal"
+    },
+    {
+      "cell": "W6",
+      "value": "https://rudrakshalife.com/products/5-mukhi-rudraksha-mala-12-15mm"
+    },
+    {
+      "cell": "X6",
+      "value": "https://rudrakshalife.com/products/karungali-shankh"
+    },
+    {
+      "cell": "Y6",
+      "value": "https://rudrakshalife.com/products/yellow-sapphire-ring-5-ratti"
+    },
+    {
+      "cell": "Z6",
+      "value": "Rose Quartz: https://rudrakshalife.com/products/rose-quartz-budha-bracelet"
+    },
+    {
+      "cell": "A7",
+      "value": "Crystal"
+    },
+    {
+      "cell": "C7",
+      "value": "Zodiac bracelets"
+    },
+    {
+      "cell": "D7",
+      "value": "List given"
+    },
+    {
+      "cell": "F7",
+      "value": "Pen"
+    },
+    {
+      "cell": "H7",
+      "value": "Virgo – कन्या"
+    },
+    {
+      "cell": "L7",
+      "value": "Pendants"
+    },
+    {
+      "cell": "N7",
+      "value": "Frames"
+    },
+    {
+      "cell": "P7",
+      "value": "Diya"
+    },
+    {
+      "cell": "R7",
+      "value": "Patience & Tolerance"
+    },
+    {
+      "cell": "U7",
+      "value": "https://rudrakshalife.com/products/money-magnet-owl-for-wealth-protection-dhan-varsha-murga-ullu-for-prosperity-laxmi-ullu-vastu-remedy-for-financial-growth"
+    },
+    {
+      "cell": "V7",
+      "value": "https://rudrakshalife.com/products/rudraksha-chain-bracelet"
+    },
+    {
+      "cell": "W7",
+      "value": "https://rudrakshalife.com/products/5-mukhi-rudraksha-mala-5-10mm"
+    },
+    {
+      "cell": "X7",
+      "value": "https://rudrakshalife.com/products/karungali-mala"
+    },
+    {
+      "cell": "Y7",
+      "value": "https://rudrakshalife.com/products/natural-coral-moonga-ring-5-ratti"
+    },
+    {
+      "cell": "Z7",
+      "value": "Tiger Eye: https://rudrakshalife.com/products/tigers-eye-bracelet"
+    },
+    {
+      "cell": "A8",
+      "value": "Puja"
+    },
+    {
+      "cell": "C8",
+      "value": "Gifts"
+    },
+    {
+      "cell": "D8",
+      "value": "I will share"
+    },
+    {
+      "cell": "H8",
+      "value": "Libra – तुला"
+    },
+    {
+      "cell": "L8",
+      "value": "Other"
+    },
+    {
+      "cell": "N8",
+      "value": "Sphere"
+    },
+    {
+      "cell": "P8",
+      "value": "Parad laxmi and ganesh ji"
+    },
+    {
+      "cell": "R8",
+      "value": "Confidence & Self Esteem"
+    },
+    {
+      "cell": "U8",
+      "value": "https://rudrakshalife.com/products/dhan-yog-%E0%A4%A7%E0%A4%A8%E0%A4%AF%E0%A4%BE%E0%A5%87%E0%A4%97-money-heavy-flow"
+    },
+    {
+      "cell": "V8",
+      "value": "https://rudrakshalife.com/products/rudraksha-karungali-bracelet-black-dori-8mm"
+    },
+    {
+      "cell": "W8",
+      "value": "https://rudrakshalife.com/products/karungali-rudrakhsha-golden-mala"
+    },
+    {
+      "cell": "X8",
+      "value": "https://rudrakshalife.com/products/5-mukhi-rudraksha-karungali-mala-8mm-white-metal"
+    },
+    {
+      "cell": "Y8",
+      "value": "https://rudrakshalife.com/products/hessonite-gomed-2"
+    },
+    {
+      "cell": "Z8",
+      "value": "Sulemani Hakik:"
+    },
+    {
+      "cell": "A9",
+      "value": "Remedy"
+    },
+    {
+      "cell": "C9",
+      "value": "Kavach"
+    },
+    {
+      "cell": "D9",
+      "value": "All products having kavach/kawach in title"
+    },
+    {
+      "cell": "H9",
+      "value": "Scorpio – वृश्चिक"
+    },
+    {
+      "cell": "N9",
+      "value": "Pyramid"
+    },
+    {
+      "cell": "P9",
+      "value": "Charan Paduka box"
+    },
+    {
+      "cell": "R9",
+      "value": "Leadership"
+    },
+    {
+      "cell": "U9",
+      "value": "https://rudrakshalife.com/products/pyrite-laxmi-ji-frame"
+    },
+    {
+      "cell": "V9",
+      "value": "https://rudrakshalife.com/products/7-chakra-rudraksha-bracelet-8mm"
+    },
+    {
+      "cell": "W9",
+      "value": "https://rudrakshalife.com/products/nepali-rudraksha-mala-regular-1"
+    },
+    {
+      "cell": "X9",
+      "value": "https://rudrakshalife.com/products/5-mukhi-rudraksha-karungali-jaap-mala-8mm-1"
+    },
+    {
+      "cell": "Y9",
+      "value": "https://rudrakshalife.com/products/natural-ruby-manik-ring-7-ratti?variant=44180467417147"
+    },
+    {
+      "cell": "Z9",
+      "value": "Chakra: https://rudrakshalife.com/products/7-chakra-rudraksha-bracelet-8mm"
+    },
+    {
+      "cell": "C10",
+      "value": "Rashi Pendants"
+    },
+    {
+      "cell": "H10",
+      "value": "Sagittarius– धनु"
+    },
+    {
+      "cell": "N10",
+      "value": "Cluster"
+    },
+    {
+      "cell": "R10",
+      "value": "Study, Learning & Education"
+    },
+    {
+      "cell": "U10",
+      "value": "https://rudrakshalife.com/products/natural-pyrite-ganesh-ji-murti"
+    },
+    {
+      "cell": "V10",
+      "value": "https://rudrakshalife.com/products/5-mukhi-rudraksha-bracelet-double-layer-with-yellow-band"
+    },
+    {
+      "cell": "W10",
+      "value": "https://rudrakshalife.com/products/nepali-rudraksha-mala-regular-1"
+    },
+    {
+      "cell": "X10",
+      "value": "https://rudrakshalife.com/products/karungali-bracelet-8mm"
+    },
+    {
+      "cell": "Y10",
+      "value": "https://rudrakshalife.com/products/certified-zircon-ring-7-ratti"
+    },
+    {
+      "cell": "Z10",
+      "value": "Chakra (Feng Shui):"
+    },
+    {
+      "cell": "H11",
+      "value": "Capricorn – मकर"
+    },
+    {
+      "cell": "N11",
+      "value": "Rings"
+    },
+    {
+      "cell": "R11",
+      "value": "Love & Relationship"
+    },
+    {
+      "cell": "U11",
+      "value": "https://rudrakshalife.com/products/pyrite-seven-horse-frame"
+    },
+    {
+      "cell": "V11",
+      "value": "https://rudrakshalife.com/products/5-mukhi-rudraksha-bracelet-indonesia-5"
+    },
+    {
+      "cell": "W11",
+      "value": "https://rudrakshalife.com/products/5-mukhi-rudraksha-karungali-jaap-mala-8mm-1"
+    },
+    {
+      "cell": "X11",
+      "value": "https://rudrakshalife.com/products/karungali-chain-bracelet"
+    },
+    {
+      "cell": "Y11",
+      "value": "https://rudrakshalife.com/products/natural-cat-s-eye-lehsunia-ring-5-ratti"
+    },
+    {
+      "cell": "Z11",
+      "value": "Emerald:"
+    },
+    {
+      "cell": "H12",
+      "value": "Aquarius – कुंभ"
+    },
+    {
+      "cell": "N12",
+      "value": "Bangle"
+    },
+    {
+      "cell": "R12",
+      "value": "Marriage Problems & Desired Love"
+    },
+    {
+      "cell": "U12",
+      "value": "https://rudrakshalife.com/products/kuber-potli-%E0%A4%95%E0%A5%81%E0%A4%AC%E0%A5%87%E0%A4%B0-%E0%A4%AA%E0%A5%8B%E0%A4%9F%E0%A4%B2%E0%A5%80-for-wealth-protection-money-abundance"
+    },
+    {
+      "cell": "V12",
+      "value": "https://rudrakshalife.com/products/5-mukhi-rudraksha-bracelet-14-mm"
+    },
+    {
+      "cell": "X12",
+      "value": "https://rudrakshalife.com/products/karungali-chain-bracelet-1"
+    },
+    {
+      "cell": "Y12",
+      "value": "https://rudrakshalife.com/products/natural-opal-ring-5-ratti"
+    },
+    {
+      "cell": "Z12",
+      "value": "Ruby:"
+    },
+    {
+      "cell": "H13",
+      "value": "Pisces – मीन"
+    },
+    {
+      "cell": "N13",
+      "value": "Agate slices"
+    },
+    {
+      "cell": "R13",
+      "value": "Back Pain Relief"
+    },
+    {
+      "cell": "U13",
+      "value": "https://rudrakshalife.com/products/navgrah-shriyantra-set"
+    },
+    {
+      "cell": "V13",
+      "value": "https://rudrakshalife.com/products/rudraksha-sphatik-bracelet-indonesia"
+    },
+    {
+      "cell": "X13",
+      "value": "https://rudrakshalife.com/products/rudraksha-karungali-bracelet-black-dori-8mm"
+    },
+    {
+      "cell": "Z13",
+      "value": "Garnet:"
+    },
+    {
+      "cell": "N14",
+      "value": "Angels"
+    },
+    {
+      "cell": "R14",
+      "value": "Body pain releif"
+    },
+    {
+      "cell": "U14",
+      "value": "https://rudrakshalife.com/products/money-magnet-with-zibu-mala-8-mm"
+    },
+    {
+      "cell": "V14",
+      "value": "https://rudrakshalife.com/products/6-mukhi-rudraksha-bracelet-nepali"
+    },
+    {
+      "cell": "Z14",
+      "value": "https://certifiedcrystal.com/products/firoza-chain-bracelet"
+    },
+    {
+      "cell": "N15",
+      "value": "Knife"
+    },
+    {
+      "cell": "R15",
+      "value": "Black Magic Protection"
+    },
+    {
+      "cell": "U15",
+      "value": "https://rudrakshalife.com/products/charan-paduka-laxmi-ganeshji-gold-plated-photo-for-divine-temple-for-diwali-gift-house-warming-gifts-return-gift-puja-box"
+    },
+    {
+      "cell": "N16",
+      "value": "Diyas"
+    },
+    {
+      "cell": "R16",
+      "value": "Harmony in Home"
+    },
+    {
+      "cell": "U16",
+      "value": "https://rudrakshalife.com/products/sampuran-kuber-yantra-gem-locket"
+    },
+    {
+      "cell": "N17",
+      "value": "Glass"
+    },
+    {
+      "cell": "R17",
+      "value": "Top Healers"
+    },
+    {
+      "cell": "N18",
+      "value": "Hanger"
+    },
+    {
+      "cell": "R18",
+      "value": "Motivation"
+    },
+    {
+      "cell": "N19",
+      "value": "Heart"
+    },
+    {
+      "cell": "R19",
+      "value": "Addiction Relief"
+    },
+    {
+      "cell": "N20",
+      "value": "Keyrings"
+    },
+    {
+      "cell": "R20",
+      "value": "Weight Control"
+    },
+    {
+      "cell": "N21",
+      "value": "Pens"
+    },
+    {
+      "cell": "R21",
+      "value": "Weight Gain"
+    },
+    {
+      "cell": "N22",
+      "value": "Pencil/Towers"
+    },
+    {
+      "cell": "R22",
+      "value": "Recovery After Illness or Injury"
+    },
+    {
+      "cell": "N23",
+      "value": "Rollers"
+    },
+    {
+      "cell": "R23",
+      "value": "Good Sleep"
+    },
+    {
+      "cell": "N24",
+      "value": "Selenite plates"
+    },
+    {
+      "cell": "R24",
+      "value": "Protection from Negative Energies"
+    },
+    {
+      "cell": "N25",
+      "value": "Statue/Murti"
+    },
+    {
+      "cell": "R25",
+      "value": "Success"
+    },
+    {
+      "cell": "N26",
+      "value": "Tortoise/Turtle"
+    },
+    {
+      "cell": "R26",
+      "value": "Beginners"
+    },
+    {
+      "cell": "N27",
+      "value": "Trees"
+    },
+    {
+      "cell": "R27",
+      "value": "Blood Pressure Relief"
+    },
+    {
+      "cell": "N28",
+      "value": "Tumbles"
+    },
+    {
+      "cell": "R28",
+      "value": "Health (Overall) & Longevity"
+    },
+    {
+      "cell": "N29",
+      "value": "Yantra"
+    },
+    {
+      "cell": "R29",
+      "value": "Kidney Health (Overall)"
+    },
+    {
+      "cell": "N30",
+      "value": "Zibu coins"
+    },
+    {
+      "cell": "R30",
+      "value": "Migraine & Headache Relief"
+    },
+    {
+      "cell": "N31",
+      "value": "Owl"
+    },
+    {
+      "cell": "R31",
+      "value": "Thyroid Relief"
+    },
+    {
+      "cell": "N32",
+      "value": "Clock/Watch"
+    },
+    {
+      "cell": "R32",
+      "value": "Diabetes Relief"
+    },
+    {
+      "cell": "N33",
+      "value": "Vase"
+    },
+    {
+      "cell": "R33",
+      "value": "Cholesterol Relief"
+    },
+    {
+      "cell": "N34",
+      "value": "Potli"
+    },
+    {
+      "cell": "R34",
+      "value": "Arthritis Pain Relief"
+    },
+    {
+      "cell": "N35",
+      "value": "Bowl"
+    },
+    {
+      "cell": "R35",
+      "value": "Asthma & Breathe Easy"
+    },
+    {
+      "cell": "N36",
+      "value": "Shivling"
+    },
+    {
+      "cell": "R36",
+      "value": "Allergy Relief"
+    },
+    {
+      "cell": "R37",
+      "value": "Fertility & Pregnancy"
+    },
+    {
+      "cell": "R38",
+      "value": "PCOD - PCOS Problem"
+    },
+    {
+      "cell": "R39",
+      "value": "Court Case & Legal Issues"
+    },
+    {
+      "cell": "R40",
+      "value": "Positive Energy"
+    },
+    {
+      "cell": "R41",
+      "value": "Aries Rashi Bracelet | मेष राशि (Mesh) (Zodiac Rashi Bracelets)"
+    },
+    {
+      "cell": "R42",
+      "value": "Taurus Rashi Bracelet | वृषभ राशि (Vrishabh) (Zodiac Rashi Bracelets)"
+    },
+    {
+      "cell": "R43",
+      "value": "Gemini Rashi Bracelet | मिथुन राशि (Mithun) (Zodiac Rashi Bracelets)"
+    },
+    {
+      "cell": "R44",
+      "value": "Cancer Rashi Bracelet | कर्क राशि (Kark) (Zodiac Rashi Bracelets)"
+    },
+    {
+      "cell": "R45",
+      "value": "Leo Rashi Bracelet | सिंह राशि (Singh) (Zodiac Rashi Bracelets)"
+    },
+    {
+      "cell": "R46",
+      "value": "Virgo Rashi Bracelet | कन्या राशि (Kanya) (Zodiac Rashi Bracelets)"
+    },
+    {
+      "cell": "R47",
+      "value": "Sagittarius Rashi Bracelet | धनु राशि (Dhanu) (Zodiac Rashi Bracelets)"
+    },
+    {
+      "cell": "R48",
+      "value": "Libra Rashi Bracelet | तुला राशि (Tula) (Zodiac Rashi Bracelets)"
+    },
+    {
+      "cell": "R49",
+      "value": "Scorpio Rashi Bracelet | वृश्चिक राशि (Vrishchik) (Zodiac Rashi Bracelets)"
+    },
+    {
+      "cell": "R50",
+      "value": "Capricorn Rashi Bracelet | मकर राशि (Makar) (Zodiac Rashi Bracelets)"
+    },
+    {
+      "cell": "R51",
+      "value": "Aquarius Rashi Bracelet | कुंभ राशि (Kumbh) (Zodiac Rashi Bracelets)"
+    },
+    {
+      "cell": "R52",
+      "value": "Pisces Rashi Bracelet | मीन राशि (Meen) (Zodiac Rashi Bracelets)"
+    },
+    {
+      "cell": "R53",
+      "value": "Ruling Number 1"
+    },
+    {
+      "cell": "R54",
+      "value": "Ruling Number 2"
+    },
+    {
+      "cell": "R55",
+      "value": "Ruling Number 3"
+    },
+    {
+      "cell": "R56",
+      "value": "Ruling Number 4"
+    },
+    {
+      "cell": "R57",
+      "value": "Ruling Number 5"
+    },
+    {
+      "cell": "R58",
+      "value": "Ruling Number 6"
+    },
+    {
+      "cell": "R59",
+      "value": "Ruling Number 7"
+    },
+    {
+      "cell": "R60",
+      "value": "Ruling Number 8"
+    },
+    {
+      "cell": "R61",
+      "value": "Ruling Number 9"
+    },
+    {
+      "cell": "R62",
+      "value": "Missing Number 1"
+    },
+    {
+      "cell": "R63",
+      "value": "Missing Number 2"
+    },
+    {
+      "cell": "R64",
+      "value": "Missing Number 3"
+    },
+    {
+      "cell": "R65",
+      "value": "Missing Number 4"
+    },
+    {
+      "cell": "R66",
+      "value": "Missing Number 5"
+    },
+    {
+      "cell": "R67",
+      "value": "Missing Number 6"
+    },
+    {
+      "cell": "R68",
+      "value": "Missing Number 7"
+    },
+    {
+      "cell": "R69",
+      "value": "Missing Number 8"
+    },
+    {
+      "cell": "R70",
+      "value": "Missing Number 9"
+    }
+  ],
+  "extraNotes": [
+    {
+      "cell": "U1",
+      "value": "Fixed Products in each category"
+    },
+    {
+      "cell": "AB1",
+      "value": "Rashi Pendants"
+    },
+    {
+      "cell": "AD1",
+      "value": "Gem Bracelets in best seller category"
+    },
+    {
+      "cell": "D2",
+      "value": "Add all pyrite items and titles including money, dhan word in them. I will share fixed products"
+    },
+    {
+      "cell": "U2",
+      "value": "Money & Abundance"
+    },
+    {
+      "cell": "V2",
+      "value": "Rudraksh Bracelet"
+    },
+    {
+      "cell": "W2",
+      "value": "Rudraksha Mala"
+    },
+    {
+      "cell": "X2",
+      "value": "Karungali"
+    },
+    {
+      "cell": "Y2",
+      "value": "Rashi Rings"
+    },
+    {
+      "cell": "Z2",
+      "value": "Gems Bracelets"
+    },
+    {
+      "cell": "AB2",
+      "value": "These are in the process of making. You can create a category. Listings will be provided soon."
+    },
+    {
+      "cell": "AD2",
+      "value": "Fixed products are given, besides those add these as well:"
+    },
+    {
+      "cell": "D3",
+      "value": "List given"
+    },
+    {
+      "cell": "U3",
+      "value": "https://rudrakshalife.com/products/money-magnet-advance"
+    },
+    {
+      "cell": "V3",
+      "value": "https://rudrakshalife.com/products/rudraksha-bracelet-1"
+    },
+    {
+      "cell": "W3",
+      "value": "https://rudrakshalife.com/products/5-mukhi-rudraksha-mala-6mm"
+    },
+    {
+      "cell": "X3",
+      "value": "https://rudrakshalife.com/products/karungali-shreeyantra-rudraksha-mala-6mm"
+    },
+    {
+      "cell": "Y3",
+      "value": "https://rudrakshalife.com/products/natural-emerald-panna-ring-7-ratti"
+    },
+    {
+      "cell": "Z3",
+      "value": "Pyrite: https://rudrakshalife.com/products/pyrite-bracelet-high-energy-money-magnet"
+    },
+    {
+      "cell": "D4",
+      "value": "I will share fixed products"
+    },
+    {
+      "cell": "U4",
+      "value": "https://certifiedcrystal.com/products/money-amp-luck-bracelet"
+    },
+    {
+      "cell": "V4",
+      "value": "https://rudrakshalife.com/products/5-mukhi-rudraksha-bracelet-indonesia"
+    },
+    {
+      "cell": "W4",
+      "value": "https://rudrakshalife.com/products/5-mukhi-rudraksha-jaap-mala"
+    },
+    {
+      "cell": "X4",
+      "value": "https://rudrakshalife.com/products/karungali-jaap-mala-8mm-with-knot"
+    },
+    {
+      "cell": "Y4",
+      "value": "https://rudrakshalife.com/products/pearl-moti-ring-7-ratti"
+    },
+    {
+      "cell": "Z4",
+      "value": "Money Magnet: https://rudrakshalife.com/products/money-magnet-advance"
+    },
+    {
+      "cell": "D5",
+      "value": "I will share fixed products"
+    },
+    {
+      "cell": "U5",
+      "value": "https://rudrakshalife.com/products/pyrite-bracelet-high-energy-money-magnet"
+    },
+    {
+      "cell": "V5",
+      "value": "https://rudrakshalife.com/products/5-mukhi-rudraksha-bracelet-golden-magnetic-lock-super-quality"
+    },
+    {
+      "cell": "W5",
+      "value": "https://rudrakshalife.com/products/parad-mala"
+    },
+    {
+      "cell": "X5",
+      "value": "https://rudrakshalife.com/products/5-mukhi-rudraksha-karungali-jaap-mala-8mm"
+    },
+    {
+      "cell": "Y5",
+      "value": "https://rudrakshalife.com/products/blue-sapphire-ring-5-ratti-1"
+    },
+    {
+      "cell": "Z5",
+      "value": "Amethyst: https://rudrakshalife.com/products/amethyst-bracelet"
+    },
+    {
+      "cell": "D6",
+      "value": "I will share fixed products"
+    },
+    {
+      "cell": "U6",
+      "value": "https://rudrakshalife.com/products/pyrite-stone-anklet-payal-sunehri-pyrite-bead-anklet-for-wealth-money-abundance-jewelry-abundance-success-gift-healing-crystal-anklet"
+    },
+    {
+      "cell": "V6",
+      "value": "https://rudrakshalife.com/products/5-mukhi-rudraksha-chain-bracelet-super-quality-golden-metal"
+    },
+    {
+      "cell": "W6",
+      "value": "https://rudrakshalife.com/products/5-mukhi-rudraksha-mala-12-15mm"
+    },
+    {
+      "cell": "X6",
+      "value": "https://rudrakshalife.com/products/karungali-shankh"
+    },
+    {
+      "cell": "Y6",
+      "value": "https://rudrakshalife.com/products/yellow-sapphire-ring-5-ratti"
+    },
+    {
+      "cell": "Z6",
+      "value": "Rose Quartz: https://rudrakshalife.com/products/rose-quartz-budha-bracelet"
+    },
+    {
+      "cell": "D7",
+      "value": "List given"
+    },
+    {
+      "cell": "U7",
+      "value": "https://rudrakshalife.com/products/money-magnet-owl-for-wealth-protection-dhan-varsha-murga-ullu-for-prosperity-laxmi-ullu-vastu-remedy-for-financial-growth"
+    },
+    {
+      "cell": "V7",
+      "value": "https://rudrakshalife.com/products/rudraksha-chain-bracelet"
+    },
+    {
+      "cell": "W7",
+      "value": "https://rudrakshalife.com/products/5-mukhi-rudraksha-mala-5-10mm"
+    },
+    {
+      "cell": "X7",
+      "value": "https://rudrakshalife.com/products/karungali-mala"
+    },
+    {
+      "cell": "Y7",
+      "value": "https://rudrakshalife.com/products/natural-coral-moonga-ring-5-ratti"
+    },
+    {
+      "cell": "Z7",
+      "value": "Tiger Eye: https://rudrakshalife.com/products/tigers-eye-bracelet"
+    },
+    {
+      "cell": "D8",
+      "value": "I will share"
+    },
+    {
+      "cell": "U8",
+      "value": "https://rudrakshalife.com/products/dhan-yog-%E0%A4%A7%E0%A4%A8%E0%A4%AF%E0%A4%BE%E0%A5%87%E0%A4%97-money-heavy-flow"
+    },
+    {
+      "cell": "V8",
+      "value": "https://rudrakshalife.com/products/rudraksha-karungali-bracelet-black-dori-8mm"
+    },
+    {
+      "cell": "W8",
+      "value": "https://rudrakshalife.com/products/karungali-rudrakhsha-golden-mala"
+    },
+    {
+      "cell": "X8",
+      "value": "https://rudrakshalife.com/products/5-mukhi-rudraksha-karungali-mala-8mm-white-metal"
+    },
+    {
+      "cell": "Y8",
+      "value": "https://rudrakshalife.com/products/hessonite-gomed-2"
+    },
+    {
+      "cell": "Z8",
+      "value": "Sulemani Hakik:"
+    },
+    {
+      "cell": "D9",
+      "value": "All products having kavach/kawach in title"
+    },
+    {
+      "cell": "U9",
+      "value": "https://rudrakshalife.com/products/pyrite-laxmi-ji-frame"
+    },
+    {
+      "cell": "V9",
+      "value": "https://rudrakshalife.com/products/7-chakra-rudraksha-bracelet-8mm"
+    },
+    {
+      "cell": "W9",
+      "value": "https://rudrakshalife.com/products/nepali-rudraksha-mala-regular-1"
+    },
+    {
+      "cell": "X9",
+      "value": "https://rudrakshalife.com/products/5-mukhi-rudraksha-karungali-jaap-mala-8mm-1"
+    },
+    {
+      "cell": "Y9",
+      "value": "https://rudrakshalife.com/products/natural-ruby-manik-ring-7-ratti?variant=44180467417147"
+    },
+    {
+      "cell": "Z9",
+      "value": "Chakra: https://rudrakshalife.com/products/7-chakra-rudraksha-bracelet-8mm"
+    },
+    {
+      "cell": "U10",
+      "value": "https://rudrakshalife.com/products/natural-pyrite-ganesh-ji-murti"
+    },
+    {
+      "cell": "V10",
+      "value": "https://rudrakshalife.com/products/5-mukhi-rudraksha-bracelet-double-layer-with-yellow-band"
+    },
+    {
+      "cell": "W10",
+      "value": "https://rudrakshalife.com/products/nepali-rudraksha-mala-regular-1"
+    },
+    {
+      "cell": "X10",
+      "value": "https://rudrakshalife.com/products/karungali-bracelet-8mm"
+    },
+    {
+      "cell": "Y10",
+      "value": "https://rudrakshalife.com/products/certified-zircon-ring-7-ratti"
+    },
+    {
+      "cell": "Z10",
+      "value": "Chakra (Feng Shui):"
+    },
+    {
+      "cell": "U11",
+      "value": "https://rudrakshalife.com/products/pyrite-seven-horse-frame"
+    },
+    {
+      "cell": "V11",
+      "value": "https://rudrakshalife.com/products/5-mukhi-rudraksha-bracelet-indonesia-5"
+    },
+    {
+      "cell": "W11",
+      "value": "https://rudrakshalife.com/products/5-mukhi-rudraksha-karungali-jaap-mala-8mm-1"
+    },
+    {
+      "cell": "X11",
+      "value": "https://rudrakshalife.com/products/karungali-chain-bracelet"
+    },
+    {
+      "cell": "Y11",
+      "value": "https://rudrakshalife.com/products/natural-cat-s-eye-lehsunia-ring-5-ratti"
+    },
+    {
+      "cell": "Z11",
+      "value": "Emerald:"
+    },
+    {
+      "cell": "U12",
+      "value": "https://rudrakshalife.com/products/kuber-potli-%E0%A4%95%E0%A5%81%E0%A4%AC%E0%A5%87%E0%A4%B0-%E0%A4%AA%E0%A5%8B%E0%A4%9F%E0%A4%B2%E0%A5%80-for-wealth-protection-money-abundance"
+    },
+    {
+      "cell": "V12",
+      "value": "https://rudrakshalife.com/products/5-mukhi-rudraksha-bracelet-14-mm"
+    },
+    {
+      "cell": "X12",
+      "value": "https://rudrakshalife.com/products/karungali-chain-bracelet-1"
+    },
+    {
+      "cell": "Y12",
+      "value": "https://rudrakshalife.com/products/natural-opal-ring-5-ratti"
+    },
+    {
+      "cell": "Z12",
+      "value": "Ruby:"
+    },
+    {
+      "cell": "U13",
+      "value": "https://rudrakshalife.com/products/navgrah-shriyantra-set"
+    },
+    {
+      "cell": "V13",
+      "value": "https://rudrakshalife.com/products/rudraksha-sphatik-bracelet-indonesia"
+    },
+    {
+      "cell": "X13",
+      "value": "https://rudrakshalife.com/products/rudraksha-karungali-bracelet-black-dori-8mm"
+    },
+    {
+      "cell": "Z13",
+      "value": "Garnet:"
+    },
+    {
+      "cell": "U14",
+      "value": "https://rudrakshalife.com/products/money-magnet-with-zibu-mala-8-mm"
+    },
+    {
+      "cell": "V14",
+      "value": "https://rudrakshalife.com/products/6-mukhi-rudraksha-bracelet-nepali"
+    },
+    {
+      "cell": "Z14",
+      "value": "https://certifiedcrystal.com/products/firoza-chain-bracelet"
+    },
+    {
+      "cell": "U15",
+      "value": "https://rudrakshalife.com/products/charan-paduka-laxmi-ganeshji-gold-plated-photo-for-divine-temple-for-diwali-gift-house-warming-gifts-return-gift-puja-box"
+    },
+    {
+      "cell": "U16",
+      "value": "https://rudrakshalife.com/products/sampuran-kuber-yantra-gem-locket"
+    }
+  ],
+  "policy": "External product URLs are reference notes only; no remote art or product memberships imported from URLs. Remedy labels are client navigation labels, not efficacy claims.",
+  "mappingManifest": "Existing explicit relationship manifests retained; MAIN changes presentation and rules only.",
+  "malaHierarchy": {
+    "childrenSupplied": false,
+    "missing": [
+      "Pearl Mala child relationship",
+      "Ruby Mala child relationship"
+    ],
+    "note": "No Mala/Pearl/Ruby hierarchy or claimed 25-product list supplied in MAIN. Existing Mala direct route retained."
+  },
+  "mappingManifestVerification": {
+    "workbookProductCount": 1523,
+    "workbookProductsUnchanged": false,
+    "relationshipManifestExactMatch": true,
+    "regenerated": false
+  }
+}

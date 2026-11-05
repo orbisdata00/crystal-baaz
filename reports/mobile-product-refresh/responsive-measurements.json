@@ -1,0 +1,681 @@
+{
+  "viewportHeight": 850,
+  "rows": [
+    {
+      "width": 320,
+      "height": 850,
+      "source": "shopify",
+      "loaded": "true",
+      "mode": "navigation",
+      "route": "home",
+      "productCards": 68,
+      "card": {
+        "x": 14,
+        "y": 726.8,
+        "width": 104,
+        "height": 247.8,
+        "bottom": 974.6
+      },
+      "tile": {
+        "x": 14,
+        "y": 726.8,
+        "width": 104,
+        "height": 145,
+        "bottom": 871.8
+      },
+      "add": {
+        "x": 61,
+        "y": 838.3,
+        "width": 52,
+        "height": 30,
+        "bottom": 868.3
+      },
+      "addInsideTile": true,
+      "title": {
+        "x": 15,
+        "y": 913.2,
+        "width": 102,
+        "height": 28.6,
+        "bottom": 941.8
+      },
+      "price": {
+        "x": 15,
+        "y": 878.8,
+        "width": 30.3,
+        "height": 16.8,
+        "bottom": 895.6
+      },
+      "titleStyle": {
+        "fontFamily": "\"DM Sans\", \"Avenir Next\", Avenir, sans-serif",
+        "fontSize": "11px",
+        "fontWeight": "700",
+        "border": "0px none rgb(31, 31, 31)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "priceStyle": {
+        "fontFamily": "\"DM Sans\", \"Avenir Next\", Avenir, sans-serif",
+        "fontSize": "12px",
+        "fontWeight": "700",
+        "border": "0px none rgb(31, 31, 31)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "visibleCards": 3,
+      "fullyVisibleRailCards": 2,
+      "partialControlsVisible": 0,
+      "rail": {
+        "x": 13,
+        "y": 725.8,
+        "width": 307,
+        "height": 256.8,
+        "bottom": 982.6
+      },
+      "nav": {
+        "x": 15,
+        "y": 770,
+        "width": 290,
+        "height": 68,
+        "bottom": 838
+      },
+      "navStyle": {
+        "radius": "999px",
+        "background": "rgba(255, 255, 255, 0.94)"
+      },
+      "docWidth": 320,
+      "overflow": false,
+      "errors": [],
+      "dismissedInstallPrompt": false
+    },
+    {
+      "width": 360,
+      "height": 850,
+      "source": "shopify",
+      "loaded": "true",
+      "mode": "navigation",
+      "route": "home",
+      "productCards": 68,
+      "card": {
+        "x": 14,
+        "y": 726.8,
+        "width": 104,
+        "height": 253.1,
+        "bottom": 979.8
+      },
+      "tile": {
+        "x": 14,
+        "y": 726.8,
+        "width": 104,
+        "height": 145,
+        "bottom": 871.8
+      },
+      "add": {
+        "x": 61,
+        "y": 838.3,
+        "width": 52,
+        "height": 30,
+        "bottom": 868.3
+      },
+      "addInsideTile": true,
+      "title": {
+        "x": 15,
+        "y": 914.6,
+        "width": 102,
+        "height": 31.2,
+        "bottom": 945.8
+      },
+      "price": {
+        "x": 15,
+        "y": 878.8,
+        "width": 32.8,
+        "height": 18.2,
+        "bottom": 897
+      },
+      "titleStyle": {
+        "fontFamily": "\"DM Sans\", \"Avenir Next\", Avenir, sans-serif",
+        "fontSize": "12px",
+        "fontWeight": "700",
+        "border": "0px none rgb(31, 31, 31)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "priceStyle": {
+        "fontFamily": "\"DM Sans\", \"Avenir Next\", Avenir, sans-serif",
+        "fontSize": "13px",
+        "fontWeight": "700",
+        "border": "0px none rgb(31, 31, 31)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "visibleCards": 4,
+      "fullyVisibleRailCards": 3,
+      "partialControlsVisible": 0,
+      "rail": {
+        "x": 13,
+        "y": 725.8,
+        "width": 347,
+        "height": 262.1,
+        "bottom": 987.8
+      },
+      "nav": {
+        "x": 15,
+        "y": 770,
+        "width": 330,
+        "height": 68,
+        "bottom": 838
+      },
+      "navStyle": {
+        "radius": "999px",
+        "background": "rgba(255, 255, 255, 0.94)"
+      },
+      "docWidth": 360,
+      "overflow": false,
+      "errors": [],
+      "dismissedInstallPrompt": false
+    },
+    {
+      "width": 375,
+      "height": 850,
+      "source": "shopify",
+      "loaded": "true",
+      "mode": "navigation",
+      "route": "home",
+      "productCards": 68,
+      "card": {
+        "x": 14,
+        "y": 726.8,
+        "width": 105,
+        "height": 254.3,
+        "bottom": 981.1
+      },
+      "tile": {
+        "x": 14,
+        "y": 726.8,
+        "width": 105,
+        "height": 146.3,
+        "bottom": 873
+      },
+      "add": {
+        "x": 62,
+        "y": 839.5,
+        "width": 52,
+        "height": 30,
+        "bottom": 869.5
+      },
+      "addInsideTile": true,
+      "title": {
+        "x": 15,
+        "y": 915.8,
+        "width": 103,
+        "height": 31.2,
+        "bottom": 947
+      },
+      "price": {
+        "x": 15,
+        "y": 880,
+        "width": 32.8,
+        "height": 18.2,
+        "bottom": 898.2
+      },
+      "titleStyle": {
+        "fontFamily": "\"DM Sans\", \"Avenir Next\", Avenir, sans-serif",
+        "fontSize": "12px",
+        "fontWeight": "700",
+        "border": "0px none rgb(31, 31, 31)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "priceStyle": {
+        "fontFamily": "\"DM Sans\", \"Avenir Next\", Avenir, sans-serif",
+        "fontSize": "13px",
+        "fontWeight": "700",
+        "border": "0px none rgb(31, 31, 31)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "visibleCards": 4,
+      "fullyVisibleRailCards": 3,
+      "partialControlsVisible": 0,
+      "rail": {
+        "x": 13,
+        "y": 725.8,
+        "width": 362,
+        "height": 263.3,
+        "bottom": 989.1
+      },
+      "nav": {
+        "x": 15,
+        "y": 770,
+        "width": 345,
+        "height": 68,
+        "bottom": 838
+      },
+      "navStyle": {
+        "radius": "999px",
+        "background": "rgba(255, 255, 255, 0.94)"
+      },
+      "docWidth": 375,
+      "overflow": false,
+      "errors": [],
+      "dismissedInstallPrompt": false
+    },
+    {
+      "width": 390,
+      "height": 850,
+      "source": "shopify",
+      "loaded": "true",
+      "mode": "navigation",
+      "route": "home",
+      "productCards": 68,
+      "card": {
+        "x": 14,
+        "y": 726.8,
+        "width": 109.2,
+        "height": 260.2,
+        "bottom": 986.9
+      },
+      "tile": {
+        "x": 14,
+        "y": 726.8,
+        "width": 109.2,
+        "height": 152.1,
+        "bottom": 878.9
+      },
+      "add": {
+        "x": 66.2,
+        "y": 845.4,
+        "width": 52,
+        "height": 30,
+        "bottom": 875.4
+      },
+      "addInsideTile": true,
+      "title": {
+        "x": 15,
+        "y": 921.7,
+        "width": 107.2,
+        "height": 31.2,
+        "bottom": 952.8
+      },
+      "price": {
+        "x": 15,
+        "y": 885.9,
+        "width": 32.8,
+        "height": 18.2,
+        "bottom": 904.1
+      },
+      "titleStyle": {
+        "fontFamily": "\"DM Sans\", \"Avenir Next\", Avenir, sans-serif",
+        "fontSize": "12px",
+        "fontWeight": "700",
+        "border": "0px none rgb(31, 31, 31)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "priceStyle": {
+        "fontFamily": "\"DM Sans\", \"Avenir Next\", Avenir, sans-serif",
+        "fontSize": "13px",
+        "fontWeight": "700",
+        "border": "0px none rgb(31, 31, 31)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "visibleCards": 4,
+      "fullyVisibleRailCards": 3,
+      "partialControlsVisible": 0,
+      "rail": {
+        "x": 13,
+        "y": 725.8,
+        "width": 377,
+        "height": 269.2,
+        "bottom": 994.9
+      },
+      "nav": {
+        "x": 15,
+        "y": 770,
+        "width": 360,
+        "height": 68,
+        "bottom": 838
+      },
+      "navStyle": {
+        "radius": "999px",
+        "background": "rgba(255, 255, 255, 0.94)"
+      },
+      "docWidth": 390,
+      "overflow": false,
+      "errors": [],
+      "dismissedInstallPrompt": false
+    },
+    {
+      "width": 400,
+      "height": 850,
+      "source": "shopify",
+      "loaded": "true",
+      "mode": "navigation",
+      "route": "home",
+      "productCards": 68,
+      "card": {
+        "x": 14,
+        "y": 726.8,
+        "width": 112,
+        "height": 264.1,
+        "bottom": 990.8
+      },
+      "tile": {
+        "x": 14,
+        "y": 726.8,
+        "width": 112,
+        "height": 156,
+        "bottom": 882.8
+      },
+      "add": {
+        "x": 69,
+        "y": 849.3,
+        "width": 52,
+        "height": 30,
+        "bottom": 879.3
+      },
+      "addInsideTile": true,
+      "title": {
+        "x": 15,
+        "y": 925.6,
+        "width": 110,
+        "height": 31.2,
+        "bottom": 956.8
+      },
+      "price": {
+        "x": 15,
+        "y": 889.8,
+        "width": 32.8,
+        "height": 18.2,
+        "bottom": 908
+      },
+      "titleStyle": {
+        "fontFamily": "\"DM Sans\", \"Avenir Next\", Avenir, sans-serif",
+        "fontSize": "12px",
+        "fontWeight": "700",
+        "border": "0px none rgb(31, 31, 31)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "priceStyle": {
+        "fontFamily": "\"DM Sans\", \"Avenir Next\", Avenir, sans-serif",
+        "fontSize": "13px",
+        "fontWeight": "700",
+        "border": "0px none rgb(31, 31, 31)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "visibleCards": 4,
+      "fullyVisibleRailCards": 3,
+      "partialControlsVisible": 0,
+      "rail": {
+        "x": 13,
+        "y": 725.8,
+        "width": 387,
+        "height": 273.1,
+        "bottom": 998.8
+      },
+      "nav": {
+        "x": 15,
+        "y": 770,
+        "width": 370,
+        "height": 68,
+        "bottom": 838
+      },
+      "navStyle": {
+        "radius": "999px",
+        "background": "rgba(255, 255, 255, 0.94)"
+      },
+      "docWidth": 400,
+      "overflow": false,
+      "errors": [],
+      "dismissedInstallPrompt": false
+    },
+    {
+      "width": 414,
+      "height": 850,
+      "source": "shopify",
+      "loaded": "true",
+      "mode": "navigation",
+      "route": "home",
+      "productCards": 68,
+      "card": {
+        "x": 14,
+        "y": 726.8,
+        "width": 115.9,
+        "height": 269.5,
+        "bottom": 996.3
+      },
+      "tile": {
+        "x": 14,
+        "y": 726.8,
+        "width": 115.9,
+        "height": 161.5,
+        "bottom": 888.2
+      },
+      "add": {
+        "x": 72.9,
+        "y": 854.7,
+        "width": 52,
+        "height": 30,
+        "bottom": 884.7
+      },
+      "addInsideTile": true,
+      "title": {
+        "x": 15,
+        "y": 931,
+        "width": 113.9,
+        "height": 31.2,
+        "bottom": 962.2
+      },
+      "price": {
+        "x": 15,
+        "y": 895.2,
+        "width": 32.8,
+        "height": 18.2,
+        "bottom": 913.4
+      },
+      "titleStyle": {
+        "fontFamily": "\"DM Sans\", \"Avenir Next\", Avenir, sans-serif",
+        "fontSize": "12px",
+        "fontWeight": "700",
+        "border": "0px none rgb(31, 31, 31)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "priceStyle": {
+        "fontFamily": "\"DM Sans\", \"Avenir Next\", Avenir, sans-serif",
+        "fontSize": "13px",
+        "fontWeight": "700",
+        "border": "0px none rgb(31, 31, 31)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "visibleCards": 4,
+      "fullyVisibleRailCards": 3,
+      "partialControlsVisible": 0,
+      "rail": {
+        "x": 13,
+        "y": 725.8,
+        "width": 401,
+        "height": 278.5,
+        "bottom": 1004.3
+      },
+      "nav": {
+        "x": 15,
+        "y": 770,
+        "width": 384,
+        "height": 68,
+        "bottom": 838
+      },
+      "navStyle": {
+        "radius": "999px",
+        "background": "rgba(255, 255, 255, 0.94)"
+      },
+      "docWidth": 414,
+      "overflow": false,
+      "errors": [],
+      "dismissedInstallPrompt": false
+    },
+    {
+      "width": 427,
+      "height": 850,
+      "source": "shopify",
+      "loaded": "true",
+      "mode": "navigation",
+      "route": "home",
+      "productCards": 68,
+      "card": {
+        "x": 14,
+        "y": 726.8,
+        "width": 119.5,
+        "height": 274.6,
+        "bottom": 1001.4
+      },
+      "tile": {
+        "x": 14,
+        "y": 726.8,
+        "width": 119.5,
+        "height": 166.5,
+        "bottom": 893.3
+      },
+      "add": {
+        "x": 76.5,
+        "y": 859.8,
+        "width": 52,
+        "height": 30,
+        "bottom": 889.8
+      },
+      "addInsideTile": true,
+      "title": {
+        "x": 15,
+        "y": 936.1,
+        "width": 117.5,
+        "height": 31.2,
+        "bottom": 967.3
+      },
+      "price": {
+        "x": 15,
+        "y": 900.3,
+        "width": 32.8,
+        "height": 18.2,
+        "bottom": 918.5
+      },
+      "titleStyle": {
+        "fontFamily": "\"DM Sans\", \"Avenir Next\", Avenir, sans-serif",
+        "fontSize": "12px",
+        "fontWeight": "700",
+        "border": "0px none rgb(31, 31, 31)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "priceStyle": {
+        "fontFamily": "\"DM Sans\", \"Avenir Next\", Avenir, sans-serif",
+        "fontSize": "13px",
+        "fontWeight": "700",
+        "border": "0px none rgb(31, 31, 31)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "visibleCards": 4,
+      "fullyVisibleRailCards": 3,
+      "partialControlsVisible": 0,
+      "rail": {
+        "x": 13,
+        "y": 725.8,
+        "width": 414,
+        "height": 283.6,
+        "bottom": 1009.4
+      },
+      "nav": {
+        "x": 15,
+        "y": 770,
+        "width": 397,
+        "height": 68,
+        "bottom": 838
+      },
+      "navStyle": {
+        "radius": "999px",
+        "background": "rgba(255, 255, 255, 0.94)"
+      },
+      "docWidth": 427,
+      "overflow": false,
+      "errors": [],
+      "dismissedInstallPrompt": false
+    },
+    {
+      "width": 440,
+      "height": 850,
+      "source": "shopify",
+      "loaded": "true",
+      "mode": "navigation",
+      "route": "home",
+      "productCards": 68,
+      "card": {
+        "x": 14,
+        "y": 726.8,
+        "width": 123.2,
+        "height": 278.1,
+        "bottom": 1004.8
+      },
+      "tile": {
+        "x": 14,
+        "y": 726.8,
+        "width": 123.2,
+        "height": 170,
+        "bottom": 896.8
+      },
+      "add": {
+        "x": 80.2,
+        "y": 863.3,
+        "width": 52,
+        "height": 30,
+        "bottom": 893.3
+      },
+      "addInsideTile": true,
+      "title": {
+        "x": 15,
+        "y": 939.6,
+        "width": 121.2,
+        "height": 31.2,
+        "bottom": 970.8
+      },
+      "price": {
+        "x": 15,
+        "y": 903.8,
+        "width": 32.8,
+        "height": 18.2,
+        "bottom": 922
+      },
+      "titleStyle": {
+        "fontFamily": "\"DM Sans\", \"Avenir Next\", Avenir, sans-serif",
+        "fontSize": "12px",
+        "fontWeight": "700",
+        "border": "0px none rgb(31, 31, 31)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "priceStyle": {
+        "fontFamily": "\"DM Sans\", \"Avenir Next\", Avenir, sans-serif",
+        "fontSize": "13px",
+        "fontWeight": "700",
+        "border": "0px none rgb(31, 31, 31)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "visibleCards": 4,
+      "fullyVisibleRailCards": 3,
+      "partialControlsVisible": 0,
+      "rail": {
+        "x": 13,
+        "y": 725.8,
+        "width": 427,
+        "height": 287.1,
+        "bottom": 1012.8
+      },
+      "nav": {
+        "x": 15,
+        "y": 770,
+        "width": 410,
+        "height": 68,
+        "bottom": 838
+      },
+      "navStyle": {
+        "radius": "999px",
+        "background": "rgba(255, 255, 255, 0.94)"
+      },
+      "docWidth": 440,
+      "overflow": false,
+      "errors": [],
+      "dismissedInstallPrompt": false
+    }
+  ],
+  "focusedRail": {
+    "scrollY": 570.78125,
+    "cards": 10
+  }
+}

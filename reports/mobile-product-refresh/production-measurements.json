@@ -1,0 +1,36 @@
+{
+  "metrics": {
+    "source": "shopify",
+    "loaded": "true",
+    "products": 68,
+    "serviceWorker": "activated",
+    "manifest": "./manifest.webmanifest",
+    "manifestLoaded": true,
+    "tile": {
+      "x": 14,
+      "y": 155.78125,
+      "width": 105,
+      "height": 146.25,
+      "top": 155.78125,
+      "right": 119,
+      "bottom": 302.03125,
+      "left": 14
+    },
+    "ctaInsideTile": true,
+    "fullyVisible": 21,
+    "partialControlsVisible": 0,
+    "overflow": false,
+    "viewport": 375,
+    "railScrollY": 571,
+    "rail": {
+      "x": 13,
+      "y": 154.78125,
+      "width": 362,
+      "height": 263.3125,
+      "top": 154.78125,
+      "right": 375,
+      "bottom": 418.09375,
+      "left": 13
+    }
+  }
+}

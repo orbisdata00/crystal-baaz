@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Crystal Baaz mobile product tile comparison</title>
+<style>
+*{box-sizing:border-box}body{margin:0;padding:24px;background:#f5f7f5;color:#1f1f1f;font:14px/1.5 system-ui,sans-serif}h1{margin:0 0 5px;font-size:24px}p{margin:0 0 18px;color:#666}.comparison{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.panel{min-width:0;padding:12px;border:1px solid #e4e8e4;border-radius:12px;background:white}.panel h2{margin:0 0 10px;font-size:15px}.screen{height:min(850px,calc(100vh - 190px));overflow:auto;border:1px solid #ddd;border-radius:8px;background:white}.screen img{display:block;width:100%;height:auto}.responsive{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}.responsive a{padding:6px 9px;border:1px solid #dfe6df;border-radius:7px;color:#0c831f;background:white;text-decoration:none;font-size:12px}@media(max-width:800px){body{padding:12px}.comparison{grid-template-columns:1fr}.screen{height:75vh}}
+</style>
+<h1>Crystal Baaz: product-card comparison</h1>
+<p>Before is the supplied iPhone capture. After is the production Shopify-backed PWA in Chrome at 375 CSS px, scrolled to the Best Seller rail.</p>
+<main class="comparison">
+  <section class="panel"><h2>Before · supplied capture (738 × 1600 image pixels)</h2><div class="screen"><img src="before-best-seller.jpeg" alt="Original Crystal Baaz product rail with full product cards"></div></section>
+  <section class="panel"><h2>After · production preview, 375 CSS px × 850 CSS px, DPR 1</h2><div class="screen"><img src="production-rail-375.png" alt="Updated Crystal Baaz image tiles, add controls and open product information"></div></section>
+</main>
+<nav class="responsive" aria-label="Captured mobile widths">
+  <a href="products-320.png">Products 320 px</a><a href="products-360.png">Products 360 px</a><a href="products-375.png">Products 375 px</a><a href="products-390.png">Products 390 px</a><a href="products-400.png">Products 400 px</a><a href="products-414.png">Products 414 px</a><a href="products-427.png">Products 427 px</a><a href="products-440.png">Products 440 px</a>
+</nav>
+</html>

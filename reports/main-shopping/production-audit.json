@@ -1,0 +1,670 @@
+{
+  "widths": [
+    {
+      "width": 320,
+      "mode": "navigation",
+      "pending": "false",
+      "view": null,
+      "purchase": null,
+      "nav": {
+        "top": 788,
+        "bottom": 850,
+        "left": 0,
+        "right": 320
+      },
+      "overflow": false
+    },
+    {
+      "width": 360,
+      "mode": "navigation",
+      "pending": "false",
+      "view": null,
+      "purchase": null,
+      "nav": {
+        "top": 788,
+        "bottom": 850,
+        "left": 0,
+        "right": 360
+      },
+      "overflow": false
+    },
+    {
+      "width": 375,
+      "mode": "navigation",
+      "pending": "false",
+      "view": null,
+      "purchase": null,
+      "nav": {
+        "top": 788,
+        "bottom": 850,
+        "left": 0,
+        "right": 375
+      },
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "mode": "navigation",
+      "pending": "false",
+      "view": null,
+      "purchase": null,
+      "nav": {
+        "top": 788,
+        "bottom": 850,
+        "left": 0,
+        "right": 390
+      },
+      "overflow": false
+    },
+    {
+      "width": 400,
+      "mode": "navigation",
+      "pending": "false",
+      "view": null,
+      "purchase": null,
+      "nav": {
+        "top": 788,
+        "bottom": 850,
+        "left": 0,
+        "right": 400
+      },
+      "overflow": false
+    },
+    {
+      "width": 414,
+      "mode": "navigation",
+      "pending": "false",
+      "view": null,
+      "purchase": null,
+      "nav": {
+        "top": 788,
+        "bottom": 850,
+        "left": 0,
+        "right": 414
+      },
+      "overflow": false
+    },
+    {
+      "width": 427,
+      "mode": "navigation",
+      "pending": "false",
+      "view": null,
+      "purchase": null,
+      "nav": {
+        "top": 788,
+        "bottom": 850,
+        "left": 0,
+        "right": 427
+      },
+      "overflow": false
+    },
+    {
+      "width": 440,
+      "mode": "navigation",
+      "pending": "false",
+      "view": null,
+      "purchase": null,
+      "nav": {
+        "top": 788,
+        "bottom": 850,
+        "left": 0,
+        "right": 440
+      },
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "mode": "navigation",
+      "pending": "false",
+      "view": null,
+      "purchase": null,
+      "nav": {
+        "top": 788,
+        "bottom": 850,
+        "left": 0,
+        "right": 768
+      },
+      "overflow": false
+    },
+    {
+      "width": 820,
+      "mode": "navigation",
+      "pending": "false",
+      "view": null,
+      "purchase": null,
+      "nav": null,
+      "overflow": false
+    },
+    {
+      "width": 1024,
+      "mode": "navigation",
+      "pending": "false",
+      "view": null,
+      "purchase": null,
+      "nav": null,
+      "overflow": false
+    },
+    {
+      "width": 1280,
+      "mode": "navigation",
+      "pending": "false",
+      "view": null,
+      "purchase": null,
+      "nav": null,
+      "overflow": false
+    },
+    {
+      "width": 1366,
+      "mode": "navigation",
+      "pending": "false",
+      "view": null,
+      "purchase": null,
+      "nav": null,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "mode": "navigation",
+      "pending": "false",
+      "view": null,
+      "purchase": null,
+      "nav": null,
+      "overflow": false
+    },
+    {
+      "width": 1600,
+      "mode": "navigation",
+      "pending": "false",
+      "view": null,
+      "purchase": null,
+      "nav": null,
+      "overflow": false
+    },
+    {
+      "width": 1920,
+      "mode": "navigation",
+      "pending": "false",
+      "view": null,
+      "purchase": null,
+      "nav": null,
+      "overflow": false
+    },
+    {
+      "width": 320,
+      "route": "PDP with cart",
+      "mode": "product-cart",
+      "pending": "false",
+      "view": {
+        "top": 706,
+        "bottom": 762,
+        "left": 12,
+        "right": 308
+      },
+      "purchase": {
+        "top": 774,
+        "bottom": 850,
+        "left": 0,
+        "right": 320
+      },
+      "nav": null,
+      "overflow": false
+    },
+    {
+      "width": 360,
+      "route": "PDP with cart",
+      "mode": "product-cart",
+      "pending": "false",
+      "view": {
+        "top": 706,
+        "bottom": 762,
+        "left": 12,
+        "right": 348
+      },
+      "purchase": {
+        "top": 774,
+        "bottom": 850,
+        "left": 0,
+        "right": 360
+      },
+      "nav": null,
+      "overflow": false
+    },
+    {
+      "width": 375,
+      "route": "PDP with cart",
+      "mode": "product-cart",
+      "pending": "false",
+      "view": {
+        "top": 706,
+        "bottom": 762,
+        "left": 12,
+        "right": 363
+      },
+      "purchase": {
+        "top": 774,
+        "bottom": 850,
+        "left": 0,
+        "right": 375
+      },
+      "nav": null,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "route": "PDP with cart",
+      "mode": "product-cart",
+      "pending": "false",
+      "view": {
+        "top": 706,
+        "bottom": 762,
+        "left": 12,
+        "right": 378
+      },
+      "purchase": {
+        "top": 774,
+        "bottom": 850,
+        "left": 0,
+        "right": 390
+      },
+      "nav": null,
+      "overflow": false
+    },
+    {
+      "width": 400,
+      "route": "PDP with cart",
+      "mode": "product-cart",
+      "pending": "false",
+      "view": {
+        "top": 706,
+        "bottom": 762,
+        "left": 12,
+        "right": 388
+      },
+      "purchase": {
+        "top": 774,
+        "bottom": 850,
+        "left": 0,
+        "right": 400
+      },
+      "nav": null,
+      "overflow": false
+    },
+    {
+      "width": 414,
+      "route": "PDP with cart",
+      "mode": "product-cart",
+      "pending": "false",
+      "view": {
+        "top": 706,
+        "bottom": 762,
+        "left": 12,
+        "right": 402
+      },
+      "purchase": {
+        "top": 774,
+        "bottom": 850,
+        "left": 0,
+        "right": 414
+      },
+      "nav": null,
+      "overflow": false
+    },
+    {
+      "width": 427,
+      "route": "PDP with cart",
+      "mode": "product-cart",
+      "pending": "false",
+      "view": {
+        "top": 706,
+        "bottom": 762,
+        "left": 12,
+        "right": 415
+      },
+      "purchase": {
+        "top": 774,
+        "bottom": 850,
+        "left": 0,
+        "right": 427
+      },
+      "nav": null,
+      "overflow": false
+    },
+    {
+      "width": 440,
+      "route": "PDP with cart",
+      "mode": "product-cart",
+      "pending": "false",
+      "view": {
+        "top": 706,
+        "bottom": 762,
+        "left": 12,
+        "right": 428
+      },
+      "purchase": {
+        "top": 774,
+        "bottom": 850,
+        "left": 0,
+        "right": 440
+      },
+      "nav": null,
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "route": "PDP with cart",
+      "mode": "product-cart",
+      "pending": "false",
+      "view": {
+        "top": 706,
+        "bottom": 762,
+        "left": 12,
+        "right": 756
+      },
+      "purchase": {
+        "top": 774,
+        "bottom": 850,
+        "left": 0,
+        "right": 768
+      },
+      "nav": null,
+      "overflow": false
+    },
+    {
+      "width": 820,
+      "route": "PDP with cart",
+      "mode": "product-cart",
+      "pending": "false",
+      "view": null,
+      "purchase": null,
+      "nav": null,
+      "overflow": false
+    },
+    {
+      "width": 1024,
+      "route": "PDP with cart",
+      "mode": "product-cart",
+      "pending": "false",
+      "view": null,
+      "purchase": null,
+      "nav": null,
+      "overflow": false
+    },
+    {
+      "width": 1280,
+      "route": "PDP with cart",
+      "mode": "product-cart",
+      "pending": "false",
+      "view": null,
+      "purchase": null,
+      "nav": null,
+      "overflow": false
+    },
+    {
+      "width": 1366,
+      "route": "PDP with cart",
+      "mode": "product-cart",
+      "pending": "false",
+      "view": null,
+      "purchase": null,
+      "nav": null,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "route": "PDP with cart",
+      "mode": "product-cart",
+      "pending": "false",
+      "view": null,
+      "purchase": null,
+      "nav": null,
+      "overflow": false
+    },
+    {
+      "width": 1600,
+      "route": "PDP with cart",
+      "mode": "product-cart",
+      "pending": "false",
+      "view": null,
+      "purchase": null,
+      "nav": null,
+      "overflow": false
+    },
+    {
+      "width": 1920,
+      "route": "PDP with cart",
+      "mode": "product-cart",
+      "pending": "false",
+      "view": null,
+      "purchase": null,
+      "nav": null,
+      "overflow": false
+    },
+    {
+      "width": 320,
+      "route": "cart",
+      "mode": "cart",
+      "pending": "false",
+      "view": null,
+      "purchase": null,
+      "nav": null,
+      "overflow": false
+    },
+    {
+      "width": 400,
+      "route": "cart",
+      "mode": "cart",
+      "pending": "false",
+      "view": null,
+      "purchase": null,
+      "nav": null,
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "route": "cart",
+      "mode": "cart",
+      "pending": "false",
+      "view": null,
+      "purchase": null,
+      "nav": null,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "route": "cart",
+      "mode": "cart",
+      "pending": "false",
+      "view": null,
+      "purchase": null,
+      "nav": null,
+      "overflow": false
+    }
+  ],
+  "transitions": [
+    {
+      "step": "PDP empty",
+      "mode": "product",
+      "pending": "false",
+      "view": null,
+      "purchase": {
+        "top": 774,
+        "bottom": 850,
+        "left": 0,
+        "right": 400
+      },
+      "nav": null,
+      "overflow": false
+    },
+    {
+      "step": "0→1",
+      "mode": "product-cart",
+      "pending": "false",
+      "view": {
+        "top": 706,
+        "bottom": 762,
+        "left": 12,
+        "right": 388
+      },
+      "purchase": {
+        "top": 774,
+        "bottom": 850,
+        "left": 0,
+        "right": 400
+      },
+      "nav": null,
+      "overflow": false
+    },
+    {
+      "step": "1→2",
+      "mode": "product-cart",
+      "pending": "false",
+      "view": {
+        "top": 706,
+        "bottom": 762,
+        "left": 12,
+        "right": 388
+      },
+      "purchase": {
+        "top": 774,
+        "bottom": 850,
+        "left": 0,
+        "right": 400
+      },
+      "nav": null,
+      "overflow": false
+    },
+    {
+      "step": "2→1",
+      "mode": "product-cart",
+      "pending": "false",
+      "view": {
+        "top": 706,
+        "bottom": 762,
+        "left": 12,
+        "right": 388
+      },
+      "purchase": {
+        "top": 774,
+        "bottom": 850,
+        "left": 0,
+        "right": 400
+      },
+      "nav": null,
+      "overflow": false
+    },
+    {
+      "step": "1→0 browsing",
+      "mode": "navigation",
+      "pending": "false",
+      "view": null,
+      "purchase": null,
+      "nav": {
+        "top": 788,
+        "bottom": 850,
+        "left": 0,
+        "right": 400
+      },
+      "overflow": false
+    }
+  ],
+  "checks": {
+    "mainOrder": [
+      "Best Seller",
+      "New Arrivals",
+      "Rashi / Zodiac",
+      "Bracelets",
+      "Rudraksha",
+      "Crystal",
+      "Puja",
+      "Remedy"
+    ],
+    "sectionOrder": [
+      "best-seller",
+      "new-arrivals",
+      "zodiac",
+      "bracelets",
+      "rudraksha",
+      "crystals",
+      "pooja",
+      "intentions"
+    ],
+    "categoryWithCart": {
+      "mode": "view-cart",
+      "pending": "false",
+      "view": {
+        "top": 782,
+        "bottom": 838,
+        "left": 12,
+        "right": 388
+      },
+      "purchase": null,
+      "nav": null,
+      "overflow": false
+    },
+    "cart": {
+      "total": "₹1,290.00",
+      "confirmed": "Cart confirmed. Checkout is currently unavailable.",
+      "disabled": true,
+      "share": true
+    },
+    "install": {
+      "mode": "hidden",
+      "pending": "false",
+      "view": null,
+      "purchase": null,
+      "nav": null,
+      "overflow": false
+    },
+    "installRestored": {
+      "mode": "navigation",
+      "pending": "false",
+      "view": null,
+      "purchase": null,
+      "nav": {
+        "top": 788,
+        "bottom": 850,
+        "left": 0,
+        "right": 400
+      },
+      "overflow": false
+    },
+    "installDismissalPersists": true,
+    "search": 3,
+    "variants": {
+      "count": 3,
+      "selected": "true"
+    },
+    "zoom": {
+      "mode": "hidden",
+      "pending": "false",
+      "view": null,
+      "purchase": null,
+      "nav": null,
+      "overflow": false
+    },
+    "zoomRestored": {
+      "mode": "product",
+      "pending": "false",
+      "view": null,
+      "purchase": {
+        "top": 774,
+        "bottom": 850,
+        "left": 0,
+        "right": 400
+      },
+      "nav": null,
+      "overflow": false
+    },
+    "offline": {
+      "message": "Products couldn’t be loaded\n\nYou are offline. Reconnect to load current Shopify products and prices.\n\nRetry",
+      "cards": 0
+    },
+    "noWorkbookFallback": true
+  },
+  "limitations": [
+    "Native install and Web Share OS dialogs require physical-device verification; install eligibility/dismissal was exercised with controlled browser events.",
+    "Blinkit live DOM access was blocked by its anti-bot page; supplied screenshots were used as visual reference."
+  ],
+  "runtimeIssues": [],
+  "pass": true
+}

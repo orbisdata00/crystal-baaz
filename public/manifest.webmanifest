@@ -1,12 +1,12 @@
 {
   "name": "Crystal Baaz",
   "short_name": "Crystal Baaz",
-  "description": "Browse the Crystal Baaz client catalog preview.",
+  "description": "Explore crystals, jewellery and spiritual essentials at Crystal Baaz.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#FFFDF8",
-  "theme_color": "#FFFDF8",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
   "icons": [
     { "src": "/assets/pwa-icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
     { "src": "/assets/pwa-icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },

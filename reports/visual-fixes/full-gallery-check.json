@@ -1,0 +1,9 @@
+{
+  "handle": "navratan-pendant-6",
+  "expectedFromFullShopifyAudit": 35,
+  "thumbnails": 35,
+  "counter": "1 / 35",
+  "afterNext": "2 / 35",
+  "closed": true,
+  "pass": true
+}

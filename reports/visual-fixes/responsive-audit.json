@@ -1,0 +1,3076 @@
+{
+  "origin": "http://127.0.0.1:4175",
+  "engine": "Playwright + Google Chrome",
+  "deviceScaleFactor": 1,
+  "rows": [
+    {
+      "label": "homepage",
+      "width": 320,
+      "overflow": false,
+      "mode": "navigation",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 117,
+        "bottom": 117,
+        "font": "12px",
+        "radius": "0px"
+      },
+      "hero": {
+        "x": 13,
+        "y": 135,
+        "width": 294,
+        "height": 215,
+        "bottom": 350,
+        "font": "12px",
+        "radius": "14px"
+      },
+      "category": {
+        "x": 13,
+        "y": 567.390625,
+        "width": 68.25,
+        "height": 44,
+        "bottom": 611.390625,
+        "font": "12px",
+        "radius": "8px"
+      },
+      "card": {
+        "x": 14,
+        "y": 730.78125,
+        "width": 134.1875,
+        "height": 248,
+        "bottom": 978.78125,
+        "font": "12px",
+        "radius": "9px"
+      },
+      "image": {
+        "x": 21,
+        "y": 737.78125,
+        "width": 120.1875,
+        "height": 110,
+        "bottom": 847.78125,
+        "font": "12px",
+        "radius": "7px"
+      },
+      "viewCart": null,
+      "purchase": null,
+      "bottomNav": {
+        "x": 0,
+        "y": 788,
+        "width": 320,
+        "height": 62,
+        "bottom": 850,
+        "font": "12px",
+        "radius": "0px"
+      },
+      "toast": null
+    },
+    {
+      "label": "homepage",
+      "width": 360,
+      "overflow": false,
+      "mode": "navigation",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 360,
+        "height": 117,
+        "bottom": 117,
+        "font": "12px",
+        "radius": "0px"
+      },
+      "hero": {
+        "x": 13,
+        "y": 135,
+        "width": 334,
+        "height": 215,
+        "bottom": 350,
+        "font": "12px",
+        "radius": "14px"
+      },
+      "category": {
+        "x": 13,
+        "y": 567.390625,
+        "width": 78.25,
+        "height": 44,
+        "bottom": 611.390625,
+        "font": "12px",
+        "radius": "8px"
+      },
+      "card": {
+        "x": 14,
+        "y": 730.78125,
+        "width": 134.546875,
+        "height": 258,
+        "bottom": 988.78125,
+        "font": "12px",
+        "radius": "9px"
+      },
+      "image": {
+        "x": 21,
+        "y": 737.78125,
+        "width": 120.546875,
+        "height": 120,
+        "bottom": 857.78125,
+        "font": "12px",
+        "radius": "7px"
+      },
+      "viewCart": null,
+      "purchase": null,
+      "bottomNav": {
+        "x": 0,
+        "y": 788,
+        "width": 360,
+        "height": 62,
+        "bottom": 850,
+        "font": "12px",
+        "radius": "0px"
+      },
+      "toast": null
+    },
+    {
+      "label": "homepage",
+      "width": 375,
+      "overflow": false,
+      "mode": "navigation",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 375,
+        "height": 117,
+        "bottom": 117,
+        "font": "12px",
+        "radius": "0px"
+      },
+      "hero": {
+        "x": 13,
+        "y": 135,
+        "width": 349,
+        "height": 215,
+        "bottom": 350,
+        "font": "12px",
+        "radius": "14px"
+      },
+      "category": {
+        "x": 13,
+        "y": 567.390625,
+        "width": 82,
+        "height": 44,
+        "bottom": 611.390625,
+        "font": "12px",
+        "radius": "8px"
+      },
+      "card": {
+        "x": 14,
+        "y": 730.78125,
+        "width": 140.390625,
+        "height": 258,
+        "bottom": 988.78125,
+        "font": "12px",
+        "radius": "9px"
+      },
+      "image": {
+        "x": 21,
+        "y": 737.78125,
+        "width": 126.390625,
+        "height": 120,
+        "bottom": 857.78125,
+        "font": "12px",
+        "radius": "7px"
+      },
+      "viewCart": null,
+      "purchase": null,
+      "bottomNav": {
+        "x": 0,
+        "y": 788,
+        "width": 375,
+        "height": 62,
+        "bottom": 850,
+        "font": "12px",
+        "radius": "0px"
+      },
+      "toast": null
+    },
+    {
+      "label": "homepage",
+      "width": 390,
+      "overflow": false,
+      "mode": "navigation",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 117,
+        "bottom": 117,
+        "font": "12px",
+        "radius": "0px"
+      },
+      "hero": {
+        "x": 13,
+        "y": 135,
+        "width": 364,
+        "height": 215,
+        "bottom": 350,
+        "font": "12px",
+        "radius": "14px"
+      },
+      "category": {
+        "x": 13,
+        "y": 567.390625,
+        "width": 85.75,
+        "height": 44,
+        "bottom": 611.390625,
+        "font": "12px",
+        "radius": "8px"
+      },
+      "card": {
+        "x": 14,
+        "y": 730.78125,
+        "width": 146.25,
+        "height": 258,
+        "bottom": 988.78125,
+        "font": "12px",
+        "radius": "9px"
+      },
+      "image": {
+        "x": 21,
+        "y": 737.78125,
+        "width": 132.25,
+        "height": 120,
+        "bottom": 857.78125,
+        "font": "12px",
+        "radius": "7px"
+      },
+      "viewCart": null,
+      "purchase": null,
+      "bottomNav": {
+        "x": 0,
+        "y": 788,
+        "width": 390,
+        "height": 62,
+        "bottom": 850,
+        "font": "12px",
+        "radius": "0px"
+      },
+      "toast": null
+    },
+    {
+      "label": "homepage",
+      "width": 400,
+      "overflow": false,
+      "mode": "navigation",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 400,
+        "height": 117,
+        "bottom": 117,
+        "font": "12px",
+        "radius": "0px"
+      },
+      "hero": {
+        "x": 13,
+        "y": 135,
+        "width": 374,
+        "height": 215,
+        "bottom": 350,
+        "font": "12px",
+        "radius": "14px"
+      },
+      "category": {
+        "x": 13,
+        "y": 567.390625,
+        "width": 88.25,
+        "height": 44,
+        "bottom": 611.390625,
+        "font": "12px",
+        "radius": "8px"
+      },
+      "card": {
+        "x": 14,
+        "y": 730.78125,
+        "width": 150.140625,
+        "height": 258,
+        "bottom": 988.78125,
+        "font": "12px",
+        "radius": "9px"
+      },
+      "image": {
+        "x": 21,
+        "y": 737.78125,
+        "width": 136.140625,
+        "height": 120,
+        "bottom": 857.78125,
+        "font": "12px",
+        "radius": "7px"
+      },
+      "viewCart": null,
+      "purchase": null,
+      "bottomNav": {
+        "x": 0,
+        "y": 788,
+        "width": 400,
+        "height": 62,
+        "bottom": 850,
+        "font": "12px",
+        "radius": "0px"
+      },
+      "toast": null
+    },
+    {
+      "label": "homepage",
+      "width": 414,
+      "overflow": false,
+      "mode": "navigation",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 414,
+        "height": 117,
+        "bottom": 117,
+        "font": "12px",
+        "radius": "0px"
+      },
+      "hero": {
+        "x": 13,
+        "y": -22,
+        "width": 388,
+        "height": 215,
+        "bottom": 193,
+        "font": "12px",
+        "radius": "14px"
+      },
+      "category": {
+        "x": 13,
+        "y": 410.390625,
+        "width": 91.75,
+        "height": 44,
+        "bottom": 454.390625,
+        "font": "12px",
+        "radius": "8px"
+      },
+      "card": {
+        "x": 14,
+        "y": 573.78125,
+        "width": 155.609375,
+        "height": 258,
+        "bottom": 831.78125,
+        "font": "12px",
+        "radius": "9px"
+      },
+      "image": {
+        "x": 21,
+        "y": 580.78125,
+        "width": 141.609375,
+        "height": 120,
+        "bottom": 700.78125,
+        "font": "12px",
+        "radius": "7px"
+      },
+      "viewCart": null,
+      "purchase": null,
+      "bottomNav": {
+        "x": 0,
+        "y": 788,
+        "width": 414,
+        "height": 62,
+        "bottom": 850,
+        "font": "12px",
+        "radius": "0px"
+      },
+      "toast": null
+    },
+    {
+      "label": "homepage",
+      "width": 427,
+      "overflow": false,
+      "mode": "navigation",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 427,
+        "height": 117,
+        "bottom": 117,
+        "font": "12px",
+        "radius": "0px"
+      },
+      "hero": {
+        "x": 13,
+        "y": -22,
+        "width": 401,
+        "height": 215,
+        "bottom": 193,
+        "font": "12px",
+        "radius": "14px"
+      },
+      "category": {
+        "x": 13,
+        "y": 410.390625,
+        "width": 95,
+        "height": 44,
+        "bottom": 454.390625,
+        "font": "12px",
+        "radius": "8px"
+      },
+      "card": {
+        "x": 14,
+        "y": 573.78125,
+        "width": 160.671875,
+        "height": 258,
+        "bottom": 831.78125,
+        "font": "12px",
+        "radius": "9px"
+      },
+      "image": {
+        "x": 21,
+        "y": 580.78125,
+        "width": 146.671875,
+        "height": 120,
+        "bottom": 700.78125,
+        "font": "12px",
+        "radius": "7px"
+      },
+      "viewCart": null,
+      "purchase": null,
+      "bottomNav": {
+        "x": 0,
+        "y": 788,
+        "width": 427,
+        "height": 62,
+        "bottom": 850,
+        "font": "12px",
+        "radius": "0px"
+      },
+      "toast": null
+    },
+    {
+      "label": "homepage",
+      "width": 440,
+      "overflow": false,
+      "mode": "navigation",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 440,
+        "height": 117,
+        "bottom": 117,
+        "font": "12px",
+        "radius": "0px"
+      },
+      "hero": {
+        "x": 13,
+        "y": -22,
+        "width": 414,
+        "height": 215,
+        "bottom": 193,
+        "font": "12px",
+        "radius": "14px"
+      },
+      "category": {
+        "x": 13,
+        "y": 410.390625,
+        "width": 98.25,
+        "height": 44,
+        "bottom": 454.390625,
+        "font": "12px",
+        "radius": "8px"
+      },
+      "card": {
+        "x": 14,
+        "y": 573.78125,
+        "width": 165.75,
+        "height": 258,
+        "bottom": 831.78125,
+        "font": "12px",
+        "radius": "9px"
+      },
+      "image": {
+        "x": 21,
+        "y": 580.78125,
+        "width": 151.75,
+        "height": 120,
+        "bottom": 700.78125,
+        "font": "12px",
+        "radius": "7px"
+      },
+      "viewCart": null,
+      "purchase": null,
+      "bottomNav": {
+        "x": 0,
+        "y": 788,
+        "width": 440,
+        "height": 62,
+        "bottom": 850,
+        "font": "12px",
+        "radius": "0px"
+      },
+      "toast": null
+    },
+    {
+      "label": "homepage",
+      "width": 1024,
+      "overflow": false,
+      "mode": "navigation",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 1024,
+        "height": 140,
+        "bottom": 140,
+        "font": "14px",
+        "radius": "0px"
+      },
+      "hero": {
+        "x": 24,
+        "y": 1,
+        "width": 976,
+        "height": 260,
+        "bottom": 261,
+        "font": "14px",
+        "radius": "14px"
+      },
+      "category": {
+        "x": 24,
+        "y": 515.796875,
+        "width": 113.25,
+        "height": 48,
+        "bottom": 563.796875,
+        "font": "14px",
+        "radius": "8px"
+      },
+      "card": {
+        "x": 24,
+        "y": 635.59375,
+        "width": 176,
+        "height": 294,
+        "bottom": 929.59375,
+        "font": "14px",
+        "radius": "9px"
+      },
+      "image": {
+        "x": 33,
+        "y": 644.59375,
+        "width": 158,
+        "height": 144,
+        "bottom": 788.59375,
+        "font": "14px",
+        "radius": "7px"
+      },
+      "viewCart": null,
+      "purchase": null,
+      "bottomNav": null,
+      "toast": null
+    },
+    {
+      "label": "homepage",
+      "width": 1280,
+      "overflow": false,
+      "mode": "navigation",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 140,
+        "bottom": 140,
+        "font": "14px",
+        "radius": "0px"
+      },
+      "hero": {
+        "x": 40,
+        "y": 1,
+        "width": 1200,
+        "height": 260,
+        "bottom": 261,
+        "font": "14px",
+        "radius": "14px"
+      },
+      "category": {
+        "x": 40,
+        "y": 515.796875,
+        "width": 141.25,
+        "height": 48,
+        "bottom": 563.796875,
+        "font": "14px",
+        "radius": "8px"
+      },
+      "card": {
+        "x": 40,
+        "y": 635.59375,
+        "width": 176,
+        "height": 294,
+        "bottom": 929.59375,
+        "font": "14px",
+        "radius": "9px"
+      },
+      "image": {
+        "x": 49,
+        "y": 644.59375,
+        "width": 158,
+        "height": 144,
+        "bottom": 788.59375,
+        "font": "14px",
+        "radius": "7px"
+      },
+      "viewCart": null,
+      "purchase": null,
+      "bottomNav": null,
+      "toast": null
+    },
+    {
+      "label": "homepage",
+      "width": 1366,
+      "overflow": false,
+      "mode": "navigation",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 1366,
+        "height": 140,
+        "bottom": 140,
+        "font": "14px",
+        "radius": "0px"
+      },
+      "hero": {
+        "x": 83,
+        "y": 1,
+        "width": 1200,
+        "height": 260,
+        "bottom": 261,
+        "font": "14px",
+        "radius": "14px"
+      },
+      "category": {
+        "x": 83,
+        "y": 515.796875,
+        "width": 141.25,
+        "height": 48,
+        "bottom": 563.796875,
+        "font": "14px",
+        "radius": "8px"
+      },
+      "card": {
+        "x": 83,
+        "y": 635.59375,
+        "width": 176,
+        "height": 294,
+        "bottom": 929.59375,
+        "font": "14px",
+        "radius": "9px"
+      },
+      "image": {
+        "x": 92,
+        "y": 644.59375,
+        "width": 158,
+        "height": 144,
+        "bottom": 788.59375,
+        "font": "14px",
+        "radius": "7px"
+      },
+      "viewCart": null,
+      "purchase": null,
+      "bottomNav": null,
+      "toast": null
+    },
+    {
+      "label": "homepage",
+      "width": 1440,
+      "overflow": false,
+      "mode": "navigation",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 140,
+        "bottom": 140,
+        "font": "14px",
+        "radius": "0px"
+      },
+      "hero": {
+        "x": 120,
+        "y": 1,
+        "width": 1200,
+        "height": 260,
+        "bottom": 261,
+        "font": "14px",
+        "radius": "14px"
+      },
+      "category": {
+        "x": 120,
+        "y": 515.796875,
+        "width": 141.25,
+        "height": 48,
+        "bottom": 563.796875,
+        "font": "14px",
+        "radius": "8px"
+      },
+      "card": {
+        "x": 120,
+        "y": 635.59375,
+        "width": 176,
+        "height": 294,
+        "bottom": 929.59375,
+        "font": "14px",
+        "radius": "9px"
+      },
+      "image": {
+        "x": 129,
+        "y": 644.59375,
+        "width": 158,
+        "height": 144,
+        "bottom": 788.59375,
+        "font": "14px",
+        "radius": "7px"
+      },
+      "viewCart": null,
+      "purchase": null,
+      "bottomNav": null,
+      "toast": null
+    },
+    {
+      "label": "homepage",
+      "width": 1600,
+      "overflow": false,
+      "mode": "navigation",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 140,
+        "bottom": 140,
+        "font": "14px",
+        "radius": "0px"
+      },
+      "hero": {
+        "x": 200,
+        "y": -87,
+        "width": 1200,
+        "height": 260,
+        "bottom": 173,
+        "font": "14px",
+        "radius": "14px"
+      },
+      "category": {
+        "x": 200,
+        "y": 427.796875,
+        "width": 141.25,
+        "height": 48,
+        "bottom": 475.796875,
+        "font": "14px",
+        "radius": "8px"
+      },
+      "card": {
+        "x": 200,
+        "y": 547.59375,
+        "width": 176,
+        "height": 294,
+        "bottom": 841.59375,
+        "font": "14px",
+        "radius": "9px"
+      },
+      "image": {
+        "x": 209,
+        "y": 556.59375,
+        "width": 158,
+        "height": 144,
+        "bottom": 700.59375,
+        "font": "14px",
+        "radius": "7px"
+      },
+      "viewCart": null,
+      "purchase": null,
+      "bottomNav": null,
+      "toast": null
+    },
+    {
+      "label": "homepage",
+      "width": 1920,
+      "overflow": false,
+      "mode": "navigation",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 1920,
+        "height": 140,
+        "bottom": 140,
+        "font": "14px",
+        "radius": "0px"
+      },
+      "hero": {
+        "x": 360,
+        "y": -87,
+        "width": 1200,
+        "height": 260,
+        "bottom": 173,
+        "font": "14px",
+        "radius": "14px"
+      },
+      "category": {
+        "x": 360,
+        "y": 427.796875,
+        "width": 141.25,
+        "height": 48,
+        "bottom": 475.796875,
+        "font": "14px",
+        "radius": "8px"
+      },
+      "card": {
+        "x": 360,
+        "y": 547.59375,
+        "width": 176,
+        "height": 294,
+        "bottom": 841.59375,
+        "font": "14px",
+        "radius": "9px"
+      },
+      "image": {
+        "x": 369,
+        "y": 556.59375,
+        "width": 158,
+        "height": 144,
+        "bottom": 700.59375,
+        "font": "14px",
+        "radius": "7px"
+      },
+      "viewCart": null,
+      "purchase": null,
+      "bottomNav": null,
+      "toast": null
+    },
+    {
+      "label": "PDP with cart",
+      "width": 320,
+      "overflow": false,
+      "mode": "product-cart",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 56.59375,
+        "bottom": 56.59375,
+        "font": "12px",
+        "radius": "0px"
+      },
+      "hero": null,
+      "category": null,
+      "card": {
+        "x": 30,
+        "y": 755.5625,
+        "width": 120.109375,
+        "height": 248,
+        "bottom": 1003.5625,
+        "font": "12px",
+        "radius": "9px"
+      },
+      "image": {
+        "x": 37,
+        "y": 762.5625,
+        "width": 106.109375,
+        "height": 110,
+        "bottom": 872.5625,
+        "font": "12px",
+        "radius": "7px"
+      },
+      "viewCart": {
+        "x": 12,
+        "y": 706,
+        "width": 296,
+        "height": 56,
+        "bottom": 762,
+        "font": "12px",
+        "radius": "12px"
+      },
+      "purchase": {
+        "x": 0,
+        "y": 774,
+        "width": 320,
+        "height": 76,
+        "bottom": 850,
+        "font": "12px",
+        "radius": "0px"
+      },
+      "bottomNav": null,
+      "toast": {
+        "x": 194.015625,
+        "y": 72,
+        "width": 109.984375,
+        "height": 38.796875,
+        "bottom": 110.796875,
+        "font": "12px",
+        "radius": "8px"
+      }
+    },
+    {
+      "label": "PDP with cart",
+      "width": 360,
+      "overflow": false,
+      "mode": "product-cart",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 360,
+        "height": 56.59375,
+        "bottom": 56.59375,
+        "font": "12px",
+        "radius": "0px"
+      },
+      "hero": null,
+      "category": null,
+      "card": {
+        "x": 30,
+        "y": 795.5625,
+        "width": 122.0625,
+        "height": 258,
+        "bottom": 1053.5625,
+        "font": "12px",
+        "radius": "9px"
+      },
+      "image": {
+        "x": 37,
+        "y": 802.5625,
+        "width": 108.0625,
+        "height": 120,
+        "bottom": 922.5625,
+        "font": "12px",
+        "radius": "7px"
+      },
+      "viewCart": {
+        "x": 12,
+        "y": 706,
+        "width": 336,
+        "height": 56,
+        "bottom": 762,
+        "font": "12px",
+        "radius": "12px"
+      },
+      "purchase": {
+        "x": 0,
+        "y": 774,
+        "width": 360,
+        "height": 76,
+        "bottom": 850,
+        "font": "12px",
+        "radius": "0px"
+      },
+      "bottomNav": null,
+      "toast": {
+        "x": 234.015625,
+        "y": 72,
+        "width": 109.984375,
+        "height": 38.796875,
+        "bottom": 110.796875,
+        "font": "12px",
+        "radius": "8px"
+      }
+    },
+    {
+      "label": "PDP with cart",
+      "width": 375,
+      "overflow": false,
+      "mode": "product-cart",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 375,
+        "height": 56.59375,
+        "bottom": 56.59375,
+        "font": "12px",
+        "radius": "0px"
+      },
+      "hero": null,
+      "category": null,
+      "card": {
+        "x": 30,
+        "y": 810.5625,
+        "width": 127.90625,
+        "height": 258,
+        "bottom": 1068.5625,
+        "font": "12px",
+        "radius": "9px"
+      },
+      "image": {
+        "x": 37,
+        "y": 817.5625,
+        "width": 113.90625,
+        "height": 120,
+        "bottom": 937.5625,
+        "font": "12px",
+        "radius": "7px"
+      },
+      "viewCart": {
+        "x": 12,
+        "y": 706,
+        "width": 351,
+        "height": 56,
+        "bottom": 762,
+        "font": "12px",
+        "radius": "12px"
+      },
+      "purchase": {
+        "x": 0,
+        "y": 774,
+        "width": 375,
+        "height": 76,
+        "bottom": 850,
+        "font": "12px",
+        "radius": "0px"
+      },
+      "bottomNav": null,
+      "toast": {
+        "x": 249.015625,
+        "y": 72,
+        "width": 109.984375,
+        "height": 38.796875,
+        "bottom": 110.796875,
+        "font": "12px",
+        "radius": "8px"
+      }
+    },
+    {
+      "label": "PDP with cart",
+      "width": 390,
+      "overflow": false,
+      "mode": "product-cart",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 56.59375,
+        "bottom": 56.59375,
+        "font": "12px",
+        "radius": "0px"
+      },
+      "hero": null,
+      "category": null,
+      "card": {
+        "x": 30,
+        "y": 825.5625,
+        "width": 133.765625,
+        "height": 258,
+        "bottom": 1083.5625,
+        "font": "12px",
+        "radius": "9px"
+      },
+      "image": {
+        "x": 37,
+        "y": 832.5625,
+        "width": 119.765625,
+        "height": 120,
+        "bottom": 952.5625,
+        "font": "12px",
+        "radius": "7px"
+      },
+      "viewCart": {
+        "x": 12,
+        "y": 706,
+        "width": 366,
+        "height": 56,
+        "bottom": 762,
+        "font": "12px",
+        "radius": "12px"
+      },
+      "purchase": {
+        "x": 0,
+        "y": 774,
+        "width": 390,
+        "height": 76,
+        "bottom": 850,
+        "font": "12px",
+        "radius": "0px"
+      },
+      "bottomNav": null,
+      "toast": {
+        "x": 264.015625,
+        "y": 72,
+        "width": 109.984375,
+        "height": 38.796875,
+        "bottom": 110.796875,
+        "font": "12px",
+        "radius": "8px"
+      }
+    },
+    {
+      "label": "PDP with cart",
+      "width": 400,
+      "overflow": false,
+      "mode": "product-cart",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 400,
+        "height": 56.59375,
+        "bottom": 56.59375,
+        "font": "12px",
+        "radius": "0px"
+      },
+      "hero": null,
+      "category": null,
+      "card": {
+        "x": 30,
+        "y": 835.5625,
+        "width": 137.65625,
+        "height": 258,
+        "bottom": 1093.5625,
+        "font": "12px",
+        "radius": "9px"
+      },
+      "image": {
+        "x": 37,
+        "y": 842.5625,
+        "width": 123.65625,
+        "height": 120,
+        "bottom": 962.5625,
+        "font": "12px",
+        "radius": "7px"
+      },
+      "viewCart": {
+        "x": 12,
+        "y": 706,
+        "width": 376,
+        "height": 56,
+        "bottom": 762,
+        "font": "12px",
+        "radius": "12px"
+      },
+      "purchase": {
+        "x": 0,
+        "y": 774,
+        "width": 400,
+        "height": 76,
+        "bottom": 850,
+        "font": "12px",
+        "radius": "0px"
+      },
+      "bottomNav": null,
+      "toast": {
+        "x": 274.015625,
+        "y": 72,
+        "width": 109.984375,
+        "height": 38.796875,
+        "bottom": 110.796875,
+        "font": "12px",
+        "radius": "8px"
+      }
+    },
+    {
+      "label": "PDP with cart",
+      "width": 414,
+      "overflow": false,
+      "mode": "product-cart",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 414,
+        "height": 56.59375,
+        "bottom": 56.59375,
+        "font": "12px",
+        "radius": "0px"
+      },
+      "hero": null,
+      "category": null,
+      "card": {
+        "x": 30,
+        "y": 849.5625,
+        "width": 143.125,
+        "height": 258,
+        "bottom": 1107.5625,
+        "font": "12px",
+        "radius": "9px"
+      },
+      "image": {
+        "x": 37,
+        "y": 856.5625,
+        "width": 129.125,
+        "height": 120,
+        "bottom": 976.5625,
+        "font": "12px",
+        "radius": "7px"
+      },
+      "viewCart": {
+        "x": 12,
+        "y": 706,
+        "width": 390,
+        "height": 56,
+        "bottom": 762,
+        "font": "12px",
+        "radius": "12px"
+      },
+      "purchase": {
+        "x": 0,
+        "y": 774,
+        "width": 414,
+        "height": 76,
+        "bottom": 850,
+        "font": "12px",
+        "radius": "0px"
+      },
+      "bottomNav": null,
+      "toast": {
+        "x": 288.015625,
+        "y": 72,
+        "width": 109.984375,
+        "height": 38.796875,
+        "bottom": 110.796875,
+        "font": "12px",
+        "radius": "8px"
+      }
+    },
+    {
+      "label": "PDP with cart",
+      "width": 427,
+      "overflow": false,
+      "mode": "product-cart",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 427,
+        "height": 56.59375,
+        "bottom": 56.59375,
+        "font": "12px",
+        "radius": "0px"
+      },
+      "hero": null,
+      "category": null,
+      "card": {
+        "x": 30,
+        "y": 862.5625,
+        "width": 148.1875,
+        "height": 258,
+        "bottom": 1120.5625,
+        "font": "12px",
+        "radius": "9px"
+      },
+      "image": {
+        "x": 37,
+        "y": 869.5625,
+        "width": 134.1875,
+        "height": 120,
+        "bottom": 989.5625,
+        "font": "12px",
+        "radius": "7px"
+      },
+      "viewCart": {
+        "x": 12,
+        "y": 706,
+        "width": 403,
+        "height": 56,
+        "bottom": 762,
+        "font": "12px",
+        "radius": "12px"
+      },
+      "purchase": {
+        "x": 0,
+        "y": 774,
+        "width": 427,
+        "height": 76,
+        "bottom": 850,
+        "font": "12px",
+        "radius": "0px"
+      },
+      "bottomNav": null,
+      "toast": {
+        "x": 301.015625,
+        "y": 72,
+        "width": 109.984375,
+        "height": 38.796875,
+        "bottom": 110.796875,
+        "font": "12px",
+        "radius": "8px"
+      }
+    },
+    {
+      "label": "PDP with cart",
+      "width": 440,
+      "overflow": false,
+      "mode": "product-cart",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 440,
+        "height": 56.59375,
+        "bottom": 56.59375,
+        "font": "12px",
+        "radius": "0px"
+      },
+      "hero": null,
+      "category": null,
+      "card": {
+        "x": 30,
+        "y": 875.5625,
+        "width": 153.265625,
+        "height": 258,
+        "bottom": 1133.5625,
+        "font": "12px",
+        "radius": "9px"
+      },
+      "image": {
+        "x": 37,
+        "y": 882.5625,
+        "width": 139.265625,
+        "height": 120,
+        "bottom": 1002.5625,
+        "font": "12px",
+        "radius": "7px"
+      },
+      "viewCart": {
+        "x": 12,
+        "y": 706,
+        "width": 416,
+        "height": 56,
+        "bottom": 762,
+        "font": "12px",
+        "radius": "12px"
+      },
+      "purchase": {
+        "x": 0,
+        "y": 774,
+        "width": 440,
+        "height": 76,
+        "bottom": 850,
+        "font": "12px",
+        "radius": "0px"
+      },
+      "bottomNav": null,
+      "toast": {
+        "x": 314.015625,
+        "y": 72,
+        "width": 109.984375,
+        "height": 38.796875,
+        "bottom": 110.796875,
+        "font": "12px",
+        "radius": "8px"
+      }
+    },
+    {
+      "label": "PDP with cart",
+      "width": 1024,
+      "overflow": false,
+      "mode": "product-cart",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 1024,
+        "height": 64,
+        "bottom": 64,
+        "font": "14px",
+        "radius": "0px"
+      },
+      "hero": null,
+      "category": null,
+      "card": {
+        "x": 24,
+        "y": 662.796875,
+        "width": 176,
+        "height": 294,
+        "bottom": 956.796875,
+        "font": "14px",
+        "radius": "9px"
+      },
+      "image": {
+        "x": 33,
+        "y": 671.796875,
+        "width": 158,
+        "height": 144,
+        "bottom": 815.796875,
+        "font": "14px",
+        "radius": "7px"
+      },
+      "viewCart": null,
+      "purchase": null,
+      "bottomNav": null,
+      "toast": {
+        "x": 898.015625,
+        "y": 72,
+        "width": 109.984375,
+        "height": 38.796875,
+        "bottom": 110.796875,
+        "font": "12px",
+        "radius": "8px"
+      }
+    },
+    {
+      "label": "PDP with cart",
+      "width": 1280,
+      "overflow": false,
+      "mode": "product-cart",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 64,
+        "bottom": 64,
+        "font": "14px",
+        "radius": "0px"
+      },
+      "hero": null,
+      "category": null,
+      "card": {
+        "x": 40,
+        "y": 662.796875,
+        "width": 176,
+        "height": 294,
+        "bottom": 956.796875,
+        "font": "14px",
+        "radius": "9px"
+      },
+      "image": {
+        "x": 49,
+        "y": 671.796875,
+        "width": 158,
+        "height": 144,
+        "bottom": 815.796875,
+        "font": "14px",
+        "radius": "7px"
+      },
+      "viewCart": null,
+      "purchase": null,
+      "bottomNav": null,
+      "toast": {
+        "x": 1154.015625,
+        "y": 72,
+        "width": 109.984375,
+        "height": 38.796875,
+        "bottom": 110.796875,
+        "font": "12px",
+        "radius": "8px"
+      }
+    },
+    {
+      "label": "PDP with cart",
+      "width": 1366,
+      "overflow": false,
+      "mode": "product-cart",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 1366,
+        "height": 64,
+        "bottom": 64,
+        "font": "14px",
+        "radius": "0px"
+      },
+      "hero": null,
+      "category": null,
+      "card": {
+        "x": 83,
+        "y": 662.796875,
+        "width": 176,
+        "height": 294,
+        "bottom": 956.796875,
+        "font": "14px",
+        "radius": "9px"
+      },
+      "image": {
+        "x": 92,
+        "y": 671.796875,
+        "width": 158,
+        "height": 144,
+        "bottom": 815.796875,
+        "font": "14px",
+        "radius": "7px"
+      },
+      "viewCart": null,
+      "purchase": null,
+      "bottomNav": null,
+      "toast": {
+        "x": 1240.015625,
+        "y": 72,
+        "width": 109.984375,
+        "height": 38.796875,
+        "bottom": 110.796875,
+        "font": "12px",
+        "radius": "8px"
+      }
+    },
+    {
+      "label": "PDP with cart",
+      "width": 1440,
+      "overflow": false,
+      "mode": "product-cart",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 64,
+        "bottom": 64,
+        "font": "14px",
+        "radius": "0px"
+      },
+      "hero": null,
+      "category": null,
+      "card": {
+        "x": 120,
+        "y": 662.796875,
+        "width": 176,
+        "height": 294,
+        "bottom": 956.796875,
+        "font": "14px",
+        "radius": "9px"
+      },
+      "image": {
+        "x": 129,
+        "y": 671.796875,
+        "width": 158,
+        "height": 144,
+        "bottom": 815.796875,
+        "font": "14px",
+        "radius": "7px"
+      },
+      "viewCart": null,
+      "purchase": null,
+      "bottomNav": null,
+      "toast": {
+        "x": 1314.015625,
+        "y": 72,
+        "width": 109.984375,
+        "height": 38.796875,
+        "bottom": 110.796875,
+        "font": "12px",
+        "radius": "8px"
+      }
+    },
+    {
+      "label": "PDP with cart",
+      "width": 1600,
+      "overflow": false,
+      "mode": "product-cart",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 64,
+        "bottom": 64,
+        "font": "14px",
+        "radius": "0px"
+      },
+      "hero": null,
+      "category": null,
+      "card": {
+        "x": 200,
+        "y": 662.796875,
+        "width": 176,
+        "height": 294,
+        "bottom": 956.796875,
+        "font": "14px",
+        "radius": "9px"
+      },
+      "image": {
+        "x": 209,
+        "y": 671.796875,
+        "width": 158,
+        "height": 144,
+        "bottom": 815.796875,
+        "font": "14px",
+        "radius": "7px"
+      },
+      "viewCart": null,
+      "purchase": null,
+      "bottomNav": null,
+      "toast": {
+        "x": 1474.015625,
+        "y": 72,
+        "width": 109.984375,
+        "height": 38.796875,
+        "bottom": 110.796875,
+        "font": "12px",
+        "radius": "8px"
+      }
+    },
+    {
+      "label": "PDP with cart",
+      "width": 1920,
+      "overflow": false,
+      "mode": "product-cart",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 1920,
+        "height": 64,
+        "bottom": 64,
+        "font": "14px",
+        "radius": "0px"
+      },
+      "hero": null,
+      "category": null,
+      "card": {
+        "x": 360,
+        "y": 662.796875,
+        "width": 176,
+        "height": 294,
+        "bottom": 956.796875,
+        "font": "14px",
+        "radius": "9px"
+      },
+      "image": {
+        "x": 369,
+        "y": 671.796875,
+        "width": 158,
+        "height": 144,
+        "bottom": 815.796875,
+        "font": "14px",
+        "radius": "7px"
+      },
+      "viewCart": null,
+      "purchase": null,
+      "bottomNav": null,
+      "toast": {
+        "x": 1794.015625,
+        "y": 72,
+        "width": 109.984375,
+        "height": 38.796875,
+        "bottom": 110.796875,
+        "font": "12px",
+        "radius": "8px"
+      }
+    },
+    {
+      "label": "cart",
+      "width": 320,
+      "overflow": false,
+      "mode": "cart",
+      "header": null,
+      "hero": null,
+      "category": null,
+      "card": null,
+      "image": null,
+      "viewCart": null,
+      "purchase": null,
+      "bottomNav": null,
+      "toast": null
+    },
+    {
+      "label": "cart",
+      "width": 360,
+      "overflow": false,
+      "mode": "cart",
+      "header": null,
+      "hero": null,
+      "category": null,
+      "card": null,
+      "image": null,
+      "viewCart": null,
+      "purchase": null,
+      "bottomNav": null,
+      "toast": null
+    },
+    {
+      "label": "cart",
+      "width": 375,
+      "overflow": false,
+      "mode": "cart",
+      "header": null,
+      "hero": null,
+      "category": null,
+      "card": null,
+      "image": null,
+      "viewCart": null,
+      "purchase": null,
+      "bottomNav": null,
+      "toast": null
+    },
+    {
+      "label": "cart",
+      "width": 390,
+      "overflow": false,
+      "mode": "cart",
+      "header": null,
+      "hero": null,
+      "category": null,
+      "card": null,
+      "image": null,
+      "viewCart": null,
+      "purchase": null,
+      "bottomNav": null,
+      "toast": null
+    },
+    {
+      "label": "cart",
+      "width": 400,
+      "overflow": false,
+      "mode": "cart",
+      "header": null,
+      "hero": null,
+      "category": null,
+      "card": null,
+      "image": null,
+      "viewCart": null,
+      "purchase": null,
+      "bottomNav": null,
+      "toast": null
+    },
+    {
+      "label": "cart",
+      "width": 414,
+      "overflow": false,
+      "mode": "cart",
+      "header": null,
+      "hero": null,
+      "category": null,
+      "card": null,
+      "image": null,
+      "viewCart": null,
+      "purchase": null,
+      "bottomNav": null,
+      "toast": null
+    },
+    {
+      "label": "cart",
+      "width": 427,
+      "overflow": false,
+      "mode": "cart",
+      "header": null,
+      "hero": null,
+      "category": null,
+      "card": null,
+      "image": null,
+      "viewCart": null,
+      "purchase": null,
+      "bottomNav": null,
+      "toast": null
+    },
+    {
+      "label": "cart",
+      "width": 440,
+      "overflow": false,
+      "mode": "cart",
+      "header": null,
+      "hero": null,
+      "category": null,
+      "card": null,
+      "image": null,
+      "viewCart": null,
+      "purchase": null,
+      "bottomNav": null,
+      "toast": null
+    },
+    {
+      "label": "cart",
+      "width": 1024,
+      "overflow": false,
+      "mode": "cart",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 1024,
+        "height": 140,
+        "bottom": 140,
+        "font": "14px",
+        "radius": "0px"
+      },
+      "hero": {
+        "x": 24,
+        "y": 158,
+        "width": 976,
+        "height": 260,
+        "bottom": 418,
+        "font": "14px",
+        "radius": "14px"
+      },
+      "category": {
+        "x": 24,
+        "y": 672.796875,
+        "width": 113.25,
+        "height": 48,
+        "bottom": 720.796875,
+        "font": "14px",
+        "radius": "8px"
+      },
+      "card": {
+        "x": 24,
+        "y": 792.59375,
+        "width": 176,
+        "height": 294,
+        "bottom": 1086.59375,
+        "font": "14px",
+        "radius": "9px"
+      },
+      "image": {
+        "x": 33,
+        "y": 801.59375,
+        "width": 158,
+        "height": 144,
+        "bottom": 945.59375,
+        "font": "14px",
+        "radius": "7px"
+      },
+      "viewCart": null,
+      "purchase": null,
+      "bottomNav": null,
+      "toast": null
+    },
+    {
+      "label": "cart",
+      "width": 1280,
+      "overflow": false,
+      "mode": "cart",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 140,
+        "bottom": 140,
+        "font": "14px",
+        "radius": "0px"
+      },
+      "hero": {
+        "x": 40,
+        "y": 158,
+        "width": 1200,
+        "height": 260,
+        "bottom": 418,
+        "font": "14px",
+        "radius": "14px"
+      },
+      "category": {
+        "x": 40,
+        "y": 672.796875,
+        "width": 141.25,
+        "height": 48,
+        "bottom": 720.796875,
+        "font": "14px",
+        "radius": "8px"
+      },
+      "card": {
+        "x": 40,
+        "y": 792.59375,
+        "width": 176,
+        "height": 294,
+        "bottom": 1086.59375,
+        "font": "14px",
+        "radius": "9px"
+      },
+      "image": {
+        "x": 49,
+        "y": 801.59375,
+        "width": 158,
+        "height": 144,
+        "bottom": 945.59375,
+        "font": "14px",
+        "radius": "7px"
+      },
+      "viewCart": null,
+      "purchase": null,
+      "bottomNav": null,
+      "toast": null
+    },
+    {
+      "label": "cart",
+      "width": 1366,
+      "overflow": false,
+      "mode": "cart",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 1366,
+        "height": 140,
+        "bottom": 140,
+        "font": "14px",
+        "radius": "0px"
+      },
+      "hero": {
+        "x": 83,
+        "y": 158,
+        "width": 1200,
+        "height": 260,
+        "bottom": 418,
+        "font": "14px",
+        "radius": "14px"
+      },
+      "category": {
+        "x": 83,
+        "y": 672.796875,
+        "width": 141.25,
+        "height": 48,
+        "bottom": 720.796875,
+        "font": "14px",
+        "radius": "8px"
+      },
+      "card": {
+        "x": 83,
+        "y": 792.59375,
+        "width": 176,
+        "height": 294,
+        "bottom": 1086.59375,
+        "font": "14px",
+        "radius": "9px"
+      },
+      "image": {
+        "x": 92,
+        "y": 801.59375,
+        "width": 158,
+        "height": 144,
+        "bottom": 945.59375,
+        "font": "14px",
+        "radius": "7px"
+      },
+      "viewCart": null,
+      "purchase": null,
+      "bottomNav": null,
+      "toast": null
+    },
+    {
+      "label": "cart",
+      "width": 1440,
+      "overflow": false,
+      "mode": "cart",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 140,
+        "bottom": 140,
+        "font": "14px",
+        "radius": "0px"
+      },
+      "hero": {
+        "x": 120,
+        "y": 158,
+        "width": 1200,
+        "height": 260,
+        "bottom": 418,
+        "font": "14px",
+        "radius": "14px"
+      },
+      "category": {
+        "x": 120,
+        "y": 672.796875,
+        "width": 141.25,
+        "height": 48,
+        "bottom": 720.796875,
+        "font": "14px",
+        "radius": "8px"
+      },
+      "card": {
+        "x": 120,
+        "y": 792.59375,
+        "width": 176,
+        "height": 294,
+        "bottom": 1086.59375,
+        "font": "14px",
+        "radius": "9px"
+      },
+      "image": {
+        "x": 129,
+        "y": 801.59375,
+        "width": 158,
+        "height": 144,
+        "bottom": 945.59375,
+        "font": "14px",
+        "radius": "7px"
+      },
+      "viewCart": null,
+      "purchase": null,
+      "bottomNav": null,
+      "toast": null
+    },
+    {
+      "label": "cart",
+      "width": 1600,
+      "overflow": false,
+      "mode": "cart",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 140,
+        "bottom": 140,
+        "font": "14px",
+        "radius": "0px"
+      },
+      "hero": {
+        "x": 200,
+        "y": 158,
+        "width": 1200,
+        "height": 260,
+        "bottom": 418,
+        "font": "14px",
+        "radius": "14px"
+      },
+      "category": {
+        "x": 200,
+        "y": 672.796875,
+        "width": 141.25,
+        "height": 48,
+        "bottom": 720.796875,
+        "font": "14px",
+        "radius": "8px"
+      },
+      "card": {
+        "x": 200,
+        "y": 792.59375,
+        "width": 176,
+        "height": 294,
+        "bottom": 1086.59375,
+        "font": "14px",
+        "radius": "9px"
+      },
+      "image": {
+        "x": 209,
+        "y": 801.59375,
+        "width": 158,
+        "height": 144,
+        "bottom": 945.59375,
+        "font": "14px",
+        "radius": "7px"
+      },
+      "viewCart": null,
+      "purchase": null,
+      "bottomNav": null,
+      "toast": null
+    },
+    {
+      "label": "cart",
+      "width": 1920,
+      "overflow": false,
+      "mode": "cart",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 1920,
+        "height": 140,
+        "bottom": 140,
+        "font": "14px",
+        "radius": "0px"
+      },
+      "hero": {
+        "x": 360,
+        "y": 158,
+        "width": 1200,
+        "height": 260,
+        "bottom": 418,
+        "font": "14px",
+        "radius": "14px"
+      },
+      "category": {
+        "x": 360,
+        "y": 672.796875,
+        "width": 141.25,
+        "height": 48,
+        "bottom": 720.796875,
+        "font": "14px",
+        "radius": "8px"
+      },
+      "card": {
+        "x": 360,
+        "y": 792.59375,
+        "width": 176,
+        "height": 294,
+        "bottom": 1086.59375,
+        "font": "14px",
+        "radius": "9px"
+      },
+      "image": {
+        "x": 369,
+        "y": 801.59375,
+        "width": 158,
+        "height": 144,
+        "bottom": 945.59375,
+        "font": "14px",
+        "radius": "7px"
+      },
+      "viewCart": null,
+      "purchase": null,
+      "bottomNav": null,
+      "toast": null
+    },
+    {
+      "label": "category-overview",
+      "width": 320,
+      "overflow": false,
+      "mode": "navigation",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 117,
+        "bottom": 117,
+        "font": "12px",
+        "radius": "0px"
+      },
+      "hero": null,
+      "category": null,
+      "card": null,
+      "image": null,
+      "viewCart": null,
+      "purchase": null,
+      "bottomNav": {
+        "x": 0,
+        "y": 788,
+        "width": 320,
+        "height": 62,
+        "bottom": 850,
+        "font": "12px",
+        "radius": "0px"
+      },
+      "toast": null
+    },
+    {
+      "label": "category-overview",
+      "width": 360,
+      "overflow": false,
+      "mode": "navigation",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 360,
+        "height": 117,
+        "bottom": 117,
+        "font": "12px",
+        "radius": "0px"
+      },
+      "hero": null,
+      "category": null,
+      "card": null,
+      "image": null,
+      "viewCart": null,
+      "purchase": null,
+      "bottomNav": {
+        "x": 0,
+        "y": 788,
+        "width": 360,
+        "height": 62,
+        "bottom": 850,
+        "font": "12px",
+        "radius": "0px"
+      },
+      "toast": null
+    },
+    {
+      "label": "category-overview",
+      "width": 375,
+      "overflow": false,
+      "mode": "navigation",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 375,
+        "height": 117,
+        "bottom": 117,
+        "font": "12px",
+        "radius": "0px"
+      },
+      "hero": null,
+      "category": null,
+      "card": null,
+      "image": null,
+      "viewCart": null,
+      "purchase": null,
+      "bottomNav": {
+        "x": 0,
+        "y": 788,
+        "width": 375,
+        "height": 62,
+        "bottom": 850,
+        "font": "12px",
+        "radius": "0px"
+      },
+      "toast": null
+    },
+    {
+      "label": "category-overview",
+      "width": 390,
+      "overflow": false,
+      "mode": "navigation",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 117,
+        "bottom": 117,
+        "font": "12px",
+        "radius": "0px"
+      },
+      "hero": null,
+      "category": null,
+      "card": null,
+      "image": null,
+      "viewCart": null,
+      "purchase": null,
+      "bottomNav": {
+        "x": 0,
+        "y": 788,
+        "width": 390,
+        "height": 62,
+        "bottom": 850,
+        "font": "12px",
+        "radius": "0px"
+      },
+      "toast": null
+    },
+    {
+      "label": "category-overview",
+      "width": 400,
+      "overflow": false,
+      "mode": "navigation",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 400,
+        "height": 117,
+        "bottom": 117,
+        "font": "12px",
+        "radius": "0px"
+      },
+      "hero": null,
+      "category": null,
+      "card": null,
+      "image": null,
+      "viewCart": null,
+      "purchase": null,
+      "bottomNav": {
+        "x": 0,
+        "y": 788,
+        "width": 400,
+        "height": 62,
+        "bottom": 850,
+        "font": "12px",
+        "radius": "0px"
+      },
+      "toast": null
+    },
+    {
+      "label": "category-overview",
+      "width": 414,
+      "overflow": false,
+      "mode": "navigation",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 414,
+        "height": 117,
+        "bottom": 117,
+        "font": "12px",
+        "radius": "0px"
+      },
+      "hero": null,
+      "category": null,
+      "card": null,
+      "image": null,
+      "viewCart": null,
+      "purchase": null,
+      "bottomNav": {
+        "x": 0,
+        "y": 788,
+        "width": 414,
+        "height": 62,
+        "bottom": 850,
+        "font": "12px",
+        "radius": "0px"
+      },
+      "toast": null
+    },
+    {
+      "label": "category-overview",
+      "width": 427,
+      "overflow": false,
+      "mode": "navigation",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 427,
+        "height": 117,
+        "bottom": 117,
+        "font": "12px",
+        "radius": "0px"
+      },
+      "hero": null,
+      "category": null,
+      "card": null,
+      "image": null,
+      "viewCart": null,
+      "purchase": null,
+      "bottomNav": {
+        "x": 0,
+        "y": 788,
+        "width": 427,
+        "height": 62,
+        "bottom": 850,
+        "font": "12px",
+        "radius": "0px"
+      },
+      "toast": null
+    },
+    {
+      "label": "category-overview",
+      "width": 440,
+      "overflow": false,
+      "mode": "navigation",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 440,
+        "height": 117,
+        "bottom": 117,
+        "font": "12px",
+        "radius": "0px"
+      },
+      "hero": null,
+      "category": null,
+      "card": null,
+      "image": null,
+      "viewCart": null,
+      "purchase": null,
+      "bottomNav": {
+        "x": 0,
+        "y": 788,
+        "width": 440,
+        "height": 62,
+        "bottom": 850,
+        "font": "12px",
+        "radius": "0px"
+      },
+      "toast": null
+    },
+    {
+      "label": "category-overview",
+      "width": 1024,
+      "overflow": false,
+      "mode": "navigation",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 1024,
+        "height": 140,
+        "bottom": 140,
+        "font": "14px",
+        "radius": "0px"
+      },
+      "hero": null,
+      "category": null,
+      "card": null,
+      "image": null,
+      "viewCart": null,
+      "purchase": null,
+      "bottomNav": null,
+      "toast": null
+    },
+    {
+      "label": "category-overview",
+      "width": 1280,
+      "overflow": false,
+      "mode": "navigation",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 140,
+        "bottom": 140,
+        "font": "14px",
+        "radius": "0px"
+      },
+      "hero": null,
+      "category": null,
+      "card": null,
+      "image": null,
+      "viewCart": null,
+      "purchase": null,
+      "bottomNav": null,
+      "toast": null
+    },
+    {
+      "label": "category-overview",
+      "width": 1366,
+      "overflow": false,
+      "mode": "navigation",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 1366,
+        "height": 140,
+        "bottom": 140,
+        "font": "14px",
+        "radius": "0px"
+      },
+      "hero": null,
+      "category": null,
+      "card": null,
+      "image": null,
+      "viewCart": null,
+      "purchase": null,
+      "bottomNav": null,
+      "toast": null
+    },
+    {
+      "label": "category-overview",
+      "width": 1440,
+      "overflow": false,
+      "mode": "navigation",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 140,
+        "bottom": 140,
+        "font": "14px",
+        "radius": "0px"
+      },
+      "hero": null,
+      "category": null,
+      "card": null,
+      "image": null,
+      "viewCart": null,
+      "purchase": null,
+      "bottomNav": null,
+      "toast": null
+    },
+    {
+      "label": "category-overview",
+      "width": 1600,
+      "overflow": false,
+      "mode": "navigation",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 140,
+        "bottom": 140,
+        "font": "14px",
+        "radius": "0px"
+      },
+      "hero": null,
+      "category": null,
+      "card": null,
+      "image": null,
+      "viewCart": null,
+      "purchase": null,
+      "bottomNav": null,
+      "toast": null
+    },
+    {
+      "label": "category-overview",
+      "width": 1920,
+      "overflow": false,
+      "mode": "navigation",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 1920,
+        "height": 140,
+        "bottom": 140,
+        "font": "14px",
+        "radius": "0px"
+      },
+      "hero": null,
+      "category": null,
+      "card": null,
+      "image": null,
+      "viewCart": null,
+      "purchase": null,
+      "bottomNav": null,
+      "toast": null
+    },
+    {
+      "label": "category-products",
+      "width": 320,
+      "overflow": false,
+      "mode": "navigation",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 117,
+        "bottom": 117,
+        "font": "12px",
+        "radius": "0px"
+      },
+      "hero": null,
+      "category": null,
+      "card": {
+        "x": 87,
+        "y": 253.390625,
+        "width": 108,
+        "height": 245.390625,
+        "bottom": 498.78125,
+        "font": "12px",
+        "radius": "9px"
+      },
+      "image": {
+        "x": 94,
+        "y": 260.390625,
+        "width": 94,
+        "height": 110,
+        "bottom": 370.390625,
+        "font": "12px",
+        "radius": "7px"
+      },
+      "viewCart": null,
+      "purchase": null,
+      "bottomNav": {
+        "x": 0,
+        "y": 788,
+        "width": 320,
+        "height": 62,
+        "bottom": 850,
+        "font": "12px",
+        "radius": "0px"
+      },
+      "toast": null
+    },
+    {
+      "label": "category-products",
+      "width": 360,
+      "overflow": false,
+      "mode": "navigation",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 360,
+        "height": 117,
+        "bottom": 117,
+        "font": "12px",
+        "radius": "0px"
+      },
+      "hero": null,
+      "category": null,
+      "card": {
+        "x": 87,
+        "y": 253.390625,
+        "width": 128,
+        "height": 245.390625,
+        "bottom": 498.78125,
+        "font": "12px",
+        "radius": "9px"
+      },
+      "image": {
+        "x": 94,
+        "y": 260.390625,
+        "width": 114,
+        "height": 110,
+        "bottom": 370.390625,
+        "font": "12px",
+        "radius": "7px"
+      },
+      "viewCart": null,
+      "purchase": null,
+      "bottomNav": {
+        "x": 0,
+        "y": 788,
+        "width": 360,
+        "height": 62,
+        "bottom": 850,
+        "font": "12px",
+        "radius": "0px"
+      },
+      "toast": null
+    },
+    {
+      "label": "category-products",
+      "width": 375,
+      "overflow": false,
+      "mode": "navigation",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 375,
+        "height": 117,
+        "bottom": 117,
+        "font": "12px",
+        "radius": "0px"
+      },
+      "hero": null,
+      "category": null,
+      "card": {
+        "x": 87,
+        "y": 253.390625,
+        "width": 135.5,
+        "height": 245.390625,
+        "bottom": 498.78125,
+        "font": "12px",
+        "radius": "9px"
+      },
+      "image": {
+        "x": 94,
+        "y": 260.390625,
+        "width": 121.5,
+        "height": 110,
+        "bottom": 370.390625,
+        "font": "12px",
+        "radius": "7px"
+      },
+      "viewCart": null,
+      "purchase": null,
+      "bottomNav": {
+        "x": 0,
+        "y": 788,
+        "width": 375,
+        "height": 62,
+        "bottom": 850,
+        "font": "12px",
+        "radius": "0px"
+      },
+      "toast": null
+    },
+    {
+      "label": "category-products",
+      "width": 390,
+      "overflow": false,
+      "mode": "navigation",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 117,
+        "bottom": 117,
+        "font": "12px",
+        "radius": "0px"
+      },
+      "hero": null,
+      "category": null,
+      "card": {
+        "x": 87,
+        "y": 253.390625,
+        "width": 143,
+        "height": 245.390625,
+        "bottom": 498.78125,
+        "font": "12px",
+        "radius": "9px"
+      },
+      "image": {
+        "x": 94,
+        "y": 260.390625,
+        "width": 129,
+        "height": 110,
+        "bottom": 370.390625,
+        "font": "12px",
+        "radius": "7px"
+      },
+      "viewCart": null,
+      "purchase": null,
+      "bottomNav": {
+        "x": 0,
+        "y": 788,
+        "width": 390,
+        "height": 62,
+        "bottom": 850,
+        "font": "12px",
+        "radius": "0px"
+      },
+      "toast": null
+    },
+    {
+      "label": "category-products",
+      "width": 400,
+      "overflow": false,
+      "mode": "navigation",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 400,
+        "height": 117,
+        "bottom": 117,
+        "font": "12px",
+        "radius": "0px"
+      },
+      "hero": null,
+      "category": null,
+      "card": {
+        "x": 87,
+        "y": 253.390625,
+        "width": 148,
+        "height": 245.390625,
+        "bottom": 498.78125,
+        "font": "12px",
+        "radius": "9px"
+      },
+      "image": {
+        "x": 94,
+        "y": 260.390625,
+        "width": 134,
+        "height": 110,
+        "bottom": 370.390625,
+        "font": "12px",
+        "radius": "7px"
+      },
+      "viewCart": null,
+      "purchase": null,
+      "bottomNav": {
+        "x": 0,
+        "y": 788,
+        "width": 400,
+        "height": 62,
+        "bottom": 850,
+        "font": "12px",
+        "radius": "0px"
+      },
+      "toast": null
+    },
+    {
+      "label": "category-products",
+      "width": 414,
+      "overflow": false,
+      "mode": "navigation",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 414,
+        "height": 117,
+        "bottom": 117,
+        "font": "12px",
+        "radius": "0px"
+      },
+      "hero": null,
+      "category": null,
+      "card": {
+        "x": 87,
+        "y": 253.390625,
+        "width": 155,
+        "height": 245.390625,
+        "bottom": 498.78125,
+        "font": "12px",
+        "radius": "9px"
+      },
+      "image": {
+        "x": 94,
+        "y": 260.390625,
+        "width": 141,
+        "height": 110,
+        "bottom": 370.390625,
+        "font": "12px",
+        "radius": "7px"
+      },
+      "viewCart": null,
+      "purchase": null,
+      "bottomNav": {
+        "x": 0,
+        "y": 788,
+        "width": 414,
+        "height": 62,
+        "bottom": 850,
+        "font": "12px",
+        "radius": "0px"
+      },
+      "toast": null
+    },
+    {
+      "label": "category-products",
+      "width": 427,
+      "overflow": false,
+      "mode": "navigation",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 427,
+        "height": 117,
+        "bottom": 117,
+        "font": "12px",
+        "radius": "0px"
+      },
+      "hero": null,
+      "category": null,
+      "card": {
+        "x": 87,
+        "y": 253.390625,
+        "width": 161.5,
+        "height": 245.390625,
+        "bottom": 498.78125,
+        "font": "12px",
+        "radius": "9px"
+      },
+      "image": {
+        "x": 94,
+        "y": 260.390625,
+        "width": 147.5,
+        "height": 110,
+        "bottom": 370.390625,
+        "font": "12px",
+        "radius": "7px"
+      },
+      "viewCart": null,
+      "purchase": null,
+      "bottomNav": {
+        "x": 0,
+        "y": 788,
+        "width": 427,
+        "height": 62,
+        "bottom": 850,
+        "font": "12px",
+        "radius": "0px"
+      },
+      "toast": null
+    },
+    {
+      "label": "category-products",
+      "width": 440,
+      "overflow": false,
+      "mode": "navigation",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 440,
+        "height": 117,
+        "bottom": 117,
+        "font": "12px",
+        "radius": "0px"
+      },
+      "hero": null,
+      "category": null,
+      "card": {
+        "x": 87,
+        "y": 253.390625,
+        "width": 168,
+        "height": 245.390625,
+        "bottom": 498.78125,
+        "font": "12px",
+        "radius": "9px"
+      },
+      "image": {
+        "x": 94,
+        "y": 260.390625,
+        "width": 154,
+        "height": 110,
+        "bottom": 370.390625,
+        "font": "12px",
+        "radius": "7px"
+      },
+      "viewCart": null,
+      "purchase": null,
+      "bottomNav": {
+        "x": 0,
+        "y": 788,
+        "width": 440,
+        "height": 62,
+        "bottom": 850,
+        "font": "12px",
+        "radius": "0px"
+      },
+      "toast": null
+    },
+    {
+      "label": "category-products",
+      "width": 1024,
+      "overflow": false,
+      "mode": "navigation",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 1024,
+        "height": 140,
+        "bottom": 140,
+        "font": "14px",
+        "radius": "0px"
+      },
+      "hero": null,
+      "category": null,
+      "card": {
+        "x": 198,
+        "y": 312.984375,
+        "width": 193,
+        "height": 294,
+        "bottom": 606.984375,
+        "font": "14px",
+        "radius": "9px"
+      },
+      "image": {
+        "x": 207,
+        "y": 321.984375,
+        "width": 175,
+        "height": 144,
+        "bottom": 465.984375,
+        "font": "14px",
+        "radius": "7px"
+      },
+      "viewCart": null,
+      "purchase": null,
+      "bottomNav": null,
+      "toast": null
+    },
+    {
+      "label": "category-products",
+      "width": 1280,
+      "overflow": false,
+      "mode": "navigation",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 140,
+        "bottom": 140,
+        "font": "14px",
+        "radius": "0px"
+      },
+      "hero": null,
+      "category": null,
+      "card": {
+        "x": 224,
+        "y": 316.984375,
+        "width": 249,
+        "height": 294,
+        "bottom": 610.984375,
+        "font": "14px",
+        "radius": "9px"
+      },
+      "image": {
+        "x": 233,
+        "y": 325.984375,
+        "width": 231,
+        "height": 144,
+        "bottom": 469.984375,
+        "font": "14px",
+        "radius": "7px"
+      },
+      "viewCart": null,
+      "purchase": null,
+      "bottomNav": null,
+      "toast": null
+    },
+    {
+      "label": "category-products",
+      "width": 1366,
+      "overflow": false,
+      "mode": "navigation",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 1366,
+        "height": 140,
+        "bottom": 140,
+        "font": "14px",
+        "radius": "0px"
+      },
+      "hero": null,
+      "category": null,
+      "card": {
+        "x": 224,
+        "y": 316.984375,
+        "width": 270.5,
+        "height": 294,
+        "bottom": 610.984375,
+        "font": "14px",
+        "radius": "9px"
+      },
+      "image": {
+        "x": 233,
+        "y": 325.984375,
+        "width": 252.5,
+        "height": 144,
+        "bottom": 469.984375,
+        "font": "14px",
+        "radius": "7px"
+      },
+      "viewCart": null,
+      "purchase": null,
+      "bottomNav": null,
+      "toast": null
+    },
+    {
+      "label": "category-products",
+      "width": 1440,
+      "overflow": false,
+      "mode": "navigation",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 140,
+        "bottom": 140,
+        "font": "14px",
+        "radius": "0px"
+      },
+      "hero": null,
+      "category": null,
+      "card": {
+        "x": 224,
+        "y": 316.984375,
+        "width": 228.796875,
+        "height": 294,
+        "bottom": 610.984375,
+        "font": "14px",
+        "radius": "9px"
+      },
+      "image": {
+        "x": 233,
+        "y": 325.984375,
+        "width": 210.796875,
+        "height": 144,
+        "bottom": 469.984375,
+        "font": "14px",
+        "radius": "7px"
+      },
+      "viewCart": null,
+      "purchase": null,
+      "bottomNav": null,
+      "toast": null
+    },
+    {
+      "label": "category-products",
+      "width": 1600,
+      "overflow": false,
+      "mode": "navigation",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 140,
+        "bottom": 140,
+        "font": "14px",
+        "radius": "0px"
+      },
+      "hero": null,
+      "category": null,
+      "card": {
+        "x": 304,
+        "y": 316.984375,
+        "width": 228.796875,
+        "height": 294,
+        "bottom": 610.984375,
+        "font": "14px",
+        "radius": "9px"
+      },
+      "image": {
+        "x": 313,
+        "y": 325.984375,
+        "width": 210.796875,
+        "height": 144,
+        "bottom": 469.984375,
+        "font": "14px",
+        "radius": "7px"
+      },
+      "viewCart": null,
+      "purchase": null,
+      "bottomNav": null,
+      "toast": null
+    },
+    {
+      "label": "category-products",
+      "width": 1920,
+      "overflow": false,
+      "mode": "navigation",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 1920,
+        "height": 140,
+        "bottom": 140,
+        "font": "14px",
+        "radius": "0px"
+      },
+      "hero": null,
+      "category": null,
+      "card": {
+        "x": 464,
+        "y": 316.984375,
+        "width": 188.65625,
+        "height": 294,
+        "bottom": 610.984375,
+        "font": "14px",
+        "radius": "9px"
+      },
+      "image": {
+        "x": 473,
+        "y": 325.984375,
+        "width": 170.65625,
+        "height": 144,
+        "bottom": 469.984375,
+        "font": "14px",
+        "radius": "7px"
+      },
+      "viewCart": null,
+      "purchase": null,
+      "bottomNav": null,
+      "toast": null
+    }
+  ],
+  "issues": [],
+  "failures": [],
+  "pass": true
+}

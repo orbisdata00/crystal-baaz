@@ -1,0 +1,29 @@
+{
+  "add": {
+    "feedbackMs": 143,
+    "confirmedMs": 1611,
+    "cartLabel": "1 item\n\u20b9290",
+    "button": "Adding\u2026",
+    "error": "Added to cart."
+  },
+  "shopifyRequests": [
+    {
+      "op": "CrystalBazzProduct",
+      "status": 200,
+      "bytes": 2419,
+      "durationMs": 431.1
+    },
+    {
+      "op": "unknown",
+      "status": 200,
+      "bytes": 0,
+      "durationMs": 233.6
+    },
+    {
+      "op": "CrystalBazzCartCreate",
+      "status": 200,
+      "bytes": 1801,
+      "durationMs": 932.4
+    }
+  ]
+}

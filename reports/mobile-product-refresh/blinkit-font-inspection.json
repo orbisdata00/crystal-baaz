@@ -1,0 +1,31 @@
+{
+  "title": "Just a moment...",
+  "url": "https://blinkit.com/",
+  "bodyFont": "\"Helvetica Neue\", Helvetica, Arial, sans-serif",
+  "rootFont": "sans-serif",
+  "fontFaces": [
+    {
+      "family": "Okra",
+      "weight": "300",
+      "status": "unloaded"
+    },
+    {
+      "family": "Okra",
+      "weight": "400",
+      "status": "loaded"
+    },
+    {
+      "family": "Okra",
+      "weight": "500",
+      "status": "loaded"
+    },
+    {
+      "family": "Okra",
+      "weight": "700",
+      "status": "loaded"
+    }
+  ],
+  "sample": [],
+  "bodyText": "access denied\n\nsorry, you have been blocked!\n\n \n\n \n\nThe page you are trying to access has blocked you, your recent actions performed on the website might have led to his. If you wish to proceed further and gain access to this page, please complete the challenge below:\n\nRay ID - a55ba98b8acd96c0\nYour IP - 2409:40d0:101f:1b51:b92e:b756:26c7:776f\n#1 instant delivery service in India\n\nShop on the go and get anything delivered in 10 minutes (or less). Buy everything from groceries to fresh fruits & v",
+  "blocked": true
+}

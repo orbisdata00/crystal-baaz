@@ -1,87 +1,53 @@
-import { collections, navigation, catalogGroups, selectProducts } from "./catalog.js";
+import { collections, catalogGroups, navigation, selectProducts } from "./catalog.js";
 import iconRegistry from "./data/category-icons.json" with { type: "json" };
+import mainRegistry from "./data/main-categories.json" with { type: "json" };
 
-// Only supplied category artwork belongs here. Product photos are not category icons.
 export const categoryIconMap = iconRegistry.icons;
-const collectionRegistry = new Map(collections.map((item) => [item.handle, item]));
-const groupRegistry = new Map(catalogGroups.map((item) => [item.id, item]));
-const navRegistry = new Map(navigation.map((item) => [item.label, item]));
+export const mainCategoryRules = mainRegistry.rules;
 const itemId = (item) => `${item.kind}:${item.target}`;
-const unique = (items) => [...new Map(items.map((item) => [itemId(item), item])).values()];
-const explicitItem = (item) => item.kind === "collection" ? collectionRegistry.has(item.target) : item.kind === "group" ? groupRegistry.has(item.target) : item.kind === "zodiac";
-
 function decorate(item, parentId, displayOrder) {
   const iconKey = parentId ? `${parentId}/${itemId(item)}` : `parent/${item.id}`;
-  return {
-    ...item,
-    id: parentId ? itemId(item) : item.id,
-    parentId: parentId || null,
-    iconKey,
-    iconUrl: categoryIconMap[iconKey] || null,
-    displayOrder,
-    membershipVerified: item.kind !== "zodiac",
-  };
+  return { ...item, id: parentId ? itemId(item) : item.id, parentId: parentId || null, displayOrder,
+    iconKey, iconUrl: categoryIconMap[iconKey] || null,
+    membershipVerified: item.membershipVerified ?? item.kind !== "zodiac" };
 }
-
-function navParent(id, label, sourceLabel, extra = {}) {
-  const source = navRegistry.get(sourceLabel);
-  const sourceItems = [...(source?.items || []), ...(source?.formItems || [])];
-  const items = unique(sourceItems.filter((item) => explicitItem(item) && (id !== "zodiac" || item.kind === "zodiac"))).map((item, index) => {
-    const result = decorate(item, id, index);
-    if (source?.kind === "collection" && collectionRegistry.has(source.target)) result.requiredCollectionHandle = source.target;
-    // The navigation links broad collections under Rudraksha, but supplies no
-    // parent membership. Showing every bracelet/mala here would invent a scope.
-    if (id === "rudraksha" && item.kind === "collection" && !collectionRegistry.has(source?.target)) {
-      result.membershipVerified = false;
-      result.mappingIssue = "Rudraksha-specific product membership has not been supplied for this collection.";
-    }
-    if (item.kind === "zodiac") result.mappingIssue = "The sign is listed in navigation; explicit product-to-sign membership is missing.";
-    return result;
-  });
-  return { id, label, source: `navigation:${sourceLabel}`, items, ...extra };
-}
-
+const aliases = {
+  zodiac: ["Zodiac Signs", "Zodiac Sign", "Rashi | Zodiac"],
+  crystals: ["Crystals"], pooja: ["Pooja"], intentions: ["Problem / Intention", "Problem", "Intention", "remedy"],
+};
+// Presentation sequence and children come solely from MAIN, including empty nodes.
+export const mainCategories = mainRegistry.mainCategories.map((parent, index) => ({
+  ...decorate({ ...parent, aliases: aliases[parent.id] || [] }, null, index),
+  source: `MAIN:${parent.sourceRow}`,
+  items: parent.items.map((item, order) => decorate(item, parent.id, order)),
+}));
+export const categoryParents = mainCategories;
 function leaf(id, label, kind, target, aliases = []) {
-  return { id, label, kind, target, aliases, items: [], source: `${kind}:${target}` };
+  return decorate({ id, label, kind, target, aliases, items: [] }, null, 0);
 }
-
-const parents = [
-  { id: "all", label: "All Categories", aliases: ["Category", "All"], source: "workbook:collections-and-groups", items: unique([
-    ...collections.map((item) => ({ kind: "collection", target: item.handle, label: item.title })),
-    ...catalogGroups.map((item) => ({ kind: "group", target: item.id, label: item.title })),
-  ]).map((item, index) => decorate(item, "all", index)) },
-  leaf("mala", "Mala", "collection", "mala"),
+export const auxiliaryCategories = [
+  { ...leaf("zodiac-signs", "Shop by Rashi", "category", "zodiac-signs"), items: mainRegistry.zodiacSigns.map((sign, index) => decorate(sign, "zodiac-signs", index)) },
+  { ...leaf("mala", "Mala", "collection", "mala"), items: ["Pearl", "Ruby"].map((stone, index) => decorate({kind:"collection", target:`${stone.toLowerCase()}-mala`, label:`${stone} Mala`, membershipVerified:false, source:"client-request:pending-navigation", mappingIssue:`${stone} Mala is requested in navigation; verified product assignments and category artwork are still missing.`}, "mala", index)) },
   leaf("rashi-rings", "Rashi Rings", "group", "group-rashirings", ["Rashi Ring"]),
   leaf("rashi-pendants", "Rashi Pendants", "group", "group-rashipendants", ["Rashi Pendant"]),
-  navParent("zodiac", "Zodiac Signs", "Rashi | Zodiac", { aliases: ["Zodiac Sign", "Rashi | Zodiac"] }),
-  navParent("rudraksha", "Rudraksha", "Rudraksha"),
-  navParent("crystals", "Crystals", "Crystal", { aliases: ["Crystal"] }),
-  navParent("bracelets", "Bracelets", "Bracelets", { kind: "collection", target: "bracelets" }),
   leaf("pendants", "Pendants", "collection", "pendants"),
-  navParent("pooja", "Pooja", "Puja", { aliases: ["Puja"] }),
   leaf("decor", "Home Decor / Vastu", "collection", "home-decor-vastu", ["Decor", "Home Decor/Vastu"]),
-  navParent("intentions", "Problem / Intention", "Remedy", { aliases: ["Problem", "Remedy", "Intention"] }),
 ];
-
-// Leaf groups remain direct product views until actual child relationships exist.
-const mappedParents = new Map(parents.filter((parent) => parent.kind).map((parent) => [itemId(parent), parent.id]));
-export const categoryParents = parents.map((parent, index) => ({
-  ...decorate(parent, null, index),
-  items: parent.items.map((item) => ({ ...item, relatedParentId: parent.id === "all" ? mappedParents.get(item.id) || null : null })),
-}));
-
+const all = { ...leaf("all", "All Categories", "category", "all", ["Category", "All"]),
+  items: [...collections.map((c) => ({ kind: "collection", target: c.handle, label: c.title })),
+    ...catalogGroups.map((g) => ({ kind: "group", target: g.id, label: g.title }))]
+    .map((item, index) => decorate({ ...item, relatedParentId: auxiliaryCategories.find((parent) => itemId(parent) === itemId(item))?.id || null }, "all", index)) };
+const contexts = [...mainCategories, ...auxiliaryCategories, all];
 export function getParentCategory(idOrLabel = "all") {
   const value = String(idOrLabel).toLowerCase();
-  return categoryParents.find((parent) => [parent.id, parent.label, ...(parent.aliases || [])].some((candidate) => candidate.toLowerCase() === value)) || null;
+  return contexts.find((parent) => [parent.id, parent.label, ...(parent.aliases || [])].some((candidate) => candidate.toLowerCase() === value)) || null;
 }
-
 export function hierarchyHref(parentId = "all", selectedItemId = null) {
   const parent = getParentCategory(parentId);
   const params = new URLSearchParams({ group: parent?.id || "all" });
   if (selectedItemId) params.set("category", typeof selectedItemId === "object" ? itemId(selectedItemId) : selectedItemId);
   return `#collections?${params.toString()}`;
 }
-
 export function resolveHierarchy(route = {}) {
   let parent = getParentCategory(route.group || "all");
   let requestedItemId = route.category || "";
@@ -89,22 +55,50 @@ export function resolveHierarchy(route = {}) {
   let invalidSelection = !parent;
   if (["collection", "group"].includes(route.page)) {
     const id = `${route.page}:${route.handle || route.id}`;
-    parent = categoryParents.find((candidate) => candidate.kind && itemId(candidate) === id) || getParentCategory("all");
-    directItem = parent.kind && itemId(parent) === id ? parent : null;
+    parent = contexts.find((candidate) => ["collection", "group"].includes(candidate.kind) && itemId(candidate) === id) || all;
+    directItem = itemId(parent) === id ? parent : null;
     requestedItemId = directItem ? "" : id;
   }
-  parent ||= getParentCategory("all");
-  let item = directItem || (requestedItemId ? parent.items.find((candidate) => candidate.id === requestedItemId) || (parent.kind && itemId(parent) === requestedItemId ? parent : null) : null);
-  if (requestedItemId && !item) invalidSelection = true;
-  if (!parent.items.length && parent.kind && !requestedItemId) item = parent;
-  return { parent, item, parents: categoryParents, items: parent.items, state: item ? "products" : "overview", invalidSelection };
-}
-
-export function productsForCategory(products, item, { sort = "featured", query = "" } = {}) {
-  if (!item || item.membershipVerified === false || !["collection", "group"].includes(item.kind)) return [];
-  let matches = selectProducts(products, { filter: { kind: item.kind, value: item.target }, sort, query });
-  if (item.requiredCollectionHandle && item.requiredCollectionHandle !== item.target) {
-    matches = selectProducts(matches, { filter: { kind: "collection", value: item.requiredCollectionHandle }, sort });
+  parent ||= all;
+  let item = directItem || (requestedItemId ? parent.items.find((candidate) => candidate.id === requestedItemId) || (itemId(parent) === requestedItemId ? parent : null) : null);
+  // Old saved URLs remain resolvable without adding obsolete children to MAIN.
+  if (requestedItemId && !item && parent.id === "zodiac" && requestedItemId.startsWith("zodiac:")) {
+    const signs = getParentCategory("zodiac-signs");
+    item = signs.items.find((candidate) => candidate.id === requestedItemId) || null;
+    if (item) parent = signs;
   }
+  if (requestedItemId && !item && ["bracelets", "crystals"].includes(parent.id)) {
+    const source = navigation.find((candidate) => candidate.label === (parent.id === "crystals" ? "Crystal" : "Bracelets"));
+    const legacy = [...(source?.items || []), ...(source?.formItems || [])].find((candidate) => itemId(candidate) === requestedItemId && candidate.kind === "collection");
+    if (legacy) item = decorate({ ...legacy, ...(parent.id === "bracelets" ? { requiredCollectionHandle: "bracelets" } : {}) }, parent.id, 0);
+  }
+  if (requestedItemId && !item) invalidSelection = true;
+  if (!parent.items.length && parent.kind !== "category" && !requestedItemId) item = parent;
+  return { parent, item, parents: mainCategories, items: parent.items, state: item ? "products" : "overview", invalidSelection };
+}
+function ruleMatches(product, ruleName) {
+  // Only identified, workbook-matched live Shopify records may use MAIN's title rules.
+  if (!/^gid:\/\/shopify\/Product\//.test(product.id || "") || !product.workbookId || product.previewOnly) return false;
+  const rule = mainCategoryRules[ruleName];
+  if (!rule) return false;
+  const title = String(product.title || "").toLowerCase();
+  return (rule.collectionHandles || []).some((handle) => product.collectionHandles?.includes(handle))
+    || rule.titleWords.some((word) => new RegExp(`\\b${word}\\b`, "i").test(title));
+}
+export function productsForCategory(products, item, { sort = "featured", query = "" } = {}) {
+  if (!item || item.membershipVerified === false) return [];
+  if (item.kind === "category") {
+    const context = contexts.find((parent) => parent.id === item.target) || item;
+    const selected = new Set((context.items || []).flatMap((child) => productsForCategory(products, child)).map((product) => product.id));
+    return selectProducts(products.filter((product) => selected.has(product.id)), { sort, query });
+  }
+  if (item.rule || item.kind === "rule") {
+    const exact = item.kind === "collection" ? selectProducts(products, { filter: { kind: "collection", value: item.target } }) : [];
+    const ids = new Set(exact.map((p) => p.id));
+    return selectProducts(products.filter((product) => ids.has(product.id) || ruleMatches(product, item.rule)), { sort, query });
+  }
+  if (!["collection", "group"].includes(item.kind)) return [];
+  let matches = selectProducts(products, { filter: { kind: item.kind, value: item.target }, sort, query });
+  if (item.requiredCollectionHandle && item.requiredCollectionHandle !== item.target) matches = selectProducts(matches, { filter: { kind: "collection", value: item.requiredCollectionHandle }, sort });
   return matches;
 }
