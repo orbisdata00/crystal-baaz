@@ -98,6 +98,8 @@ for (const [width, height, mobile] of [[320, 844, true], [360, 800, true], [375,
   await setViewport(width, height, mobile);
   const row = await evaluate(`(() => {
     const doc = document.documentElement;
+    const categoryGrid = document.querySelector('.mobile-category-tiles');
+    const categoryGridStyle = categoryGrid ? getComputedStyle(categoryGrid) : null;
     const measure = (selector) => {
       const track = document.querySelector(selector);
       if (!track) return null;
@@ -111,7 +113,7 @@ for (const [width, height, mobile] of [[320, 844, true], [360, 800, true], [375,
     return {
       viewport: ${width}, documentWidth: doc.clientWidth, scrollWidth: doc.scrollWidth,
       horizontalOverflow: doc.scrollWidth > doc.clientWidth,
-      categories: measure('.mobile-category-tiles'),
+      categories: categoryGrid ? { display: categoryGridStyle.display, columns: categoryGridStyle.gridTemplateColumns.split(' ').length, scrollWidth: categoryGrid.scrollWidth, clientWidth: categoryGrid.clientWidth, itemCount: categoryGrid.children.length } : null,
       products: measure('.home-new-arrivals .product-carousel .carousel-track'),
       stickyPosition: getComputedStyle(document.querySelector('.mobile-discovery-sticky')).position,
       categoryTabsOverflow: (document.querySelector('.mobile-category-navigation')?.scrollWidth || 0) > (document.querySelector('.mobile-category-navigation')?.clientWidth || 0),
@@ -128,17 +130,19 @@ await setViewport(390, 844, true);
 const loadedImagesAtCapture = await evaluate("[...document.querySelectorAll('.mobile-category-tile-image img')].filter((image) => image.complete && image.naturalWidth > 0).length");
 const imageStatesAtCapture = await evaluate(`[...document.querySelectorAll('.mobile-category-tiles > button')].map((tile) => { const image = tile.querySelector('.mobile-category-tile-image img'); return { title: tile.textContent.trim(), loaded: Boolean(image?.complete && image?.naturalWidth), hidden: Boolean(image?.hidden), display: image ? getComputedStyle(image).display : 'none' }; })`);
 const carouselScrollCheck = await evaluate(`(async () => {
-  const first = document.querySelector('.mobile-category-tiles');
-  const second = document.querySelector('.home-new-arrivals .product-carousel .carousel-track');
-  if (!first || !second) return { available: false };
-  first.scrollLeft = 0; second.scrollLeft = 0;
-  first.scrollBy({ left: 140, behavior: 'instant' });
+  const categories = document.querySelector('.mobile-category-tiles');
+  const products = document.querySelector('.home-new-arrivals .product-carousel .carousel-track');
+  if (!categories || !products) return { available: false };
+  const categoriesGrid = getComputedStyle(categories).display === 'grid';
+  const categoriesFit = categories.scrollWidth <= categories.clientWidth;
+  products.scrollLeft = 0;
+  products.scrollBy({ left: 140, behavior: 'instant' });
   await new Promise((resolveDelay) => setTimeout(resolveDelay, 120));
-  const moved = first.scrollLeft;
-  const otherStayedAtStart = second.scrollLeft === 0;
-  second.focus(); second.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true }));
+  const moved = products.scrollLeft;
+  products.scrollLeft = 0;
+  products.focus(); products.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true }));
   await new Promise((resolveDelay) => setTimeout(resolveDelay, 120));
-  return { available: true, moved, keyboardPosition: second.scrollLeft, otherStayedAtStart, categoriesSnap: getComputedStyle(first).scrollSnapType };
+  return { available: true, categoriesGrid, categoriesFit, productsMoved: moved, keyboardPosition: products.scrollLeft, productScrollSnap: getComputedStyle(products).scrollSnapType };
 })()`, true);
 await evaluate("document.querySelector('.home-new-arrivals')?.scrollIntoView({ behavior: 'instant', block: 'start' }); true");
 await new Promise((resolveDelay) => setTimeout(resolveDelay, 250));
@@ -161,6 +165,76 @@ const routeCheck = await evaluate(`({ hash: location.hash, title: document.query
 await evaluate("location.hash = '#collections'; true");
 await new Promise((resolveDelay) => setTimeout(resolveDelay, 500));
 await capture("categories-mobile-baaz-after.png");
+const categoryOverviewCheck = await evaluate(`(() => {
+  const overview = document.querySelector('.mobile-category-overview');
+  const heading = overview?.querySelector('h1')?.textContent?.trim() || '';
+  const cards = [...(overview?.querySelectorAll('.mobile-subcategory-card') || [])];
+  const firstRowTop = cards[0]?.getBoundingClientRect().top;
+  const firstRow = cards.filter((card) => Math.abs(card.getBoundingClientRect().top - firstRowTop) < 2);
+  const bottomNav = document.querySelector('.mobile-bottom-navigation')?.getBoundingClientRect().top || innerHeight;
+  return { route: location.hash, heading, optionCount: cards.length, firstRowCount: firstRow.length, firstFourFit: firstRow.length >= 4 && firstRow.slice(0, 4).every((card) => card.getBoundingClientRect().bottom < bottomNav), horizontalOverflow: document.documentElement.scrollWidth > document.documentElement.clientWidth };
+})()`);
+await capture("categories-overview-category-390.png");
+
+const categoryGroups = [];
+for (const label of ["Category", "Crystal", "Problem", "Zodiac Sign", "Pooja", "Bracelets", "Rudraksha"]) {
+  await evaluate(`[...document.querySelectorAll('.mobile-category-navigation--global .mobile-category-pill')].find((button) => button.textContent.trim() === ${JSON.stringify(label)})?.click(); true`);
+  await new Promise((resolveDelay) => setTimeout(resolveDelay, 230));
+  const overview = await evaluate(`(() => {
+    const node = document.querySelector('.mobile-category-overview');
+    const cards = [...(node?.querySelectorAll('.mobile-subcategory-card') || [])];
+    const heading = node?.querySelector('h1')?.textContent?.trim() || '';
+    const firstRowTop = cards[0]?.getBoundingClientRect().top;
+    const firstRow = cards.filter((card) => Math.abs(card.getBoundingClientRect().top - firstRowTop) < 2);
+    const bottomNav = document.querySelector('.mobile-bottom-navigation')?.getBoundingClientRect().top || innerHeight;
+    return { route: location.hash, heading, optionCount: cards.length, firstRowCount: firstRow.length, firstFourFit: firstRow.length >= 4 && firstRow.slice(0, 4).every((card) => card.getBoundingClientRect().bottom < bottomNav) };
+  })()`);
+  if (label === "Zodiac Sign") await capture("categories-overview-zodiac-390.png");
+  const selected = await evaluate(`(() => {
+    const button = document.querySelector('.mobile-subcategory-card');
+    const label = button?.getAttribute('aria-label') || '';
+    button?.click();
+    return label;
+  })()`);
+  await new Promise((resolveDelay) => setTimeout(resolveDelay, 300));
+  const listing = await evaluate(`(() => {
+    const heading = document.querySelector('.mobile-categories-heading h1')?.textContent?.trim() || '';
+    const countText = document.querySelector('.mobile-categories-heading > span')?.textContent?.trim() || '';
+    return { route: location.hash, heading, countText, cards: document.querySelectorAll('.mobile-categories-products .product-card').length, emptyState: Boolean(document.querySelector('.mobile-categories-products .no-products')) };
+  })()`);
+  if (label === "Zodiac Sign") await capture("subcategory-products-zodiac-390.png");
+  await evaluate("history.back(); true");
+  await new Promise((resolveDelay) => setTimeout(resolveDelay, 300));
+  const back = await evaluate("document.querySelector('.mobile-category-overview h1')?.textContent?.trim() || ''");
+  const expectedCount = Number(selected.match(/, ([0-9]+) mapped products$/)?.[1] || 0);
+  const listingCount = Number((listing.countText.match(/[0-9]+/) || [0])[0]);
+  categoryGroups.push({ label, overview, selected, expectedCount, listing, mappingCountMatches: expectedCount === listingCount, browserBackReturnsToOverview: back === label });
+}
+
+await evaluate("location.hash = '#collections?group=Zodiac%20Sign'; true");
+await new Promise((resolveDelay) => setTimeout(resolveDelay, 300));
+await evaluate("document.querySelector('.mobile-subcategory-card')?.click(); true");
+await new Promise((resolveDelay) => setTimeout(resolveDelay, 300));
+const refreshedCategoryRoute = await evaluate("location.hash");
+const refreshRouteLoad = waitForEvent("Page.loadEventFired");
+await send("Page.reload", { ignoreCache: false });
+await refreshRouteLoad;
+await new Promise((resolveDelay) => setTimeout(resolveDelay, 350));
+const directRefreshCheck = await evaluate(`({ requested: ${JSON.stringify(refreshedCategoryRoute)}, actual: location.hash, title: document.querySelector('.mobile-categories-heading h1')?.textContent?.trim() || '', visible: Boolean(document.querySelector('.mobile-categories-products')) })`);
+const categoryOverviewWidths = [];
+for (const [width, height] of [[320, 844], [360, 800], [375, 812], [390, 844], [414, 896], [427, 952], [440, 956], [768, 1024]]) {
+  await setViewport(width, height, true);
+  await evaluate("location.hash = '#collections?group=Zodiac%20Sign'; true");
+  await new Promise((resolveDelay) => setTimeout(resolveDelay, 170));
+  categoryOverviewWidths.push(await evaluate(`(() => {
+    const cards = [...document.querySelectorAll('.mobile-subcategory-card')];
+    const firstTop = cards[0]?.getBoundingClientRect().top;
+    const firstRow = cards.filter((card) => Math.abs(card.getBoundingClientRect().top - firstTop) < 2);
+    const bottomNav = document.querySelector('.mobile-bottom-navigation')?.getBoundingClientRect().top || innerHeight;
+    const grid = document.querySelector('.mobile-subcategory-grid');
+    return { width: ${width}, columns: grid ? getComputedStyle(grid).gridTemplateColumns.split(' ').length : 0, optionCount: cards.length, firstRowCount: firstRow.length, firstFourFit: firstRow.length >= 4 && firstRow.slice(0, 4).every((card) => card.getBoundingClientRect().bottom < bottomNav), overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth };
+  })()`));
+}
 await evaluate("location.hash = '#home'; true");
 await new Promise((resolveDelay) => setTimeout(resolveDelay, 350));
 await evaluate(`[...document.querySelectorAll('.mobile-category-tiles > button')].find((button) => button.textContent.trim() === 'Rings')?.click(); true`);
@@ -170,7 +244,7 @@ await evaluate("location.hash = '#home'; true");
 await new Promise((resolveDelay) => setTimeout(resolveDelay, 400));
 const cartInteractionCheck = await evaluate(`(async () => {
   const track = document.querySelector('.product-carousel .carousel-track');
-  const adds = [...document.querySelectorAll('.product-carousel .quick-add:not(:disabled)')];
+  const adds = [...document.querySelectorAll('.product-carousel .mobile-product-action > button:not(:disabled)')];
   if (!track || !adds.length) return { available: false };
   const secondCard = adds[1]?.closest('.product-card');
   if (secondCard) track.scrollLeft = Math.max(0, secondCard.offsetLeft - track.offsetLeft);
@@ -182,18 +256,19 @@ const cartInteractionCheck = await evaluate(`(async () => {
   add.click();
   await new Promise((resolveFrame) => requestAnimationFrame(() => requestAnimationFrame(resolveFrame)));
   if (!card) return { available: false, reason: 'product card was not retained after adding' };
-  const quantity = () => card.querySelector('.quick-quantity span')?.textContent || '';
+  const addLabel = add.textContent.trim();
+  const quantity = () => card.querySelector('.mobile-card-quantity span')?.textContent || '';
   const afterAdd = quantity();
-  card.querySelector('.quick-quantity button:last-child')?.click();
+  card.querySelector('.mobile-card-quantity button:last-child')?.click();
   await new Promise((resolveFrame) => requestAnimationFrame(() => requestAnimationFrame(resolveFrame)));
   const afterPlus = quantity();
-  card.querySelector('.quick-quantity button:first-child')?.click();
+  card.querySelector('.mobile-card-quantity button:first-child')?.click();
   await new Promise((resolveFrame) => requestAnimationFrame(() => requestAnimationFrame(resolveFrame)));
   const afterMinus = quantity();
   const afterInteraction = track.scrollLeft;
-  card.querySelector('.quick-quantity button:first-child')?.click();
+  card.querySelector('.mobile-card-quantity button:first-child')?.click();
   await new Promise((resolveFrame) => requestAnimationFrame(() => requestAnimationFrame(resolveFrame)));
-  return { available: true, beforeScroll: before, afterInteractionScroll: afterInteraction, afterAdd, afterPlus, afterMinus, cartCount: Number([...document.querySelectorAll('.mobile-bottom-item')].find((item) => item.textContent.includes('Cart'))?.querySelector('i')?.textContent || 0), returnedToAdd: Boolean(card.querySelector('.quick-add')) };
+  return { available: true, addLabel, beforeScroll: before, afterInteractionScroll: afterInteraction, afterAdd, afterPlus, afterMinus, cartCount: Number([...document.querySelectorAll('.mobile-bottom-item')].find((item) => item.textContent.includes('Cart'))?.querySelector('i')?.textContent || 0), returnedToAdd: Boolean(card.querySelector('.mobile-product-action > button')) };
 })()`, true);
 await evaluate("window.scrollTo(0, 760); true");
 await new Promise((resolveDelay) => setTimeout(resolveDelay, 300));
@@ -331,10 +406,17 @@ const offlineCheck = await evaluate(`({ homeSearch: Boolean(document.querySelect
 await send("Network.emulateNetworkConditions", { offline: false, latency: 0, downloadThroughput: -1, uploadThroughput: -1, connectionType: "wifi" });
 
 assert.ok(audit.every((row) => !row.horizontalOverflow), "A viewport has document-level horizontal overflow");
-assert.ok(audit.filter((row) => [427, 440].includes(row.viewport)).every((row) => row.categories?.nextCardPeekPercent > 0 && row.products?.nextCardPeekPercent > 0), `Requested mobile carousel previews are missing: ${JSON.stringify(audit.filter((row) => [427, 440].includes(row.viewport)))}`);
+assert.ok(audit.filter((row) => row.viewport <= 768).every((row) => row.categories?.display === "grid" && row.categories?.columns === 4 && row.categories?.scrollWidth <= row.categories?.clientWidth), `Compact category grid failed: ${JSON.stringify(audit.filter((row) => row.viewport <= 768))}`);
+assert.ok(audit.filter((row) => [427, 440].includes(row.viewport)).every((row) => row.products?.nextCardPeekPercent > 0), `Product carousel previews are missing: ${JSON.stringify(audit.filter((row) => [427, 440].includes(row.viewport)))}`);
 assert.equal(routeCheck.title, "Bracelets");
 assert.equal(categoryTabCheck.title, "Rings");
-assert.ok(carouselScrollCheck.moved > 0 && carouselScrollCheck.otherStayedAtStart && carouselScrollCheck.keyboardPosition > 0, "Independent or keyboard carousel scrolling failed");
+assert.equal(categoryOverviewCheck.heading, "Category");
+assert.ok(categoryOverviewCheck.optionCount > 4 && categoryOverviewCheck.firstRowCount === 4 && categoryOverviewCheck.firstFourFit, `Category overview is not compact: ${JSON.stringify(categoryOverviewCheck)}`);
+assert.ok(categoryOverviewWidths.every((row) => row.columns === 4 && row.firstFourFit && !row.overflow), `Subcategory grid did not fit at all tested mobile widths: ${JSON.stringify(categoryOverviewWidths)}`);
+assert.ok(categoryGroups.every((row) => row.overview.heading === row.label && row.overview.optionCount > 0 && row.listing.heading && row.listing.countText && row.mappingCountMatches && row.browserBackReturnsToOverview), `Category to subcategory flow failed: ${JSON.stringify(categoryGroups)}`);
+assert.ok(carouselScrollCheck.categoriesGrid && carouselScrollCheck.categoriesFit && carouselScrollCheck.productsMoved > 0 && carouselScrollCheck.keyboardPosition > 0, "Category grid or product carousel navigation failed");
+assert.equal(directRefreshCheck.actual, directRefreshCheck.requested, "Direct subcategory route did not survive refresh");
+assert.ok(directRefreshCheck.visible && directRefreshCheck.title, "Direct subcategory URL did not render a product listing");
 assert.ok(mobileNavigationCheck.opened && mobileNavigationCheck.firstGroupExpanded && mobileNavigationCheck.browseAll, "Mobile category drawer did not open correctly");
 assert.ok(desktopNavigationCheck.opened && desktopNavigationCheck.linkCount > 0, "Desktop mega menu did not open");
 assert.ok(selectedProduct && productDetailCheck.title === selectedProduct && productDetailCheck.addEnabled, "Product detail flow failed");
@@ -348,7 +430,7 @@ assert.ok(pwaCheck.registered && pwaCheck.controlled && pwaCheck.workerState ===
 assert.ok(pwaCheck.iconStatuses.every((status) => status === 200), "A PWA icon could not be loaded");
 assert.equal(offlineCheck.homeSearch, true, "Offline app shell did not load");
 
-await writeFile(reportPath, JSON.stringify({ previewUrl, viewports: audit, loadedImagesAtCapture, imageStatesAtCapture, routeCheck, categoryTabCheck, carouselScrollCheck, stickyCheck, cartInteractionCheck, backToTopCheck, backToTopReturned, searchCheck, searchSuggestionCount, mobileNavigationCheck, desktopNavigationCheck, selectedProduct, productDetailCheck, wishlistCheck, cartBeforeReloadCheck, cartQuantityUpdateCheck, cartPersistenceCheck, cartRemovalCheck, wishlistPersistenceCheck, pwaCheck, initiallyControlled, offlineFetchCheck, offlineCheck }, null, 2));
-console.log(JSON.stringify({ viewports: audit, loadedImagesAtCapture, routeCheck, categoryTabCheck, carouselScrollCheck, stickyCheck, cartInteractionCheck, backToTopCheck, backToTopReturned, searchCheck, searchSuggestionCount, mobileNavigationCheck, desktopNavigationCheck, selectedProduct, productDetailCheck, wishlistCheck, cartBeforeReloadCheck, cartQuantityUpdateCheck, cartPersistenceCheck, cartRemovalCheck, wishlistPersistenceCheck, pwaCheck, initiallyControlled, offlineFetchCheck, offlineCheck }, null, 2));
+await writeFile(reportPath, JSON.stringify({ previewUrl, viewports: audit, loadedImagesAtCapture, imageStatesAtCapture, routeCheck, categoryTabCheck, categoryOverviewCheck, categoryGroups, categoryOverviewWidths, directRefreshCheck, carouselScrollCheck, stickyCheck, cartInteractionCheck, backToTopCheck, backToTopReturned, searchCheck, searchSuggestionCount, mobileNavigationCheck, desktopNavigationCheck, selectedProduct, productDetailCheck, wishlistCheck, cartBeforeReloadCheck, cartQuantityUpdateCheck, cartPersistenceCheck, cartRemovalCheck, wishlistPersistenceCheck, pwaCheck, initiallyControlled, offlineFetchCheck, offlineCheck }, null, 2));
+console.log(JSON.stringify({ viewports: audit, loadedImagesAtCapture, routeCheck, categoryTabCheck, categoryOverviewCheck, categoryGroups, categoryOverviewWidths, directRefreshCheck, carouselScrollCheck, stickyCheck, cartInteractionCheck, backToTopCheck, backToTopReturned, searchCheck, searchSuggestionCount, mobileNavigationCheck, desktopNavigationCheck, selectedProduct, productDetailCheck, wishlistCheck, cartBeforeReloadCheck, cartQuantityUpdateCheck, cartPersistenceCheck, cartRemovalCheck, wishlistPersistenceCheck, pwaCheck, initiallyControlled, offlineFetchCheck, offlineCheck }, null, 2));
 socket.close();
 process.exit(0);

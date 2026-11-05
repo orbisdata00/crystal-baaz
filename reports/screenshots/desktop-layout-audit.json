@@ -1891,32 +1891,44 @@
       "hash": "#cart",
       "pageVisible": true,
       "heading": "",
-      "documentWidth": 1425,
-      "scrollWidth": 1425,
+      "documentWidth": 1440,
+      "scrollWidth": 1440,
       "mobileNavHidden": true
+    },
+    "cartDetails": {
+      "itemCount": 1,
+      "heading": "Your cart.",
+      "linePricePiecesOverlap": false,
+      "pricePieceCount": 3,
+      "summaryVisible": true,
+      "summaryDoesNotOverlapItems": true,
+      "checkoutDisabled": true,
+      "checkoutText": "Checkout unavailable in preview",
+      "documentWidth": 1440,
+      "scrollWidth": 1440
     },
     "account": {
       "hash": "#account",
       "pageVisible": true,
       "heading": "Customer account",
-      "documentWidth": 1425,
-      "scrollWidth": 1425,
+      "documentWidth": 1440,
+      "scrollWidth": 1440,
       "mobileNavHidden": true
     },
     "about": {
       "hash": "#about",
       "pageVisible": true,
       "heading": "About Crystal Baaz",
-      "documentWidth": 1425,
-      "scrollWidth": 1425,
+      "documentWidth": 1440,
+      "scrollWidth": 1440,
       "mobileNavHidden": true
     },
     "policies": {
       "hash": "#policies",
       "pageVisible": true,
       "heading": "Store policies",
-      "documentWidth": 1425,
-      "scrollWidth": 1425,
+      "documentWidth": 1440,
+      "scrollWidth": 1440,
       "mobileNavHidden": true
     },
     "product": {
@@ -1936,7 +1948,7 @@
     "footer": {
       "present": true,
       "visible": true,
-      "brand": "crystal baaz.client catalog preview",
+      "brand": "crystal baaz.",
       "links": 8
     }
   },
@@ -1944,8 +1956,24 @@
     "reports/screenshots/home-desktop-baaz-after-1440.png",
     "reports/screenshots/collection-desktop-baaz-after-1280.png",
     "reports/screenshots/collection-desktop-baaz-after-1440.png",
-    "reports/screenshots/product-desktop-baaz-after-1440.png"
+    "reports/screenshots/product-desktop-baaz-after-1440.png",
+    "reports/screenshots/cart-desktop-baaz-after-1440.png"
   ],
   "failures": [],
+  "productCardLayout": {
+    "cardCount": 24,
+    "cardHeight": 477.609375,
+    "cardHeightsMatch": true,
+    "pricePiecesOverlap": false,
+    "desktopButtonText": "Add to cart",
+    "desktopActionVisible": true,
+    "mobileActionHidden": true,
+    "actionWithinCard": true
+  },
+  "desktopCartInteraction": {
+    "available": true,
+    "label": "Add to cart",
+    "title": "2 Bracelets Combo"
+  },
   "pass": true
 }

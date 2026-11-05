@@ -83,6 +83,8 @@ await send("Network.enable");
 await send("Network.setBypassServiceWorker", { bypass: true });
 await send("Network.setCacheDisabled", { cacheDisabled: true });
 await send("Emulation.setDeviceMetricsOverride", { width: 1440, height: 1000, deviceScaleFactor: 1, mobile: false, screenWidth: 1440, screenHeight: 1000 });
+// Keep repeated local preview audits independent of the cart added by an earlier run.
+await evaluate("localStorage.removeItem('crystal-bazz-cart'); localStorage.removeItem('crystal-baaz-shopify-cart-lines'); localStorage.removeItem('crystal-baaz-shopify-cart'); true");
 const freshUrl = new URL(previewUrl);
 freshUrl.searchParams.set("desktop-audit", Date.now().toString());
 const pageLoaded = waitForEvent("Page.loadEventFired");
@@ -107,6 +109,7 @@ const results = {
     "reports/screenshots/collection-desktop-baaz-after-1280.png",
     "reports/screenshots/collection-desktop-baaz-after-1440.png",
     "reports/screenshots/product-desktop-baaz-after-1440.png",
+    "reports/screenshots/cart-desktop-baaz-after-1440.png",
   ],
   failures: [],
 };
@@ -188,6 +191,29 @@ await setViewport(1440, 1000);
 await waitForRoute("#collection/bracelets", 180);
 await evaluate("window.scrollTo({ top: 0, behavior: 'instant' }); true");
 await capture("collection-desktop-baaz-after-1440.png");
+results.productCardLayout = await evaluate(`(() => {
+  const cards = [...document.querySelectorAll('.desktop-catalog-listing .product-card')];
+  const card = cards[0];
+  const rect = (element) => { const box = element?.getBoundingClientRect(); return box ? { top: box.top, right: box.right, bottom: box.bottom, left: box.left, width: box.width, height: box.height } : null; };
+  const prices = [...(card?.querySelectorAll('.product-price > strong, .product-price > del, .product-price > .product-discount') || [])];
+  const overlaps = prices.some((left, index) => prices.slice(index + 1).some((right) => {
+    const a = left.getBoundingClientRect(); const b = right.getBoundingClientRect();
+    return a.left < b.right - 1 && a.right > b.left + 1 && a.top < b.bottom - 1 && a.bottom > b.top + 1;
+  }));
+  const buttons = cards.slice(0, 8).map((item) => rect(item.querySelector('.desktop-product-action')));
+  return {
+    cardCount: cards.length, cardHeight: rect(card)?.height || 0,
+    cardHeightsMatch: cards.slice(0, 8).every((item) => Math.abs(item.getBoundingClientRect().height - (rect(card)?.height || 0)) < 1),
+    pricePiecesOverlap: overlaps,
+    desktopButtonText: card?.querySelector('.desktop-product-action .quick-add')?.textContent?.trim() || "",
+    desktopActionVisible: Boolean(card?.querySelector('.desktop-product-action') && getComputedStyle(card.querySelector('.desktop-product-action')).display !== 'none'),
+    mobileActionHidden: !card?.querySelector('.mobile-product-action') || getComputedStyle(card.querySelector('.mobile-product-action')).display === 'none',
+    actionWithinCard: buttons.every((button, index) => !button || (button.left >= rect(cards[index]).left && button.right <= rect(cards[index]).right && Math.abs(button.bottom - rect(cards[index]).bottom) < 16))
+  };
+})()`);
+if (results.productCardLayout.pricePiecesOverlap || !results.productCardLayout.cardHeightsMatch || !results.productCardLayout.actionWithinCard || !results.productCardLayout.desktopActionVisible || !results.productCardLayout.mobileActionHidden || !["Add to cart", "Review required", "Price pending"].includes(results.productCardLayout.desktopButtonText)) {
+  results.failures.push({ area: "product-card", issue: "card-alignment-or-action", found: results.productCardLayout });
+}
 await waitForRoute(`#group/${encodeURIComponent(group.id)}`, 180);
 results.groupEmptyState = await evaluate(`(() => {
   const listing = document.querySelector('.desktop-catalog-listing');
@@ -207,6 +233,14 @@ if (group.explicit_product_count !== 0 || results.groupEmptyState.mappedProducts
 
 const sample = catalog.products.find((product) => product.handle && product.title && product.title.toLowerCase() !== "certificate" && (product.image || product.images?.length));
 assert.ok(sample, "No product with an image was found for product detail audit");
+await waitForRoute("#collection/bracelets", 180);
+results.desktopCartInteraction = await evaluate(`(() => {
+  const button = [...document.querySelectorAll('.desktop-product-action .quick-add:not(:disabled)')].find((item) => item.textContent.trim() === 'Add to cart');
+  button?.click();
+  return { available: Boolean(button), label: button?.textContent?.trim() || '', title: button?.closest('.product-card')?.querySelector('.product-title')?.textContent?.trim() || '' };
+})()`);
+await new Promise((resolveDelay) => setTimeout(resolveDelay, 180));
+if (!results.desktopCartInteraction.available || results.desktopCartInteraction.label !== "Add to cart") results.failures.push({ area: "desktop-add-to-cart", issue: "button-text-or-action", found: results.desktopCartInteraction });
 const routes = [
   ["categories", "#collections", ".collection-directory"],
   ["search", "#search/rudraksha", ".search-route"],
@@ -230,6 +264,33 @@ for (const [name, hash, selector] of routes) {
   })()`);
   results.destinations[name] = result;
   if (!result.pageVisible || !result.mobileNavHidden || result.scrollWidth > result.documentWidth) results.failures.push({ area: name, issue: "route-layout", found: result });
+  if (name === "cart") {
+    // Let the add-to-cart confirmation fade before capturing the stable cart layout.
+    await new Promise((resolveDelay) => setTimeout(resolveDelay, 3300));
+    await capture("cart-desktop-baaz-after-1440.png");
+    results.destinations.cartDetails = await evaluate(`(() => {
+      const line = document.querySelector('.cart-page-line');
+      const summary = document.querySelector('.cart-summary');
+      const price = line?.querySelector('.cart-line-price');
+      const pieces = [...(price?.children || [])].map((node) => node.getBoundingClientRect());
+      const overlap = pieces.some((left, index) => pieces.slice(index + 1).some((right) => left.left < right.right - 1 && left.right > right.left + 1 && left.top < right.bottom - 1 && left.bottom > right.top + 1));
+      const lineBox = line?.getBoundingClientRect(); const summaryBox = summary?.getBoundingClientRect();
+      return {
+        itemCount: document.querySelectorAll('.cart-page-line').length,
+        heading: document.querySelector('.cart-hero h1')?.textContent?.trim() || '',
+        linePricePiecesOverlap: overlap,
+        pricePieceCount: pieces.length,
+        summaryVisible: Boolean(summaryBox && summaryBox.width > 0 && summaryBox.height > 0),
+        summaryDoesNotOverlapItems: !lineBox || !summaryBox || lineBox.right <= summaryBox.left || summaryBox.right <= lineBox.left,
+        checkoutDisabled: Boolean(document.querySelector('.checkout-button')?.disabled),
+        checkoutText: document.querySelector('.checkout-button')?.textContent?.trim() || '',
+        documentWidth: document.documentElement.clientWidth, scrollWidth: document.documentElement.scrollWidth
+      };
+    })()`);
+    if (results.destinations.cartDetails.itemCount !== 1 || results.destinations.cartDetails.linePricePiecesOverlap || !results.destinations.cartDetails.summaryVisible || !results.destinations.cartDetails.summaryDoesNotOverlapItems || !results.destinations.cartDetails.checkoutDisabled || results.destinations.cartDetails.scrollWidth > results.destinations.cartDetails.documentWidth) {
+      results.failures.push({ area: "desktop-cart", issue: "cart-layout-or-pricing", found: results.destinations.cartDetails });
+    }
+  }
 }
 
 await waitForRoute(`#product/${encodeURIComponent(sample.handle)}`, 300);

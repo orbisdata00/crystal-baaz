@@ -205,6 +205,8 @@ const mobileGroupTabs = [
   { label: "Problem", icon: "heart", href: "#nav/Remedy" },
   { label: "Zodiac Sign", icon: "sparkle", href: "#zodiac" },
   { label: "Pooja", icon: "sparkle", href: "#nav/Puja" },
+  { label: "Bracelets", icon: "bracelet", href: "#collection/bracelets" },
+  { label: "Rudraksha", icon: "sparkle", href: "#nav/Rudraksha" },
 ];
 
 const mobileCategoryItemKey = (item) => `${item.kind}:${item.target}`;
@@ -213,19 +215,15 @@ function buildMobileCategoryGroups() {
   const byLabel = new Map(navigation.map((group) => [group.label, group]));
   const rashiItems = byLabel.get("Rashi | Zodiac")?.items || [];
   const crystal = byLabel.get("Crystal");
-  const categoryItems = [
-    ...rashiItems.filter((item) => item.label.toLowerCase() === "rashi rings"),
-    ...(crystal?.formItems || []).filter((item) => item.label.toLowerCase() === "bracelets"),
-    ...rashiItems.filter((item) => item.label.toLowerCase() === "zodiac bracelets"),
-    ...(crystal?.formItems || []).filter((item) => item.label.toLowerCase() !== "bracelets"),
-  ];
   const unique = (items) => [...new Map(items.map((item) => [mobileCategoryItemKey(item), item])).values()];
   return [
-    { label: "Category", icon: "grid", items: unique(categoryItems) },
-    { label: "Crystal", icon: "sparkle", items: byLabel.get("Crystal")?.items || [] },
-    { label: "Problem", icon: "heart", items: byLabel.get("Remedy")?.items || [] },
-    { label: "Zodiac Sign", icon: "sparkle", items: rashiItems.filter((item) => item.kind === "zodiac") },
-    { label: "Pooja", icon: "sparkle", items: byLabel.get("Puja")?.items || [] },
+    { label: "Category", icon: "grid", items: collections.map((item) => ({ kind: "collection", target: item.handle, label: item.title })) },
+    { label: "Crystal", icon: "sparkle", items: unique([...(crystal?.items || []), ...(crystal?.formItems || [])]) },
+    { label: "Problem", icon: "heart", items: unique(byLabel.get("Remedy")?.items || []) },
+    { label: "Zodiac Sign", icon: "sparkle", items: unique(rashiItems.filter((item) => item.kind === "zodiac")) },
+    { label: "Pooja", icon: "sparkle", items: unique(byLabel.get("Puja")?.items || []) },
+    { label: "Bracelets", icon: "bracelet", items: unique(byLabel.get("Bracelets")?.items || []) },
+    { label: "Rudraksha", icon: "sparkle", items: unique(byLabel.get("Rudraksha")?.items || []) },
   ];
 }
 
@@ -261,14 +259,16 @@ function MobileCategoryNavigation({ onNavigate, route, className = "" }) {
   const isActive = (item) => route.page === "collections"
     ? (route.group || "Category") === item.label
     : item.label === "Category"
-    ? ["home", "collections", "collection", "group", "discovery", "nav"].includes(route.page) && route.page !== "nav"
+    ? route.page === "home" || route.page === "group" || route.page === "discovery" || (route.page === "collection" && route.handle !== "bracelets")
     : item.label === "Crystal" ? route.page === "crystals" || route.handle === "crystal"
       : item.label === "Problem" ? route.page === "nav" && route.label?.toLowerCase() === "remedy"
         : item.label === "Zodiac Sign" ? route.page === "zodiac"
-          : route.page === "nav" && route.label?.toLowerCase() === "puja";
+          : item.label === "Pooja" ? route.page === "nav" && route.label?.toLowerCase() === "puja"
+            : item.label === "Bracelets" ? route.page === "collection" && route.handle === "bracelets"
+              : route.page === "nav" && route.label?.toLowerCase() === "rudraksha";
   const selectGroup = (item) => {
     const group = mobileCategoryGroups.find((candidate) => candidate.label === item.label);
-    if (group) onNavigate(mobileCategoryHref(group.label, group.items[0]));
+    if (group) onNavigate(mobileCategoryHref(group.label));
     else onNavigate(item.href);
   };
   return html`<nav className=${`mobile-category-navigation ${className}`} aria-label="Browse product groups">${mobileGroupTabs.map((item) => html`<button key=${item.label} type="button" className=${`mobile-category-pill ${isActive(item) ? "is-active" : ""}`} aria-current=${isActive(item) ? "page" : undefined} onClick=${() => selectGroup(item)}><${Icon} name=${item.icon} size=${16}/><span>${item.label}</span></button>`)}</nav>`;
@@ -280,6 +280,24 @@ function MobileCategoryTiles({ catalog, onNavigate }) {
     const href = item.kind === "collection" ? `#collection/${encodeURIComponent(item.target)}` : item.kind === "group" ? `#group/${encodeURIComponent(item.target)}` : `#search/${encodeURIComponent(item.target)}`;
     return html`<button type="button" key=${`${item.kind}-${item.target}`} role="listitem" onClick=${() => onNavigate(href)}><span className="mobile-category-tile-image">${product ? html`<img src=${product.image} alt="" loading="lazy" onError=${(event) => { event.currentTarget.onerror = null; event.currentTarget.closest(".mobile-category-tile-image")?.classList.add("is-fallback"); event.currentTarget.src = "/assets/product-placeholder.svg"; }}/>` : html`<${Icon} name="sparkle" size=${24}/>`}</span><span>${item.label}</span></button>`;
   })}</div>`;
+}
+
+function MobileCategoryOverview({ group, catalog, onSelect }) {
+  return html`<section className="mobile-category-overview" aria-label=${`${group.label} subcategories`}>
+    <header className="mobile-category-overview-heading"><div><h1>${group.label}</h1><p>Choose a subcategory to view its mapped products.</p></div><span>${group.items.length} options</span></header>
+    <div className="mobile-subcategory-grid" role="list">
+      ${group.items.map((item) => {
+        const products = getItemProducts(catalog, item);
+        const image = products.find((product) => product.image && product.image !== "/assets/product-placeholder.svg")?.image;
+        const count = products.length;
+        return html`<button type="button" key=${mobileCategoryItemKey(item)} role="listitem" className="mobile-subcategory-card" onClick=${() => onSelect(item)} aria-label=${`${item.label}, ${count} mapped products`}>
+          <span className="mobile-subcategory-image">${image ? html`<img src=${image} alt="" loading="lazy" decoding="async" onError=${useProductImageFallback}/>` : html`<${Icon} name="sparkle" size=${22}/>`}</span>
+          <span className="mobile-subcategory-title">${item.label}</span>
+          <small>${count ? `${count} products` : "Mapping pending"}</small>
+        </button>`;
+      })}
+    </div>
+  </section>`;
 }
 
 function getSidebarEntries(route) {
@@ -389,20 +407,20 @@ function ProductCard({ product, onOpen, onAdd, isSaved, onSave, cart = [], onUpd
   const addEnabled = hasPrice && (product.variantsComplete === false
     ? product.canPurchase === true && defaultVariant?.available !== false
     : defaultVariant?.canPurchase !== false && defaultVariant?.available !== false);
-  const addLabel = addEnabled ? "ADD" : hasPrice ? "Review required" : "Price pending";
+  const addLabel = addEnabled ? "Add to cart" : hasPrice ? "Review required" : "Price pending";
   const cartLine = cart.find((line) => line.productId === product.id && line.key === `${product.id}:${defaultVariantId}`);
   return html`<article className="product-card">
     <div className="product-image-wrap">
       <button type="button" className="product-open" onClick=${() => onOpen(product)} aria-label=${`View ${title}`}><img className="product-image" src=${product.image || "/assets/product-placeholder.svg"} alt=${title} loading="lazy" style=${{ objectPosition: product.imagePosition || "center" }} onError=${useProductImageFallback}/></button>
       <span className="product-badge">${product.previewOnly ? "Catalog preview" : "Shopify"}</span>
       <button className=${`save-button ${isSaved ? "is-saved" : ""}`} type="button" aria-label=${isSaved ? "Remove from wishlist" : "Add to wishlist"} aria-pressed=${isSaved} onClick=${() => onSave(product.id)}><${Icon} name="heart" size=${17}/></button>
-      ${cartLine ? html`<div className="quick-quantity" role="group" aria-label=${`Quantity for ${title}`}><button type="button" onClick=${() => onUpdate(cartLine.key, -1)} aria-label=${`Decrease ${title} quantity`}><${Icon} name="minus" size=${14}/></button><span aria-live="polite">${cartLine.quantity}</span><button type="button" onClick=${() => onUpdate(cartLine.key, 1)} aria-label=${`Increase ${title} quantity`}><${Icon} name="plus" size=${14}/></button></div>` : html`<button className="quick-add" type="button" disabled=${!addEnabled} onClick=${() => onAdd(product, defaultVariant?.id || defaultSize)}><${Icon} name="plus" size=${15}/> ${addLabel}</button>`}
     </div>
     <div className="product-info"><button className="product-title" type="button" onClick=${() => onOpen(product)}>${title}</button>
       <p className="product-meta">${(product.collectionTitles || []).slice(0, 2).join(" · ") || product.type || "Catalog record"}</p>
       <div className="product-price">${hasPrice ? html`<strong>${(product.variants || []).length > 1 ? "From " : ""}${money(price)}</strong>` : html`<strong className="price-pending">Price pending review</strong>`}${discountPercent(price, compareAt) > 0 && html`<del key="compare-at">MRP ${money(compareAt)}</del><span key="discount" className="product-discount">${discountPercent(price, compareAt)}% off</span>`}<span className="price-note">${product.previewOnly ? "Workbook price · preview only" : "Shopify Storefront price"}</span></div>
     </div>
-    <div className="mobile-product-action">${cartLine ? html`<div className="mobile-card-quantity" role="group" aria-label=${`Quantity for ${title}`}><button type="button" onClick=${() => onUpdate(cartLine.key, -1)} aria-label=${`Decrease ${title} quantity`}><${Icon} name="minus" size=${15}/></button><span aria-live="polite">${cartLine.quantity}</span><button type="button" onClick=${() => onUpdate(cartLine.key, 1)} aria-label=${`Increase ${title} quantity`}><${Icon} name="plus" size=${15}/></button></div>` : html`<button type="button" disabled=${!addEnabled} onClick=${() => onAdd(product, defaultVariant?.id || defaultSize)}>${addEnabled ? "Add to cart" : hasPrice ? "Review required" : "Price pending"}</button>`}</div>
+    <div className="desktop-product-action">${cartLine ? html`<div className="quick-quantity" role="group" aria-label=${`Quantity for ${title}`}><button type="button" onClick=${() => onUpdate(cartLine.key, -1)} aria-label=${`Decrease ${title} quantity`}><${Icon} name="minus" size=${14}/></button><span aria-live="polite">${cartLine.quantity}</span><button type="button" onClick=${() => onUpdate(cartLine.key, 1)} aria-label=${`Increase ${title} quantity`}><${Icon} name="plus" size=${14}/></button></div>` : html`<button className="quick-add" type="button" disabled=${!addEnabled} onClick=${() => onAdd(product, defaultVariant?.id || defaultSize)}>${addLabel}</button>`}</div>
+    <div className="mobile-product-action">${cartLine ? html`<div className="mobile-card-quantity" role="group" aria-label=${`Quantity for ${title}`}><button type="button" onClick=${() => onUpdate(cartLine.key, -1)} aria-label=${`Decrease ${title} quantity`}><${Icon} name="minus" size=${15}/></button><span aria-live="polite">${cartLine.quantity}</span><button type="button" onClick=${() => onUpdate(cartLine.key, 1)} aria-label=${`Increase ${title} quantity`}><${Icon} name="plus" size=${15}/></button></div>` : html`<button type="button" disabled=${!addEnabled} onClick=${() => onAdd(product, defaultVariant?.id || defaultSize)}>${addLabel}</button>`}</div>
   </article>`;
 }
 
@@ -455,7 +473,7 @@ function MobileCategoriesPage({ route, catalog, sort, setSort, typeFilter, setTy
   const listRef = useRef(null);
   const railRef = useRef(null);
   const group = mobileCategoryGroups.find((item) => item.label === route.group) || mobileCategoryGroups[0];
-  const selectedItem = group.items.find((item) => mobileCategoryItemKey(item) === route.category) || group.items[0];
+  const selectedItem = route.category ? group.items.find((item) => mobileCategoryItemKey(item) === route.category) || null : null;
   const itemKey = selectedItem ? mobileCategoryItemKey(selectedItem) : "";
   const rawProducts = selectedItem ? getItemProducts(catalog, selectedItem) : [];
   const typeOptions = [...new Set(rawProducts.flatMap(productFacets))].sort((a, b) => a.localeCompare(b));
@@ -485,7 +503,8 @@ function MobileCategoriesPage({ route, catalog, sort, setSort, typeFilter, setTy
 
   const selectCategory = (item) => onNavigate(mobileCategoryHref(group.label, item));
   const productCards = html`<${ProductGrid} products=${visibleProducts} onOpen=${onOpen} onAdd=${onAdd} saved=${saved} onSave=${onSave} cart=${cart} onUpdate=${onUpdate}/>`;
-  return html`<section className="mobile-categories-app" aria-label="Browse client catalog categories">
+  return html`<section className=${`mobile-categories-app ${!selectedItem ? "mobile-categories-app--overview" : ""}`} aria-label="Browse client catalog categories">
+    ${!selectedItem ? html`<div className="mobile-category-overview-scroll"><${MobileCategoryOverview} group=${group} catalog=${catalog} onSelect=${selectCategory}/></div>` : html`<${React.Fragment}>
     <aside className="category-sidebar category-sidebar--browser" aria-label="${group.label} categories">
       <div className="category-sidebar-list" ref=${railRef}>${group.items.map((item) => {
         const matches = getItemProducts(catalog, item);
@@ -502,6 +521,7 @@ function MobileCategoriesPage({ route, catalog, sort, setSort, typeFilter, setTy
       <p className="preview-disclaimer">Client workbook preview · ratings, certifications, and stock are shown only when verified.</p>
     </section>
     <${FilterDrawer} open=${filterOpen} onClose=${() => setFilterOpen(false)} typeFilter=${typeFilter} setTypeFilter=${setTypeFilter} typeOptions=${typeOptions} sort=${sort} setSort=${setSort} minPrice=${minPrice} setMinPrice=${setMinPrice} maxPrice=${maxPrice} setMaxPrice=${setMaxPrice} availability=${availability} setAvailability=${setAvailability} availabilityVerified=${availabilityVerified} showAvailability=${true}/>
+    </>`}
   </section>`;
 }
 
@@ -720,7 +740,7 @@ function ContentPage({ page, onNavigate }) {
 }
 
 function Footer({ onNavigate }) {
-  return html`<footer className="site-footer catalog-footer"><div className="footer-main"><div className="footer-brand-col"><span className="brand-name">crystal baaz<span className="brand-dot">.</span><small>client catalog preview</small></span><p>Storefront structure based on the client catalog workbook.</p><span className="footer-pending">Live catalog and checkout setup pending verification.</span></div><div className="footer-links"><div><b>Browse</b><button type="button" onClick=${() => onNavigate("#collections")}>All collections</button><button type="button" onClick=${() => onNavigate("#zodiac")}>Rashi / Zodiac</button><button type="button" onClick=${() => onNavigate("#crystals")}>Crystal types</button><button type="button" onClick=${() => onNavigate("#wishlist")}>Wishlist</button></div><div><b>Information</b><button type="button" onClick=${() => onNavigate("#about")}>About</button><button type="button" onClick=${() => onNavigate("#contact")}>Contact</button><button type="button" onClick=${() => onNavigate("#faq")}>FAQs</button><button type="button" onClick=${() => onNavigate("#policies")}>Policies</button></div></div></div><div className="footer-bottom"><span>© ${new Date().getFullYear()} Crystal Baaz</span><span>Private catalog preview · INR</span><span>Catalog details remain under review</span></div></footer>`;
+  return html`<footer className="site-footer catalog-footer"><div className="footer-main"><div className="footer-brand-col"><span className="brand-name">crystal baaz<span className="brand-dot">.</span></span><small className="footer-preview-note">Client catalog preview · inventory and checkout are under verification.</small></div><div className="footer-links"><div><b>Browse</b><button type="button" onClick=${() => onNavigate("#collections")}>All collections</button><button type="button" onClick=${() => onNavigate("#zodiac")}>Rashi / Zodiac</button><button type="button" onClick=${() => onNavigate("#crystals")}>Crystal types</button><button type="button" onClick=${() => onNavigate("#wishlist")}>Wishlist</button></div><div><b>Information</b><button type="button" onClick=${() => onNavigate("#about")}>About</button><button type="button" onClick=${() => onNavigate("#contact")}>Contact</button><button type="button" onClick=${() => onNavigate("#faq")}>FAQs</button><button type="button" onClick=${() => onNavigate("#policies")}>Policies</button></div></div></div><div className="footer-bottom"><span>© ${new Date().getFullYear()} Crystal Baaz</span><span>INR</span></div></footer>`;
 }
 
 function HomePage({ catalog, onNavigate, onSearch, onOpen, onAdd, saved, onSave, cart, onUpdate, route }) {

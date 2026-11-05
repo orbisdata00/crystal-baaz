@@ -1,0 +1,517 @@
+{
+  "source": "Workbook-backed client catalog and current navigation registry",
+  "note": "Items below have no mapped preview products. Confirm source assignments before adding products; no mappings were inferred.",
+  "groups": [
+    {
+      "label": "Category",
+      "optionCount": 111,
+      "unmappedOptions": [
+        {
+          "label": "Amethyst",
+          "kind": "collection",
+          "target": "amethyst",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Amber",
+          "kind": "collection",
+          "target": "amber",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Amazonite",
+          "kind": "collection",
+          "target": "amazonite",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Aquamarine",
+          "kind": "collection",
+          "target": "aquamarine",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Black Obsidian",
+          "kind": "collection",
+          "target": "black-obsidian",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Black Tourmaline",
+          "kind": "collection",
+          "target": "black-tourmaline",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Bloodstone",
+          "kind": "collection",
+          "target": "bloodstone",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Blue Apatite",
+          "kind": "collection",
+          "target": "blue-apatite",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Blue Goldstone",
+          "kind": "collection",
+          "target": "blue-goldstone",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Blue Lace Agate",
+          "kind": "collection",
+          "target": "blue-lace-agate",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Blue Tiger's Eye",
+          "kind": "collection",
+          "target": "blue-tigers-eye",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Calcite",
+          "kind": "collection",
+          "target": "calcite",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Carnelian",
+          "kind": "collection",
+          "target": "carnelian",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Cat's Eye",
+          "kind": "collection",
+          "target": "cats-eye",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Citrine",
+          "kind": "collection",
+          "target": "citrine",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Coral",
+          "kind": "collection",
+          "target": "coral",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Cherry Quartz",
+          "kind": "collection",
+          "target": "cherry-quartz",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Chrysocolla",
+          "kind": "collection",
+          "target": "chrysocolla",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Dalmatian Jasper",
+          "kind": "collection",
+          "target": "dalmatian-jasper",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Evil Eye (Symbol)",
+          "kind": "collection",
+          "target": "evil-eye-symbol",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Fluorite",
+          "kind": "collection",
+          "target": "fluorite",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Garnet",
+          "kind": "collection",
+          "target": "garnet",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Golden Obsidian",
+          "kind": "collection",
+          "target": "golden-obsidian",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Green Aventurine",
+          "kind": "collection",
+          "target": "green-aventurine",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Green Agate",
+          "kind": "collection",
+          "target": "green-agate",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Green Jade",
+          "kind": "collection",
+          "target": "green-jade",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Hematite",
+          "kind": "collection",
+          "target": "hematite",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Howlite",
+          "kind": "collection",
+          "target": "howlite",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Labradorite",
+          "kind": "collection",
+          "target": "labradorite",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Lapis Lazuli",
+          "kind": "collection",
+          "target": "lapis-lazuli",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Larvikite",
+          "kind": "collection",
+          "target": "larvikite",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Lava",
+          "kind": "collection",
+          "target": "lava",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Lepidolite",
+          "kind": "collection",
+          "target": "lepidolite",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Mahogany Obsidian",
+          "kind": "collection",
+          "target": "mahogany-obsidian",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Malachite",
+          "kind": "collection",
+          "target": "malachite",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Mookaite",
+          "kind": "collection",
+          "target": "mookaite",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Moonstone",
+          "kind": "collection",
+          "target": "moonstone",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Morganite",
+          "kind": "collection",
+          "target": "morganite",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Moss Agate",
+          "kind": "collection",
+          "target": "moss-agate",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Multi Tourmaline",
+          "kind": "collection",
+          "target": "multi-tourmaline",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Onyx",
+          "kind": "collection",
+          "target": "onyx",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Opal",
+          "kind": "collection",
+          "target": "opal",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Peridot",
+          "kind": "collection",
+          "target": "peridot",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Prehnite",
+          "kind": "collection",
+          "target": "prehnite",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Pyrite",
+          "kind": "collection",
+          "target": "pyrite",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Red Jasper",
+          "kind": "collection",
+          "target": "red-jasper",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Rhodonite",
+          "kind": "collection",
+          "target": "rhodonite",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Rose Quartz",
+          "kind": "collection",
+          "target": "rose-quartz",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Ruby Zoisite",
+          "kind": "collection",
+          "target": "ruby-zoisite",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Selenite",
+          "kind": "collection",
+          "target": "selenite",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Serpentine",
+          "kind": "collection",
+          "target": "serpentine",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Smoky Quartz",
+          "kind": "collection",
+          "target": "smoky-quartz",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Snowflake Obsidian",
+          "kind": "collection",
+          "target": "snowflake-obsidian",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Sodalite",
+          "kind": "collection",
+          "target": "sodalite",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Sunstone",
+          "kind": "collection",
+          "target": "sunstone",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Tiger’s Eye",
+          "kind": "collection",
+          "target": "tiger-s-eye",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Turquoise",
+          "kind": "collection",
+          "target": "turquoise",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Tree Line Agate",
+          "kind": "collection",
+          "target": "tree-line-agate",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Unakite",
+          "kind": "collection",
+          "target": "unakite",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Zibu",
+          "kind": "collection",
+          "target": "zibu",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Home Decor/Vastu",
+          "kind": "collection",
+          "target": "home-decor-vastu",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Under 499 Rs",
+          "kind": "collection",
+          "target": "under-499-rs",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Malas & Jap Malas",
+          "kind": "collection",
+          "target": "malas-jap-malas",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Zodiac",
+          "kind": "collection",
+          "target": "zodiac",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Kawach/Yantra",
+          "kind": "collection",
+          "target": "kawach-yantra",
+          "mappedProductCount": 0
+        }
+      ]
+    },
+    {
+      "label": "Crystal",
+      "optionCount": 39,
+      "unmappedOptions": [
+        {
+          "label": "Amethyst",
+          "kind": "collection",
+          "target": "amethyst",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Pyrite",
+          "kind": "collection",
+          "target": "pyrite",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Rose quartz",
+          "kind": "collection",
+          "target": "rose-quartz",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Citrine",
+          "kind": "collection",
+          "target": "citrine",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Black tourmaline",
+          "kind": "collection",
+          "target": "black-tourmaline",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Tiger’s eye",
+          "kind": "collection",
+          "target": "tiger-s-eye",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Green aventurine",
+          "kind": "collection",
+          "target": "green-aventurine",
+          "mappedProductCount": 0
+        }
+      ]
+    },
+    {
+      "label": "Bracelets",
+      "optionCount": 7,
+      "unmappedOptions": [
+        {
+          "label": "Pyrite",
+          "kind": "collection",
+          "target": "pyrite",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Rose quartz",
+          "kind": "collection",
+          "target": "rose-quartz",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Amethyst",
+          "kind": "collection",
+          "target": "amethyst",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Green aventurine",
+          "kind": "collection",
+          "target": "green-aventurine",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Tiger eye",
+          "kind": "collection",
+          "target": "tiger-s-eye",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Citrine",
+          "kind": "collection",
+          "target": "citrine",
+          "mappedProductCount": 0
+        }
+      ]
+    },
+    {
+      "label": "Rudraksha",
+      "optionCount": 7,
+      "unmappedOptions": [
+        {
+          "label": "1-21 Mukhi",
+          "kind": "group",
+          "target": "group-rudraksha121mukhi",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Kavach",
+          "kind": "collection",
+          "target": "kawach-yantra",
+          "mappedProductCount": 0
+        },
+        {
+          "label": "Sidh Mala",
+          "kind": "search",
+          "target": "Sidh Mala",
+          "mappedProductCount": 0
+        }
+      ]
+    }
+  ],
+  "totalUnmappedOptions": 81
+}
