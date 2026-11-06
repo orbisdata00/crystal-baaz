@@ -1,0 +1,33 @@
+{
+  "generatedAt": "2026-11-06T02:35:23.872Z",
+  "mode": "production build + mobile PWA",
+  "failures": [],
+  "previewCatalogChunkEmitted": false,
+  "page": {
+    "width": 390,
+    "catalogSource": "shopify",
+    "catalogLoaded": "true",
+    "productCards": 68,
+    "invalidProductIds": [],
+    "categories": [
+      "Best Seller",
+      "New Arrivals",
+      "Rashi / Zodiac",
+      "Bracelets",
+      "Rudraksha",
+      "Crystal",
+      "Puja",
+      "Remedy"
+    ],
+    "serviceWorkerActive": true,
+    "serviceWorkerControlled": true,
+    "serviceWorkerScript": "http://127.0.0.1:4181/service-worker.js",
+    "cacheNames": [
+      "crystal-bazz-public-v7"
+    ],
+    "placeholderCached": false,
+    "previewCatalogChunkRequested": false
+  },
+  "runtimeIssues": [],
+  "pass": true
+}

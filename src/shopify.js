@@ -1,17 +1,16 @@
 import { shopifyConfig } from "./config.js";
 import { normalizeShopifyProduct } from "./catalog.js";
-import { getCatalogCache, setCatalogCache } from "./shopify-cache.js";
 
 const configured = () => Boolean(shopifyConfig.storeDomain && shopifyConfig.storefrontAccessToken);
 const variantIdPattern = /^gid:\/\/shopify\/ProductVariant\//;
 const CATALOG_PAGE_SIZE = 100;
-const CATALOG_CACHE_AGE = 30 * 60 * 1000;
 
 const PRODUCT_FIELDS = `
   id title handle description vendor productType tags availableForSale
   featuredImage { url altText width height }
   images(first: 100) { nodes { url altText width height } pageInfo { hasNextPage endCursor } }
   priceRange { minVariantPrice { amount currencyCode } }
+  options { name values }
   collections(first: 50) { nodes { handle title } }
   variants(first: 100) {
     nodes {
@@ -35,6 +34,9 @@ const CART_FIELDS = `
       merchandise {
         ... on ProductVariant {
           id title availableForSale
+          sku
+          selectedOptions { name value }
+          image { url altText }
           price { amount currencyCode }
           product { id handle title productType images(first: 1) { nodes { url altText } } }
         }
@@ -82,6 +84,7 @@ const CATALOG_PRODUCT_FIELDS = `
   featuredImage { url altText width height }
   images(first: 100) { nodes { url altText width height } pageInfo { hasNextPage endCursor } }
   priceRange { minVariantPrice { amount currencyCode } }
+  options { name values }
   variants(first: 5) {
     nodes {
       id sku title availableForSale
@@ -116,18 +119,10 @@ async function fetchAllShopifyProducts() {
 }
 
 let catalogRequest = null;
-export async function loadAllShopifyProducts({ forceRefresh = false } = {}) {
+export async function loadAllShopifyProducts() {
   if (!configured()) throw new Error("Shopify Storefront API settings are not configured.");
-  const domain = shopifyConfig.storeDomain.replace(/^https?:\/\//, "").replace(/\/$/, "");
-  const cacheKey = `${domain}:${shopifyConfig.apiVersion}:products-v3-full-media`;
-  if (!forceRefresh) {
-    const cached = await getCatalogCache(cacheKey, CATALOG_CACHE_AGE);
-    if (cached) return { products: cached, pageInfo: { hasNextPage: false, endCursor: null }, cached: true };
-  }
   if (!catalogRequest) {
-    catalogRequest = fetchAllShopifyProducts()
-      .then(async (products) => { await setCatalogCache(cacheKey, products); return products; })
-      .finally(() => { catalogRequest = null; });
+    catalogRequest = fetchAllShopifyProducts().finally(() => { catalogRequest = null; });
   }
   const products = await catalogRequest;
   return { products, pageInfo: { hasNextPage: false, endCursor: null }, cached: false };
@@ -200,6 +195,43 @@ export async function loadShopifyProduct(handle) {
   }
   product = { ...product, variants: { nodes: variants, pageInfo: pageInfo || { hasNextPage: false, endCursor: null } } };
   return normalizeShopifyProduct(product);
+}
+
+export async function loadShopifyVariants(variantIds) {
+  if (!configured()) throw new Error("Shopify Storefront API settings are not configured.");
+  if (!Array.isArray(variantIds) || !variantIds.length || variantIds.length > 50
+    || variantIds.some(id => !/^gid:\/\/shopify\/ProductVariant\/[1-9]\d{0,23}$/.test(String(id)))) {
+    throw new Error("The shared cart link contains invalid variant IDs.");
+  }
+  const gql = `query CrystalBazzSharedVariants($ids: [ID!]!) {
+    nodes(ids: $ids) {
+      ... on ProductVariant {
+        id sku title availableForSale
+        selectedOptions { name value }
+        image { url altText width height }
+        price { amount currencyCode }
+        compareAtPrice { amount currencyCode }
+        product {
+          id title handle description vendor productType availableForSale
+          options { name values }
+          featuredImage { url altText width height }
+          images(first: 5) { nodes { url altText width height } }
+        }
+      }
+    }
+  }`;
+  const data = await storefrontRequest(gql, { ids: variantIds });
+  return (data.nodes || []).map((node) => {
+    if (!node?.product?.id || !node.product.handle) return null;
+    const liveProduct = normalizeShopifyProduct({
+      ...node.product,
+      images: { nodes: connectionNodes(node.product.images), pageInfo: { hasNextPage: false, endCursor: null } },
+      priceRange: { minVariantPrice: node.price },
+      collections: { nodes: [] },
+      variants: { nodes: [node], pageInfo: { hasNextPage: true, endCursor: null } },
+    });
+    return { product: liveProduct, variantId: node.id, variant: liveProduct.variants[0] || null };
+  });
 }
 
 export async function fetchShopifyCart(cartId) {

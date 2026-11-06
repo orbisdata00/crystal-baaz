@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { createRoot } from "react-dom/client";
 import htm from "htm";
 import { Icon } from "./Icon.js";
-import { catalogGroups, clientProducts, collections, navigation, productHash, selectProducts, zodiacSigns } from "./catalog.js";
+import { catalogGroups, collections, formatVariantLabel, navigation, productHash, selectProducts, zodiacSigns } from "./catalog.js";
 import { addCartLine, calculateCart, changeCartQuantity, removeCartLine, selectVariant, reconcileShopifyCartLines } from "./cart.js";
 import { categoryTabs, discoveryById, discoverySections, discoveryHref, selectDiscoveryProducts } from "./discovery.js";
 import { catalogService } from "./catalog-service.js";
@@ -11,7 +11,8 @@ import { loadPreviewCatalog } from "./catalog.js";
 import { categoryParents, getParentCategory, hierarchyHref } from "./category-hierarchy.js";
 import { useShopifyCart } from "./use-shopify-cart.js";
 import { ShoppingExperience, useExperience } from "./shopping-experience.js";
-import { ShoppingHeader, ShoppingHome, ShoppingBrowse, ShoppingResults, ShoppingProduct, ShoppingCart, ShoppingFooter, ShoppingBottom, ShoppingInformation } from "./shopping-ui.js";
+import { ProductImage, ShoppingHeader, ShoppingHome, ShoppingBrowse, ShoppingResults, ShoppingProduct, ShoppingCart, ShoppingSharedCart, ShoppingFooter, ShoppingBottom, ShoppingInformation } from "./shopping-ui.js";
+import { parseSharedCartItems } from "./cart-share.js";
 
 const html = htm.bind(React.createElement);
 const money = (amount) => new Intl.NumberFormat("en-IN", { style: "currency", currency: "INR", maximumFractionDigits: 0 }).format(Number(amount || 0));
@@ -19,9 +20,14 @@ const productLabel = (product) => product.title?.trim() || "Product title pendin
 const discountPercent = (price, compareAt) => Number(compareAt) > Number(price) && Number(price) > 0 ? Math.round((1 - Number(price) / Number(compareAt)) * 100) : 0;
 function useProductImageFallback(event) {
   const image = event.currentTarget;
-  if (image.dataset.fallbackApplied === "true") { image.hidden = true; return; }
-  image.dataset.fallbackApplied = "true";
-  image.src = "/assets/product-placeholder.svg";
+  image.hidden = true;
+  if (!image.parentElement?.querySelector(".shopping-image-unavailable")) {
+    const unavailable = document.createElement("span");
+    unavailable.className = "shopping-image-unavailable";
+    unavailable.setAttribute("role", "img");
+    unavailable.textContent = "Image unavailable";
+    image.insertAdjacentElement("afterend", unavailable);
+  }
 }
 const collectionByHandle = new Map(collections.map((item) => [item.handle, item]));
 const groupById = new Map(catalogGroups.map((item) => [item.id, item]));
@@ -283,7 +289,7 @@ function MobileCategoryTiles({ catalog, onNavigate }) {
   return html`<div className="mobile-category-tiles" role="list" aria-label="Popular product categories">${mobileCategoryShortcuts.map((item) => {
     const product = getItemProducts(catalog, item).find((candidate) => candidate.image && candidate.image !== "/assets/product-placeholder.svg");
     const href = item.kind === "collection" ? `#collection/${encodeURIComponent(item.target)}` : item.kind === "group" ? `#group/${encodeURIComponent(item.target)}` : `#search/${encodeURIComponent(item.target)}`;
-    return html`<button type="button" key=${`${item.kind}-${item.target}`} role="listitem" onClick=${() => onNavigate(href)}><span className="mobile-category-tile-image">${product ? html`<img src=${product.image} alt="" loading="lazy" onError=${(event) => { event.currentTarget.onerror = null; event.currentTarget.closest(".mobile-category-tile-image")?.classList.add("is-fallback"); event.currentTarget.src = "/assets/product-placeholder.svg"; }}/>` : html`<${Icon} name="sparkle" size=${24}/>`}</span><span>${item.label}</span></button>`;
+    return html`<button type="button" key=${`${item.kind}-${item.target}`} role="listitem" onClick=${() => onNavigate(href)}><span className="mobile-category-tile-image">${product ? html`<img src=${product.image} alt="" loading="lazy" onError=${(event) => { event.currentTarget.hidden = true; event.currentTarget.closest(".mobile-category-tile-image")?.classList.add("is-fallback"); }}/>` : html`<${Icon} name="sparkle" size=${24}/>`}</span><span>${item.label}</span></button>`;
   })}</div>`;
 }
 
@@ -416,7 +422,7 @@ function ProductCard({ product, onOpen, onAdd, isSaved, onSave, cart = [], onUpd
   const cartLine = cart.find((line) => line.productId === product.id && line.key === `${product.id}:${defaultVariantId}`);
   return html`<article className="product-card">
     <div className="product-image-wrap">
-      <button type="button" className="product-open" onClick=${() => onOpen(product)} aria-label=${`View ${title}`}><img className="product-image" src=${product.image || "/assets/product-placeholder.svg"} alt=${title} loading="lazy" style=${{ objectPosition: product.imagePosition || "center" }} onError=${useProductImageFallback}/></button>
+      <button type="button" className="product-open" onClick=${() => onOpen(product)} aria-label=${`View ${title}`}><${ProductImage} className="product-image" src=${product.image} alt=${title}/></button>
       <span className="product-badge">${product.previewOnly ? "Catalog preview" : "Shopify"}</span>
       <button className=${`save-button ${isSaved ? "is-saved" : ""}`} type="button" aria-label=${isSaved ? "Remove from wishlist" : "Add to wishlist"} aria-pressed=${isSaved} onClick=${() => onSave(product.id)}><${Icon} name="heart" size=${17}/></button>
     </div>
@@ -609,7 +615,7 @@ function ProductPage({ product, products, onBack, onOpen, onAdd, onSave, onNotic
     const src = item.url || item.src || item.sources?.[0]?.url || item.image?.url || item.previewImage?.url;
     return src ? { type: type.includes("video") ? "video" : "image", src, poster: item.previewImage?.url || item.image?.url || "" } : null;
   }).filter(Boolean);
-  if (!mediaItems.length) (product.images?.length ? product.images : [product.image || "/assets/product-placeholder.svg"]).forEach((src) => mediaItems.push({ type: "image", src }));
+  if (!mediaItems.length) mediaItems.push({ type: "unavailable" });
   const selectedMedia = mediaItems[imageIndex] || mediaItems[0];
   const variants = product.variants || [];
   const variant = variants[variantIndex];
@@ -657,8 +663,9 @@ function ProductPage({ product, products, onBack, onOpen, onAdd, onSave, onNotic
   };
   const renderMedia = (isLightbox = false) => selectedMedia.type === "video"
     ? html`<video src=${selectedMedia.src} poster=${selectedMedia.poster || undefined} controls playsInline preload="metadata" aria-label=${`${title} product video`}></video>`
-    : html`<img src=${selectedMedia.src} alt=${title} onError=${imageUrl} draggable="false"/>`;
-  const detailImages = mediaItems.map((item, index) => html`<button type="button" key=${`${item.src}-${index}`} className=${`detail-thumb ${imageIndex === index ? "is-active" : ""}`} onClick=${() => setImageIndex(index)} aria-label=${`Show product ${item.type === "video" ? "video" : "image"} ${index + 1}`} aria-current=${imageIndex === index ? "true" : undefined}><img src=${item.poster || item.src} alt="" loading="lazy" onError=${imageUrl}/>${item.type === "video" && html`<span className="detail-thumb-play" aria-hidden="true">▶</span>`}</button>`);
+    : selectedMedia.type === "unavailable" ? html`<span className="shopping-image-unavailable" role="img" aria-label="Image unavailable">Image unavailable</span>`
+      : html`<img src=${selectedMedia.src} alt=${title} onError=${imageUrl} draggable="false"/>`;
+  const detailImages = mediaItems.filter((item) => item.type !== "unavailable").map((item, index) => html`<button type="button" key=${`${item.src}-${index}`} className=${`detail-thumb ${imageIndex === index ? "is-active" : ""}`} onClick=${() => setImageIndex(index)} aria-label=${`Show product ${item.type === "video" ? "video" : "image"} ${index + 1}`} aria-current=${imageIndex === index ? "true" : undefined}><img src=${item.poster || item.src} alt="" loading="lazy" onError=${imageUrl}/>${item.type === "video" && html`<span className="detail-thumb-play" aria-hidden="true">▶</span>`}</button>`);
   const priceContent = html`<div className="detail-price"><strong>${Number.isFinite(price) && price > 0 ? money(price) : "Price pending"}</strong>${discount > 0 && html`<del key="compare-at">${money(compareAt)}</del><span key="discount" className="product-discount">${discount}% off</span>`}</div>`;
   const quantityControl = html`<div className="qty-control detail-quantity" aria-label="Quantity"><button type="button" onClick=${() => setQuantity((current) => Math.max(1, current - 1))} aria-label="Decrease quantity"><${Icon} name="minus" size=${16}/></button><span aria-live="polite">${quantity}</span><button type="button" onClick=${() => setQuantity((current) => current + 1)} aria-label="Increase quantity"><${Icon} name="plus" size=${16}/></button></div>`;
   const addButton = (mobile = false) => html`<button className=${`button button--dark detail-add ${mobile ? "detail-add-mobile" : ""}`} type="button" disabled=${!canAdd} onClick=${addProduct} aria-label=${added ? "Added to preview bag" : `Add ${title} to preview bag`}>${added ? "Added to bag" : mobile ? "Add to bag" : `Add to preview bag · ${money(price * quantity)}`}</button>`;
@@ -703,7 +710,7 @@ function CartPage({ cart, catalog, onUpdate, onRemove, onCheckout, checkoutBusy,
   const savings = originalTotal > displayedSubtotal ? originalTotal - displayedSubtotal : 0;
   const canCheckout = checkoutEnabled && totals.lines.length > 0 && totals.lines.every((line) => line.variantId?.startsWith("gid://shopify/ProductVariant/"));
   return html`<main className="page-main cart-route"><section className="page-hero section-pad cart-hero"><div className="eyebrow">YOUR BAG</div><h1>Your <em>cart.</em></h1><p>Cart changes are stored in this browser. Checkout remains disabled until Shopify is configured.</p></section>
-    <section className="cart-page section-pad">${totals.lines.length ? html`<div key="cart-list" className="cart-list">${totals.lines.map((line, index) => { const discount = discountPercent(line.price, line.compareAt); const lineKey = line.key || `${line.productId}:${line.variantId || line.variantTitle || index}`; return html`<article key=${lineKey} className="cart-line cart-page-line"><img src=${line.product.image || "/assets/product-placeholder.svg"} alt="" onError=${useProductImageFallback}/><div className="cart-line-info"><h2>${productLabel(line.product)}</h2><span>${line.sku || line.variantTitle && line.variantTitle !== "One size" ? line.sku || line.variantTitle : ""}</span><div className="cart-line-price"><strong>${line.price ? money(line.price * line.quantity) : "Price pending"}</strong>${discount > 0 && html`<del key="compare-at">${money(line.compareAt * line.quantity)}</del><i key="discount">${discount}% off</i>`}</div><div className="cart-qty"><button type="button" aria-label="Decrease quantity" onClick=${() => onUpdate(line.key || lineKey, -1)}><${Icon} name="minus" size=${13}/></button><span>${line.quantity}</span><button type="button" aria-label="Increase quantity" onClick=${() => onUpdate(line.key || lineKey, 1)}><${Icon} name="plus" size=${13}/></button></div></div><button className="remove-line" type="button" onClick=${() => onRemove(line.key || lineKey)} aria-label="Remove item"><${Icon} name="trash" size=${16}/></button></article>`;})}</div><aside key="cart-summary" className="cart-summary"><div className="subtotal-row"><span>Cart total</span><strong>${money(displayedSubtotal)}</strong>${savings > 0 && html`<del key="original-total">${money(originalTotal)}</del><small key="savings">You save ${money(savings)}</small>`}</div><p>Shipping, taxes, and stock are not verified in this preview.</p><button className="button button--dark checkout-button" type="button" disabled=${!canCheckout || checkoutBusy} onClick=${onCheckout}>${checkoutBusy ? "Preparing checkout…" : canCheckout ? "Continue to Shopify checkout" : "Checkout unavailable in preview"}</button><span className="secure-note">No payment is taken in this preview.</span></aside>` : html`<div className="cart-empty"><span className="empty-sparkle">✧</span><h3>Your cart is empty.</h3><p>Browse the client catalog to add priced items to your preview cart.</p></div>`}</section>
+    <section className="cart-page section-pad">${totals.lines.length ? html`<div key="cart-list" className="cart-list">${totals.lines.map((line, index) => { const discount = discountPercent(line.price, line.compareAt); const lineKey = line.key || `${line.productId}:${line.variantId || line.variantTitle || index}`; const variant = line.product.variants?.find(item => item.id === line.variantId); const variantLabel = formatVariantLabel(line.product, variant); return html`<article key=${lineKey} className="cart-line cart-page-line"><${ProductImage} src=${variant?.image || line.product.image} alt=${productLabel(line.product)}/><div className="cart-line-info"><h2>${productLabel(line.product)}</h2>${variantLabel&&html`<span>${variantLabel}</span>`}<div className="cart-line-price"><strong>${line.price ? money(line.price * line.quantity) : "Price pending"}</strong>${discount > 0 && html`<del key="compare-at">${money(line.compareAt * line.quantity)}</del><i key="discount">${discount}% off</i>`}</div><div className="cart-qty"><button type="button" aria-label="Decrease quantity" onClick=${() => onUpdate(line.key || lineKey, -1)}><${Icon} name="minus" size=${13}/></button><span>${line.quantity}</span><button type="button" aria-label="Increase quantity" onClick=${() => onUpdate(line.key || lineKey, 1)}><${Icon} name="plus" size=${13}/></button></div></div><button className="remove-line" type="button" onClick=${() => onRemove(line.key || lineKey)} aria-label="Remove item"><${Icon} name="trash" size=${16}/></button></article>`;})}</div><aside key="cart-summary" className="cart-summary"><div className="subtotal-row"><span>Cart total</span><strong>${money(displayedSubtotal)}</strong>${savings > 0 && html`<del key="original-total">${money(originalTotal)}</del><small key="savings">You save ${money(savings)}</small>`}</div><p>Shipping, taxes, and stock are not verified in this preview.</p><button className="button button--dark checkout-button" type="button" disabled=${!canCheckout || checkoutBusy} onClick=${onCheckout}>${checkoutBusy ? "Preparing checkout…" : canCheckout ? "Continue to Shopify checkout" : "Checkout unavailable in preview"}</button><span className="secure-note">No payment is taken in this preview.</span></aside>` : html`<div className="cart-empty"><span className="empty-sparkle">✧</span><h3>Your cart is empty.</h3><p>Browse the client catalog to add priced items to your preview cart.</p></div>`}</section>
   </main>`;
 }
 
@@ -804,6 +811,7 @@ function StoreApp() {
   const [route, setRoute] = useState(() => parseRoute(window.location.hash));
   const productReturnHash = useRef("#collections");
   const [catalog, setCatalog] = useState([]);
+  const [sharedCartData, setSharedCartData] = useState({ itemsKey: "", items: [], loading: false, error: "" });
   const [loading, setLoading] = useState(true);
   const [online, setOnline] = useState(navigator.onLine);
   useEffect(() => { const update = () => setOnline(navigator.onLine); window.addEventListener("online", update); window.addEventListener("offline", update); return () => { window.removeEventListener("online", update); window.removeEventListener("offline", update); }; }, []);
@@ -870,6 +878,46 @@ function StoreApp() {
     return () => { active = false; };
   }, [route.page, route.handle, retryTick]);
 
+  useEffect(() => {
+    if (route.page !== "shared-cart") return undefined;
+    let active = true;
+    const itemsKey = route.items || "";
+    const parsed = parseSharedCartItems(itemsKey);
+    if (!parsed.ok) {
+      setSharedCartData({ itemsKey, items: [], loading: false, error: "This shared cart link is invalid or has expired. Ask the sender for a new link." });
+      return undefined;
+    }
+    if (!online) {
+      setSharedCartData({ itemsKey, items: [], loading: false, error: "Reconnect to verify current Shopify prices and availability." });
+      return undefined;
+    }
+    if (!catalogService.isLive) {
+      setSharedCartData({ itemsKey, items: [], loading: false, error: "Shared carts require live Shopify data. Preview catalog items are not added from shared links." });
+      return undefined;
+    }
+    setSharedCartData({ itemsKey, items: [], loading: true, error: "" });
+    catalogService.resolveSharedVariants(parsed.items.map(item => item.variantId)).then(resolved => {
+      if (!active) return;
+      const items = parsed.items.map((item, index) => ({ ...item, ...(resolved[index] || { status: "missing", product: null, variant: null }) }));
+      const products = items.map(item => item.product).filter(Boolean);
+      if (products.length) setCatalog(current => {
+        const next = new Map(current.map(product => [product.id, product]));
+        for (const product of products) {
+          const existing = next.get(product.id);
+          if (!existing) { next.set(product.id, product); continue; }
+          const variants = new Map((existing.variants || []).map(variant => [variant.id, variant]));
+          for (const variant of product.variants || []) variants.set(variant.id, variant);
+          next.set(product.id, { ...existing, variants: [...variants.values()], options: existing.options?.length ? existing.options : product.options });
+        }
+        return [...next.values()];
+      });
+      setSharedCartData({ itemsKey, items, loading: false, error: "" });
+    }).catch(error => {
+      if (active) setSharedCartData({ itemsKey, items: [], loading: false, error: error.message || "Shopify could not verify the shared cart." });
+    });
+    return () => { active = false; };
+  }, [route.page, route.items, online, retryTick]);
+
   const addToCart = useCallback(async (product, variantSelector, quantity = 1) => {
     if (!navigator.onLine) { setToast("Reconnect to update your Shopify cart."); return false; }
     let selectedProduct = product;
@@ -889,18 +937,28 @@ function StoreApp() {
       }
     }
     let variant = selectVariant(selectedProduct, variantSelector);
+    const identityVerified = selectedProduct.variants.length <= 1 || Boolean(formatVariantLabel(selectedProduct, variant));
 
     const price = Number(variant?.price ?? selectedProduct.price);
-    if (!Number.isFinite(price) || price <= 0 || variant?.canPurchase === false || variant?.available === false || (catalogService.isLive && variant?.canPurchase !== true)) {
-      setToast(catalogService.isLive ? "No exact, available Shopify variant matches this workbook SKU." : "This SKU has no valid workbook price or is blocked for review.");
+    if (!identityVerified || !Number.isFinite(price) || price <= 0 || variant?.canPurchase === false || variant?.available === false || (catalogService.isLive && variant?.canPurchase !== true)) {
+      setToast(!identityVerified ? "Shopify option details need correction before this variant can be purchased." : catalogService.isLive ? "No exact, available Shopify variant matches this workbook SKU." : "This SKU has no valid workbook price or is blocked for review.");
       return;
     }
     return cartState.add(selectedProduct, variant.id, quantity);
   }, [cartState.add]);
+  const addSharedItems = useCallback(async (items) => {
+    if (!catalogService.isLive || !navigator.onLine) return false;
+    for (const item of items) {
+      const added = await addToCart(item.product, item.variantId, item.quantity);
+      if (!added) return false;
+    }
+    return true;
+  }, [addToCart]);
   const updateCart = useCallback((key, delta, label) => cartState.update(key, delta, label), [cartState.update]);
   const removeCart = useCallback((key, label) => cartState.remove(key, label), [cartState.remove]);
   const toggleSaved = useCallback((id) => setSaved((items) => items.includes(id) ? items.filter((item) => item !== id) : [...items, id]), []);
   const openProduct = useCallback((product) => { productReturnHash.current = window.location.hash || "#collections"; navigate(productHash(product)); }, [navigate]);
+  const openSharedProduct = useCallback((product, variantId) => { productReturnHash.current = window.location.hash || "#home"; navigate(productHash(product, variantId)); }, [navigate]);
   const checkout = async () => {
     setToast("Checkout remains disabled while the live catalog is being verified.");
   };
@@ -975,17 +1033,18 @@ function StoreApp() {
   const cartCount = calculateCart(cart, catalog).count;
   const retryCatalog = () => setRetryTick(value => value + 1);
   const openCart = () => { if (route.page !== "cart") cartReturnHash.current = window.location.hash || "#home"; navigate("#cart"); };
-  const shared = { onOpen: openProduct, onAdd: addToCart, onSave: toggleSaved, saved, cart, pendingKeys: cartPendingKeys, pendingOperations: cartPendingOperations, onUpdate: updateCart, onNavigate: navigate };
+  const shared = { onOpen: openProduct, onAdd: addToCart, onSave: toggleSaved, saved, cart, pendingKeys: cartPendingKeys, pendingOperations: cartPendingOperations, onUpdate: updateCart, onNavigate: navigate, onNotice: setToast };
   const dataState = { loading, error: !online ? "You are offline. Reconnect to load current Shopify products and prices." : catalogError, onRetry: retryCatalog };
   const sortProducts = value => { setSort(value); setPageSize(24); updateViewOption("sort", value); };
   const pageContent = () => {
     if (["home", "cart"].includes(route.page)) return html`<${ShoppingHome} catalog=${catalog} ...${shared} ...${dataState}/>`;
+    if (route.page === "shared-cart") return html`<${ShoppingSharedCart} items=${sharedCartData.items} loading=${sharedCartData.loading} error=${sharedCartData.error} cartCount=${cartCount} cartSyncing=${cartSyncing} cartError=${cartError} onRetryVerification=${retryCatalog} onRetryCart=${cartState.retry} onAddItems=${addSharedItems} onNavigate=${navigate} onOpenProduct=${openSharedProduct}/>`;
     let browseRoute = route;
     if (route.page === "nav" && getParentCategory(route.label)) browseRoute = { ...route, page: "collections", group: getParentCategory(route.label).id };
     if (route.page === "crystals") browseRoute = { ...route, page: "collections", group: "crystals" };
     if (route.page === "zodiac") browseRoute = { ...route, page: "collections", group: "zodiac", category: route.sign ? `zodiac:${route.sign}` : "" };
     if (["collections", "collection", "group"].includes(browseRoute.page)) return html`<${ShoppingBrowse} route=${browseRoute} catalog=${catalog} sort=${sort} onSort=${sortProducts} pageSize=${pageSize} onMore=${loadMore} ...${shared} ...${dataState}/>`;
-    if (route.page === "product") return html`<${ShoppingProduct} key=${route.handle} product=${activeProduct} catalog=${catalog} onBack=${() => navigate(productReturnHash.current || "#collections")} ...${shared} ...${dataState}/>`;
+    if (route.page === "product") return html`<${ShoppingProduct} key=${route.handle} product=${activeProduct} selectedVariantId=${route.variantId||""} catalog=${catalog} onBack=${() => navigate(productReturnHash.current || "#collections")} ...${shared} ...${dataState}/>`;
     if (route.page === "search" || route.page === "wishlist") return html`<${ShoppingResults} catalog=${catalog} title=${route.page === "wishlist" ? "Your wishlist" : route.query ? `Search results for “${route.query}”` : "Search products"} query=${route.query || ""} savedOnly=${route.page === "wishlist"} pageSize=${pageSize} onMore=${loadMore} sort=${sort} onSort=${sortProducts} ...${shared} ...${dataState}/>`;
     if (route.page === "nav" || route.page === "discovery") {
       const items = routeNav ? [...(routeNav.items || []), ...(routeNav.formItems || [])].filter(item => ["collection", "group"].includes(item.kind)) : (routeDiscovery?.collectionHandles || []).map(target => ({ kind: "collection", target }));

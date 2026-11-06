@@ -4,14 +4,15 @@ import { readFile } from "node:fs/promises";
 import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import htm from "htm";
-import { catalogGroups, collections, crystals, mapShopifyCatalog, mergeShopifyProduct, normalizeShopifyProduct, productFromHash, productHash, selectProducts, zodiacSigns, navigation } from "../src/catalog.js";
+import { catalogGroups, collections, crystals, formatVariantLabel, mapShopifyCatalog, mergeShopifyProduct, normalizeShopifyProduct, productFromHash, productHash, selectProducts, zodiacSigns, navigation } from "../src/catalog.js";
 import { addCartLine, calculateCart, changeCartQuantity, removeCartLine, reconcileShopifyCartLines } from "../src/cart.js";
 import { createHostedCheckout, hasShopifyConnection } from "../src/shopify.js";
-import { shopifyConfig } from "../src/config.js";
+import { resolveCatalogProvider, shopifyConfig } from "../src/config.js";
 import { catalogService, createCatalogService } from "../src/catalog-service.js";
 import { parseRoute } from "../src/routes.js";
 import { Icon } from "../src/Icon.js";
 import { categoryTabs, discoveryHref, discoverySections, selectDiscoveryProducts } from "../src/discovery.js";
+import { ProductImage, ShoppingSharedCart } from "../src/shopping-ui.js";
 
 import clientCatalog from "../src/data/client-catalog.json" with { type: "json" };
 const clientProducts = clientCatalog.products;
@@ -174,6 +175,32 @@ test("preview remains opt-in and checkout remains disabled", async () => {
   assert.equal(adapterCalls, 0);
 });
 
+test("production is forced to Shopify and development preview remains explicit", () => {
+  assert.equal(resolveCatalogProvider({ isProduction: true, requestedSource: "preview" }), "shopify");
+  assert.equal(resolveCatalogProvider({ isProduction: false, requestedSource: "preview" }), "preview");
+  assert.equal(resolveCatalogProvider({ isProduction: false, requestedSource: "" }), "shopify");
+});
+
+test("Shopify API failures remain errors and an empty Shopify response remains empty", async () => {
+  const failing = createCatalogService({ provider: "shopify", workbook: [], adapter: {
+    hasConnection: () => true,
+    loadCatalog: async () => { throw new Error("Shopify API unavailable"); },
+  } });
+  await assert.rejects(failing.loadCatalog(), /Shopify API unavailable/);
+
+  const empty = createCatalogService({ provider: "shopify", workbook: [], adapter: {
+    hasConnection: () => true,
+    loadCatalog: async () => ({ products: [] }),
+  } });
+  assert.deepEqual((await empty.loadCatalog()).products, []);
+
+  const malformed = createCatalogService({ provider: "shopify", workbook: [], adapter: {
+    hasConnection: () => true,
+    loadCatalog: async () => ({ products: null }),
+  } });
+  await assert.rejects(malformed.loadCatalog(), /invalid product catalog response/);
+});
+
 test("catalog service adapter contract can swap providers without changing route callers", async () => {
   const calls = [];
   const liveProduct = normalizeShopifyProduct({
@@ -208,6 +235,52 @@ test("catalog service adapter contract can swap providers without changing route
   assert.deepEqual(await shopify.checkout([], [], "cart-1"), { disabled: true });
 });
 
+test("shared variant resolution verifies full-product SKU identity before allowing an ambiguous option", async () => {
+  const makeProduct = (skus) => normalizeShopifyProduct({
+    id: "gid://shopify/Product/400", handle: "blue-sapphire-test", title: "Blue Sapphire Ring", productType: "Ring", availableForSale: true,
+    options: [{ name: "Variant", values: ["Variant 1", "Variant 2"] }],
+    priceRange: { minVariantPrice: { amount: "3490.00" } },
+    variants: { nodes: skus.map((sku, index) => ({
+      id: `gid://shopify/ProductVariant/40${index}`, sku, title: `Variant ${index + 1}`, availableForSale: true,
+      selectedOptions: [{ name: "Variant", value: `Variant ${index + 1}` }],
+      price: { amount: index ? "3890.00" : "3490.00", currencyCode: "INR" },
+    })), pageInfo: { hasNextPage: false, endCursor: null } },
+  });
+  const workbookFor = (skus) => [{
+    id: "workbook-blue-sapphire", handle: "blue-sapphire-test", title: "Blue Sapphire Ring", type: "Ring", price: 3490,
+    collectionHandles: [], collectionTitles: [], groupIds: [], variants: skus.map(sku => ({ sku })),
+  }];
+  const createService = (skus) => {
+    const product = makeProduct(skus);
+    const adapter = {
+      hasConnection: () => true,
+      loadCatalog: async () => ({ products: [product] }),
+      loadProduct: async () => product,
+      loadVariants: async ids => ids.map(id => {
+        const variant = product.variants.find(item => item.id === id);
+        const partial = normalizeShopifyProduct({
+          id: product.id, handle: product.handle, title: product.title, productType: product.type, availableForSale: true,
+          options: product.options, priceRange: { minVariantPrice: { amount: String(variant.price) } },
+          variants: { nodes: [{ ...variant, availableForSale: variant.available, price: { amount: String(variant.price), currencyCode: variant.currencyCode } }], pageInfo: { hasNextPage: true, endCursor: null } },
+        });
+        return { product: partial, variantId: id, variant: partial.variants[0] };
+      }),
+      syncCart: async () => null,
+    };
+    return createCatalogService({ provider: "shopify", adapter, workbook: workbookFor(skus) });
+  };
+
+  const unique = createService(["RG166", "RG168"]);
+  const available = await unique.resolveSharedVariants(["gid://shopify/ProductVariant/400"]);
+  assert.equal(available[0].status, "available");
+  assert.equal(formatVariantLabel(available[0].product, available[0].variant), "SKU: RG166");
+
+  const duplicate = createService(["RG-DUP", "RG-DUP"]);
+  const blocked = await duplicate.resolveSharedVariants(["gid://shopify/ProductVariant/400"]);
+  assert.equal(blocked[0].status, "unverified");
+  assert.equal(formatVariantLabel(blocked[0].product, blocked[0].variant), "");
+});
+
 test("live product mapping keeps workbook collections and only approves exact Shopify SKU matches", () => {
   const workbook = {
     ...fixture[0],
@@ -237,7 +310,8 @@ test("live product mapping keeps workbook collections and only approves exact Sh
   assert.equal(merged.variants.find((item) => item.sku === "SHOPIFY-ONLY").canPurchase, false);
   assert.equal(merged.variants.find((item) => item.sku === "WORKBOOK-ONLY").canPurchase, true);
   assert.equal(merged.canPurchase, true);
-  assert.deepEqual(mapShopifyCatalog([live, { ...live, id: "gid://shopify/Product/404", handle: "missing-workbook-product" }], [workbook]).map((item) => item.id), [live.id]);
+  assert.deepEqual(mapShopifyCatalog([live, { ...live, id: "gid://shopify/Product/404", handle: "missing-workbook-product" }, { ...live, id: "workbook-preview-id" }], [workbook]).map((item) => item.id), [live.id]);
+  assert.equal(mergeShopifyProduct({ ...live, id: "workbook-preview-id" }, workbook), null);
 });
 
 test("live product mapping never substitutes workbook media or description when Shopify omits them", () => {
@@ -294,6 +368,8 @@ test("partial Shopify variant pages use the full product price range", () => {
 
 test("hash routes decode handles, signs, search terms and view options", () => {
   assert.deepEqual(parseRoute("#product/rose-quartz-bracelet"), { page: "product", handle: "rose-quartz-bracelet" });
+  assert.deepEqual(parseRoute("#product/blue-sapphire?variant=gid%3A%2F%2Fshopify%2FProductVariant%2F123"), { page: "product", handle: "blue-sapphire", variantId: "gid://shopify/ProductVariant/123" });
+  assert.deepEqual(parseRoute("#shared-cart?items=123%3A2%2C456%3A1"), { page: "shared-cart", items: "123:2,456:1" });
   assert.deepEqual(parseRoute("#collections?group=Zodiac+Sign&category=zodiac%3AAries"), { page: "collections", group: "Zodiac Sign", category: "zodiac:Aries", sort: "featured", facet: "" });
   assert.deepEqual(parseRoute("#zodiac/Rashi%20%2F%20Zodiac?sort=title"), { page: "zodiac", sign: "Rashi / Zodiac", sort: "title", facet: "" });
   assert.deepEqual(parseRoute("#collection/rose-quartz?facet=Bracelets&sort=price-low"), { page: "collection", handle: "rose-quartz", sort: "price-low", facet: "Bracelets" });
@@ -302,7 +378,48 @@ test("hash routes decode handles, signs, search terms and view options", () => {
   assert.deepEqual(parseRoute("#orders"), { page: "orders" });
   assert.deepEqual(parseRoute("#unrecognized"), { page: "home" });
   assert.equal(productFromHash(fixture, productHash(fixture[0])), fixture[0]);
+  assert.equal(productFromHash(fixture, productHash(fixture[0], "gid://shopify/ProductVariant/123")), fixture[0]);
   assert.equal(productFromHash(fixture, "#product/missing-handle"), null);
+});
+
+test("variant labels prefer verified option values, then meaningful title, then a unique SKU", () => {
+  const product = {
+    title: "Blue Sapphire Ring",
+    variantsComplete: true,
+    options: [{ name: "Variant", values: ["Variant 1", "Variant 2"] }],
+    variants: [
+      { id: "v1", title: "Variant 1", sku: "RG166", selectedOptions: [{ name: "Variant", value: "Variant 1" }] },
+      { id: "v2", title: "Variant 2", sku: "RG168", selectedOptions: [{ name: "Variant", value: "Variant 2" }] },
+    ],
+  };
+  assert.equal(formatVariantLabel(product, { title: "Variant 1", sku: "RG166", selectedOptions: [{ name: "Variant", value: "Variant 1" }] }), "SKU: RG166");
+  assert.equal(formatVariantLabel(product, { title: "5 Ratti / Silver", selectedOptions: [{ name: "Size", value: "5 Ratti" }, { name: "Metal", value: "Silver" }] }), "Size: 5 Ratti · Metal: Silver");
+  assert.equal(formatVariantLabel(product, { title: "Polished silver", selectedOptions: [] }), "Polished silver");
+});
+
+test("variant formatter avoids invented or ambiguous labels and ignores a single default option", () => {
+  const single = { title: "Quartz Pendant", options: [{ name: "Title", values: ["Default Title"] }], variants: [{ id: "v1" }] };
+  assert.equal(formatVariantLabel(single, { title: "Default Title", sku: "QZ-1", selectedOptions: [{ name: "Title", value: "Default Title" }] }), "");
+  const ambiguous = { options: [{ name: "Variant", values: ["Variant 1", "Variant 2"] }], variants: [{ sku: "DUP" }, { sku: "DUP" }] };
+  assert.equal(formatVariantLabel(ambiguous, { title: "Variant 1", sku: "DUP", selectedOptions: [{ name: "Variant", value: "Variant 1" }] }), "");
+  assert.equal(formatVariantLabel({ ...ambiguous, variants: [{}, {}] }, { title: "Variant 1", selectedOptions: [{ name: "Variant", value: "Variant 1" }] }), "");
+});
+
+test("missing and placeholder product media render a neutral unavailable state", () => {
+  for (const src of [null, "", "/assets/product-placeholder.svg"]) {
+    const markup = renderToStaticMarkup(React.createElement(ProductImage, { src, alt: "Crystal ring" }));
+    assert.match(markup, /Image unavailable/);
+    assert.doesNotMatch(markup, /product-placeholder\.svg/);
+  }
+});
+
+test("unverified shared-cart items do not get invented product titles", () => {
+  const markup = renderToStaticMarkup(React.createElement(ShoppingSharedCart, {
+    items: [{ variantId: "gid://shopify/ProductVariant/123", quantity: 1, status: "missing", product: null, variant: null }],
+    onNavigate: () => {},
+  }));
+  assert.match(markup, /Could not verify in the approved catalog/);
+  assert.doesNotMatch(markup, /Shopify variant/);
 });
 
 test("SVG icons render valid elements without React key warnings", () => {
@@ -333,8 +450,8 @@ test("HTM renders React fragments and responsive navigation destinations exist",
   assert.ok(app.includes('className="back-to-top"'));
   assert.ok(styles.includes("scroll-snap-type: x mandatory"));
   assert.ok(styles.includes(".product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }"));
-  assert.ok(/CACHE_PREFIX}v[0-9]+/.test(worker));
-  assert.ok(worker.includes("/assets/product-placeholder.svg"));
+  assert.ok(worker.includes("CACHE_PREFIX}v7"));
+  assert.ok(!worker.includes("/assets/product-placeholder.svg"));
 });
 
 test("customer-facing brand copy and PWA metadata use Crystal Baaz", async () => {

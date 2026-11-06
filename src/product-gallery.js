@@ -1,10 +1,12 @@
-import React,{useEffect,useRef} from 'react';
+import React,{useEffect,useRef,useState} from 'react';
 import {createPortal} from 'react-dom';
 import htm from 'htm';
 import {useShoppingOverlay} from './shopping-experience.js';
 const html=htm.bind(React.createElement);
 export function ProductGallery({images,index,onIndex,title,onClose}){
  useShoppingOverlay();
+ const [failed,setFailed]=useState(false);
+ useEffect(()=>setFailed(false),[images[index]]);
  const ref=useRef(null),start=useRef(null),closeRef=useRef(onClose);closeRef.current=onClose;
  useEffect(()=>{
   const previous=document.activeElement,root=document.getElementById('root'),wasInert=root?.inert,scrollY=window.scrollY;
@@ -18,5 +20,5 @@ export function ProductGallery({images,index,onIndex,title,onClose}){
   return()=>{window.removeEventListener('popstate',pop);document.removeEventListener('keydown',key);Object.assign(document.body.style,before);if(root)root.inert=wasInert;window.scrollTo({top:scrollY,behavior:'instant'});previous?.focus?.({preventScroll:true});};
  },[]);
  const change=delta=>onIndex((index+delta+images.length)%images.length);
- return createPortal(html`<section className="crystal-gallery-dialog" ref=${ref} role="dialog" aria-modal="true" aria-label=${`${title} image gallery`}><header><span>${title}</span><button type="button" aria-label="Close product gallery" onClick=${()=>window.history.back()}>×</button></header><div className="crystal-gallery-stage" onTouchStart=${e=>start.current=e.touches[0].clientX} onTouchEnd=${e=>{if(start.current==null)return;const dx=e.changedTouches[0].clientX-start.current;start.current=null;if(Math.abs(dx)>40)change(dx<0?1:-1);}}><img key=${images[index]} src=${images[index]} alt=${`${title}, image ${index+1} of ${images.length}`} draggable="false"/></div><footer><button type="button" aria-label="Previous gallery image" disabled=${images.length<2} onClick=${()=>change(-1)}>←</button><span aria-live="polite">${index+1} / ${images.length}</span><button type="button" aria-label="Next gallery image" disabled=${images.length<2} onClick=${()=>change(1)}>→</button></footer></section>`,document.body,'product-fullscreen-gallery');
+ return createPortal(html`<section className="crystal-gallery-dialog" ref=${ref} role="dialog" aria-modal="true" aria-label=${`${title} image gallery`}><header><span>${title}</span><button type="button" aria-label="Close product gallery" onClick=${()=>window.history.back()}>×</button></header><div className="crystal-gallery-stage" onTouchStart=${e=>start.current=e.touches[0].clientX} onTouchEnd=${e=>{if(start.current==null)return;const dx=e.changedTouches[0].clientX-start.current;start.current=null;if(Math.abs(dx)>40)change(dx<0?1:-1);}}>${failed?html`<span className="shopping-image-unavailable" role="img" aria-label="Image unavailable">Image unavailable</span>`:html`<img key=${images[index]} src=${images[index]} alt=${`${title}, image ${index+1} of ${images.length}`} draggable="false" onError=${()=>setFailed(true)}/>`}</div><footer><button type="button" aria-label="Previous gallery image" disabled=${images.length<2} onClick=${()=>change(-1)}>←</button><span aria-live="polite">${index+1} / ${images.length}</span><button type="button" aria-label="Next gallery image" disabled=${images.length<2} onClick=${()=>change(1)}>→</button></footer></section>`,document.body,'product-fullscreen-gallery');
 }

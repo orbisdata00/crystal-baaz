@@ -1,0 +1,2991 @@
+{
+  "generatedAt": "2026-11-06T02:36:43.305Z",
+  "store": "crystalbaaz.myshopify.com",
+  "productsScanned": 1520,
+  "actualShopifyProductRecords": 1520,
+  "verifiedShopifyProductsAvailableToRender": 1520,
+  "renderedProductsMissingTitle": 0,
+  "actualShopifyProductsNotMappedToApprovedWorkbook": 0,
+  "workbookProductsMissingFromShopify": 3,
+  "workbookProductsMissingFromShopifyHandles": [
+    {
+      "handle": "certificate"
+    },
+    {
+      "handle": "blue-apatite"
+    },
+    {
+      "handle": "gift-card-product"
+    }
+  ],
+  "verifiedProductsMissingShopifyImage": 41,
+  "verifiedProductsMissingShopifyImageRecords": [
+    {
+      "id": "gid://shopify/Product/15473983029474",
+      "handle": "5-mukhi-rudraksha-bracelet-golden-magnetic-lock-super-quality",
+      "title": "5 mukhi Rudraksha bracelet golden magnetic lock (super quality)"
+    },
+    {
+      "id": "gid://shopify/Product/15473985356002",
+      "handle": "amazonite-tops",
+      "title": "Amazonite Tops"
+    },
+    {
+      "id": "gid://shopify/Product/15474043355362",
+      "handle": "amethyst-cluster-quality-c",
+      "title": "Amethyst Cluster Quality-C"
+    },
+    {
+      "id": "gid://shopify/Product/15473985159394",
+      "handle": "amethyst-ring-oval-designer-1-faded",
+      "title": "Amethyst Ring Oval Designer (1 faded)"
+    },
+    {
+      "id": "gid://shopify/Product/15473983226082",
+      "handle": "carnelion-chain-bracelet-1",
+      "title": "Carnelion Chain Bracelet"
+    },
+    {
+      "id": "gid://shopify/Product/15473984635106",
+      "handle": "flourite-chain-bracelet",
+      "title": "Flourite Chain Bracelet"
+    },
+    {
+      "id": "gid://shopify/Product/15473983258850",
+      "handle": "green-aventurine-chain-bracelet-1",
+      "title": "Green Aventurine Chain Bracelet"
+    },
+    {
+      "id": "gid://shopify/Product/15473985683682",
+      "handle": "green-drop-designer-ring-1",
+      "title": "Green drop designer ring"
+    },
+    {
+      "id": "gid://shopify/Product/15473983291618",
+      "handle": "green-onyx-chain-bracelet-1",
+      "title": "Green Onyx Chain Bracelet"
+    },
+    {
+      "id": "gid://shopify/Product/15473985945826",
+      "handle": "green-oval-designer-ring",
+      "title": "Green Oval designer ring"
+    },
+    {
+      "id": "gid://shopify/Product/15473985781986",
+      "handle": "green-oval-ring",
+      "title": "Green Oval ring"
+    },
+    {
+      "id": "gid://shopify/Product/15473982931170",
+      "handle": "karungali-chain-bracelet",
+      "title": "Karungali chain bracelet"
+    },
+    {
+      "id": "gid://shopify/Product/15474012618978",
+      "handle": "multi-colour-mala-1",
+      "title": "Multi Colour Mala"
+    },
+    {
+      "id": "gid://shopify/Product/15473984602338",
+      "handle": "red-chain-bracelet",
+      "title": "Red Chain Bracelet"
+    },
+    {
+      "id": "gid://shopify/Product/15473983095010",
+      "handle": "rose-quartz-chain-bracelet-1",
+      "title": "Rose Quartz Chain Bracelet"
+    },
+    {
+      "id": "gid://shopify/Product/15474046402786",
+      "handle": "rose-quartz-raw-101-150-gm",
+      "title": "Rose Quartz Raw - 101 - 150 gm"
+    },
+    {
+      "id": "gid://shopify/Product/15474046370018",
+      "handle": "rose-quartz-raw-151-170-gm",
+      "title": "Rose Quartz Raw - 151 - 170 gm"
+    },
+    {
+      "id": "gid://shopify/Product/15474046730466",
+      "handle": "rose-quartz-raw-171-190-gm",
+      "title": "Rose Quartz Raw - 171 - 190 gm"
+    },
+    {
+      "id": "gid://shopify/Product/15474046697698",
+      "handle": "rose-quartz-raw-191-250-gm",
+      "title": "Rose Quartz Raw - 191 - 250 gm"
+    },
+    {
+      "id": "gid://shopify/Product/15474046664930",
+      "handle": "rose-quartz-raw-251-300-gm",
+      "title": "Rose Quartz Raw - 251 - 300 gm"
+    },
+    {
+      "id": "gid://shopify/Product/15474046632162",
+      "handle": "rose-quartz-raw-301-350-gm",
+      "title": "Rose Quartz Raw - 301 - 350 gm"
+    },
+    {
+      "id": "gid://shopify/Product/15474046533858",
+      "handle": "rose-quartz-raw-31-40-gm",
+      "title": "Rose Quartz Raw - 31 - 40 gm"
+    },
+    {
+      "id": "gid://shopify/Product/15474046599394",
+      "handle": "rose-quartz-raw-351-400-gm",
+      "title": "Rose Quartz Raw - 351 - 400 gm"
+    },
+    {
+      "id": "gid://shopify/Product/15474046501090",
+      "handle": "rose-quartz-raw-41-60-gm",
+      "title": "Rose Quartz Raw - 41 - 60 gm"
+    },
+    {
+      "id": "gid://shopify/Product/15474046468322",
+      "handle": "rose-quartz-raw-61-80-gm",
+      "title": "Rose Quartz Raw - 61 - 80 gm"
+    },
+    {
+      "id": "gid://shopify/Product/15474046435554",
+      "handle": "rose-quartz-raw-81-100-gm",
+      "title": "Rose Quartz Raw - 81 - 100 gm"
+    },
+    {
+      "id": "gid://shopify/Product/15474046566626",
+      "handle": "rose-quartz-raw-upto-30-gm",
+      "title": "Rose Quartz Raw - Upto 30 gm"
+    },
+    {
+      "id": "gid://shopify/Product/15473982963938",
+      "handle": "rudraksha-karungali-bracelet-black-dori-8mm",
+      "title": "Rudraksha karungali bracelet black dori 8mm"
+    },
+    {
+      "id": "gid://shopify/Product/15473983193314",
+      "handle": "sphatik-chain-bracelet-1",
+      "title": "Sphatik Chain Bracelet"
+    },
+    {
+      "id": "gid://shopify/Product/15474046140642",
+      "handle": "tigers-eye-raw-101-150-gm",
+      "title": "Tiger's Eye Raw - 101 - 150 gm"
+    },
+    {
+      "id": "gid://shopify/Product/15474046107874",
+      "handle": "tigers-eye-raw-151-170-gm",
+      "title": "Tiger's Eye Raw - 151 - 170 gm"
+    },
+    {
+      "id": "gid://shopify/Product/15474046075106",
+      "handle": "tigers-eye-raw-171-190-gm",
+      "title": "Tiger's Eye Raw - 171 - 190 gm"
+    },
+    {
+      "id": "gid://shopify/Product/15474046042338",
+      "handle": "tigers-eye-raw-191-250-gm",
+      "title": "Tiger's Eye Raw - 191 - 250 gm"
+    },
+    {
+      "id": "gid://shopify/Product/15474046009570",
+      "handle": "tigers-eye-raw-251-300-gm",
+      "title": "Tiger's Eye Raw - 251 - 300 gm"
+    },
+    {
+      "id": "gid://shopify/Product/15474045976802",
+      "handle": "tigers-eye-raw-301-350-gm",
+      "title": "Tiger's Eye Raw - 301 - 350 gm"
+    },
+    {
+      "id": "gid://shopify/Product/15474046271714",
+      "handle": "tigers-eye-raw-31-40-gm",
+      "title": "Tiger's Eye Raw - 31 - 40 gm"
+    },
+    {
+      "id": "gid://shopify/Product/15474046337250",
+      "handle": "tigers-eye-raw-351-400-gm",
+      "title": "Tiger's Eye Raw - 351 - 400 gm"
+    },
+    {
+      "id": "gid://shopify/Product/15474046238946",
+      "handle": "tigers-eye-raw-41-60-gm",
+      "title": "Tiger's Eye Raw - 41 - 60 gm"
+    },
+    {
+      "id": "gid://shopify/Product/15474046206178",
+      "handle": "tigers-eye-raw-61-80-gm",
+      "title": "Tiger's Eye Raw - 61 - 80 gm"
+    },
+    {
+      "id": "gid://shopify/Product/15474046173410",
+      "handle": "tigers-eye-raw-81-100-gm",
+      "title": "Tiger's Eye Raw - 81 - 100 gm"
+    },
+    {
+      "id": "gid://shopify/Product/15474046304482",
+      "handle": "tigers-eye-raw-upto-30-gm",
+      "title": "Tiger's Eye Raw - Upto 30 gm"
+    }
+  ],
+  "actualShopifyVariantRecords": 1929,
+  "variantsMissingValidShopifyId": 0,
+  "availableVariantsMissingValidPrice": 0,
+  "availableVariantsWithVerifiedShopifyIdAndPrice": 1929,
+  "mainCategoryOrder": [
+    {
+      "id": "best-seller",
+      "label": "Best Seller",
+      "productCount": 402
+    },
+    {
+      "id": "new-arrivals",
+      "label": "New Arrivals",
+      "productCount": 0
+    },
+    {
+      "id": "zodiac",
+      "label": "Rashi / Zodiac",
+      "productCount": 17
+    },
+    {
+      "id": "bracelets",
+      "label": "Bracelets",
+      "productCount": 347
+    },
+    {
+      "id": "rudraksha",
+      "label": "Rudraksha",
+      "productCount": 8
+    },
+    {
+      "id": "crystals",
+      "label": "Crystal",
+      "productCount": 1288
+    },
+    {
+      "id": "pooja",
+      "label": "Puja",
+      "productCount": 151
+    },
+    {
+      "id": "intentions",
+      "label": "Remedy",
+      "productCount": 99
+    }
+  ],
+  "mainCategoryOrderMatchesRequired": true,
+  "emptyMainCategories": [
+    {
+      "id": "new-arrivals",
+      "label": "New Arrivals",
+      "productCount": 0
+    }
+  ],
+  "emptyChildCategories": [
+    {
+      "parent": "Best Seller",
+      "id": "pending:zodiacbracelets",
+      "label": "Zodiac bracelets",
+      "productCount": 0
+    },
+    {
+      "parent": "Best Seller",
+      "id": "rule:kavach-main",
+      "label": "Kavach",
+      "productCount": 0
+    },
+    {
+      "parent": "Best Seller",
+      "id": "group:group-rashipendants",
+      "label": "Rashi Pendants",
+      "productCount": 0
+    },
+    {
+      "parent": "Rashi / Zodiac",
+      "id": "pending:rashibracelets",
+      "label": "Bracelet",
+      "productCount": 0
+    },
+    {
+      "parent": "Rashi / Zodiac",
+      "id": "group:group-rashipendants",
+      "label": "Pendant",
+      "productCount": 0
+    },
+    {
+      "parent": "Rashi / Zodiac",
+      "id": "category:zodiac-signs",
+      "label": "Shop by rashi",
+      "productCount": 0
+    },
+    {
+      "parent": "Rashi / Zodiac",
+      "id": "pending:yantra",
+      "label": "Yantra",
+      "productCount": 0
+    },
+    {
+      "parent": "Rashi / Zodiac",
+      "id": "pending:pen",
+      "label": "Pen",
+      "productCount": 0
+    },
+    {
+      "parent": "Rudraksha",
+      "id": "pending:121mukhi",
+      "label": "1-21 Mukhi",
+      "productCount": 0
+    },
+    {
+      "parent": "Rudraksha",
+      "id": "pending:kavach",
+      "label": "Kavach",
+      "productCount": 0
+    },
+    {
+      "parent": "Rudraksha",
+      "id": "pending:sidhmala",
+      "label": "Sidh Mala",
+      "productCount": 0
+    },
+    {
+      "parent": "Rudraksha",
+      "id": "collection:pendants",
+      "label": "Pendants",
+      "productCount": 0
+    },
+    {
+      "parent": "Rudraksha",
+      "id": "pending:other",
+      "label": "Other",
+      "productCount": 0
+    },
+    {
+      "parent": "Crystal",
+      "id": "pending:heart",
+      "label": "Heart",
+      "productCount": 0
+    },
+    {
+      "parent": "Crystal",
+      "id": "pending:pens",
+      "label": "Pens",
+      "productCount": 0
+    },
+    {
+      "parent": "Crystal",
+      "id": "pending:owl",
+      "label": "Owl",
+      "productCount": 0
+    },
+    {
+      "parent": "Crystal",
+      "id": "pending:potli",
+      "label": "Potli",
+      "productCount": 0
+    },
+    {
+      "parent": "Puja",
+      "id": "group:group-paradlaxmiandganeshji",
+      "label": "Parad laxmi and ganesh ji",
+      "productCount": 0
+    },
+    {
+      "parent": "Puja",
+      "id": "group:group-charanpadukabox",
+      "label": "Charan Paduka box",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:depressionandstressrelief",
+      "label": "Depression and Stress Relief",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:angercontrol",
+      "label": "Anger Control",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:memoryfocusandconcentration",
+      "label": "Memory, Focus and Concentration",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:loneliness",
+      "label": "Loneliness",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:patiencetolerance",
+      "label": "Patience & Tolerance",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:confidenceselfesteem",
+      "label": "Confidence & Self Esteem",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:leadership",
+      "label": "Leadership",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:studylearningeducation",
+      "label": "Study, Learning & Education",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:loverelationship",
+      "label": "Love & Relationship",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:marriageproblemsdesiredlove",
+      "label": "Marriage Problems & Desired Love",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:backpainrelief",
+      "label": "Back Pain Relief",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:bodypainreleif",
+      "label": "Body pain releif",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:blackmagicprotection",
+      "label": "Black Magic Protection",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:harmonyinhome",
+      "label": "Harmony in Home",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:tophealers",
+      "label": "Top Healers",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:motivation",
+      "label": "Motivation",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:addictionrelief",
+      "label": "Addiction Relief",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:weightcontrol",
+      "label": "Weight Control",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:weightgain",
+      "label": "Weight Gain",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:recoveryafterillnessorinjury",
+      "label": "Recovery After Illness or Injury",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:goodsleep",
+      "label": "Good Sleep",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:protectionfromnegativeenergies",
+      "label": "Protection from Negative Energies",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:success",
+      "label": "Success",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:beginners",
+      "label": "Beginners",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:bloodpressurerelief",
+      "label": "Blood Pressure Relief",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:healthoveralllongevity",
+      "label": "Health (Overall) & Longevity",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:kidneyhealthoverall",
+      "label": "Kidney Health (Overall)",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:migraineheadacherelief",
+      "label": "Migraine & Headache Relief",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:thyroidrelief",
+      "label": "Thyroid Relief",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:diabetesrelief",
+      "label": "Diabetes Relief",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:cholesterolrelief",
+      "label": "Cholesterol Relief",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:arthritispainrelief",
+      "label": "Arthritis Pain Relief",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:asthmabreatheeasy",
+      "label": "Asthma & Breathe Easy",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:allergyrelief",
+      "label": "Allergy Relief",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:fertilitypregnancy",
+      "label": "Fertility & Pregnancy",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:pcodpcosproblem",
+      "label": "PCOD - PCOS Problem",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:courtcaselegalissues",
+      "label": "Court Case & Legal Issues",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:positiveenergy",
+      "label": "Positive Energy",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:ariesrashibraceletmeshzodiacrashibracelets",
+      "label": "Aries Rashi Bracelet | मेष राशि (Mesh) (Zodiac Rashi Bracelets)",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:taurusrashibraceletvrishabhzodiacrashibracelets",
+      "label": "Taurus Rashi Bracelet | वृषभ राशि (Vrishabh) (Zodiac Rashi Bracelets)",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:geminirashibraceletmithunzodiacrashibracelets",
+      "label": "Gemini Rashi Bracelet | मिथुन राशि (Mithun) (Zodiac Rashi Bracelets)",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:cancerrashibraceletkarkzodiacrashibracelets",
+      "label": "Cancer Rashi Bracelet | कर्क राशि (Kark) (Zodiac Rashi Bracelets)",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:leorashibraceletsinghzodiacrashibracelets",
+      "label": "Leo Rashi Bracelet | सिंह राशि (Singh) (Zodiac Rashi Bracelets)",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:virgorashibraceletkanyazodiacrashibracelets",
+      "label": "Virgo Rashi Bracelet | कन्या राशि (Kanya) (Zodiac Rashi Bracelets)",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:sagittariusrashibraceletdhanuzodiacrashibracelets",
+      "label": "Sagittarius Rashi Bracelet | धनु राशि (Dhanu) (Zodiac Rashi Bracelets)",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:librarashibracelettulazodiacrashibracelets",
+      "label": "Libra Rashi Bracelet | तुला राशि (Tula) (Zodiac Rashi Bracelets)",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:scorpiorashibraceletvrishchikzodiacrashibracelets",
+      "label": "Scorpio Rashi Bracelet | वृश्चिक राशि (Vrishchik) (Zodiac Rashi Bracelets)",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:capricornrashibraceletmakarzodiacrashibracelets",
+      "label": "Capricorn Rashi Bracelet | मकर राशि (Makar) (Zodiac Rashi Bracelets)",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:aquariusrashibraceletkumbhzodiacrashibracelets",
+      "label": "Aquarius Rashi Bracelet | कुंभ राशि (Kumbh) (Zodiac Rashi Bracelets)",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:piscesrashibraceletmeenzodiacrashibracelets",
+      "label": "Pisces Rashi Bracelet | मीन राशि (Meen) (Zodiac Rashi Bracelets)",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:rulingnumber1",
+      "label": "Ruling Number 1",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:rulingnumber2",
+      "label": "Ruling Number 2",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:rulingnumber3",
+      "label": "Ruling Number 3",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:rulingnumber4",
+      "label": "Ruling Number 4",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:rulingnumber5",
+      "label": "Ruling Number 5",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:rulingnumber6",
+      "label": "Ruling Number 6",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:rulingnumber7",
+      "label": "Ruling Number 7",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:rulingnumber8",
+      "label": "Ruling Number 8",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:rulingnumber9",
+      "label": "Ruling Number 9",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:missingnumber1",
+      "label": "Missing Number 1",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:missingnumber2",
+      "label": "Missing Number 2",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:missingnumber3",
+      "label": "Missing Number 3",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:missingnumber4",
+      "label": "Missing Number 4",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:missingnumber5",
+      "label": "Missing Number 5",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:missingnumber6",
+      "label": "Missing Number 6",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:missingnumber7",
+      "label": "Missing Number 7",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:missingnumber8",
+      "label": "Missing Number 8",
+      "productCount": 0
+    },
+    {
+      "parent": "Remedy",
+      "id": "pending:missingnumber9",
+      "label": "Missing Number 9",
+      "productCount": 0
+    }
+  ],
+  "fallbackCallAudit": {
+    "retainedPreviewProductLoaderCallSites": 1,
+    "previewLoaderGuardedByProvider": true,
+    "productionProviderForcedToShopify": true,
+    "previewLoaderRejectsProduction": true,
+    "productionPreviewProductCalls": 0,
+    "pagesBehindTheSameProviderGate": [
+      "home",
+      "category/collection",
+      "search",
+      "product detail",
+      "wishlist",
+      "cart"
+    ],
+    "workbookCatalogUse": "SKU identity and approved category/group mapping only"
+  },
+  "multiVariantProducts": 117,
+  "productsWithGenericVariantFields": 117,
+  "productsRequiringOptionNameCorrection": 117,
+  "genericVariantRows": 526,
+  "variantsRequiringOptionNameCorrection": 526,
+  "genericVariantsWithUniqueSkuLabel": 521,
+  "productsRequiringMerchantCorrection": 3,
+  "variantsRequiringMerchantCorrection": 5,
+  "blueSapphireExamples": [
+    {
+      "handle": "blue-sapphire",
+      "product_title": "Blue Sapphire (Neelam) Ring",
+      "variant_id": "gid://shopify/ProductVariant/67884496421090",
+      "sku": "RG166",
+      "shopify_variant_title": "Variant 1",
+      "selected_options": "Variant: Variant 1",
+      "price": "3490.0",
+      "currency": "INR",
+      "available_for_sale": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0845/1942/0130/files/ChatGPT_Image_Jul_17_2026_12_55_58_PM_1.png?v=1793706992",
+      "product_image_url": "https://cdn.shopify.com/s/files/1/0845/1942/0130/files/ChatGPT_Image_Jul_17_2026_12_55_58_PM_1.png?v=1793706992",
+      "customer_label": "SKU: RG166",
+      "merchant_correction_required": false,
+      "missing_descriptive_fields": "Meaningful selected option values and variant title",
+      "merchant_action": "Add accurate Shopify option names and values for every variant. The verified SKU is only a temporary customer label."
+    },
+    {
+      "handle": "blue-sapphire",
+      "product_title": "Blue Sapphire (Neelam) Ring",
+      "variant_id": "gid://shopify/ProductVariant/67884496453858",
+      "sku": "RG168",
+      "shopify_variant_title": "Variant 2",
+      "selected_options": "Variant: Variant 2",
+      "price": "3890.0",
+      "currency": "INR",
+      "available_for_sale": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0845/1942/0130/files/ChatGPT_Image_Jul_17_2026_12_55_58_PM_1.png?v=1793706992",
+      "product_image_url": "https://cdn.shopify.com/s/files/1/0845/1942/0130/files/ChatGPT_Image_Jul_17_2026_12_55_58_PM_1.png?v=1793706992",
+      "customer_label": "SKU: RG168",
+      "merchant_correction_required": false,
+      "missing_descriptive_fields": "Meaningful selected option values and variant title",
+      "merchant_action": "Add accurate Shopify option names and values for every variant. The verified SKU is only a temporary customer label."
+    },
+    {
+      "handle": "blue-sapphire-ring-5-ratti-1",
+      "product_title": "Blue Sapphire (Neelam) Ring",
+      "variant_id": "gid://shopify/ProductVariant/67884556026082",
+      "sku": "RG165",
+      "shopify_variant_title": "Variant 1",
+      "selected_options": "Variant: Variant 1",
+      "price": "3490.0",
+      "currency": "INR",
+      "available_for_sale": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0845/1942/0130/files/ChatGPT_Image_Jul_17_2026_01_01_55_PM.png?v=1793707689",
+      "product_image_url": "https://cdn.shopify.com/s/files/1/0845/1942/0130/files/ChatGPT_Image_Jul_17_2026_01_01_55_PM.png?v=1793707689",
+      "customer_label": "SKU: RG165",
+      "merchant_correction_required": false,
+      "missing_descriptive_fields": "Meaningful selected option values and variant title",
+      "merchant_action": "Add accurate Shopify option names and values for every variant. The verified SKU is only a temporary customer label."
+    },
+    {
+      "handle": "blue-sapphire-ring-5-ratti-1",
+      "product_title": "Blue Sapphire (Neelam) Ring",
+      "variant_id": "gid://shopify/ProductVariant/67884556058850",
+      "sku": "RG167",
+      "shopify_variant_title": "Variant 2",
+      "selected_options": "Variant: Variant 2",
+      "price": "3890.0",
+      "currency": "INR",
+      "available_for_sale": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0845/1942/0130/files/ChatGPT_Image_Jul_17_2026_01_01_55_PM.png?v=1793707689",
+      "product_image_url": "https://cdn.shopify.com/s/files/1/0845/1942/0130/files/ChatGPT_Image_Jul_17_2026_01_01_55_PM.png?v=1793707689",
+      "customer_label": "SKU: RG167",
+      "merchant_correction_required": false,
+      "missing_descriptive_fields": "Meaningful selected option values and variant title",
+      "merchant_action": "Add accurate Shopify option names and values for every variant. The verified SKU is only a temporary customer label."
+    }
+  ],
+  "catEyeExamples": [
+    {
+      "handle": "natural-cat-s-eye-lehsunia-ring-5-ratti",
+      "product_title": "Cat's Eye (Lehsuniya) Ring",
+      "variant_id": "gid://shopify/ProductVariant/67884514312418",
+      "sku": "RG171",
+      "shopify_variant_title": "Variant 1",
+      "selected_options": "Variant: Variant 1",
+      "price": "1990.0",
+      "currency": "INR",
+      "available_for_sale": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0845/1942/0130/files/ChatGPT_Image_Jul_15_2026_07_05_52_PM.png?v=1793707236",
+      "product_image_url": "https://cdn.shopify.com/s/files/1/0845/1942/0130/files/ChatGPT_Image_Jul_15_2026_07_05_52_PM.png?v=1793707236",
+      "customer_label": "SKU: RG171",
+      "merchant_correction_required": false,
+      "missing_descriptive_fields": "Meaningful selected option values and variant title",
+      "merchant_action": "Add accurate Shopify option names and values for every variant. The verified SKU is only a temporary customer label."
+    },
+    {
+      "handle": "natural-cat-s-eye-lehsunia-ring-5-ratti",
+      "product_title": "Cat's Eye (Lehsuniya) Ring",
+      "variant_id": "gid://shopify/ProductVariant/67884514345186",
+      "sku": "RG169",
+      "shopify_variant_title": "Variant 2",
+      "selected_options": "Variant: Variant 2",
+      "price": "2490.0",
+      "currency": "INR",
+      "available_for_sale": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0845/1942/0130/files/ChatGPT_Image_Jul_15_2026_07_05_52_PM.png?v=1793707236",
+      "product_image_url": "https://cdn.shopify.com/s/files/1/0845/1942/0130/files/ChatGPT_Image_Jul_15_2026_07_05_52_PM.png?v=1793707236",
+      "customer_label": "SKU: RG169",
+      "merchant_correction_required": false,
+      "missing_descriptive_fields": "Meaningful selected option values and variant title",
+      "merchant_action": "Add accurate Shopify option names and values for every variant. The verified SKU is only a temporary customer label."
+    }
+  ],
+  "optionCorrectionProducts": [
+    {
+      "handle": "7-chakra-angel-1-inch",
+      "title": "7 Chakra Angel",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3"
+          ]
+        }
+      ],
+      "genericVariants": 3,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "7-chakra-heart",
+      "title": "7 Chakra Heart",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2"
+          ]
+        }
+      ],
+      "genericVariants": 2,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "amazonite-raw",
+      "title": "Amazonite Raw",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3",
+            "Variant 4"
+          ]
+        }
+      ],
+      "genericVariants": 4,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "amazonite-sphere",
+      "title": "Amazonite Sphere",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3",
+            "Variant 4",
+            "Variant 5",
+            "Variant 6",
+            "Variant 7",
+            "Variant 8"
+          ]
+        }
+      ],
+      "genericVariants": 8,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "amber-raw",
+      "title": "Amber Raw",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3",
+            "Variant 4",
+            "Variant 5"
+          ]
+        }
+      ],
+      "genericVariants": 5,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "amethyst-angel",
+      "title": "Amethyst Angel",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3"
+          ]
+        }
+      ],
+      "genericVariants": 3,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "amethyst-cluster-good-quality",
+      "title": "Amethyst Cluster (Good quality)",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3",
+            "Variant 4",
+            "Variant 5",
+            "Variant 6",
+            "Variant 7"
+          ]
+        }
+      ],
+      "genericVariants": 7,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "amethyst-cluster-quality-b",
+      "title": "Amethyst Cluster High Quality",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3",
+            "Variant 4",
+            "Variant 5",
+            "Variant 6",
+            "Variant 7",
+            "Variant 8"
+          ]
+        }
+      ],
+      "genericVariants": 8,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "amethyst-cluster-quality-a",
+      "title": "Amethyst Cluster Top Quality",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3",
+            "Variant 4",
+            "Variant 5",
+            "Variant 6",
+            "Variant 7",
+            "Variant 8",
+            "Variant 9",
+            "Variant 10"
+          ]
+        }
+      ],
+      "genericVariants": 10,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "natural-amethyst-ganesh-ji-murti",
+      "title": "Amethyst Ganesh Ji",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3"
+          ]
+        }
+      ],
+      "genericVariants": 3,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "amethyst-pyramid",
+      "title": "Amethyst Pyramid",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3"
+          ]
+        }
+      ],
+      "genericVariants": 3,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "amethyst-raw",
+      "title": "Amethyst Raw",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3",
+            "Variant 4"
+          ]
+        }
+      ],
+      "genericVariants": 4,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "amethyst-ring-oval-designer-1-faded",
+      "title": "Amethyst Ring Oval Designer (1 faded)",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2"
+          ]
+        }
+      ],
+      "genericVariants": 2,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "amethyst-sphere",
+      "title": "Amethyst Sphere",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3",
+            "Variant 4",
+            "Variant 5",
+            "Variant 6",
+            "Variant 7",
+            "Variant 8"
+          ]
+        }
+      ],
+      "genericVariants": 8,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "aquamarine-raw",
+      "title": "Aquamarine Raw",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3",
+            "Variant 4",
+            "Variant 5"
+          ]
+        }
+      ],
+      "genericVariants": 5,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "black-obsidian-ganesh-ji",
+      "title": "Black Obsidian Ganesh Ji",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3",
+            "Variant 4",
+            "Variant 5",
+            "Variant 6",
+            "Variant 7",
+            "Variant 8",
+            "Variant 9"
+          ]
+        }
+      ],
+      "genericVariants": 9,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "black-obsidian-knife-small",
+      "title": "Black Obsidian Knife",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3"
+          ]
+        }
+      ],
+      "genericVariants": 3,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "black-obsidian-ganesh-ji-murti",
+      "title": "Black Tourmaline Ganesh Ji",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2"
+          ]
+        }
+      ],
+      "genericVariants": 2,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "black-tourmaline-pyramid-1",
+      "title": "Black Tourmaline Pyramid",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3"
+          ]
+        }
+      ],
+      "genericVariants": 3,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "black-tourmaline-raw",
+      "title": "Black Tourmaline Raw",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3",
+            "Variant 4",
+            "Variant 5"
+          ]
+        }
+      ],
+      "genericVariants": 5,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "black-tourmaline-sphere",
+      "title": "Black Tourmaline Sphere",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3",
+            "Variant 4",
+            "Variant 5",
+            "Variant 6",
+            "Variant 7"
+          ]
+        }
+      ],
+      "genericVariants": 7,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "bloodstone-sphere",
+      "title": "BloodStone Sphere",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3",
+            "Variant 4",
+            "Variant 5"
+          ]
+        }
+      ],
+      "genericVariants": 5,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "blue-sapphire",
+      "title": "Blue Sapphire (Neelam) Ring",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2"
+          ]
+        }
+      ],
+      "genericVariants": 2,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "blue-sapphire-ring-5-ratti-1",
+      "title": "Blue Sapphire (Neelam) Ring",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2"
+          ]
+        }
+      ],
+      "genericVariants": 2,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "carnelien-raw",
+      "title": "Carnelian Raw",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3",
+            "Variant 4",
+            "Variant 5"
+          ]
+        }
+      ],
+      "genericVariants": 5,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "natural-cat-s-eye-lehsunia-ring-5-ratti",
+      "title": "Cat's Eye (Lehsuniya) Ring",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2"
+          ]
+        }
+      ],
+      "genericVariants": 2,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "certified-natural-pooja-shankh",
+      "title": "Certified Natural Pooja Shankh",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3"
+          ]
+        }
+      ],
+      "genericVariants": 3,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "natural-coral-moonga-ring-5-ratti",
+      "title": "Coral (Moonga) Ring",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2"
+          ]
+        }
+      ],
+      "genericVariants": 2,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "dalmation-sphere",
+      "title": "Dalmatian Sphere",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3",
+            "Variant 4",
+            "Variant 5",
+            "Variant 6",
+            "Variant 7",
+            "Variant 8"
+          ]
+        }
+      ],
+      "genericVariants": 8,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "emerald-ring",
+      "title": "Emerald Ring",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2"
+          ]
+        }
+      ],
+      "genericVariants": 2,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "african-firoza-raw",
+      "title": "Firoza Raw",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3",
+            "Variant 4",
+            "Variant 5"
+          ]
+        }
+      ],
+      "genericVariants": 5,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "garnet-sphere",
+      "title": "Garnet Sphere",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3",
+            "Variant 4"
+          ]
+        }
+      ],
+      "genericVariants": 4,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "green-aventurine-raw",
+      "title": "Green Aventurine Raw",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3",
+            "Variant 4",
+            "Variant 5"
+          ]
+        }
+      ],
+      "genericVariants": 5,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "green-aventurine-sphere",
+      "title": "Green Aventurine Sphere",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3",
+            "Variant 4",
+            "Variant 5",
+            "Variant 6",
+            "Variant 7",
+            "Variant 8"
+          ]
+        }
+      ],
+      "genericVariants": 8,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "green-drop-designer-ring-3",
+      "title": "Green drop designer ring",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2"
+          ]
+        }
+      ],
+      "genericVariants": 2,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "green-drop-designer-ring-1",
+      "title": "Green drop designer ring",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2"
+          ]
+        }
+      ],
+      "genericVariants": 2,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "green-drop-designer-ring",
+      "title": "Green drop designer ring",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2"
+          ]
+        }
+      ],
+      "genericVariants": 2,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "green-drop-ring",
+      "title": "Green drop ring",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2"
+          ]
+        }
+      ],
+      "genericVariants": 2,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "green-heart-designer-ring",
+      "title": "Green Heart designer ring",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2"
+          ]
+        }
+      ],
+      "genericVariants": 2,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "green-jade-angel",
+      "title": "Green Jade Angel",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3",
+            "Variant 4",
+            "Variant 5",
+            "Variant 6"
+          ]
+        }
+      ],
+      "genericVariants": 6,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "green-jade-pyramid",
+      "title": "Green Jade Pyramid",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3"
+          ]
+        }
+      ],
+      "genericVariants": 3,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "green-jade-raw",
+      "title": "Green Jade Raw",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3",
+            "Variant 4",
+            "Variant 5"
+          ]
+        }
+      ],
+      "genericVariants": 5,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "green-long-drop-ring",
+      "title": "Green long drop ring",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2"
+          ]
+        }
+      ],
+      "genericVariants": 2,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "green-oval-designer-ring-2",
+      "title": "Green Oval designer ring",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2"
+          ]
+        }
+      ],
+      "genericVariants": 2,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "green-oval-designer-ring-1",
+      "title": "Green Oval designer ring",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2"
+          ]
+        }
+      ],
+      "genericVariants": 2,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "green-oval-designer-ring",
+      "title": "Green Oval designer ring",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2"
+          ]
+        }
+      ],
+      "genericVariants": 2,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "green-oval-designer-ring-big",
+      "title": "Green Oval designer ring Big",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2"
+          ]
+        }
+      ],
+      "genericVariants": 2,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "green-oval-ring",
+      "title": "Green Oval ring",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2"
+          ]
+        }
+      ],
+      "genericVariants": 2,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "hessonite-gomed",
+      "title": "Hessonite (Gomed) Ring",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2"
+          ]
+        }
+      ],
+      "genericVariants": 2,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "hessonite-gomed-2",
+      "title": "Hessonite Ring ( Gomed )",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2"
+          ]
+        }
+      ],
+      "genericVariants": 2,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "labradorite-angel-1-inch",
+      "title": "Labradorite Angel",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3",
+            "Variant 4",
+            "Variant 5"
+          ]
+        }
+      ],
+      "genericVariants": 5,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "labradorite-pyramid",
+      "title": "Labradorite Pyramid",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3"
+          ]
+        }
+      ],
+      "genericVariants": 3,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "labradorite-sphere-2",
+      "title": "Labradorite Sphere",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3",
+            "Variant 4",
+            "Variant 5",
+            "Variant 6",
+            "Variant 7",
+            "Variant 8",
+            "Variant 9"
+          ]
+        }
+      ],
+      "genericVariants": 9,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "lapis-lazuli-pyramid",
+      "title": "Lapis Lazuli Pyramid",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3"
+          ]
+        }
+      ],
+      "genericVariants": 3,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "lapis-lazuli-raw",
+      "title": "Lapis Lazuli Raw",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3",
+            "Variant 4",
+            "Variant 5"
+          ]
+        }
+      ],
+      "genericVariants": 5,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "lapis-lazuli-sphere",
+      "title": "Lapis Lazuli Sphere",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3",
+            "Variant 4",
+            "Variant 5",
+            "Variant 6",
+            "Variant 7",
+            "Variant 8"
+          ]
+        }
+      ],
+      "genericVariants": 8,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "mahagony-ganesh-ji",
+      "title": "Mahagony Ganesh Ji",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3",
+            "Variant 4",
+            "Variant 5",
+            "Variant 6",
+            "Variant 7",
+            "Variant 8",
+            "Variant 9",
+            "Variant 10",
+            "Variant 11",
+            "Variant 12",
+            "Variant 13",
+            "Variant 14"
+          ]
+        }
+      ],
+      "genericVariants": 14,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "mahagony-pyramid",
+      "title": "Mahagony Obsidian Pyramid",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3"
+          ]
+        }
+      ],
+      "genericVariants": 3,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "malachite-raw",
+      "title": "Malachite Raw",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3",
+            "Variant 4",
+            "Variant 5"
+          ]
+        }
+      ],
+      "genericVariants": 5,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "money-magnet-boat",
+      "title": "Money Magnet Boat",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2"
+          ]
+        }
+      ],
+      "genericVariants": 2,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "moon-stone-pyramid",
+      "title": "Moon Stone Pyramid",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2"
+          ]
+        }
+      ],
+      "genericVariants": 2,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "moonstone-raw",
+      "title": "Moonstone Raw",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3",
+            "Variant 4",
+            "Variant 5"
+          ]
+        }
+      ],
+      "genericVariants": 5,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "labradorite-sphere",
+      "title": "Moonstone Sphere",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3",
+            "Variant 4",
+            "Variant 5",
+            "Variant 6",
+            "Variant 7",
+            "Variant 8"
+          ]
+        }
+      ],
+      "genericVariants": 8,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "moss-agate-pyramid",
+      "title": "Moss Agate Pyramid",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3"
+          ]
+        }
+      ],
+      "genericVariants": 3,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "moss-agate-sphere",
+      "title": "Moss Agate Sphere",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3",
+            "Variant 4",
+            "Variant 5",
+            "Variant 6",
+            "Variant 7",
+            "Variant 8",
+            "Variant 9"
+          ]
+        }
+      ],
+      "genericVariants": 9,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "natural-citrine-jade-ganesh-ji-murti",
+      "title": "Natural Citrine Jade Ganesh Ji Murti",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3",
+            "Variant 4",
+            "Variant 5",
+            "Variant 6",
+            "Variant 7"
+          ]
+        }
+      ],
+      "genericVariants": 7,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "natural-emerald-panna-ring-7-ratti",
+      "title": "Natural Emerald (Panna) Ring",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2"
+          ]
+        }
+      ],
+      "genericVariants": 2,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "natural-labradorite-ganesh-ji-murti",
+      "title": "Natural Labradorite Ganesh Ji Murti",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3",
+            "Variant 4",
+            "Variant 5",
+            "Variant 6"
+          ]
+        }
+      ],
+      "genericVariants": 6,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "natural-pyrite-ganesh-ji-murti",
+      "title": "Natural Pyrite Ganesh Ji Murti",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3",
+            "Variant 4",
+            "Variant 5",
+            "Variant 6",
+            "Variant 7",
+            "Variant 8"
+          ]
+        }
+      ],
+      "genericVariants": 8,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "natural-rose-quartz-ganesh-ji-murti",
+      "title": "Natural Rose Quartz Ganesh Ji Murti",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3",
+            "Variant 4",
+            "Variant 5",
+            "Variant 6"
+          ]
+        }
+      ],
+      "genericVariants": 6,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "natural-ruby-manik-ring-7-ratti",
+      "title": "Natural Ruby (Manik) Ring",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2"
+          ]
+        }
+      ],
+      "genericVariants": 2,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "certified-zircon-ring-7-ratti",
+      "title": "Natural Zircon Ring",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2"
+          ]
+        }
+      ],
+      "genericVariants": 2,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "navratan-pendant-6",
+      "title": "Navratan Pendant",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3",
+            "Variant 4",
+            "Variant 5",
+            "Variant 6",
+            "Variant 7",
+            "Variant 8",
+            "Variant 9",
+            "Variant 10",
+            "Variant 11",
+            "Variant 12",
+            "Variant 13",
+            "Variant 14",
+            "Variant 15",
+            "Variant 16",
+            "Variant 17",
+            "Variant 18",
+            "Variant 19",
+            "Variant 20",
+            "Variant 21",
+            "Variant 22",
+            "Variant 23",
+            "Variant 24",
+            "Variant 25",
+            "Variant 26"
+          ]
+        }
+      ],
+      "genericVariants": 26,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "navratan-ring",
+      "title": "Navratan Ring",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3",
+            "Variant 4",
+            "Variant 5",
+            "Variant 6",
+            "Variant 7",
+            "Variant 8",
+            "Variant 9",
+            "Variant 10"
+          ]
+        }
+      ],
+      "genericVariants": 10,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "navratan-ring-copy",
+      "title": "Navratan Ring (Copy)",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3",
+            "Variant 4",
+            "Variant 5",
+            "Variant 6",
+            "Variant 7",
+            "Variant 8",
+            "Variant 9",
+            "Variant 10"
+          ]
+        }
+      ],
+      "genericVariants": 10,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "navrantan-turquoise-ring",
+      "title": "Navratan Tortoise Ring",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2"
+          ]
+        }
+      ],
+      "genericVariants": 2,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "white-opal-ring",
+      "title": "Opal Ring",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2"
+          ]
+        }
+      ],
+      "genericVariants": 2,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "natural-opal-ring-5-ratti",
+      "title": "Opal Ring",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2"
+          ]
+        }
+      ],
+      "genericVariants": 2,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "opal-sphere",
+      "title": "Opal Sphere",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3",
+            "Variant 4",
+            "Variant 5",
+            "Variant 6",
+            "Variant 7",
+            "Variant 8"
+          ]
+        }
+      ],
+      "genericVariants": 8,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "opalite-angel-1",
+      "title": "Opalite Angel",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3"
+          ]
+        }
+      ],
+      "genericVariants": 3,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "opalite-raw",
+      "title": "Opalite Raw",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3",
+            "Variant 4",
+            "Variant 5"
+          ]
+        }
+      ],
+      "genericVariants": 5,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "orange-jasper-pyramid",
+      "title": "Orange Jasper Pyramid",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2"
+          ]
+        }
+      ],
+      "genericVariants": 2,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "pearl-ring",
+      "title": "Pearl (Moti) Ring",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2"
+          ]
+        }
+      ],
+      "genericVariants": 2,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "pearl-moti-ring-7-ratti",
+      "title": "Pearl Ring (Moti)",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2"
+          ]
+        }
+      ],
+      "genericVariants": 2,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "pyrite-angel-1-inch",
+      "title": "Pyrite Angel",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2"
+          ]
+        }
+      ],
+      "genericVariants": 2,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "pyrite-anklet",
+      "title": "Pyrite Anklet",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2"
+          ]
+        }
+      ],
+      "genericVariants": 2,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "pyrite-sphere",
+      "title": "Pyrite Sphere",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3",
+            "Variant 4",
+            "Variant 5",
+            "Variant 6"
+          ]
+        }
+      ],
+      "genericVariants": 6,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "red-aventurine-pyramid",
+      "title": "Red Aventurine Pyramid",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2"
+          ]
+        }
+      ],
+      "genericVariants": 2,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "red-carnelian-raw",
+      "title": "Red Carnelian Raw",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3",
+            "Variant 4",
+            "Variant 5"
+          ]
+        }
+      ],
+      "genericVariants": 5,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "red-jasper-pyramid",
+      "title": "Red jasper pyramid",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2"
+          ]
+        }
+      ],
+      "genericVariants": 2,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "red-jasper-sphere",
+      "title": "Red Jasper Sphere",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3",
+            "Variant 4",
+            "Variant 5",
+            "Variant 6"
+          ]
+        }
+      ],
+      "genericVariants": 6,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "rose-quartz-angel-1-inch",
+      "title": "Rose Quartz Angel",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2"
+          ]
+        }
+      ],
+      "genericVariants": 2,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "rose-quartz-oval-designer-pendant",
+      "title": "Rose Quartz Oval Designer Pendant",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2"
+          ]
+        }
+      ],
+      "genericVariants": 2,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "rose-quartz-oval-designer-pendant-copy",
+      "title": "Rose Quartz Oval Designer Pendant (Copy)",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2"
+          ]
+        }
+      ],
+      "genericVariants": 2,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "rose-quartz-pyramid",
+      "title": "Rose Quartz Pyramid",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2"
+          ]
+        }
+      ],
+      "genericVariants": 2,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "rose-quartz-raw",
+      "title": "Rose Quartz Raw",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3",
+            "Variant 4",
+            "Variant 5"
+          ]
+        }
+      ],
+      "genericVariants": 5,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "rose-quartz-sphere",
+      "title": "Rose Quartz Sphere",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3",
+            "Variant 4",
+            "Variant 5",
+            "Variant 6"
+          ]
+        }
+      ],
+      "genericVariants": 6,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "ruby-ring",
+      "title": "Ruby Ring",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2"
+          ]
+        }
+      ],
+      "genericVariants": 2,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "ruby-zoiste-sphere",
+      "title": "Ruby Zoisite Sphere",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3"
+          ]
+        }
+      ],
+      "genericVariants": 3,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "selenite-angel",
+      "title": "Selenite Angel",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3"
+          ]
+        }
+      ],
+      "genericVariants": 3,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "selenite-glass",
+      "title": "Selenite Glass",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2"
+          ]
+        }
+      ],
+      "genericVariants": 2,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "serpentine-sphere",
+      "title": "Serpentine Sphere",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3",
+            "Variant 4",
+            "Variant 5",
+            "Variant 6",
+            "Variant 7",
+            "Variant 8"
+          ]
+        }
+      ],
+      "genericVariants": 8,
+      "needsMerchantCorrection": true
+    },
+    {
+      "handle": "seven-chakra-pyramid",
+      "title": "Seven Chakra Pyramid",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2"
+          ]
+        }
+      ],
+      "genericVariants": 2,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "sodalite-ganesh-ji",
+      "title": "Sodalite Ganesh Ji",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3",
+            "Variant 4",
+            "Variant 5",
+            "Variant 6",
+            "Variant 7",
+            "Variant 8",
+            "Variant 9",
+            "Variant 10",
+            "Variant 11",
+            "Variant 12",
+            "Variant 13",
+            "Variant 14"
+          ]
+        }
+      ],
+      "genericVariants": 14,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "sodalite-oval-designer-pendant",
+      "title": "Sodalite Oval Designer Pendant",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2"
+          ]
+        }
+      ],
+      "genericVariants": 2,
+      "needsMerchantCorrection": true
+    },
+    {
+      "handle": "sodalite-oval-pendant",
+      "title": "Sodalite Oval Pendant",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2"
+          ]
+        }
+      ],
+      "genericVariants": 2,
+      "needsMerchantCorrection": true
+    },
+    {
+      "handle": "sodalite-sphere",
+      "title": "Sodalite Sphere",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3",
+            "Variant 4",
+            "Variant 5",
+            "Variant 6",
+            "Variant 7",
+            "Variant 8"
+          ]
+        }
+      ],
+      "genericVariants": 8,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "sphatik-angel-1-inch",
+      "title": "Sphatik Angel",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3"
+          ]
+        }
+      ],
+      "genericVariants": 3,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "sphatik-sphere",
+      "title": "Sphatik Sphere",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3",
+            "Variant 4",
+            "Variant 5",
+            "Variant 6",
+            "Variant 7",
+            "Variant 8"
+          ]
+        }
+      ],
+      "genericVariants": 8,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "sunstone-angel",
+      "title": "Sunstone Angel",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3"
+          ]
+        }
+      ],
+      "genericVariants": 3,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "sunstone-ganesh-ji",
+      "title": "Sunstone Ganesh Ji",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3",
+            "Variant 4",
+            "Variant 5",
+            "Variant 6",
+            "Variant 7",
+            "Variant 8",
+            "Variant 9",
+            "Variant 10",
+            "Variant 11",
+            "Variant 12",
+            "Variant 13",
+            "Variant 14"
+          ]
+        }
+      ],
+      "genericVariants": 14,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "tigers-eye-pyramid",
+      "title": "Tiger's Eye Pyramid",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3"
+          ]
+        }
+      ],
+      "genericVariants": 3,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "tigers-eye-raw",
+      "title": "Tiger's Eye Raw",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2"
+          ]
+        }
+      ],
+      "genericVariants": 2,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "tigers-eye-sphere-1",
+      "title": "Tiger's Eye Sphere",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3",
+            "Variant 4",
+            "Variant 5",
+            "Variant 6",
+            "Variant 7",
+            "Variant 8"
+          ]
+        }
+      ],
+      "genericVariants": 8,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "unakite-pyramid",
+      "title": "Unakite Pyramid",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2",
+            "Variant 3"
+          ]
+        }
+      ],
+      "genericVariants": 3,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "yellow-sapphire-ring-5-ratti",
+      "title": "Yellow Sapphire (Pukhraj) Ring",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2"
+          ]
+        }
+      ],
+      "genericVariants": 2,
+      "needsMerchantCorrection": false
+    },
+    {
+      "handle": "zircon-ring",
+      "title": "Zircon Ring",
+      "options": [
+        {
+          "name": "Variant",
+          "values": [
+            "Variant 1",
+            "Variant 2"
+          ]
+        }
+      ],
+      "genericVariants": 2,
+      "needsMerchantCorrection": false
+    }
+  ],
+  "merchantCorrectionHandles": [
+    "serpentine-sphere",
+    "sodalite-oval-designer-pendant",
+    "sodalite-oval-pendant"
+  ]
+}

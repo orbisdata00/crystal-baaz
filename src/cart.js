@@ -1,3 +1,5 @@
+import { formatVariantLabel } from "./catalog.js";
+
 function validPrice(value) {
   const price = Number(value);
   return Number.isFinite(price) && price > 0;
@@ -36,7 +38,7 @@ export function addCartLine(lines, product, selector = product.sizes?.[0] || "On
   const price = Number(variant?.price ?? product.price);
   if (!validPrice(price) || variant?.canPurchase === false || variant?.available === false) return lines;
   const variantId = variant?.id || `${product.id}:${variant?.title || selector}`;
-  const variantTitle = variant?.title || variant?.sku || selector || "One size";
+  const variantTitle = formatVariantLabel(product, variant);
   const key = `${product.id}:${variantId}`;
   const current = lines.find((item) => item.key === key);
   return current

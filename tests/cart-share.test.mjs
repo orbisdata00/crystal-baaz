@@ -1,25 +1,96 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { buildCartShare, shareCart } from "../src/cart-share.js";
+import { buildCartShare, buildProductShareUrl, buildWhatsAppShareUrl, copyCartShare, parseSharedCartItems, publicStorefrontBaseUrl, shareCart, shareProductLink } from "../src/cart-share.js";
+import { parseRoute } from "../src/routes.js";
 
-const lines = [{ key: "private-key", variantId: "gid://shopify/ProductVariant/private", quantity: 2, variantTitle: "Small", product: { title: "Clear quartz", handle: "clear-quartz" } }];
-const options = { lines, total: "250", currencyCode: "INR", baseUrl: "https://shop.example/?cart=private-cart#cart/private-secret" };
+const variantOne = "gid://shopify/ProductVariant/1234567890";
+const variantTwo = "gid://shopify/ProductVariant/9876543210";
+const lines = [
+  { key: "private-key", variantId: variantOne, quantity: 2, variantTitle: "Size: 5 Ratti", product: { title: "Blue Sapphire Ring", handle: "blue-sapphire", variants: [{ id: variantOne, sku: "RG166", title: "Variant 1", selectedOptions: [{ name: "Variant", value: "Variant 1" }] }] } },
+  { key: "another-private-key", variantId: variantTwo, quantity: 1, product: { title: "Rudraksha Mala", handle: "rudraksha-mala" } },
+];
+const options = { lines, baseUrl: "https://shop.example/store?campaign=private#cart/private-cart" };
 
-test("shared payload contains products and confirmed total without cart IDs or sensitive URL state", () => {
+test("product share URLs preserve product and selected variant in the existing hash route", () => {
+  const url = buildProductShareUrl({ handle: "blue-sapphire" }, variantOne, { baseUrl: "https://shop.example/?campaign=x#home" });
+  assert.deepEqual(parseRoute(new URL(url).hash), { page: "product", handle: "blue-sapphire", variantId: variantOne });
+  assert.equal(new URL(url).pathname, "/");
+});
+
+test("product sharing uses native share and copies only the safe URL as fallback", async () => {
+  let received;
+  const result = await shareProductLink({ product: { title: "Blue Sapphire Ring", handle: "blue-sapphire" }, variantId: variantOne, baseUrl: "https://shop.example/", navigator: { async share(payload) { received = payload; } } });
+  assert.equal(result.status, "shared");
+  assert.equal(new URL(received.url).hash.includes(encodeURIComponent(variantOne)), true);
+
+  let copied;
+  const fallback = await shareProductLink({ product: { title: "Blue Sapphire Ring", handle: "blue-sapphire" }, variantId: variantOne, baseUrl: "https://shop.example/", navigator: { clipboard: { async writeText(url) { copied = url; } } } });
+  assert.equal(fallback.status, "copied");
+  assert.equal(copied, received.url);
+});
+
+test("cart share URL encodes only real Shopify variant IDs and quantities", () => {
   const payload = buildCartShare(options);
-  assert.match(payload.text, /2 × Clear quartz \(Small\)/);
-  assert.match(payload.text, /https:\/\/shop.example\/#product\/clear-quartz/);
-  assert.match(payload.text, /Confirmed cart total: ₹250.00/);
-  assert.doesNotMatch(JSON.stringify(payload), /private|gid:|checkout/);
-  assert.match(payload.text, /create your own cart/);
+  assert.equal(parseRoute(new URL(payload.url).hash).page, "shared-cart");
+  assert.deepEqual(parseSharedCartItems(parseRoute(new URL(payload.url).hash).items), {
+    ok: true,
+    items: [{ variantId: variantOne, quantity: 2 }, { variantId: variantTwo, quantity: 1 }],
+  });
+  assert.match(payload.text, /2 × Blue Sapphire Ring \(Size: 5 Ratti\)/);
+  assert.doesNotMatch(payload.url, /private|gid:|RG166|Blue Sapphire/);
+  assert.doesNotMatch(payload.text, /private-key|private-cart|checkout/);
 });
 
-test("unconfirmed amounts and unsafe URL schemes are omitted", () => {
-  const payload = buildCartShare({ lines, baseUrl: "javascript:private-secret" });
-  assert.doesNotMatch(payload.text, /Confirmed cart total|javascript:|private-secret/);
+test("WhatsApp share uses the verified public cart link and is unavailable on localhost", () => {
+  const url = buildWhatsAppShareUrl(options);
+  const parsed = new URL(url);
+  assert.equal(parsed.origin, "https://wa.me");
+  assert.ok(parsed.searchParams.get("text").includes(buildCartShare(options).url));
+  assert.match(parsed.searchParams.get("text"), /Blue Sapphire Ring/);
+  assert.equal(buildWhatsAppShareUrl({ ...options, baseUrl: "http://localhost:5173/" }), "");
 });
 
-test("native share is awaited before reporting success", async () => {
+test("Copy Link copies only the public cart URL and reports missing deployment origin", async () => {
+  let copied = "";
+  const result = await copyCartShare({ ...options, navigator: { clipboard: { async writeText(url) { copied = url; } } } });
+  assert.equal(result.status, "copied");
+  assert.equal(copied, buildCartShare(options).url);
+  const blocked = await copyCartShare({ ...options, baseUrl: "http://localhost:5173/", navigator: { clipboard: { async writeText() { throw Error("must not copy"); } } } });
+  assert.equal(blocked.status, "unavailable");
+  assert.match(blocked.message, /no public Crystal Baaz website address/i);
+});
+
+test("cart lines with the same Shopify variant are combined", () => {
+  const payload = buildCartShare({ ...options, lines: [lines[0], { ...lines[0], key: "duplicate", quantity: 3 }] });
+  const parsed = parseSharedCartItems(parseRoute(new URL(payload.url).hash).items);
+  assert.deepEqual(parsed.items, [{ variantId: variantOne, quantity: 5 }]);
+});
+
+test("invalid, oversized, local, and non-Shopify cart data cannot produce public links", () => {
+  assert.equal(buildCartShare({ lines: [{ variantId: "private-variant", quantity: 1 }], baseUrl: "https://shop.example/" }).url, "");
+  assert.equal(buildCartShare({ lines: [...lines, { variantId: "preview-only", quantity: 1 }], baseUrl: "https://shop.example/" }).url, "");
+  assert.equal(buildCartShare({ lines: [{ variantId: variantOne, quantity: 1000 }], baseUrl: "https://shop.example/" }).url, "");
+  assert.equal(buildCartShare({ lines, baseUrl: "http://localhost:5173/" }).url, "");
+  assert.equal(buildCartShare({ lines, baseUrl: "javascript:secret" }).url, "");
+  assert.equal(publicStorefrontBaseUrl({ baseUrl: "http://127.0.0.1:4173/" }), null);
+  assert.equal(parseSharedCartItems("123:0").ok, false);
+  assert.equal(parseSharedCartItems("123:1000").ok, false);
+  assert.equal(parseSharedCartItems("123:1,not-an-id:2").ok, false);
+});
+
+test("local preview explains the missing public URL without pretending to share", async () => {
+  const result = await shareCart({ lines, baseUrl: "http://localhost:5173/", navigator: { async share() { throw Error("must not share"); } } });
+  assert.equal(result.status, "unavailable");
+  assert.match(result.message, /preview has no public Crystal Baaz website address/i);
+});
+
+test("invalid cart items and oversized links report distinct sharing blockers", () => {
+  assert.equal(buildCartShare({ lines: [{ variantId: "private-id", quantity: 1 }], baseUrl: "https://shop.example/" }).reason, "invalid-cart");
+  const many = Array.from({ length: 50 }, (_, index) => ({ variantId: `gid://shopify/ProductVariant/${index + 1}`, quantity: 999, product: { title: "Long product name ".repeat(10) } }));
+  assert.equal(buildCartShare({ lines: many, baseUrl: `https://shop.example/${"a".repeat(1900)}` }).reason, "too-large");
+});
+
+test("native cart share is awaited before reporting success", async () => {
   let received;
   const result = await shareCart({ ...options, navigator: { async share(payload) { received = payload; } } });
   assert.equal(result.status, "shared");
@@ -34,12 +105,18 @@ test("native share cancellation does not copy anything or announce success", asy
   assert.equal(copied, false);
 });
 
-test("clipboard fallback copies safe text and reports its real result", async () => {
+test("clipboard fallback copies the shareable URL and reports its real result", async () => {
   let copied;
-  const result = await shareCart({ ...options, navigator: { clipboard: { async writeText(text) { copied = text; } } } });
+  const result = await shareCart({
+    ...options,
+    navigator: { clipboard: { async writeText(url) { copied = url; } } },
+  });
   assert.equal(result.status, "copied");
-  assert.equal(copied, buildCartShare(options).text);
-  const failed = await shareCart({ ...options, navigator: { clipboard: { async writeText() { throw Error("denied"); } } } });
+  assert.equal(copied, buildCartShare(options).url);
+  const failed = await shareCart({
+    ...options,
+    navigator: { clipboard: { async writeText() { throw Error("denied"); } } },
+  });
   assert.equal(failed.status, "failed");
   assert.equal((await shareCart({ ...options, navigator: {} })).status, "unsupported");
 });

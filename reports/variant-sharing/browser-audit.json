@@ -1,0 +1,88 @@
+{
+  "generatedAt": "2026-11-05T19:14:15.662Z",
+  "mode": "local Vite + live Shopify Storefront API",
+  "failures": [],
+  "screenshots": [
+    "reports/variant-sharing/product-variants-mobile-390.png",
+    "reports/variant-sharing/selected-variant-deep-link-390.png",
+    "reports/variant-sharing/selected-variant-deep-link-desktop-1440.png",
+    "reports/variant-sharing/variant-bottom-sheet-mobile-390.png",
+    "reports/variant-sharing/shared-cart-review-mobile-390.png",
+    "reports/variant-sharing/shared-cart-review-desktop-1440.png",
+    "reports/variant-sharing/shared-cart-merge-confirmation-mobile-390.png",
+    "reports/variant-sharing/merged-cart-mobile-390.png"
+  ],
+  "cartCleanup": "empty",
+  "productOptions": {
+    "title": "Blue Sapphire (Neelam) Ring",
+    "rows": [
+      "SKU: RG166\n₹3,490\nAvailable",
+      "SKU: RG168\n₹3,890\nAvailable"
+    ],
+    "error": ""
+  },
+  "selectedVariant": {
+    "price": "₹3,890",
+    "availability": "Rings"
+  },
+  "directVariantRoute": {
+    "hash": "#product/blue-sapphire?variant=gid%3A%2F%2Fshopify%2FProductVariant%2F67884496453858",
+    "selected": "SKU: RG168\n₹3,890\nAvailable",
+    "price": "₹3,890"
+  },
+  "desktopSelectedVariant": {
+    "width": 1440,
+    "selected": "SKU: RG168\n₹3,890\nAvailable",
+    "price": "₹3,890"
+  },
+  "variantSheet": {
+    "labels": [
+      "SKU: RG166\n₹3,490 · Available\nADD",
+      "SKU: RG168\n₹3,890 · Available\nADD"
+    ],
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0845/1942/0130/files/ChatGPT_Image_Jul_17_2026_12_55_58_PM_1.png?v=1793706992&width=420",
+      "https://cdn.shopify.com/s/files/1/0845/1942/0130/files/ChatGPT_Image_Jul_17_2026_12_55_58_PM_1.png?v=1793706992&width=420"
+    ]
+  },
+  "sharedCart": {
+    "items": [
+      "Blue Sapphire (Neelam) Ring\n\nSKU: RG166\n\nAvailable · Quantity 1\n\n₹3,490.00\nView product",
+      "Blue Sapphire (Neelam) Ring\n\nSKU: RG168\n\nAvailable · Quantity 1\n\n₹3,890.00\nView product"
+    ],
+    "error": "",
+    "button": "Add 2 items to my cart"
+  },
+  "desktopSharedCart": {
+    "width": 1440,
+    "items": 2,
+    "hasHorizontalOverflow": false
+  },
+  "cartAfterFirstAdd": {
+    "heading": "My cart(2)",
+    "lines": [
+      "Blue Sapphire (Neelam) Ring\n\nSKU: RG166\n\n₹3,490.00\n₹14,309.00\nRemove\n−\n1\n+",
+      "Blue Sapphire (Neelam) Ring\n\nSKU: RG168\n\n₹3,890.00\n₹15,949.00\nRemove\n−\n1\n+"
+    ]
+  },
+  "mergeConfirmation": "Add these items to your current cart?\n\nYour existing 2 items will stay in your cart.\n\nKeep current cart\nAdd to current cart",
+  "cartAfterMerge": {
+    "heading": "My cart(4)",
+    "lines": [
+      "Blue Sapphire (Neelam) Ring\n\nSKU: RG166\n\n₹6,980.00\n₹28,618.00\nRemove\n−\n2\n+",
+      "Blue Sapphire (Neelam) Ring\n\nSKU: RG168\n\n₹7,780.00\n₹31,898.00\nRemove\n−\n2\n+"
+    ],
+    "variantLines": [
+      {
+        "variantId": "gid://shopify/ProductVariant/67884496421090",
+        "quantity": 2
+      },
+      {
+        "variantId": "gid://shopify/ProductVariant/67884496453858",
+        "quantity": 2
+      }
+    ]
+  },
+  "runtimeIssues": [],
+  "pass": true
+}

@@ -1,6 +1,6 @@
 const CACHE_PREFIX = "crystal-bazz-public-";
-const CACHE_NAME = `${CACHE_PREFIX}v6`;
-const APP_SHELL = ["/", "/offline.html", "/manifest.webmanifest", "/assets/pwa-icon-180.png", "/assets/pwa-icon-192.png", "/assets/pwa-icon-512.png", "/assets/product-placeholder.svg"];
+const CACHE_NAME = `${CACHE_PREFIX}v7`;
+const APP_SHELL = ["/", "/offline.html", "/manifest.webmanifest", "/assets/pwa-icon-180.png", "/assets/pwa-icon-192.png", "/assets/pwa-icon-512.png"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil((async () => {

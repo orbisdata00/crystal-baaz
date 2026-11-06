@@ -2,7 +2,10 @@ import { selectProductMedia } from "./product-media.js";
 import registry from "./data/catalog-registry.json" with { type: "json" };
 import productMapping from "./data/product-mapping.json" with { type: "json" };
 const clientCatalog = { ...registry, products: productMapping };
-export const loadPreviewCatalog = () => import("./data/client-catalog.json").then(module => module.default.products);
+export const loadPreviewCatalog = () => {
+  if (import.meta.env?.PROD === true) return Promise.reject(new Error("Workbook catalog preview is available only in development."));
+  return import("./data/client-catalog.json").then(module => module.default.products);
+};
 
 export { clientCatalog };
 export const collections = clientCatalog.collections;
@@ -67,13 +70,40 @@ export function getQuizMatches(products, goal, limit = 3) {
   return selectProducts(products, { filter: { kind: "collection", value: handle } }).slice(0, limit);
 }
 
-export function productHash(product) {
-  return `#product/${encodeURIComponent(product.handle || product.id)}`;
+export function productHash(product, variantId = "") {
+  const path = `#product/${encodeURIComponent(product.handle || product.id)}`;
+  return variantId ? `${path}?variant=${encodeURIComponent(variantId)}` : path;
+}
+
+const genericVariantText = (value) => !String(value || "").trim()
+  || /^(?:default title|standard|variant\s*\d+)$/i.test(String(value).trim());
+
+export function formatVariantLabel(product, variant) {
+  if (!variant) return "";
+  const selectedOptions = (variant.selectedOptions || []).flatMap((option) => {
+    const value = String(option?.value || "").trim();
+    if (genericVariantText(value)) return [];
+    const name = String(option?.name || "").trim();
+    return [name && !/^(?:title|variant)$/i.test(name) ? `${name}: ${value}` : value];
+  });
+  if (selectedOptions.length) return [...new Set(selectedOptions)].join(" · ");
+
+  const title = String(variant.title || "").trim();
+  if (!genericVariantText(title) && title.toLowerCase() !== String(product?.title || "").trim().toLowerCase()) return title;
+
+  const sku = String(variant.sku || "").trim();
+  const hasChoices = (product?.variants || []).length > 1
+    || (product?.options || []).some(option => (option.values || []).length > 1);
+  if (hasChoices && product?.variantsComplete === true && sku
+    && (product?.variants || []).filter((item) => String(item?.sku || "").trim() === sku).length === 1) {
+    return `SKU: ${sku}`;
+  }
+  return "";
 }
 
 export function productFromHash(products, hash) {
   if (!hash.startsWith("#product/")) return null;
-  let key = hash.slice("#product/".length);
+  let key = hash.slice("#product/".length).split("?")[0];
   try { key = decodeURIComponent(key); } catch { return null; }
   return products.find((product) => product.id === key || product.handle === key) || null;
 }
@@ -106,6 +136,7 @@ export function normalizeShopifyProduct(node) {
     imagePosition: "center",
     collectionHandles: collectionNodes.map((collection) => collection.handle),
     collectionTitles: collectionNodes.map((collection) => collection.title),
+    options: (node.options || []).map((option) => ({ name: option.name || "", values: option.values || [] })),
     groupIds: [],
     vendor: node.vendor || "",
     skuCount: variants.length,
@@ -134,9 +165,9 @@ function normalizedSku(value) {
 }
 
 export function mergeShopifyProduct(liveProduct, workbookProduct) {
-  if (!liveProduct || !workbookProduct) return null;
+  if (!/^gid:\/\/shopify\/Product\/[1-9]\d+$/.test(liveProduct?.id || "") || !workbookProduct) return null;
   const workbookSkus = new Set((workbookProduct.variants || []).map((variant) => normalizedSku(variant.sku)).filter(Boolean));
-  const variants = (liveProduct.variants || []).map((variant) => {
+  const variants = (liveProduct.variants || []).filter((variant) => /^gid:\/\/shopify\/ProductVariant\/[1-9]\d+$/.test(variant?.id || "")).map((variant) => {
     const sku = normalizedSku(variant.sku);
     const workbookMatch = Boolean(sku && workbookSkus.has(sku));
     const available = variant.available === true;
@@ -186,5 +217,8 @@ export function mergeShopifyProduct(liveProduct, workbookProduct) {
 
 export function mapShopifyCatalog(liveProducts, workbookProducts = clientProducts) {
   const workbookByHandle = new Map(workbookProducts.map((product) => [product.handle, product]));
-  return (liveProducts || []).map((product) => mergeShopifyProduct(product, workbookByHandle.get(product.handle))).filter(Boolean);
+  return (Array.isArray(liveProducts) ? liveProducts : [])
+    .filter((product) => /^gid:\/\/shopify\/Product\/[1-9]\d+$/.test(product?.id || ""))
+    .map((product) => mergeShopifyProduct(product, workbookByHandle.get(product.handle)))
+    .filter(Boolean);
 }

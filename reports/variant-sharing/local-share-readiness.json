@@ -1,0 +1,194 @@
+{
+  "generatedAt": "2026-11-06T02:34:36.479Z",
+  "mode": "local browser + live Shopify Storefront",
+  "failures": [],
+  "screenshots": [
+    "reports/variant-sharing/shopify-home-mobile-390.png",
+    "reports/variant-sharing/shopify-home-desktop-1440.png",
+    "reports/variant-sharing/cat-eye-variants-mobile-390.png",
+    "reports/variant-sharing/shared-cart-preview-mobile-390.png",
+    "reports/variant-sharing/cart-share-public-url-blocker-mobile-390.png",
+    "reports/variant-sharing/cart-share-public-url-blocker-desktop-1440.png",
+    "reports/variant-sharing/shopify-empty-response-mobile-390.png",
+    "reports/variant-sharing/shopify-api-failure-mobile-390.png"
+  ],
+  "externalShareLinkGenerated": false,
+  "cartCleanup": "empty",
+  "mobileHome": {
+    "width": 390,
+    "cards": 68,
+    "productIds": [
+      "gid://shopify/Product/15474007638242",
+      "gid://shopify/Product/15473983062242",
+      "gid://shopify/Product/15473982865634",
+      "gid://shopify/Product/15473982898402",
+      "gid://shopify/Product/15474036998370",
+      "gid://shopify/Product/15473993056482",
+      "gid://shopify/Product/15473986109666",
+      "gid://shopify/Product/15473984897250",
+      "gid://shopify/Product/15474042765538",
+      "gid://shopify/Product/15474053775586",
+      "gid://shopify/Product/15474004820194",
+      "gid://shopify/Product/15474040996066",
+      "gid://shopify/Product/15474014748898",
+      "gid://shopify/Product/15474041389282",
+      "gid://shopify/Product/15474040602850",
+      "gid://shopify/Product/15474004787426",
+      "gid://shopify/Product/15473991450850",
+      "gid://shopify/Product/15474041094370",
+      "gid://shopify/Product/15474041487586",
+      "gid://shopify/Product/15474041159906",
+      "gid://shopify/Product/15474022580450",
+      "gid://shopify/Product/15474023989474",
+      "gid://shopify/Product/15474022351074",
+      "gid://shopify/Product/15474023923938",
+      "gid://shopify/Product/15473983029474",
+      "gid://shopify/Product/15473982996706",
+      "gid://shopify/Product/15473991549154",
+      "gid://shopify/Product/15473987191010",
+      "gid://shopify/Product/15473982963938",
+      "gid://shopify/Product/15473984831714",
+      "gid://shopify/Product/15474036441314",
+      "gid://shopify/Product/15473992040674",
+      "gid://shopify/Product/15473992007906",
+      "gid://shopify/Product/15474048467170",
+      "gid://shopify/Product/15473986339042",
+      "gid://shopify/Product/15474036211938",
+      "gid://shopify/Product/15474009899234",
+      "gid://shopify/Product/15474051743970",
+      "gid://shopify/Product/15474037129442",
+      "gid://shopify/Product/15474005967074",
+      "gid://shopify/Product/15474010620130",
+      "gid://shopify/Product/15474036146402",
+      "gid://shopify/Product/15474015437026",
+      "gid://shopify/Product/15474056429794",
+      "gid://shopify/Product/15473990140130",
+      "gid://shopify/Product/15474022416610",
+      "gid://shopify/Product/15474037227746",
+      "gid://shopify/Product/15474008621282",
+      "gid://shopify/Product/15474008654050",
+      "gid://shopify/Product/15474008686818",
+      "gid://shopify/Product/15474008719586",
+      "gid://shopify/Product/15474021695714",
+      "gid://shopify/Product/15474043388130"
+    ],
+    "invalidProductIds": [],
+    "categories": [
+      "Best Seller",
+      "New Arrivals",
+      "Rashi / Zodiac",
+      "Bracelets",
+      "Rudraksha",
+      "Crystal",
+      "Puja",
+      "Remedy"
+    ],
+    "sectionCount": 8,
+    "error": ""
+  },
+  "failedProductImage": {
+    "neutral": true,
+    "placeholder": false
+  },
+  "desktopHome": {
+    "width": 1440,
+    "cards": 68,
+    "invalidProductIds": [],
+    "categories": [
+      "Best Seller",
+      "New Arrivals",
+      "Rashi / Zodiac",
+      "Bracelets",
+      "Rudraksha",
+      "Crystal",
+      "Puja",
+      "Remedy"
+    ],
+    "sectionCount": 8
+  },
+  "catEye": {
+    "title": "Cat's Eye (Lehsuniya) Ring",
+    "rows": [
+      "SKU: RG171\n₹1,990\nAvailable",
+      "SKU: RG169\n₹2,490\nAvailable"
+    ]
+  },
+  "sharedCart": {
+    "item": "Cat's Eye (Lehsuniya) Ring\n\nSKU: RG171\n\nAvailable · Quantity 1\n\n₹1,990.00\nView product",
+    "error": "",
+    "addButton": "Add 1 item to my cart"
+  },
+  "cartStatus": {
+    "checkout": "Checkout unavailable",
+    "total": "₹1,990.00",
+    "productIdsValid": true,
+    "variantIdsValid": true,
+    "quantity": 1
+  },
+  "cartQuantityChanges": {
+    "initial": "₹1,990.00",
+    "doubled": "₹3,980.00",
+    "restored": "₹1,990.00"
+  },
+  "shareBlocker": "This preview has no public Crystal Baaz website address yet, so cart links can’t be shared from here.",
+  "cartShareControls": {
+    "nativeShare": true,
+    "copyLink": true,
+    "whatsapp": true
+  },
+  "copyLinkBlocker": "This preview has no public Crystal Baaz website address yet, so cart links can’t be shared from here.",
+  "whatsappBlocker": {
+    "message": "This preview has no public Crystal Baaz website address yet, so cart links can’t be shared from here.",
+    "href": ""
+  },
+  "desktopShareBlocker": {
+    "width": 1440,
+    "message": "This preview has no public Crystal Baaz website address yet, so cart links can’t be shared from here."
+  },
+  "invalidLink": "This shared cart link is invalid or has expired. Ask the sender for a new link.\n\nTry again",
+  "emptyApi": {
+    "cards": 0,
+    "categoryCount": 8,
+    "sections": [
+      {
+        "id": "best-seller",
+        "products": 0
+      },
+      {
+        "id": "new-arrivals",
+        "products": 0
+      },
+      {
+        "id": "zodiac",
+        "products": 0
+      },
+      {
+        "id": "bracelets",
+        "products": 0
+      },
+      {
+        "id": "rudraksha",
+        "products": 0
+      },
+      {
+        "id": "crystals",
+        "products": 0
+      },
+      {
+        "id": "pooja",
+        "products": 0
+      },
+      {
+        "id": "intentions",
+        "products": 0
+      }
+    ]
+  },
+  "apiFailure": {
+    "cards": 0,
+    "error": "Products couldn’t be loaded\n\nSimulated Shopify API failure\n\nRetry",
+    "retry": "Retry"
+  },
+  "runtimeIssues": [],
+  "pass": true
+}

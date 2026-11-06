@@ -11,7 +11,11 @@ export function parseRoute(hash = "") {
   const [page, ...parts] = route.split("/");
   const value = decode(parts.join("/"));
   if (page === "collections") return { page, group: params.get("group") || "Category", category: params.get("category") || "", ...viewOptions };
-  if (page === "product") return { page, handle: value };
+  if (page === "product") {
+    const variantId = params.get("variant") || "";
+    return variantId ? { page, handle: value, variantId } : { page, handle: value };
+  }
+  if (page === "shared-cart") return { page, items: params.get("items") || "" };
   if (page === "collection") return { page, handle: value, ...viewOptions };
   if (page === "discovery") return { page, id: value, ...viewOptions };
   if (page === "group") return { page, id: value, ...viewOptions };
