@@ -52,6 +52,8 @@ test("mobile product card keeps image actions in the tile and product copy outsi
   assert.ok(markup.slice(tileStart, copyStart).includes('class="shopping-save"'));
   assert.match(markup.slice(tileStart, copyStart), /class="shopping-tile-action(?: [^"]*)?"/);
   assert.ok(markup.slice(tileStart, copyStart).includes('class="shopping-add"'));
+  assert.match(markup, /class="shopping-add"[^>]*>Buy Now<\/button>/);
+  assert.doesNotMatch(markup, />\s*ADD\s*</i);
   assert.ok(priceStart > copyStart && titleStart > priceStart);
   assert.match(markup, /40% OFF on MRP/);
   assert.match(markup, /class="shopping-product-attributes"><span[^>]*>Ring<\/span>/);
@@ -65,6 +67,14 @@ test("product add control reflects the current cart quantity", () => {
   assert.doesNotMatch(markup, /class="shopping-add"/);
 });
 
+test("unavailable variants keep a disabled unavailable state", () => {
+  const unavailable = { ...product, variants: [{ ...product.variants[0], available: false }] };
+  const markup = renderToStaticMarkup(React.createElement(ShoppingCard, {
+    product: unavailable, onOpen() {}, onAdd() {}, onSave() {}, onUpdate() {}, saved: [], cart: [],
+  }));
+  assert.match(markup, /class="shopping-add"[^>]*disabled[^>]*>Unavailable<\/button>/);
+});
+
 test("mobile rails and navigation use compact, separate visual containers", async () => {
   const css = await readFile(new URL("../src/shopping.css", import.meta.url), "utf8");
   assert.match(css, /\.shopping-product-card \{[^}]*border:0; border-radius:0; background:transparent; box-shadow:none;/);
@@ -72,6 +82,8 @@ test("mobile rails and navigation use compact, separate visual containers", asyn
   assert.match(css, /\.shopping-rail-track>\.shopping-product-card \{ flex:0 0 clamp\(104px,28vw,124px\); \}/);
   assert.match(css, /\.shopping-product-card:not\(\[data-fully-visible="true"\]\) \.shopping-tile-action \{ visibility:hidden; \}/);
   assert.match(css, /\.shopping-bottom-nav[^}]*border-radius:999px; background:#ffffff/);
+  assert.match(css, /\.shopping-tile-action \.shopping-add \{ min-width:70px;[^}]*white-space:nowrap/);
+  assert.match(css, /\.shopping-tile-action \.shopping-add \{ min-width:58px; min-height:30px;/);
 });
 
 test("desktop product cards keep one boundary around the image and action tile", async () => {

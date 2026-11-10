@@ -1,18 +1,20 @@
 import { selectProductMedia } from "./product-media.js";
 import registry from "./data/catalog-registry.json" with { type: "json" };
-import productMapping from "./data/product-mapping.json" with { type: "json" };
-const clientCatalog = { ...registry, products: productMapping };
-export const loadPreviewCatalog = () => {
+let clientCatalog = { ...registry, products: [] };
+let clientProducts = [];
+export const loadPreviewCatalog = async () => {
   if (import.meta.env?.PROD === true) return Promise.reject(new Error("Workbook catalog preview is available only in development."));
-  return import("./data/client-catalog.json").then(module => module.default.products);
+  const module = await import("./data/client-catalog.json");
+  clientCatalog = module.default;
+  clientProducts = module.default.products;
+  return clientProducts;
 };
 
-export { clientCatalog };
-export const collections = clientCatalog.collections;
-export const navigation = clientCatalog.navigation;
-export const catalogGroups = clientCatalog.groups;
-export const zodiacSigns = clientCatalog.zodiacSigns;
-export const clientProducts = clientCatalog.products;
+export { clientCatalog, clientProducts };
+export const collections = registry.collections;
+export const navigation = registry.navigation;
+export const catalogGroups = registry.groups;
+export const zodiacSigns = registry.zodiacSigns;
 export const categories = navigation.map((group) => ({ name: group.label, group }));
 export const crystals = (navigation.find((group) => group.label === "Crystal")?.items || [])
   .filter((item) => item.kind === "collection")
@@ -215,7 +217,7 @@ export function mergeShopifyProduct(liveProduct, workbookProduct) {
   };
 }
 
-export function mapShopifyCatalog(liveProducts, workbookProducts = clientProducts) {
+export function mapShopifyCatalog(liveProducts, workbookProducts = []) {
   const workbookByHandle = new Map(workbookProducts.map((product) => [product.handle, product]));
   return (Array.isArray(liveProducts) ? liveProducts : [])
     .filter((product) => /^gid:\/\/shopify\/Product\/[1-9]\d+$/.test(product?.id || ""))

@@ -1,0 +1,208 @@
+{
+  "origin": "http://127.0.0.1:4173",
+  "viewports": [
+    {
+      "width": 320,
+      "documentWidth": 320,
+      "overflow": false,
+      "actions": [
+        {
+          "text": "Buy Now",
+          "disabled": false,
+          "width": 58,
+          "textFits": true,
+          "right": 113
+        },
+        {
+          "text": "Buy Now",
+          "disabled": false,
+          "width": 58,
+          "textFits": true,
+          "right": 227
+        },
+        {
+          "text": "Buy Now",
+          "disabled": false,
+          "width": 58,
+          "textFits": true,
+          "right": 341
+        },
+        {
+          "text": "Buy Now",
+          "disabled": false,
+          "width": 58,
+          "textFits": true,
+          "right": 455
+        },
+        {
+          "text": "Buy Now",
+          "disabled": false,
+          "width": 58,
+          "textFits": true,
+          "right": 569
+        },
+        {
+          "text": "Buy Now",
+          "disabled": false,
+          "width": 58,
+          "textFits": true,
+          "right": 683
+        },
+        {
+          "text": "Buy Now",
+          "disabled": false,
+          "width": 58,
+          "textFits": true,
+          "right": 797
+        },
+        {
+          "text": "Buy Now",
+          "disabled": false,
+          "width": 58,
+          "textFits": true,
+          "right": 911
+        }
+      ],
+      "actionCount": 41
+    },
+    {
+      "width": 390,
+      "documentWidth": 390,
+      "overflow": false,
+      "actions": [
+        {
+          "text": "Buy Now",
+          "disabled": false,
+          "width": 58,
+          "textFits": true,
+          "right": 118
+        },
+        {
+          "text": "Buy Now",
+          "disabled": false,
+          "width": 58,
+          "textFits": true,
+          "right": 237
+        },
+        {
+          "text": "Buy Now",
+          "disabled": false,
+          "width": 58,
+          "textFits": true,
+          "right": 357
+        },
+        {
+          "text": "Buy Now",
+          "disabled": false,
+          "width": 58,
+          "textFits": true,
+          "right": 476
+        },
+        {
+          "text": "Buy Now",
+          "disabled": false,
+          "width": 58,
+          "textFits": true,
+          "right": 595
+        },
+        {
+          "text": "Buy Now",
+          "disabled": false,
+          "width": 58,
+          "textFits": true,
+          "right": 714
+        },
+        {
+          "text": "Buy Now",
+          "disabled": false,
+          "width": 58,
+          "textFits": true,
+          "right": 833
+        },
+        {
+          "text": "Buy Now",
+          "disabled": false,
+          "width": 58,
+          "textFits": true,
+          "right": 953
+        }
+      ],
+      "actionCount": 48
+    },
+    {
+      "width": 1440,
+      "documentWidth": 1440,
+      "overflow": false,
+      "actions": [
+        {
+          "text": "Buy Now",
+          "disabled": false,
+          "width": 70,
+          "textFits": true,
+          "right": 282
+        },
+        {
+          "text": "Buy Now",
+          "disabled": false,
+          "width": 70,
+          "textFits": true,
+          "right": 472
+        },
+        {
+          "text": "Buy Now",
+          "disabled": false,
+          "width": 70,
+          "textFits": true,
+          "right": 662
+        },
+        {
+          "text": "Buy Now",
+          "disabled": false,
+          "width": 70,
+          "textFits": true,
+          "right": 852
+        },
+        {
+          "text": "Buy Now",
+          "disabled": false,
+          "width": 70,
+          "textFits": true,
+          "right": 1042
+        },
+        {
+          "text": "Buy Now",
+          "disabled": false,
+          "width": 70,
+          "textFits": true,
+          "right": 1232
+        },
+        {
+          "text": "Buy Now",
+          "disabled": false,
+          "width": 70,
+          "textFits": true,
+          "right": 1422
+        },
+        {
+          "text": "Buy Now",
+          "disabled": false,
+          "width": 70,
+          "textFits": true,
+          "right": 1612
+        }
+      ],
+      "actionCount": 59
+    }
+  ],
+  "checks": {
+    "homeAndPwaLabels": true,
+    "variantPopupCartReview": true,
+    "quantityAndCleanup": true,
+    "productDetailCartReview": true,
+    "desktopProductDetailCartReview": true,
+    "serviceWorkerActive": true
+  },
+  "failures": [],
+  "catalogSource": "shopify",
+  "pass": true
+}

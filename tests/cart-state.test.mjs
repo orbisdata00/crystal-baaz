@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { createShopifyCartController } from "../src/use-shopify-cart.js";
+import { createBuyNowHandler } from "../src/cart.js";
 
 const product = { id: "p1", title: "Crystal", variants: [{ id: "v1", title: "Small", sku: "C1", price: 100, canPurchase: true, available: true }] };
 function remote(lines) {
@@ -11,6 +12,18 @@ function storage(initial = {}) {
   return { getItem: key => values.get(key), setItem: (key, value) => values.set(key, value), removeItem: key => values.delete(key) };
 }
 const line = { key: "p1:v1", productId: "p1", variantId: "v1", quantity: 2, variantTitle: "Small", sku: "C1" };
+
+test("Buy Now preserves the selected variant and opens cart review only after a confirmed add", async () => {
+  const calls = [], reviews = [];
+  const buyNow = createBuyNowHandler(async (...args) => { calls.push(args); return true; }, () => reviews.push("open"));
+  assert.equal(await buyNow(product, "gid://shopify/ProductVariant/selected", 3), true);
+  assert.deepEqual(calls, [[product, "gid://shopify/ProductVariant/selected", 3]]);
+  assert.deepEqual(reviews, ["open"]);
+
+  const refused = createBuyNowHandler(async () => false, () => reviews.push("incorrect"));
+  assert.equal(await refused(product, "gid://shopify/ProductVariant/unavailable"), false);
+  assert.deepEqual(reviews, ["open"]);
+});
 
 test("addition is optimistic, duplicate taps are ignored, and confirmation is not persisted early", async () => {
   let resolve, calls = 0;
@@ -24,6 +37,7 @@ test("addition is optimistic, duplicate taps are ignored, and confirmation is no
   assert.deepEqual(controller.getSnapshot().pendingKeys, ["p1:v1"]);
   assert.equal(saved.getItem("crystal-baaz-shopify-cart-lines"), undefined);
   assert.equal(await controller.add(product, "v1"), false);
+  await new Promise(resolve => setTimeout(resolve, 25));
   assert.equal(calls, 1);
   resolve();
   assert.equal(await request, true);
@@ -63,9 +77,8 @@ test("rehydration runs once and publishes server-adjusted quantities and refresh
   let calls = 0, refreshed;
   const controller = createShopifyCartController({ storage: storage({ "crystal-baaz-shopify-cart-lines": JSON.stringify([line]), "crystal-baaz-shopify-cart-id": JSON.stringify("private-cart") }), service: { source: "shopify", async syncCart(id, lines) { calls++; assert.equal(id, "private-cart"); return { cart: remote(lines.map(line => ({ ...line, quantity: 1 }))), products: [product] }; } }, onProducts: products => { refreshed = products; } });
   assert.deepEqual(controller.getSnapshot().cart, []);
-  assert.equal(await controller.hydrate([]), false);
-  assert.equal(await controller.hydrate([product]), true);
-  await controller.hydrate([product]);
+  assert.equal(await controller.hydrate([]), true, "saved cart verification does not wait for the product catalog");
+  assert.equal(await controller.hydrate([product]), false);
   assert.equal(calls, 1);
   assert.equal(controller.getSnapshot().cart[0].quantity, 1);
   assert.deepEqual(refreshed, [product]);
@@ -94,7 +107,7 @@ test("removal to zero accepts a null remote cart and clears persistence", async 
   assert.equal(controller.getSnapshot().cart[0].quantity, 1);
 });
 
-test("different product changes queue independently and the UI keeps their optimistic lines visible", async () => {
+test("rapid additions to different products share one mutation and keep optimistic lines visible", async () => {
   const second = { id: "p2", title: "Quartz", variants: [{ id: "v2", title: "Large", sku: "Q2", price: 100, canPurchase: true, available: true }] };
   const requests = [];
   const controller = createShopifyCartController({ service: { source: "shopify", syncCart(_id, lines) { return new Promise(resolve => requests.push({ lines, resolve })); } } });
@@ -103,12 +116,11 @@ test("different product changes queue independently and the UI keeps their optim
   const secondAdd = controller.add(second, "v2");
   assert.deepEqual(controller.getSnapshot().cart.map(item => item.key), ["p1:v1", "p2:v2"]);
   assert.deepEqual(controller.getSnapshot().pendingKeys, ["p1:v1", "p2:v2"]);
+  assert.equal(requests.length, 0, "network work is debounced while optimistic lines show immediately");
+  await new Promise(resolve => setTimeout(resolve, 25));
   assert.equal(requests.length, 1);
+  assert.deepEqual(requests[0].lines.map(item => item.key), ["p1:v1", "p2:v2"]);
   requests[0].resolve({ cart: remote(requests[0].lines) });
-  await new Promise(resolve => setImmediate(resolve));
-  assert.equal(requests.length, 2);
-  assert.deepEqual(requests[1].lines.map(item => item.key), ["p1:v1", "p2:v2"]);
-  requests[1].resolve({ cart: remote(requests[1].lines) });
   assert.equal(await firstAdd, true);
   assert.equal(await secondAdd, true);
   assert.deepEqual(controller.getSnapshot().pendingKeys, []);

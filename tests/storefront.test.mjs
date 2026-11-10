@@ -201,6 +201,67 @@ test("Shopify API failures remain errors and an empty Shopify response remains e
   await assert.rejects(malformed.loadCatalog(), /invalid product catalog response/);
 });
 
+test("home renders the first Shopify cursor page before loading the remaining catalog", async () => {
+  const live = (id, handle, sku) => normalizeShopifyProduct({
+    id: `gid://shopify/Product/${id}`, handle, title: handle, productType: "Bracelet", availableForSale: true,
+    featuredImage: { url: `https://cdn.shopify.com/${handle}.jpg` },
+    priceRange: { minVariantPrice: { amount: "1200", currencyCode: "INR" } },
+    variants: { nodes: [{ id: `gid://shopify/ProductVariant/${id}`, sku, title: "8 mm", availableForSale: true, price: { amount: "1200", currencyCode: "INR" } }], pageInfo: { hasNextPage: false, endCursor: null } },
+  });
+  const first = live(501, "first-bracelet", "SKU-501"), second = live(502, "second-bracelet", "SKU-502");
+  const calls = [], events = [];
+  const service = createCatalogService({ provider: "shopify", workbook: [
+    { id: "workbook-501", handle: "first-bracelet", collectionHandles: ["bracelets"], groupIds: [], variants: [{ sku: "SKU-501" }] },
+    { id: "workbook-502", handle: "second-bracelet", collectionHandles: ["bracelets"], groupIds: [], variants: [{ sku: "SKU-502" }] },
+  ], adapter: {
+    hasConnection: () => true,
+    async loadPage({ first: size, after }) {
+      calls.push({ size, after });
+      return after ? { products: [second], pageInfo: { hasNextPage: false, endCursor: null } }
+        : { products: [first], pageInfo: { hasNextPage: true, endCursor: "cursor-1" } };
+    },
+    saveCatalogCache: async () => {},
+  } });
+  const initial = await service.loadRoute({ page: "home" });
+  assert.deepEqual(initial.products.map(item => item.handle), ["first-bracelet"]);
+  assert.deepEqual(calls, [{ size: 48, after: null }]);
+  const unsubscribe = service.subscribeCatalogPages(page => events.push(page));
+  const complete = await service.loadRemainingCatalog();
+  unsubscribe();
+  assert.deepEqual(calls, [{ size: 48, after: null }, { size: 100, after: "cursor-1" }]);
+  assert.deepEqual(complete.products.map(item => item.handle), ["first-bracelet", "second-bracelet"]);
+  assert.equal(events.at(-1).event, "catalog-complete");
+  assert.ok(complete.products.every(item => /^gid:\/\/shopify\/Product\//.test(item.id)));
+});
+
+test("cached Shopify products render only with unconfirmed prices until fresh Shopify data replaces them", async () => {
+  const live = normalizeShopifyProduct({
+    id: "gid://shopify/Product/601", handle: "cached-gem", title: "Cached Gem", productType: "Crystal", availableForSale: true,
+    featuredImage: { url: "https://cdn.shopify.com/cached.jpg" },
+    priceRange: { minVariantPrice: { amount: "1200", currencyCode: "INR" } },
+    variants: { nodes: [{ id: "gid://shopify/ProductVariant/601", sku: "SKU-601", title: "Single", availableForSale: true, price: { amount: "1200", currencyCode: "INR" } }], pageInfo: { hasNextPage: false, endCursor: null } },
+  });
+  let resolvePage;
+  const service = createCatalogService({ provider: "shopify", workbook: [{ id: "workbook-601", handle: "cached-gem", collectionHandles: [], groupIds: [], variants: [{ sku: "SKU-601" }] }], adapter: {
+    hasConnection: () => true,
+    loadCatalogCache: async () => [live],
+    loadPage: () => new Promise(resolve => { resolvePage = resolve; }),
+    saveCatalogCache: async () => {},
+  } });
+  const initial = await service.loadRoute({ page: "home" });
+  assert.equal(initial.cached, true);
+  assert.equal(initial.fresh, false);
+  assert.equal(initial.products[0].stale, true);
+  assert.equal(initial.products[0].price, null);
+  assert.equal(initial.products[0].variants[0].canPurchase, false);
+  const loading = service.loadRemainingCatalog();
+  resolvePage({ products: [live], pageInfo: { hasNextPage: false, endCursor: null } });
+  const fresh = await loading;
+  assert.equal(fresh.products[0].stale, undefined);
+  assert.equal(fresh.products[0].price, 1200);
+  assert.equal(fresh.products[0].variants[0].canPurchase, true);
+});
+
 test("catalog service adapter contract can swap providers without changing route callers", async () => {
   const calls = [];
   const liveProduct = normalizeShopifyProduct({

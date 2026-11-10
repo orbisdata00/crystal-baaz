@@ -62,8 +62,10 @@ export function createShopifyCartController({ service = catalogService, storage,
   let attemptedHydration = false;
   let ready = false;
   let processing = false;
+  let flushTimer = null;
   let failedOperation = null;
   const jobs = [];
+  let inFlightJobs = [];
   const listeners = new Set();
 
   function publish(patch) {
@@ -89,11 +91,11 @@ export function createShopifyCartController({ service = catalogService, storage,
   }
 
   function cartWithQueuedIntents() {
-    return jobs.reduce((lines, operation) => applyIntent(lines, operation.intent), confirmedCart);
+    return [...inFlightJobs, ...jobs].reduce((lines, operation) => applyIntent(lines, operation.intent), confirmedCart);
   }
 
   function setPendingSnapshot(extra = {}) {
-    const operations = pendingSnapshot(jobs);
+    const operations = pendingSnapshot([...inFlightJobs, ...jobs]);
     publish({
       cart: cartWithQueuedIntents(),
       pending: operations.length > 0,
@@ -107,15 +109,17 @@ export function createShopifyCartController({ service = catalogService, storage,
     operations.forEach(operation => operation.resolve?.(false));
   }
 
-  function failJob(job, desired, { error = CART_ERROR, remoteCart = null, uncertain = true } = {}) {
-    const canceled = jobs.splice(0);
+  function failJobs(batch, desired, { error = CART_ERROR, remoteCart = null, uncertain = true } = {}) {
+    const canceled = [...batch, ...jobs.splice(0)];
+    const intents = canceled.map(operation => operation.intent);
     failedOperation = {
-      lines: desired,
-      intents: [job.intent],
+      lines: intents.reduce((lines, intent) => applyIntent(lines, intent), confirmedCart),
+      intents,
       options: { verified: ready },
       error,
     };
-    if (job.intent.type === "add") onNotice?.(error);
+    inFlightJobs = [];
+    if (intents.some(intent => intent.type === "add")) onNotice?.(error);
     publish({
       cart: confirmedCart,
       cartId: remoteCart?.id || state.cartId,
@@ -126,16 +130,16 @@ export function createShopifyCartController({ service = catalogService, storage,
       error,
     });
     if (!uncertain) {
-      confirmedCart = reconcileShopifyCartLines(desired, remoteCart);
+      confirmedCart = reconcileShopifyCartLines(failedOperation.lines, remoteCart);
       publish({ cart: confirmedCart, cartId: remoteCart?.id || state.cartId, remoteCart, error });
       persist();
     }
     settleCanceled(canceled);
   }
 
-  async function runJob(job) {
-    const desired = applyIntent(confirmedCart, job.intent);
-    const beforeQuantity = confirmedCart.find(line => line.key === operationKey(job.intent))?.quantity || 0;
+  async function runJobs(batch) {
+    const desired = batch.reduce((lines, job) => applyIntent(lines, job.intent), confirmedCart);
+    const beforeQuantities = new Map(batch.filter(job => job.intent.type === "add").map(job => [operationKey(job.intent), confirmedCart.find(line => line.key === operationKey(job.intent))?.quantity || 0]));
     const result = preview
       ? { cart: null, products: [] }
       : await service.syncCart(state.cartId, desired, state.remoteCart, { verified: true });
@@ -145,46 +149,51 @@ export function createShopifyCartController({ service = catalogService, storage,
 
     // A server refusal is a confirmed response. Adopt that cart, roll back this
     // intent, and keep a safe desired-state retry available.
-    if (job.intent.type === "add") {
-      const actualQuantity = nextCart.find(line => line.key === operationKey(job.intent))?.quantity || 0;
-      if (actualQuantity <= beforeQuantity) {
-        confirmedCart = nextCart;
-        failJob(job, desired, { error: ADD_ERROR, remoteCart, uncertain: false });
-        return false;
-      }
+    const refusedAdd = batch.some(job => job.intent.type === "add"
+      && (nextCart.find(line => line.key === operationKey(job.intent))?.quantity || 0) <= beforeQuantities.get(operationKey(job.intent)));
+    if (refusedAdd) {
+      failJobs(batch, desired, { error: ADD_ERROR, remoteCart, uncertain: false });
+      return false;
     }
 
     confirmedCart = nextCart;
     const nextCartId = remoteCart?.id || null;
-    publish({ cartId: nextCartId, remoteCart, error: "" });
+    inFlightJobs = [];
+    publish({ cart: cartWithQueuedIntents(), cartId: nextCartId, remoteCart, error: "" });
     persist(confirmedCart, nextCartId);
     if (result?.products?.length) onProducts?.(result.products);
-    if (job.intent.type === "add") onNotice?.("Added to cart.");
+    if (batch.some(job => job.intent.type === "add")) onNotice?.("Added to cart.");
     return true;
+  }
+
+  function scheduleQueue() {
+    if (flushTimer || processing || failedOperation || !jobs.length) return;
+    // Coalesce near-simultaneous taps into one cart state diff and one Shopify
+    // mutation while the optimistic lines are visible immediately.
+    flushTimer = setTimeout(() => {
+      flushTimer = null;
+      void processQueue();
+    }, 16);
   }
 
   async function processQueue() {
     if (processing || !jobs.length || failedOperation) return;
     processing = true;
-    publish({ pending: true });
+    inFlightJobs = jobs.splice(0);
+    const batch = inFlightJobs;
+    const operations = pendingSnapshot([...inFlightJobs, ...jobs]);
+    publish({ cart: cartWithQueuedIntents(), pending: true, pendingKeys: operations.map(operation => operation.key), pendingOperations: operations });
     try {
-      while (jobs.length && !failedOperation) {
-        const job = jobs[0];
-        try {
-          const succeeded = await runJob(job);
-          if (!succeeded) break;
-          jobs.shift();
-          setPendingSnapshot({ error: "" });
-          job.resolve(true);
-        } catch {
-          failJob(job, applyIntent(confirmedCart, job.intent));
-          break;
-        }
+      try {
+        await runJobs(batch);
+        if (!failedOperation) batch.forEach(job => job.resolve(true));
+      } catch {
+        failJobs(batch, cartWithQueuedIntents());
       }
     } finally {
       processing = false;
       if (!failedOperation) setPendingSnapshot();
-      if (jobs.length && !failedOperation) void processQueue();
+      if (jobs.length && !failedOperation) scheduleQueue();
     }
   }
 
@@ -221,32 +230,42 @@ export function createShopifyCartController({ service = catalogService, storage,
     }
     if (state.pendingKeys.includes(key)) return Promise.resolve(false);
     const before = state.cart;
-    const optimistic = applyIntent(before, intent);
+      const optimistic = applyIntent(before, intent);
     if (optimistic === before || (intent.type !== "remove" && optimistic.every((line, index) => line === before[index]))) return Promise.resolve(false);
 
     return new Promise(resolve => {
       const job = { intent, detail: describeIntent(intent, before), resolve };
       jobs.push(job);
+      const operations = pendingSnapshot([...inFlightJobs, ...jobs]);
       publish({
         cart: optimistic,
         pending: true,
-        pendingKeys: pendingSnapshot(jobs).map(operation => operation.key),
-        pendingOperations: pendingSnapshot(jobs),
+        pendingKeys: operations.map(operation => operation.key),
+        pendingOperations: operations,
         error: "",
       });
-      void processQueue();
+      scheduleQueue();
     });
   }
 
   const api = {
     getSnapshot: () => state,
     subscribe(listener) { listeners.add(listener); return () => listeners.delete(listener); },
-    async hydrate(catalog) {
-      if (attemptedHydration || !catalog?.length) return false;
+    async hydrate() {
+      if (attemptedHydration) return false;
       attemptedHydration = true;
       if (!savedLines.length && !state.cartId) { ready = true; return true; }
       publish({ pending: true, error: "" });
       try {
+        if (!savedLines.length && state.cartId && service.restoreCart) {
+          const restored = await service.restoreCart(state.cartId);
+          confirmedCart = restored?.lines || [];
+          ready = true;
+          publish({ cart: confirmedCart, remoteCart: restored?.cart || null, pending: false, pendingKeys: [], pendingOperations: [], error: "" });
+          if (restored?.products?.length) onProducts?.(restored.products);
+          persist(confirmedCart, state.cartId);
+          return true;
+        }
         return await synchronize(savedLines, { verified: false });
       } catch {
         failedOperation = { lines: savedLines, intents: [], options: { verified: false }, error: CART_ERROR };
@@ -308,12 +327,14 @@ export function useShopifyCart({ catalog, setCatalog, onNotice, service = catalo
       onNotice: message => callbacks.current.onNotice?.(message),
       onProducts: products => callbacks.current.setCatalog?.(current => {
         const refreshed = new Map(products.map(product => [product.id, product]));
-        return current.map(product => refreshed.get(product.id) || product);
+        const merged = new Map(current.map(product => [product.id, refreshed.get(product.id) || product]));
+        for (const product of products) if (!merged.has(product.id)) merged.set(product.id, product);
+        return [...merged.values()];
       }),
     });
   }
   const controller = controllerRef.current;
   const state = useSyncExternalStore(controller.subscribe, controller.getSnapshot, controller.getSnapshot);
-  useEffect(() => { void controller.hydrate(catalog); }, [controller, catalog]);
+  useEffect(() => { void controller.hydrate(); }, [controller]);
   return { ...state, add: controller.add, update: controller.update, remove: controller.remove, retry: controller.retry };
 }

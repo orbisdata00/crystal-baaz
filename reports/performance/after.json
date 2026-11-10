@@ -1,0 +1,539 @@
+{
+  "generatedAt": "2026-11-10T08:08:01.381Z",
+  "origin": "http://127.0.0.1:4173",
+  "handle": "natural-cat-s-eye-lehsunia-ring-5-ratti",
+  "failures": [],
+  "shopifyRequests": [
+    {
+      "operation": "CrystalBazzCatalogPage",
+      "startedAt": 1794298085929,
+      "requestBytes": 716,
+      "phase": "cold-home",
+      "durationMs": 366,
+      "ok": true,
+      "responseBytes": 78034
+    },
+    {
+      "operation": "CrystalBazzCatalogPage",
+      "startedAt": 1794298086757,
+      "requestBytes": 851,
+      "phase": "cold-home",
+      "durationMs": 191,
+      "ok": true,
+      "responseBytes": 177414
+    },
+    {
+      "operation": "CrystalBazzCatalogPage",
+      "startedAt": 1794298086963,
+      "requestBytes": 823,
+      "phase": "cold-home",
+      "durationMs": 196,
+      "ok": true,
+      "responseBytes": 160697
+    },
+    {
+      "operation": "CrystalBazzCatalogPage",
+      "startedAt": 1794298087159,
+      "requestBytes": 827,
+      "phase": "cold-home",
+      "durationMs": 532,
+      "ok": true,
+      "responseBytes": 154270
+    },
+    {
+      "operation": "CrystalBazzCatalogPage",
+      "startedAt": 1794298087711,
+      "requestBytes": 823,
+      "phase": "cold-home",
+      "durationMs": 182,
+      "ok": true,
+      "responseBytes": 162848
+    },
+    {
+      "operation": "CrystalBazzCatalogPage",
+      "startedAt": 1794298087893,
+      "requestBytes": 815,
+      "phase": "cold-home",
+      "durationMs": 227,
+      "ok": true,
+      "responseBytes": 186301
+    },
+    {
+      "operation": "CrystalBazzCatalogPage",
+      "startedAt": 1794298088132,
+      "requestBytes": 823,
+      "phase": "cold-home",
+      "durationMs": 158,
+      "ok": true,
+      "responseBytes": 163110
+    },
+    {
+      "operation": "CrystalBazzCatalogPage",
+      "startedAt": 1794298088295,
+      "requestBytes": 823,
+      "phase": "cold-home",
+      "durationMs": 294,
+      "ok": true,
+      "responseBytes": 151413
+    },
+    {
+      "operation": "CrystalBazzCatalogPage",
+      "startedAt": 1794298088600,
+      "requestBytes": 811,
+      "phase": "cold-home",
+      "durationMs": 109,
+      "ok": true,
+      "responseBytes": 157988
+    },
+    {
+      "operation": "CrystalBazzCatalogPage",
+      "startedAt": 1794298088716,
+      "requestBytes": 831,
+      "phase": "cold-home",
+      "durationMs": 158,
+      "ok": true,
+      "responseBytes": 165976
+    },
+    {
+      "operation": "CrystalBazzCatalogPage",
+      "startedAt": 1794298088886,
+      "requestBytes": 819,
+      "phase": "cold-home",
+      "durationMs": 168,
+      "ok": true,
+      "responseBytes": 163540
+    },
+    {
+      "operation": "CrystalBazzCatalogPage",
+      "startedAt": 1794298089058,
+      "requestBytes": 807,
+      "phase": "cold-home",
+      "durationMs": 158,
+      "ok": true,
+      "responseBytes": 149126
+    },
+    {
+      "operation": "CrystalBazzCatalogPage",
+      "startedAt": 1794298089227,
+      "requestBytes": 811,
+      "phase": "cold-home",
+      "durationMs": 172,
+      "ok": true,
+      "responseBytes": 168658
+    },
+    {
+      "operation": "CrystalBazzCatalogPage",
+      "startedAt": 1794298089406,
+      "requestBytes": 831,
+      "phase": "cold-home",
+      "durationMs": 170,
+      "ok": true,
+      "responseBytes": 165798
+    },
+    {
+      "operation": "CrystalBazzCatalogPage",
+      "startedAt": 1794298089586,
+      "requestBytes": 815,
+      "phase": "cold-home",
+      "durationMs": 142,
+      "ok": true,
+      "responseBytes": 142653
+    },
+    {
+      "operation": "CrystalBazzCatalogPage",
+      "startedAt": 1794298089733,
+      "requestBytes": 803,
+      "phase": "cold-home",
+      "durationMs": 156,
+      "ok": true,
+      "responseBytes": 104414
+    },
+    {
+      "operation": "CrystalBazzProduct",
+      "startedAt": 1794298090472,
+      "requestBytes": 731,
+      "phase": "product-detail",
+      "durationMs": 139,
+      "ok": true,
+      "responseBytes": 4117
+    },
+    {
+      "operation": "CrystalBazzCartCreate",
+      "startedAt": 1794298091051,
+      "requestBytes": 820,
+      "phase": "buy-now",
+      "durationMs": 779,
+      "ok": true,
+      "responseBytes": 1142
+    },
+    {
+      "operation": "CrystalBazzCartLinesRemove",
+      "startedAt": 1794298092185,
+      "requestBytes": 962,
+      "phase": "cleanup",
+      "durationMs": 549,
+      "ok": true,
+      "responseBytes": 346
+    },
+    {
+      "operation": "CrystalBazzCatalogPage",
+      "startedAt": 1794298093738,
+      "requestBytes": 716,
+      "phase": "warm-home",
+      "durationMs": 235,
+      "ok": true,
+      "responseBytes": 78034
+    },
+    {
+      "operation": "CrystalBazzCart",
+      "startedAt": 1794298093748,
+      "requestBytes": 734,
+      "phase": "warm-home",
+      "durationMs": 225,
+      "ok": true,
+      "responseBytes": 310
+    },
+    {
+      "operation": "CrystalBazzCatalogPage",
+      "startedAt": 1794298093974,
+      "requestBytes": 851,
+      "phase": "warm-home",
+      "durationMs": 146,
+      "ok": true,
+      "responseBytes": 177414
+    },
+    {
+      "operation": "CrystalBazzCatalogPage",
+      "startedAt": 1794298094123,
+      "requestBytes": 823,
+      "phase": "warm-home",
+      "durationMs": 201,
+      "ok": true,
+      "responseBytes": 160697
+    },
+    {
+      "operation": "CrystalBazzCatalogPage",
+      "startedAt": 1794298094361,
+      "requestBytes": 827,
+      "phase": "warm-home",
+      "durationMs": 170,
+      "ok": true,
+      "responseBytes": 154270
+    },
+    {
+      "operation": "CrystalBazzCatalogPage",
+      "startedAt": 1794298094538,
+      "requestBytes": 823,
+      "phase": "warm-home",
+      "durationMs": 140,
+      "ok": true,
+      "responseBytes": 162848
+    },
+    {
+      "operation": "CrystalBazzCatalogPage",
+      "startedAt": 1794298094688,
+      "requestBytes": 815,
+      "phase": "warm-home",
+      "durationMs": 165,
+      "ok": true,
+      "responseBytes": 186301
+    },
+    {
+      "operation": "CrystalBazzCatalogPage",
+      "startedAt": 1794298094856,
+      "requestBytes": 823,
+      "phase": "warm-home",
+      "durationMs": 361,
+      "ok": true,
+      "responseBytes": 163110
+    },
+    {
+      "operation": "CrystalBazzCatalogPage",
+      "startedAt": 1794298095218,
+      "requestBytes": 823,
+      "phase": "warm-home",
+      "durationMs": 138,
+      "ok": true,
+      "responseBytes": 151413
+    },
+    {
+      "operation": "CrystalBazzCatalogPage",
+      "startedAt": 1794298095363,
+      "requestBytes": 811,
+      "phase": "warm-home",
+      "durationMs": 236,
+      "ok": true,
+      "responseBytes": 157988
+    },
+    {
+      "operation": "CrystalBazzCatalogPage",
+      "startedAt": 1794298095599,
+      "requestBytes": 831,
+      "phase": "warm-home",
+      "durationMs": 193,
+      "ok": true,
+      "responseBytes": 165976
+    },
+    {
+      "operation": "CrystalBazzCatalogPage",
+      "startedAt": 1794298095793,
+      "requestBytes": 819,
+      "phase": "warm-home",
+      "durationMs": 99,
+      "ok": true,
+      "responseBytes": 163540
+    },
+    {
+      "operation": "CrystalBazzCatalogPage",
+      "startedAt": 1794298095901,
+      "requestBytes": 807,
+      "phase": "warm-home",
+      "durationMs": 155,
+      "ok": true,
+      "responseBytes": 149126
+    },
+    {
+      "operation": "CrystalBazzCatalogPage",
+      "startedAt": 1794298096058,
+      "requestBytes": 811,
+      "phase": "warm-home",
+      "durationMs": 194,
+      "ok": true,
+      "responseBytes": 168658
+    },
+    {
+      "operation": "CrystalBazzCatalogPage",
+      "startedAt": 1794298096257,
+      "requestBytes": 831,
+      "phase": "warm-home",
+      "durationMs": 131,
+      "ok": true,
+      "responseBytes": 165798
+    },
+    {
+      "operation": "CrystalBazzCatalogPage",
+      "startedAt": 1794298096393,
+      "requestBytes": 815,
+      "phase": "warm-home",
+      "durationMs": 149,
+      "ok": true,
+      "responseBytes": 142653
+    },
+    {
+      "operation": "CrystalBazzCatalogPage",
+      "startedAt": 1794298096560,
+      "requestBytes": 803,
+      "phase": "warm-home",
+      "durationMs": 188,
+      "ok": true,
+      "responseBytes": 104414
+    }
+  ],
+  "responsive": [
+    {
+      "width": 320,
+      "documentWidth": 320,
+      "overflow": false,
+      "firstAction": {
+        "label": "Buy Now",
+        "width": 58,
+        "fits": true
+      }
+    },
+    {
+      "width": 360,
+      "documentWidth": 360,
+      "overflow": false,
+      "firstAction": {
+        "label": "Buy Now",
+        "width": 58,
+        "fits": true
+      }
+    },
+    {
+      "width": 390,
+      "documentWidth": 390,
+      "overflow": false,
+      "firstAction": {
+        "label": "Buy Now",
+        "width": 58,
+        "fits": true
+      }
+    },
+    {
+      "width": 427,
+      "documentWidth": 427,
+      "overflow": false,
+      "firstAction": {
+        "label": "Buy Now",
+        "width": 58,
+        "fits": true
+      }
+    },
+    {
+      "width": 440,
+      "documentWidth": 440,
+      "overflow": false,
+      "firstAction": {
+        "label": "Buy Now",
+        "width": 58,
+        "fits": true
+      }
+    },
+    {
+      "width": 768,
+      "documentWidth": 768,
+      "overflow": false,
+      "firstAction": {
+        "label": "Buy Now",
+        "width": 58,
+        "fits": true
+      }
+    },
+    {
+      "width": 1024,
+      "documentWidth": 1024,
+      "overflow": false,
+      "firstAction": {
+        "label": "Buy Now",
+        "width": 70,
+        "fits": true
+      }
+    },
+    {
+      "width": 1440,
+      "documentWidth": 1440,
+      "overflow": false,
+      "firstAction": {
+        "label": "Buy Now",
+        "width": 70,
+        "fits": true
+      }
+    },
+    {
+      "width": 1920,
+      "documentWidth": 1920,
+      "overflow": false,
+      "firstAction": {
+        "label": "Buy Now",
+        "width": 70,
+        "fits": true
+      }
+    }
+  ],
+  "phase": "broken-shopify-image",
+  "coldFirstProductCardMs": 2090,
+  "coldFirstPageReadyMs": 1422,
+  "coldAssetsAtFirstCard": [
+    {
+      "name": "index-BTnY4u2d.js",
+      "durationMs": 91,
+      "transferBytes": 113369,
+      "decodedBytes": 392897
+    },
+    {
+      "name": "index-pXG2Q2XZ.css",
+      "durationMs": 65,
+      "transferBytes": 39356,
+      "decodedBytes": 210814
+    },
+    {
+      "name": "product-mapping-fPV7NA1-.js",
+      "durationMs": 20,
+      "transferBytes": 28034,
+      "decodedBytes": 250261
+    }
+  ],
+  "coldRequestsBeforeFirstCard": 2,
+  "coldProductCardsAtFirstRender": 41,
+  "coldInitialState": {
+    "source": "shopify",
+    "loaded": "true",
+    "loadingMore": "true",
+    "mappedCount": 248,
+    "shopifyCount": 248
+  },
+  "firstPageQueryCount": 4,
+  "allInitialCardsAreShopifyIds": true,
+  "coldCatalogLoadedMs": 5101,
+  "coldFinalState": {
+    "source": "shopify",
+    "loaded": "true",
+    "loadingMore": "false",
+    "mappedCount": 1520,
+    "shopifyCount": 1520
+  },
+  "persistedShopifyCacheAfterColdLoad": {
+    "available": true,
+    "products": 1520
+  },
+  "coldProductCardsInDom": 68,
+  "coldHomeShopifyRequestCount": 16,
+  "coldHomeRequestBytes": 13029,
+  "coldHomeResponseBytes": 2452240,
+  "coldInitialResponseBytes": 78034,
+  "cartCountUnaffectedByCatalogLoad": true,
+  "images": {
+    "count": 66,
+    "srcsetCount": 66,
+    "eager": 2,
+    "lazy": 64,
+    "failed": 0
+  },
+  "categoryProductCount": 24,
+  "searchResultCount": 10,
+  "productDetailMs": 384,
+  "productDetailRequestCount": 1,
+  "productVariantCount": 2,
+  "productImageSrcset": "https://cdn.shopify.com/s/files/1/0845/1942/0130/files/ChatGPT_Image_Jul_15_2026_07_05_52_PM.png?v=1793707236&width=160 160w, https://cdn.shopify.com/s/files/1/0845/1942/0130/files/ChatGPT_Image_Jul_15_2026_07_05_52_PM.png?v=1793707236&width=240 240w, https://cdn.shopify.com/s/files/1/0845/1942/0130/files/ChatGPT_Image_Jul_15_2026_07_05_52_PM.png?v=1793707236&width=320 320w, https://cdn.shopify.com/s/files/1/0845/1942/0130/files/ChatGPT_Image_Jul_15_2026_07_05_52_PM.png?v=1793707236&width=420 420w, https://cdn.shopify.com/s/files/1/0845/1942/0130/files/ChatGPT_Image_Jul_15_2026_07_05_52_PM.png?v=1793707236&width=640 640w, https://cdn.shopify.com/s/files/1/0845/1942/0130/files/ChatGPT_Image_Jul_15_2026_07_05_52_PM.png?v=1793707236&width=840 840w, https://cdn.shopify.com/s/files/1/0845/1942/0130/files/ChatGPT_Image_Jul_15_2026_07_05_52_PM.png?v=1793707236&width=1200 1200w",
+  "buyNowAcknowledgementMs": 105.60000002384186,
+  "buyNowToCartReviewMs": 1257,
+  "cartLineCount": 1,
+  "cartVariantIds": [
+    "gid://shopify/ProductVariant/67884514312418"
+  ],
+  "buyNowRequests": [
+    {
+      "operation": "CrystalBazzCartCreate",
+      "durationMs": 779,
+      "requestBytes": 820,
+      "responseBytes": 1142,
+      "ok": true
+    }
+  ],
+  "buyNowMutationCount": 1,
+  "cartTotalConfirmed": "₹1,990.00",
+  "cartCleanup": true,
+  "pwaServiceWorkerActive": true,
+  "warmFirstProductCardMs": 561,
+  "warmStaleCardsAtFirstRender": 0,
+  "warmCacheStateAtFirstCard": {
+    "available": true,
+    "products": 1520
+  },
+  "warmCatalogLoadedMs": 3503,
+  "errorStateHasRetry": true,
+  "errorStateProductCards": 0,
+  "emptyStateProductCards": 0,
+  "emptyStateErrorCount": 0,
+  "brokenImageUsesNeutralState": true,
+  "pass": true,
+  "shopifyRequestTiming": {
+    "count": 36,
+    "medianMs": 170,
+    "p95Ms": 549
+  },
+  "jsBundle": {
+    "baselineBytes": 632759,
+    "optimizedBytes": 392890,
+    "baselineGzipBytes": 139320,
+    "optimizedGzipBytes": 114010,
+    "separateVerifiedMappingChunkBytes": 250260,
+    "separateVerifiedMappingChunkGzipBytes": 28590,
+    "rawReductionBytes": 239869,
+    "gzipReductionBytes": 25310,
+    "optimizedInitialTotalBytes": 643150,
+    "optimizedInitialTotalGzipBytes": 142600,
+    "initialTotalGzipChangeBytes": 3280
+  }
+}

@@ -22,6 +22,14 @@ export function selectVariant(product, selector) {
     };
 }
 
+export function createBuyNowHandler(addToCart, openCartReview) {
+  return async (product, variantId, quantity = 1) => {
+    const added = await addToCart(product, variantId, quantity);
+    if (added === true) openCartReview();
+    return added;
+  };
+}
+
 export function cartLinePrice(line, product) {
   const variant = selectVariant(product, line.variantId);
   const price = validPrice(variant?.price) ? Number(variant.price) : Number(product?.price);

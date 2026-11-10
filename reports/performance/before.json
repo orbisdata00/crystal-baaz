@@ -1,0 +1,188 @@
+{
+  "generatedAt": "2026-11-08T01:21:03.651Z",
+  "origin": "http://127.0.0.1:4173",
+  "handle": "natural-cat-s-eye-lehsunia-ring-5-ratti",
+  "failures": [],
+  "shopifyRequests": [
+    {
+      "operation": "CrystalBazzCatalog",
+      "startedAt": 1794100876357,
+      "requestBytes": 809,
+      "phase": "cold-home",
+      "durationMs": 969,
+      "ok": true
+    },
+    {
+      "operation": "CrystalBazzCatalog",
+      "startedAt": 1794100877329,
+      "requestBytes": 907,
+      "phase": "cold-home",
+      "durationMs": 456,
+      "ok": true
+    },
+    {
+      "operation": "CrystalBazzCatalog",
+      "startedAt": 1794100877786,
+      "requestBytes": 931,
+      "phase": "cold-home",
+      "durationMs": 277,
+      "ok": true
+    },
+    {
+      "operation": "CrystalBazzCatalog",
+      "startedAt": 1794100878068,
+      "requestBytes": 915,
+      "phase": "cold-home",
+      "durationMs": 318,
+      "ok": true
+    },
+    {
+      "operation": "CrystalBazzCatalog",
+      "startedAt": 1794100878387,
+      "requestBytes": 907,
+      "phase": "cold-home",
+      "durationMs": 439,
+      "ok": true
+    },
+    {
+      "operation": "CrystalBazzCatalog",
+      "startedAt": 1794100878830,
+      "requestBytes": 907,
+      "phase": "cold-home",
+      "durationMs": 282,
+      "ok": true
+    },
+    {
+      "operation": "CrystalBazzCatalog",
+      "startedAt": 1794100879115,
+      "requestBytes": 927,
+      "phase": "cold-home",
+      "durationMs": 150,
+      "ok": true
+    },
+    {
+      "operation": "CrystalBazzCatalog",
+      "startedAt": 1794100879267,
+      "requestBytes": 919,
+      "phase": "cold-home",
+      "durationMs": 368,
+      "ok": true
+    },
+    {
+      "operation": "CrystalBazzCatalog",
+      "startedAt": 1794100879638,
+      "requestBytes": 931,
+      "phase": "cold-home",
+      "durationMs": 158,
+      "ok": true
+    },
+    {
+      "operation": "CrystalBazzCatalog",
+      "startedAt": 1794100879801,
+      "requestBytes": 919,
+      "phase": "cold-home",
+      "durationMs": 360,
+      "ok": true
+    },
+    {
+      "operation": "CrystalBazzCatalog",
+      "startedAt": 1794100880164,
+      "requestBytes": 911,
+      "phase": "cold-home",
+      "durationMs": 154,
+      "ok": true
+    },
+    {
+      "operation": "CrystalBazzCatalog",
+      "startedAt": 1794100880325,
+      "requestBytes": 935,
+      "phase": "cold-home",
+      "durationMs": 359,
+      "ok": true
+    },
+    {
+      "operation": "CrystalBazzCatalog",
+      "startedAt": 1794100880686,
+      "requestBytes": 927,
+      "phase": "cold-home",
+      "durationMs": 149,
+      "ok": true
+    },
+    {
+      "operation": "CrystalBazzCatalog",
+      "startedAt": 1794100880838,
+      "requestBytes": 907,
+      "phase": "cold-home",
+      "durationMs": 372,
+      "ok": true
+    },
+    {
+      "operation": "CrystalBazzCatalog",
+      "startedAt": 1794100881213,
+      "requestBytes": 915,
+      "phase": "cold-home",
+      "durationMs": 177,
+      "ok": true
+    },
+    {
+      "operation": "CrystalBazzCatalog",
+      "startedAt": 1794100881394,
+      "requestBytes": 907,
+      "phase": "cold-home",
+      "durationMs": 339,
+      "ok": true
+    },
+    {
+      "operation": "CrystalBazzProduct",
+      "startedAt": 1794100882060,
+      "requestBytes": 785,
+      "phase": "product-detail",
+      "durationMs": 395,
+      "ok": true
+    },
+    {
+      "operation": "CrystalBazzCartCreate",
+      "startedAt": 1794100882920,
+      "requestBytes": 995,
+      "phase": "buy-now",
+      "durationMs": 909,
+      "ok": true
+    },
+    {
+      "operation": "CrystalBazzCartLinesRemove",
+      "startedAt": 1794100884341,
+      "requestBytes": 1137,
+      "phase": "cleanup"
+    }
+  ],
+  "phase": "cleanup",
+  "firstProductCardMs": 6463,
+  "catalogLoadedMs": 6536,
+  "catalogSource": "shopify",
+  "initialProductsInDom": 68,
+  "homeRequestCount": 16,
+  "homeRequestBytes": 14574,
+  "productDetailMs": 829,
+  "buyNowAcknowledgementMs": 137,
+  "buyNowToCartReviewMs": 1441,
+  "cartLineCount": 1,
+  "cartVariantIds": [
+    "gid://shopify/ProductVariant/67884514312418"
+  ],
+  "buyNowRequestCount": 1,
+  "cartMutationRequests": [
+    {
+      "operation": "CrystalBazzCartCreate",
+      "durationMs": 909,
+      "requestBytes": 995,
+      "ok": true
+    }
+  ],
+  "cartCleanup": true,
+  "pass": true,
+  "shopifyRequestTiming": {
+    "count": 18,
+    "medianMs": 339,
+    "p95Ms": 969
+  }
+}

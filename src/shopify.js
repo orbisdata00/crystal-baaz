@@ -1,9 +1,14 @@
 import { shopifyConfig } from "./config.js";
 import { normalizeShopifyProduct } from "./catalog.js";
+import { getCatalogCache, setCatalogCache } from "./shopify-cache.js";
 
 const configured = () => Boolean(shopifyConfig.storeDomain && shopifyConfig.storefrontAccessToken);
 const variantIdPattern = /^gid:\/\/shopify\/ProductVariant\//;
 const CATALOG_PAGE_SIZE = 100;
+const CATALOG_FIRST_PAGE_SIZE = 48;
+const CATALOG_CACHE_KEY = "shopify-catalog-listing-v1";
+const CATALOG_CACHE_TTL = 7 * 24 * 60 * 60 * 1000;
+const catalogPageRequests = new Map();
 
 const PRODUCT_FIELDS = `
   id title handle description vendor productType tags availableForSale
@@ -26,11 +31,11 @@ const PRODUCT_FIELDS = `
 
 const CART_FIELDS = `
   id totalQuantity
-  cost { subtotalAmount { amount currencyCode } subtotalAmountEstimated totalAmount { amount currencyCode } totalAmountEstimated }
+  cost { subtotalAmount { amount currencyCode } totalAmount { amount currencyCode } }
   lines(first: 100) {
     nodes {
       id quantity
-      cost { amountPerQuantity { amount currencyCode } compareAtAmountPerQuantity { amount currencyCode } subtotalAmount { amount currencyCode } totalAmount { amount currencyCode } }
+      cost { amountPerQuantity { amount currencyCode } compareAtAmountPerQuantity { amount currencyCode } }
       merchandise {
         ... on ProductVariant {
           id title availableForSale
@@ -38,7 +43,7 @@ const CART_FIELDS = `
           selectedOptions { name value }
           image { url altText }
           price { amount currencyCode }
-          product { id handle title productType images(first: 1) { nodes { url altText } } }
+          product { id handle title }
         }
       }
     }
@@ -82,7 +87,6 @@ export async function loadShopifyProducts({ first = 24, after = null, query = ""
 const CATALOG_PRODUCT_FIELDS = `
   id title handle productType tags availableForSale
   featuredImage { url altText width height }
-  images(first: 100) { nodes { url altText width height } pageInfo { hasNextPage endCursor } }
   priceRange { minVariantPrice { amount currencyCode } }
   options { name values }
   variants(first: 5) {
@@ -97,22 +101,52 @@ const CATALOG_PRODUCT_FIELDS = `
   }
 `;
 
-async function fetchAllShopifyProducts() {
-  const products = [];
-  let after = null;
-  let hasNextPage = true;
-  while (hasNextPage) {
-    const gql = `query CrystalBazzCatalog($first: Int!, $after: String) {
+const DETAIL_PRODUCT_FIELDS = `
+  id title handle description vendor productType tags availableForSale
+  featuredImage { url altText width height }
+  images(first: 12) { nodes { url altText width height } pageInfo { hasNextPage endCursor } }
+  priceRange { minVariantPrice { amount currencyCode } }
+  options { name values }
+  variants(first: 100) {
+    nodes {
+      id sku title availableForSale
+      image { url altText }
+      selectedOptions { name value }
+      price { amount currencyCode }
+      compareAtPrice { amount currencyCode }
+    }
+    pageInfo { hasNextPage endCursor }
+  }
+`;
+
+export async function loadShopifyCatalogPage({ first = CATALOG_FIRST_PAGE_SIZE, after = null } = {}) {
+  if (!configured()) throw new Error("Shopify Storefront API settings are not configured.");
+  const key = `${first}:${after || "first"}`;
+  if (!catalogPageRequests.has(key)) {
+    const gql = `query CrystalBazzCatalogPage($first: Int!, $after: String) {
       products(first: $first, after: $after, sortKey: TITLE) {
         nodes { ${CATALOG_PRODUCT_FIELDS} }
         pageInfo { hasNextPage endCursor }
       }
     }`;
-    const data = await storefrontRequest(gql, { first: CATALOG_PAGE_SIZE, after });
-    const connection = data.products;
-    products.push(...connectionNodes(connection).map(normalizeShopifyProduct));
-    hasNextPage = Boolean(connection.pageInfo?.hasNextPage);
-    after = connection.pageInfo?.endCursor || null;
+    const request = storefrontRequest(gql, { first, after }).then(data => {
+      const connection = data.products;
+      return { products: connectionNodes(connection).map(normalizeShopifyProduct), pageInfo: connection.pageInfo };
+    }).finally(() => catalogPageRequests.delete(key));
+    catalogPageRequests.set(key, request);
+  }
+  return catalogPageRequests.get(key);
+}
+
+async function fetchAllShopifyProducts() {
+  const products = [];
+  let after = null;
+  let hasNextPage = true;
+  while (hasNextPage) {
+    const page = await loadShopifyCatalogPage({ first: CATALOG_PAGE_SIZE, after });
+    products.push(...page.products);
+    hasNextPage = Boolean(page.pageInfo?.hasNextPage);
+    after = page.pageInfo?.endCursor || null;
     if (hasNextPage && !after) throw new Error("Shopify returned an incomplete product cursor.");
   }
   return products;
@@ -126,6 +160,15 @@ export async function loadAllShopifyProducts() {
   }
   const products = await catalogRequest;
   return { products, pageInfo: { hasNextPage: false, endCursor: null }, cached: false };
+}
+
+export async function loadShopifyCatalogCache() {
+  return getCatalogCache(CATALOG_CACHE_KEY, CATALOG_CACHE_TTL);
+}
+
+export async function saveShopifyCatalogCache(products) {
+  if (!Array.isArray(products)) return;
+  await setCatalogCache(CATALOG_CACHE_KEY, products);
 }
 
 export async function loadShopifyCollection(handle, { first = 24, after = null, sortKey = "COLLECTION_DEFAULT", reverse = false } = {}) {
@@ -163,21 +206,10 @@ export async function loadShopifyCollections({ first = 100, after = null } = {})
 
 export async function loadShopifyProduct(handle) {
   if (!configured()) return null;
-  const gql = `query CrystalBazzProduct($handle: String!) { product(handle: $handle) { ${PRODUCT_FIELDS} } }`;
+  const gql = `query CrystalBazzProduct($handle: String!) { product(handle: $handle) { ${DETAIL_PRODUCT_FIELDS} } }`;
   const data = await storefrontRequest(gql, { handle });
   if (!data.product) return null;
   let product = data.product;
-  const images = connectionNodes(product.images);
-  let imagePageInfo = product.images?.pageInfo;
-  while (imagePageInfo?.hasNextPage && imagePageInfo.endCursor) {
-    const imageData = await storefrontRequest(`query CrystalBaazProductImages($handle:String!,$after:String) {
-      product(handle:$handle) { images(first:100,after:$after) { nodes {url altText width height} pageInfo {hasNextPage endCursor} } }
-    }`, { handle, after:imagePageInfo.endCursor });
-    const connection = imageData.product?.images;
-    images.push(...connectionNodes(connection));
-    imagePageInfo = connection?.pageInfo;
-  }
-  product = { ...product, images: { nodes:images, pageInfo:imagePageInfo } };
   const variants = connectionNodes(product.variants);
   let pageInfo = product.variants?.pageInfo;
   while (pageInfo?.hasNextPage && pageInfo.endCursor) {
