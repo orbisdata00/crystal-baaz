@@ -1,12 +1,14 @@
 import { formatVariantLabel, mapShopifyCatalog, mergeShopifyProduct } from "./catalog.js";
-import { catalogProvider } from "./config.js";
+import { catalogProvider, shopifyConfig } from "./config.js";
 import {
   hasShopifyConnection,
+  createHostedCheckout,
   loadAllShopifyProducts,
   loadShopifyCatalogCache,
   loadShopifyCatalogPage,
   loadShopifyProduct,
   loadShopifyVariants,
+  loadShopifyCheckoutDestination,
   saveShopifyCatalogCache,
   syncShopifyCart,
   fetchShopifyCart,
@@ -28,6 +30,7 @@ const shopifyAdapter = {
   loadVariants: loadShopifyVariants,
   fetchCart: fetchShopifyCart,
   syncCart: syncShopifyCart,
+  loadCheckoutDestination: loadShopifyCheckoutDestination,
 };
 
 function pageInfoDefault() { return { hasNextPage: false, endCursor: null }; }
@@ -46,7 +49,7 @@ function markCachedProduct(product) {
   };
 }
 
-export function createCatalogService({ provider = catalogProvider, adapter = shopifyAdapter, workbook } = {}) {
+export function createCatalogService({ provider = catalogProvider, adapter = shopifyAdapter, workbook, checkoutEnabled = shopifyConfig.checkoutEnabled } = {}) {
   const requestedLive = provider === "shopify";
   const isLive = requestedLive && adapter.hasConnection();
   let workbookItems = Array.isArray(workbook) ? workbook : null;
@@ -307,7 +310,7 @@ export function createCatalogService({ provider = catalogProvider, adapter = sho
     source: requestedLive ? "shopify" : "preview",
     isLive,
     hasConnection: isLive,
-    canCheckout: false,
+    canCheckout: Boolean(requestedLive && isLive && checkoutEnabled && adapter.loadCheckoutDestination),
 
     async loadCatalog() { return loadCompleteCatalog(); },
 
@@ -426,7 +429,14 @@ export function createCatalogService({ provider = catalogProvider, adapter = sho
       return { cart, lines: restoredLines, products: [...restoredProducts.values()] };
     },
 
-    async checkout() { return { disabled: true }; },
+    async checkout(cartId, { authenticated = false } = {}) {
+      if (!(requestedLive && isLive && checkoutEnabled && adapter.loadCheckoutDestination)) return { disabled: true };
+      return createHostedCheckout({ id: cartId }, null, cartId, {
+        enabled: checkoutEnabled,
+        authenticated,
+        loadDestination: adapter.loadCheckoutDestination,
+      });
+    },
   });
 }
 

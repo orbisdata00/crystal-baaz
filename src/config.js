@@ -17,4 +17,8 @@ export const shopifyConfig = {
   storefrontAccessToken: env.VITE_SHOPIFY_STOREFRONT_PUBLIC_TOKEN || "",
   apiVersion: env.VITE_SHOPIFY_API_VERSION || "2026-10",
   publicSiteUrl: env.VITE_PUBLIC_SITE_URL || "",
+  checkoutEnabled: env.VITE_SHOPIFY_CHECKOUT_ENABLED === "true",
+  customerAccountClientId: env.VITE_SHOPIFY_CUSTOMER_ACCOUNT_CLIENT_ID || "",
+  customerAccountRedirectUri: env.VITE_SHOPIFY_CUSTOMER_ACCOUNT_REDIRECT_URI || "",
+  customerAccountLogoutUri: env.VITE_SHOPIFY_CUSTOMER_ACCOUNT_LOGOUT_URI || "",
 };

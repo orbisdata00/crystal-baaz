@@ -273,6 +273,21 @@ export async function fetchShopifyCart(cartId) {
   return data.cart || null;
 }
 
+export async function loadShopifyCheckoutDestination(cartId) {
+  if (!configured()) throw new Error("Shopify Storefront API settings are not configured.");
+  if (typeof cartId !== "string" || !cartId.startsWith("gid://shopify/Cart/")) throw new Error("A confirmed Shopify cart is required before checkout.");
+  const gql = `query CrystalBazzCartCheckout($id: ID!) {
+    cart(id: $id) { id checkoutUrl cost { totalAmount { amount currencyCode } } }
+  }`;
+  const data = await storefrontRequest(gql, { id: cartId });
+  const cart = data.cart;
+  if (!cart?.checkoutUrl) throw new Error("Shopify could not create a checkout link for this cart. Refresh the cart and retry.");
+  let checkoutUrl;
+  try { checkoutUrl = new URL(cart.checkoutUrl); } catch { throw new Error("Shopify returned an invalid checkout link."); }
+  if (checkoutUrl.protocol !== "https:" || checkoutUrl.username || checkoutUrl.password) throw new Error("Shopify returned an insecure checkout link.");
+  return { checkoutUrl: checkoutUrl.href, cart };
+}
+
 function storeErrors(payload, operation) {
   if (payload?.userErrors?.length) throw new Error(payload.userErrors[0].message || `${operation} failed.`);
   return payload?.cart || null;
@@ -351,8 +366,14 @@ export async function syncShopifyCart(cartId, localLines, knownCart = null) {
   return cart || await fetchShopifyCart(cartId);
 }
 
-export async function createHostedCheckout(cart, catalog, cartId = null) {
-  return { disabled: true };
+export async function createHostedCheckout(cart, catalog, cartId = null, { enabled = shopifyConfig.checkoutEnabled, authenticated = false, loadDestination = loadShopifyCheckoutDestination } = {}) {
+  if (!enabled) return { disabled: true };
+  const id = cartId || cart?.id;
+  if (!id) throw new Error("A confirmed Shopify cart is required before checkout.");
+  const result = await loadDestination(id);
+  const checkoutUrl = new URL(result.checkoutUrl);
+  if (authenticated) checkoutUrl.searchParams.set("sso", "silent");
+  return { disabled: false, url: checkoutUrl.href, cart: result.cart || null };
 }
 
 export function hasShopifyConnection() {

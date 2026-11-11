@@ -13,6 +13,8 @@ import { useShopifyCart } from "./use-shopify-cart.js";
 import { ShoppingExperience, useExperience } from "./shopping-experience.js";
 import { ProductImage, ShoppingHeader, ShoppingHome, ShoppingBrowse, ShoppingResults, ShoppingProduct, ShoppingCart, ShoppingSharedCart, ShoppingFooter, ShoppingBottom, ShoppingInformation } from "./shopping-ui.js";
 import { parseSharedCartItems } from "./cart-share.js";
+import { customerAccount, useCustomerAccount } from "./customer-account.js";
+import { CustomerAccountPage } from "./customer-account-ui.js";
 
 const html = htm.bind(React.createElement);
 const money = (amount) => new Intl.NumberFormat("en-IN", { style: "currency", currency: "INR", maximumFractionDigits: 0 }).format(Number(amount || 0));
@@ -804,6 +806,7 @@ function HomePage({ catalog, onNavigate, onSearch, onOpen, onAdd, saved, onSave,
 
 function StoreApp() {
   const experience = useExperience();
+  const accountState = useCustomerAccount();
   const [route, setRoute] = useState(() => parseRoute(window.location.hash));
   const productReturnHash = useRef("#collections");
   const [catalog, setCatalog] = useState([]);
@@ -827,6 +830,8 @@ function StoreApp() {
   const [toast, setToast] = useState("");
   const cartState = useShopifyCart({ catalog, setCatalog, onNotice: setToast });
   const { cart, remoteCart: shopifyCart, pending: cartSyncing, pendingKeys: cartPendingKeys, pendingOperations: cartPendingOperations, error: cartError } = cartState;
+
+  useEffect(() => { void customerAccount.initialize(); }, []);
 
   const navigate = useCallback((hash) => {
     window.history.pushState({}, "", hash || "#home");
@@ -998,7 +1003,19 @@ function StoreApp() {
   const openProduct = useCallback((product) => { productReturnHash.current = window.location.hash || "#collections"; navigate(productHash(product)); }, [navigate]);
   const openSharedProduct = useCallback((product, variantId) => { productReturnHash.current = window.location.hash || "#home"; navigate(productHash(product, variantId)); }, [navigate]);
   const checkout = async () => {
-    setToast("Checkout remains disabled while the live catalog is being verified.");
+    if (!catalogService.canCheckout) { setToast("Shopify checkout is not enabled for this storefront yet."); return; }
+    if (!shopifyCart?.id || cartSyncing || cartError) { setToast("Confirm your current Shopify cart before checkout."); return; }
+    setCheckoutBusy(true);
+    setToast("");
+    try {
+      const result = await catalogService.checkout(shopifyCart.id, { authenticated: customerAccount.isAuthenticated });
+      if (result.disabled || !result.url) { setToast("Shopify checkout is unavailable for this cart."); return; }
+      window.location.assign(result.url);
+    } catch (error) {
+      setToast(error.message || "Shopify could not prepare checkout. Please retry.");
+    } finally {
+      setCheckoutBusy(false);
+    }
   };
 
   const updateViewOption = (name, value) => {
@@ -1078,6 +1095,7 @@ function StoreApp() {
   const sortProducts = value => { setSort(value); setPageSize(24); updateViewOption("sort", value); };
   const pageContent = () => {
     if (["home", "cart"].includes(route.page)) return html`<${ShoppingHome} catalog=${catalog} ...${shared} ...${dataState}/>`;
+    if (route.page === "account") return html`<${CustomerAccountPage} state=${accountState} account=${customerAccount}/>`;
     if (route.page === "shared-cart") return html`<${ShoppingSharedCart} items=${sharedCartData.items} loading=${sharedCartData.loading} error=${sharedCartData.error} cartCount=${cartCount} cartSyncing=${cartSyncing} cartError=${cartError} onRetryVerification=${retryCatalog} onRetryCart=${cartState.retry} onAddItems=${addSharedItems} onNavigate=${navigate} onOpenProduct=${openSharedProduct}/>`;
     let browseRoute = route;
     if (route.page === "nav" && getParentCategory(route.label)) browseRoute = { ...route, page: "collections", group: getParentCategory(route.label).id };
@@ -1094,13 +1112,13 @@ function StoreApp() {
     return html`<${ShoppingInformation} page=${route.page} onNavigate=${navigate}/>`;
   };
   return html`<div className="shopping-shell" data-catalog-source=${catalogService.source} data-catalog-loaded=${liveCatalog} data-catalog-loading-more=${catalogLoadingMore} data-catalog-product-count=${catalog.length} data-shopify-product-count=${shopifyProductCount} data-route=${route.page} data-cart-pending=${cartSyncing} data-mobile-mode=${experience.mode(route.page, cartCount)}>
-    <${ShoppingHeader} route=${route} onBack=${() => navigate(productReturnHash.current)} catalog=${catalog} query=${query} setQuery=${setQuery} onSearch=${term => navigate(`#search/${encodeURIComponent(term || "")}`)} onNavigate=${navigate} onCart=${openCart} cartCount=${cartCount} remoteCart=${shopifyCart} pending=${cartSyncing} cartError=${cartError} savedCount=${saved.length} loading=${loading}/>
+    <${ShoppingHeader} route=${route} onBack=${() => navigate(productReturnHash.current)} catalog=${catalog} query=${query} setQuery=${setQuery} onSearch=${term => navigate(`#search/${encodeURIComponent(term || "")}`)} onNavigate=${navigate} onCart=${openCart} cartCount=${cartCount} remoteCart=${shopifyCart} pending=${cartSyncing} cartError=${cartError} savedCount=${saved.length} loading=${loading} accountAuthenticated=${accountState.status === "authenticated"}/>
     ${pageContent()}
     <${ShoppingFooter} onNavigate=${navigate}/>
     ${toast && route.page !== "cart" && html`<div className="toast" role=${cartError ? "alert" : "status"}><span>${toast}</span>${cartError && html`<button type="button" onClick=${() => { setToast(""); void cartState.retry(); }}>Retry</button>`}</div>`}
     <${experience.Controls} route=${route} count=${cartCount} remoteCart=${shopifyCart} pending=${cartSyncing} error=${cartError} onCart=${openCart}/>
     <${ShoppingBottom} route=${route} onNavigate=${navigate} onCart=${openCart} count=${cartCount}/>
-    ${route.page === "cart" && html`<${ShoppingCart} cart=${cart} catalog=${catalog} remoteCart=${shopifyCart} syncing=${cartSyncing} pendingKeys=${cartPendingKeys} pendingOperations=${cartPendingOperations} error=${!online ? "Reconnect to update your Shopify cart." : cartError} onRetry=${cartState.retry} onClose=${() => navigate(cartReturnHash.current)} onUpdate=${updateCart} onRemove=${removeCart}/>`}
+    ${route.page === "cart" && html`<${ShoppingCart} cart=${cart} catalog=${catalog} remoteCart=${shopifyCart} syncing=${cartSyncing} pendingKeys=${cartPendingKeys} pendingOperations=${cartPendingOperations} error=${!online ? "Reconnect to update your Shopify cart." : cartError} onRetry=${cartState.retry} onClose=${() => navigate(cartReturnHash.current)} onUpdate=${updateCart} onRemove=${removeCart} checkoutEnabled=${catalogService.canCheckout} checkoutBusy=${checkoutBusy} onCheckout=${checkout}/>`}
   </div>`;
 }
 
