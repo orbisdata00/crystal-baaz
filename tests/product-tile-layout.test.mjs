@@ -3,7 +3,7 @@ import { readFile } from "node:fs/promises";
 import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { test } from "node:test";
-import { ShoppingCard } from "../src/shopping-ui.js";
+import { NewArrivalsPreview, PdpPurchaseBar, ShoppingBrowse, ShoppingCard, ShoppingHeader, ShoppingHome, ShoppingProduct, ShoppingResults } from "../src/shopping-ui.js";
 
 const product = {
   id: "gid://shopify/Product/1",
@@ -41,11 +41,11 @@ function render(cart = []) {
   }));
 }
 
-test("mobile product card keeps image actions in the tile and product copy outside", () => {
+test("product card aligns current price with Buy Now and keeps title copy outside the image tile", () => {
   const markup = render();
   const tileStart = markup.indexOf("data-product-image-tile");
   const copyStart = markup.indexOf('class="shopping-product-copy"');
-  const priceStart = markup.indexOf('class="shopping-product-price-info"');
+  const priceStart = markup.indexOf('class="shopping-tile-prices"');
   const titleStart = markup.indexOf('class="shopping-product-title"');
   assert.ok(tileStart >= 0 && copyStart > tileStart);
   assert.ok(markup.slice(tileStart, copyStart).includes('class="shopping-product-image-link"'));
@@ -53,9 +53,14 @@ test("mobile product card keeps image actions in the tile and product copy outsi
   assert.match(markup.slice(tileStart, copyStart), /class="shopping-tile-action(?: [^"]*)?"/);
   assert.ok(markup.slice(tileStart, copyStart).includes('class="shopping-add"'));
   assert.match(markup, /class="shopping-add"[^>]*>Buy Now<\/button>/);
+  assert.match(markup, /₹60/);
   assert.doesNotMatch(markup, />\s*ADD\s*</i);
-  assert.ok(priceStart > copyStart && titleStart > priceStart);
-  assert.match(markup, /40% OFF on MRP/);
+  assert.ok(priceStart > tileStart && priceStart < copyStart && titleStart > copyStart);
+  const purchaseRow = markup.slice(markup.indexOf('class="shopping-tile-purchase-row"'), copyStart);
+  assert.match(purchaseRow, /shopping-tile-prices/);
+  assert.match(purchaseRow, /shopping-add/);
+  assert.match(markup, /40% OFF/);
+  assert.doesNotMatch(markup, /on MRP/i);
   assert.match(markup, /class="shopping-product-attributes"><span[^>]*>Ring<\/span>/);
   assert.doesNotMatch(markup, /Variant 1/);
 });
@@ -84,6 +89,10 @@ test("mobile rails and navigation use compact, separate visual containers", asyn
   assert.match(css, /\.shopping-bottom-nav[^}]*border-radius:999px; background:#ffffff/);
   assert.match(css, /\.shopping-tile-action \.shopping-add \{ min-width:70px;[^}]*white-space:nowrap/);
   assert.match(css, /\.shopping-tile-action \.shopping-add \{ min-width:58px; min-height:30px;/);
+  assert.match(css, /\.shopping-home-category-grid \{ display:flex; gap:12px; overflow-x:auto/);
+  assert.match(css, /\.shopping-category-artwork \{[^}]*aspect-ratio:1;/);
+  assert.match(css, /\.shopping-tile-purchase-row \{ display:flex; align-items:center; justify-content:space-between/);
+  assert.match(css, /\.shopping-search>button \{ width:44px; height:44px;/);
 });
 
 test("desktop product cards keep one boundary around the image and action tile", async () => {
@@ -95,4 +104,138 @@ test("desktop product cards keep one boundary around the image and action tile",
   assert.match(cardRule, /box-shadow:none;/);
   assert.match(imageRule, /border:1px solid var\(--line\);/);
   assert.doesNotMatch(css, /\.shopping-product-card \{[^}]*border:1px solid/);
+});
+
+test("home opens with compact category icons and Best Seller is the first product section", () => {
+  const markup = renderToStaticMarkup(React.createElement(ShoppingHome, { catalog: [], onNavigate() {}, loading: false, error: "" }));
+  const categoryStart = markup.indexOf('class="shopping-home-category-grid"');
+  const bestSeller = markup.indexOf('data-home-section="best-seller"');
+  const newArrivals = markup.indexOf('data-home-section="new-arrivals"');
+  assert.ok(categoryStart >= 0 && bestSeller > categoryStart && newArrivals > bestSeller);
+  assert.match(markup, /data-category-color="best-seller"/);
+  assert.doesNotMatch(markup, /shopping-campaign-main|shopping-campaign-small/);
+});
+
+test("New Arrivals preview shows at most three responsive rows of Shopify products", async () => {
+  const products = Array.from({ length: 13 }, (_, index) => ({
+    ...product,
+    id: `gid://shopify/Product/${index + 1}`,
+    handle: `moonstone-ring-${index + 1}`,
+  }));
+  products.push({ ...product, id: "demo-product", handle: "demo-product", previewOnly: true });
+  const markup = renderToStaticMarkup(React.createElement(NewArrivalsPreview, {
+    products,
+    onView() {},
+    onOpen() {}, onAdd() {}, onSave() {}, onUpdate() {}, saved: [], cart: [],
+  }));
+  const css = await readFile(new URL("../src/shopping.css", import.meta.url), "utf8");
+  assert.equal((markup.match(/class="shopping-product-card"/g) || []).length, 12);
+  assert.match(markup, /gid:\/\/shopify\/Product\/12/);
+  assert.doesNotMatch(markup, /gid:\/\/shopify\/Product\/13|demo-product/);
+  assert.match(css, /\.shopping-new-arrivals-grid \{ grid-template-columns:repeat\(4,minmax\(0,1fr\)\); \}/);
+  assert.match(css, /\.shopping-new-arrivals-grid>\.shopping-product-card:nth-child\(n\+7\) \{ display:none; \}/);
+  assert.match(css, /\.shopping-new-arrivals-grid>\.shopping-product-card:nth-child\(n\+10\) \{ display:none; \}/);
+});
+
+test("category and product listing screens omit product counts without removing loading controls", () => {
+  const browse = renderToStaticMarkup(React.createElement(ShoppingBrowse, {
+    route: { page: "collections", group: "best-seller" }, catalog: [], sort: "featured", onSort() {}, onNavigate() {}, pageSize: 24, onMore() {}, loading: false,
+  }));
+  const results = renderToStaticMarkup(React.createElement(ShoppingResults, {
+    catalog: [product], title: "Search results", pageSize: 24, onMore() {}, sort: "featured", onSort() {}, loading: false,
+  }));
+  const overview = renderToStaticMarkup(React.createElement(ShoppingBrowse, {
+    route: { page: "categories" }, catalog: [], sort: "featured", onSort() {}, onNavigate() {}, pageSize: 24, onMore() {}, loading: false,
+  }));
+  for (const markup of [browse, results, overview]) {
+    assert.doesNotMatch(markup, /\b\d+\s+products\b|\b\d+\s+loaded\b|Showing\s+\d+\s+of\s+\d+/i);
+  }
+  assert.match(browse, /Share category/);
+  assert.match(results, /data-product-id="gid:\/\/shopify\/Product\/1"/);
+});
+
+test("category browsing has sharing and no stock or price range filters", () => {
+  const markup = renderToStaticMarkup(React.createElement(ShoppingBrowse, {
+    route: { page: "collections", group: "best-seller" }, catalog: [], sort: "featured", onSort() {}, onNavigate() {}, pageSize: 24, onMore() {}, loading: false,
+  }));
+  assert.match(markup, /Share category/);
+  assert.doesNotMatch(markup, /In stock|Minimum price|Maximum price|Min ₹|Max ₹/i);
+});
+
+test("product details show Shopify description and only verified reviews/certification", () => {
+  const previousDocument = globalThis.document;
+  globalThis.document = { getElementById: () => null };
+  try {
+    const liveProduct = {
+      ...product, id: "gid://shopify/Product/1", type: "Ring", description: "<p>Natural <strong>moonstone</strong> &#x2728;</p>",
+      collectionHandles: [], images: [product.image], reviews: [
+        { id: "review-fake", rating: 5, text: "Do not show this", verified: false },
+        { id: "review-live", rating: 4, text: "Real verified review", verified: true },
+      ], certification: { verified: false, issuer: "Unverified issuer" },
+    };
+    const markup = renderToStaticMarkup(React.createElement(ShoppingProduct, {
+      product: liveProduct, catalog: [], saved: [], cart: [], pendingKeys: [], pendingOperations: [], onAdd() {}, onUpdate() {}, onSave() {}, onNavigate() {},
+    }));
+    assert.match(markup, /Product description/);
+    assert.match(markup, /Natural moonstone ✨/);
+    assert.match(markup, /Real verified review/);
+    assert.doesNotMatch(markup, /Do not show this|Unverified issuer|>In stock<|>Ring<\/p>/);
+    assert.match(markup, /Verified certification details have not been supplied/);
+  } finally {
+    if (previousDocument === undefined) delete globalThis.document;
+    else globalThis.document = previousDocument;
+  }
+});
+
+test("PDP header exposes back, search, account, and a cart count badge", () => {
+  const markup = renderToStaticMarkup(React.createElement(ShoppingHeader, {
+    route: { page: "product" }, cartCount: 3, onBack() {}, onNavigate() {}, onCart() {},
+  }));
+  assert.match(markup, /Crystal Baaz home/);
+  assert.match(markup, /Search products/);
+  assert.match(markup, /Customer account/);
+  assert.match(markup, /Cart, 3 items/);
+  assert.match(markup, />3<\/span>/);
+});
+
+test("sticky PDP purchase bar uses live variant price, MRP, quantity and Buy Now", () => {
+  const markup = renderToStaticMarkup(React.createElement(PdpPurchaseBar, {
+    product, variant: product.variants[0], off: 40, thumbnail: product.image, cart: [], pendingKeys: [], pendingOperations: [],
+    onAdd() {}, onUpdate() {}, onNavigate() {},
+  }));
+  assert.match(markup, /shopping-pdp-sticky-thumb/);
+  assert.match(markup, /₹60/);
+  assert.match(markup, /MRP/);
+  assert.match(markup, /₹100/);
+  assert.match(markup, /Increase Moonstone Ring quantity/);
+  assert.match(markup, /shopping-pdp-buy[^>]*>Buy Now<\/button>/);
+  assert.doesNotMatch(markup, /shopping-pdp-offer/);
+});
+
+test("PDP gallery renders actual Shopify video media and responsive sticky purchase styling", async () => {
+  const previousDocument = globalThis.document;
+  globalThis.document = { getElementById: () => null };
+  try {
+    const liveProduct = {
+      ...product,
+      galleryMedia: [{ id: "media-video", type: "video", src: "https://cdn.shopify.com/videos/ring.mp4", mimeType: "video/mp4", poster: product.image }],
+    };
+    const markup = renderToStaticMarkup(React.createElement(ShoppingProduct, {
+      product: liveProduct, catalog: [], saved: [], cart: [], pendingKeys: [], pendingOperations: [], onAdd() {}, onUpdate() {}, onSave() {}, onNavigate() {},
+    }));
+    const css = await readFile(new URL("../src/shopping.css", import.meta.url), "utf8");
+    assert.match(markup, /shopping-gallery-stage/);
+    assert.match(markup, /<video[^>]*controls[^>]*playsinline[^>]*>/i);
+    assert.match(markup, /shopping-pdp-zoom/);
+    assert.match(markup, /aria-label="Share product"/);
+    assert.match(css, /\.shopping-pdp-sticky-wrap \{ position:fixed;[^}]*env\(safe-area-inset-bottom\)/);
+    assert.match(css, /\.shopping-product-detail \{ grid-template-columns:minmax\(0,1\.06fr\) minmax\(0,\.94fr\)/);
+    assert.match(css, /@media\(max-width:780px\)[\s\S]*?\.shopping-pdp-sticky \{ display:grid;/);
+    assert.match(css, /\.shopping-gallery-stage \{ width:min\(calc\(100vw - 64px\),520px\);/);
+    assert.match(css, /\.shopping-desktop-purchase \{ display:block; margin:0; \}/);
+    assert.match(css, /\.shopping-pdp-desktop-action \{ display:none; \}/);
+  } finally {
+    if (previousDocument === undefined) delete globalThis.document;
+    else globalThis.document = previousDocument;
+  }
 });

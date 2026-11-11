@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { buildCartShare, buildProductShareUrl, buildWhatsAppShareUrl, copyCartShare, parseSharedCartItems, publicStorefrontBaseUrl, shareCart, shareProductLink } from "../src/cart-share.js";
+import { buildCartShare, buildCategoryShareUrl, buildProductShareUrl, buildWhatsAppShareUrl, copyCartShare, parseSharedCartItems, publicStorefrontBaseUrl, shareCart, shareCategoryLink, shareProductLink } from "../src/cart-share.js";
 import { parseRoute } from "../src/routes.js";
 
 const variantOne = "gid://shopify/ProductVariant/1234567890";
@@ -27,6 +27,25 @@ test("product sharing uses native share and copies only the safe URL as fallback
   const fallback = await shareProductLink({ product: { title: "Blue Sapphire Ring", handle: "blue-sapphire" }, variantId: variantOne, baseUrl: "https://shop.example/", navigator: { clipboard: { async writeText(url) { copied = url; } } } });
   assert.equal(fallback.status, "copied");
   assert.equal(copied, received.url);
+});
+
+test("category sharing keeps the selected category route and uses public native-share or copy fallbacks", async () => {
+  const routeHash = "#collections?group=bracelets&category=collection%3Astone-bracelet";
+  const url = buildCategoryShareUrl("Bracelets", routeHash, { baseUrl: "https://shop.example/?campaign=private#home" });
+  assert.equal(new URL(url).hash, routeHash);
+  assert.doesNotMatch(url, /campaign=private/);
+  assert.equal(buildCategoryShareUrl("Bracelets", routeHash, { baseUrl: "http://localhost:5173/" }), "");
+  assert.equal(buildCategoryShareUrl("Bracelets", "javascript:alert(1)", { baseUrl: "https://shop.example/" }), "");
+
+  let shared;
+  const native = await shareCategoryLink({ category: "Bracelets", routeHash, baseUrl: "https://shop.example/", navigator: { async share(payload) { shared = payload; } } });
+  assert.equal(native.status, "shared");
+  assert.equal(shared.url, url);
+  assert.match(shared.text, /Bracelets/);
+  let copied;
+  const fallback = await shareCategoryLink({ category: "Bracelets", routeHash, baseUrl: "https://shop.example/", navigator: { clipboard: { async writeText(value) { copied = value; } } } });
+  assert.equal(fallback.status, "copied");
+  assert.equal(copied, url);
 });
 
 test("cart share URL encodes only real Shopify variant IDs and quantities", () => {

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import htm from "htm";
+import { formatCurrencyAmount } from "./money.js";
 
 const html = htm.bind(React.createElement);
 
@@ -10,7 +11,7 @@ function connectionNodes(connection) {
 function formatAmount(amount, currency = "INR") {
   if (!amount || !Number.isFinite(Number(amount.amount))) return "Amount unavailable";
   try {
-    return new Intl.NumberFormat("en-IN", { style: "currency", currency, maximumFractionDigits: 2 }).format(Number(amount.amount));
+    return formatCurrencyAmount(amount.amount, currency, 2);
   } catch { return `${amount.amount} ${currency}`; }
 }
 

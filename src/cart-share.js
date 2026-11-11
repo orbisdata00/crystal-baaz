@@ -32,6 +32,15 @@ export function buildProductShareUrl(product, variantId, options = {}) {
   return storefront.href;
 }
 
+export function buildCategoryShareUrl(category, routeHash, options = {}) {
+  const storefront = publicStorefrontBaseUrl(options);
+  const label = String(category || "").trim();
+  const hash = typeof routeHash === "string" ? routeHash : "";
+  if (!storefront || !label || !hash.startsWith("#") || hash.startsWith("#//")) return "";
+  storefront.hash = hash;
+  return storefront.href;
+}
+
 function shareLines(lines = []) {
   if (!Array.isArray(lines) || !lines.length) return null;
   const quantities = new Map();
@@ -113,6 +122,22 @@ export async function shareProductLink({ product, variantId, navigator: browser 
   if (typeof browser?.clipboard?.writeText === "function") {
     try { await browser.clipboard.writeText(url); return { status: "copied", message: "Product link copied." }; }
     catch { return { status: "failed", message: "Could not copy the product link. Please try again." }; }
+  }
+  return { status: "unsupported", message: "Sharing is unavailable in this browser." };
+}
+
+export async function shareCategoryLink({ category, routeHash, navigator: browser = globalThis.navigator, baseUrl, publicSiteUrl } = {}) {
+  const label = String(category || "category").trim().slice(0, 100) || "category";
+  const url = buildCategoryShareUrl(label, routeHash, { baseUrl, publicSiteUrl });
+  if (!url) return { status: "unavailable", message: "A public Crystal Baaz storefront URL is required to share this category." };
+  const payload = { title: `${label} at Crystal Baaz`, text: `Explore ${label} at Crystal Baaz`, url };
+  if (typeof browser?.share === "function") {
+    try { await browser.share(payload); return { status: "shared", message: "Category link shared." }; }
+    catch (error) { if (error?.name === "AbortError") return { status: "cancelled", message: "" }; }
+  }
+  if (typeof browser?.clipboard?.writeText === "function") {
+    try { await browser.clipboard.writeText(url); return { status: "copied", message: "Category link copied." }; }
+    catch { return { status: "failed", message: "Could not copy the category link. Please try again." }; }
   }
   return { status: "unsupported", message: "Sharing is unavailable in this browser." };
 }

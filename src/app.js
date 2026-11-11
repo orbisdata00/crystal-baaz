@@ -15,9 +15,10 @@ import { ProductImage, ShoppingHeader, ShoppingHome, ShoppingBrowse, ShoppingRes
 import { parseSharedCartItems } from "./cart-share.js";
 import { customerAccount, useCustomerAccount } from "./customer-account.js";
 import { CustomerAccountPage } from "./customer-account-ui.js";
+import { formatCurrencyAmount } from "./money.js";
 
 const html = htm.bind(React.createElement);
-const money = (amount) => new Intl.NumberFormat("en-IN", { style: "currency", currency: "INR", maximumFractionDigits: 0 }).format(Number(amount || 0));
+const money = (amount) => formatCurrencyAmount(Number(amount || 0), "INR", 0);
 const productLabel = (product) => product.title?.trim() || "Product title pending";
 const discountPercent = (price, compareAt) => Number(compareAt) > Number(price) && Number(price) > 0 ? Math.round((1 - Number(price) / Number(compareAt)) * 100) : 0;
 function useProductImageFallback(event) {
