@@ -1,5 +1,5 @@
 import { selectProductMedia } from "./product-media.js";
-import registry from "./data/catalog-registry.json" with { type: "json" };
+import registry from "./data/catalog-registry.json";
 let clientCatalog = { ...registry, products: [] };
 let clientProducts = [];
 export const loadPreviewCatalog = async () => {

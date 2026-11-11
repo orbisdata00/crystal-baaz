@@ -10,6 +10,7 @@ const paths = {
   arrowLeft: [["path", { d: "M20 12H5m7 7-7-7 7-7" }]],
   share: [["circle", { cx: 18, cy: 5, r: 3 }], ["circle", { cx: 6, cy: 12, r: 3 }], ["circle", { cx: 18, cy: 19, r: 3 }], ["path", { d: "m8.7 10.6 6.6-4.2m-6.6 7 6.6 4.2" }]],
   zoom: [["circle", { cx: 10.8, cy: 10.8, r: 6.5 }], ["path", { d: "m16 16 4.2 4.2M10.8 7.8v6m-3-3h6" }]],
+  play: [["path", { d: "m8 5 11 7-11 7V5Z", fill: "currentColor", stroke: "none" }]],
   arrowUp: [["path", { d: "m7 14 5-5 5 5" }]],
   check: [["path", { d: "m5 12 4 4L19 6" }]],
   heart: [["path", { d: "M20.8 8.8c0 5-8.8 10-8.8 10s-8.8-5-8.8-10A4.8 4.8 0 0 1 12 6.3a4.8 4.8 0 0 1 8.8 2.5Z" }]],

@@ -11,6 +11,7 @@
   --muted: #8b8c83;
   --serif: "Cormorant Garamond", "Iowan Old Style", Georgia, serif;
   --sans: "DM Sans", "Avenir Next", Avenir, sans-serif;
+  --money-font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans Devanagari", sans-serif;
 }
 
 * { box-sizing: border-box; }
@@ -2164,4 +2165,19 @@ body { color: var(--ink); background: var(--cream); }
     width: clamp(120px, 36vw, 276px);
     flex-basis: clamp(120px, 36vw, 276px);
   }
+}
+
+.product-price strong,
+.product-price del,
+.detail-price strong,
+.detail-price del,
+.detail-sticky-price strong,
+.cart-line-price strong,
+.cart-line-price del,
+.subtotal-row strong,
+.subtotal-row del,
+.subtotal-row small,
+.cart-line-info > strong {
+  font-family: var(--money-font);
+  font-variant-numeric: tabular-nums;
 }

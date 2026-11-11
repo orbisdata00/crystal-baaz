@@ -105,6 +105,16 @@ const DETAIL_PRODUCT_FIELDS = `
   id title handle description vendor productType tags availableForSale
   featuredImage { url altText width height }
   images(first: 12) { nodes { url altText width height } pageInfo { hasNextPage endCursor } }
+  media(first: 30) {
+    nodes {
+      id mediaContentType alt
+      previewImage { url altText width height }
+      ... on MediaImage { image { url altText width height } }
+      ... on Video { sources { url mimeType format height width } }
+      ... on ExternalVideo { embeddedUrl }
+    }
+    pageInfo { hasNextPage endCursor }
+  }
   priceRange { minVariantPrice { amount currencyCode } }
   options { name values }
   variants(first: 100) {
