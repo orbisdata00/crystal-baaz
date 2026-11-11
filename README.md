@@ -37,4 +37,8 @@ Juspay setup is not included because merchant, Shopify, region, and payment comp
 ## Local development
 
 Use Node.js 20.19 or newer. Run `npm install`, then `npm run dev` to open the local preview. Run `npm test` for catalog, discovery, routing, cart, and Storefront adapter checks. `npm run build` creates the static production build in `dist/`; `npm run preview` serves that build locally.
-# crystal-baaz
+## GitHub Pages deployment
+
+In the repository's **Settings > Pages > Build and deployment**, select **GitHub Actions** as the source. The Pages workflow runs tests, builds with Vite, and publishes only `dist/` on pushes to `main` or manual runs. Pull requests run the same checks without deploying.
+
+Do not publish the repository root: `index.html` is Vite's source entry point and imports npm packages that browsers cannot resolve without the build. Vite's relative base and app-relative PWA and image URLs support both `/crystal-baaz/` on GitHub Pages and root-hosted previews.
