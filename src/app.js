@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { createRoot } from "react-dom/client";
 import htm from "htm";
 import { Icon } from "./Icon.js";
@@ -36,6 +36,16 @@ function useProductImageFallback(event) {
 }
 const collectionByHandle = new Map(collections.map((item) => [item.handle, item]));
 const groupById = new Map(catalogGroups.map((item) => [item.id, item]));
+
+function resetPageScroll() {
+  try { window.scrollTo({ top: 0, left: 0, behavior: "instant" }); }
+  catch { window.scrollTo(0, 0); }
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
+  document.querySelectorAll(".shopping-browse-content, .shopping-results-content, .shopping-cart-scroll, .mobile-categories-products, .mobile-category-overview-scroll").forEach((element) => {
+    element.scrollTop = 0;
+  });
+}
 
 function getItemProducts(products, item) {
   if (item.kind === "collection") return selectProducts(products, { filter: { kind: "collection", value: item.target } });
@@ -686,7 +696,7 @@ function ProductPage({ product, products, onBack, onOpen, onAdd, onSave, onNotic
         <h1>${title}</h1>
         ${hasReviewData && html`<a className="detail-rating" href="#product-reviews" onClick=${(event) => { if (!product.reviews?.length) event.preventDefault(); }}><span className="rating-stars" aria-label="Rated ${product.rating} out of 5">★★★★★</span><strong>${Number(product.rating).toFixed(1)}</strong><span>(${Number(product.reviewCount).toLocaleString("en-IN")})</span></a>`}
         ${priceContent}
-        ${variants.length > 1 && html`<div className="detail-options"><div className="detail-option-head"><span>Choose an option</span></div><div className="size-options">${variants.map((item, index) => html`<button key=${item.id} type="button" className=${`size-option ${variantIndex === index ? "is-selected" : ""}`} disabled=${item.available === false || item.canPurchase === false || !(Number(item.price) > 0)} onClick=${() => setVariantIndex(index)}>${item.selectedOptions?.map((option) => option.value).join(" / ") || item.title}${Number(item.price) > 0 ? ` · ${money(item.price)}` : " · Price pending"}</button>` )}</div></div>`}
+        ${variants.length > 1 && html`<div className="detail-options"><div className="detail-option-head"><span>Choose an option</span></div><div className="size-options">${variants.map((item, index) => html`<button key=${item.id} type="button" className=${`size-option ${variantIndex === index ? "is-selected" : ""}`} disabled=${item.available === false || item.canPurchase === false || !(Number(item.price) > 0)} onClick=${() => setVariantIndex(index)}>${customerVariantLabel(product, item)}${Number(item.price) > 0 ? ` · ${money(item.price)}` : " · Price pending"}</button>` )}</div></div>`}
         ${detailAttributes.length > 0 && html`<dl className="detail-attributes">${detailAttributes.map((item) => html`<div key=${item.label}><dt>${item.label}</dt><dd>${item.value}</dd></div>`)}</dl>`}
         ${offers.length > 0 && html`<section className="detail-offers" aria-label="Available offers"><h2>Available offers</h2>${offers.slice(0, showAllOffers ? offers.length : 2).map((offer, index) => html`<article key=${offer.code || offer.title || index} className="detail-offer"><span className="detail-offer-icon"><${Icon} name="sparkle" size=${16}/></span><div><strong>${offer.title || offer.text}</strong>${offer.description && html`<p>${offer.description}</p>`}${offer.expiresAt && html`<small>Valid until ${offer.expiresAt}</small>`}${offer.terms && html`<details className="detail-offer-terms"><summary>Terms & conditions</summary><p>${offer.terms}</p></details>`}</div>${offer.code && html`<button type="button" onClick=${() => copyOffer(offer)} aria-label=${`Copy offer code ${offer.code}`}>${offer.code}</button>`}</article>`)}${offers.length > 2 && html`<button type="button" className="detail-offers-toggle" onClick=${() => setShowAllOffers((shown) => !shown)}>${showAllOffers ? "Show less" : `View all ${offers.length} offers`} <${Icon} name=${showAllOffers ? "arrowUp" : "arrow"} size=${13}/></button>`}</section>`}
         ${genericDescription ? html`<p className="detail-preview-copy">Product description is being prepared.</p>` : html`<p className="detail-description">${description}</p>`}
@@ -863,12 +873,16 @@ function StoreApp() {
     const next = parseRoute(hash || "#home");
     setRoute(next); setSort(next.sort || "featured"); setTypeFilter(next.facet || ""); setPageSize(24);
     if (next.page === "search") setQuery(next.query);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    resetPageScroll();
   }, []);
+  const routeScrollKey = [route.page, route.handle, route.id, route.label, route.sign, route.query, route.group, route.category, route.items, route.variantId].join("|");
+  useLayoutEffect(() => { resetPageScroll(); }, [routeScrollKey]);
   useEffect(() => {
-    const syncRoute = () => { const next = parseRoute(window.location.hash); setRoute(next); setSort(next.sort || "featured"); setTypeFilter(next.facet || ""); setPageSize(24); if (next.page === "search") setQuery(next.query); };
+    const previousRestoration = window.history.scrollRestoration;
+    if ("scrollRestoration" in window.history) window.history.scrollRestoration = "manual";
+    const syncRoute = () => { const next = parseRoute(window.location.hash); setRoute(next); setSort(next.sort || "featured"); setTypeFilter(next.facet || ""); setPageSize(24); if (next.page === "search") setQuery(next.query); resetPageScroll(); };
     window.addEventListener("popstate", syncRoute); window.addEventListener("hashchange", syncRoute);
-    return () => { window.removeEventListener("popstate", syncRoute); window.removeEventListener("hashchange", syncRoute); };
+    return () => { window.removeEventListener("popstate", syncRoute); window.removeEventListener("hashchange", syncRoute); if ("scrollRestoration" in window.history) window.history.scrollRestoration = previousRestoration; };
   }, []);
   useEffect(() => {
     if (import.meta.env.PROD && "serviceWorker" in navigator) {
@@ -1137,7 +1151,7 @@ function StoreApp() {
   const sortProducts = value => { setSort(value); setPageSize(24); updateViewOption("sort", value); };
   const pageContent = () => {
     if (["home", "cart"].includes(route.page)) return html`<${ShoppingHome} catalog=${catalog} collectionImages=${shopifyCollectionImages} ...${shared} ...${dataState}/>`;
-    if (route.page === "account") return html`<${CustomerAccountPage} state=${accountState} account=${customerAccount}/>`;
+    if (route.page === "account") return html`<${CustomerAccountPage} state=${accountState} account=${customerAccount} onNavigate=${navigate}/>`;
     if (route.page === "shared-cart") return html`<${ShoppingSharedCart} items=${sharedCartData.items} loading=${sharedCartData.loading} error=${sharedCartData.error} cartCount=${cartCount} cartSyncing=${cartSyncing} cartError=${cartError} onRetryVerification=${retryCatalog} onRetryCart=${cartState.retry} onAddItems=${addSharedItems} onNavigate=${navigate} onOpenProduct=${openSharedProduct}/>`;
     let browseRoute = route;
     if (route.page === "nav" && getParentCategory(route.label)) browseRoute = { ...route, page: "collections", group: getParentCategory(route.label).id };
@@ -1145,11 +1159,11 @@ function StoreApp() {
     if (route.page === "zodiac") browseRoute = { ...route, page: "collections", group: "zodiac", category: route.sign ? `zodiac:${route.sign}` : "" };
     if (["collections", "collection", "group"].includes(browseRoute.page)) return html`<${ShoppingBrowse} route=${browseRoute} catalog=${catalog} collectionImages=${shopifyCollectionImages} sort=${sort} onSort=${sortProducts} pageSize=${pageSize} onMore=${loadMore} ...${shared} ...${dataState}/>`;
     if (route.page === "product") return html`<${ShoppingProduct} key=${route.handle} product=${activeProduct} selectedVariantId=${route.variantId||""} catalog=${catalog} onBack=${() => navigate(productReturnHash.current || "#collections")} ...${shared} ...${dataState}/>`;
-    if (route.page === "search" || route.page === "wishlist") return html`<${ShoppingResults} catalog=${catalog} title=${route.page === "wishlist" ? "Your wishlist" : route.query ? `Search results for “${route.query}”` : "Search products"} query=${route.query || ""} savedOnly=${route.page === "wishlist"} pageSize=${pageSize} onMore=${loadMore} sort=${sort} onSort=${sortProducts} ...${shared} ...${dataState}/>`;
+    if (route.page === "search" || route.page === "wishlist") return html`<${ShoppingResults} catalog=${catalog} collectionImages=${shopifyCollectionImages} title=${route.page === "wishlist" ? "Your wishlist" : route.query ? `Search results for “${route.query}”` : "Search products"} query=${route.query || ""} savedOnly=${route.page === "wishlist"} pageSize=${pageSize} onMore=${loadMore} sort=${sort} onSort=${sortProducts} ...${shared} ...${dataState}/>`;
     if (route.page === "nav" || route.page === "discovery") {
       const items = routeNav ? [...(routeNav.items || []), ...(routeNav.formItems || [])].filter(item => ["collection", "group"].includes(item.kind)) : (routeDiscovery?.collectionHandles || []).map(target => ({ kind: "collection", target }));
       const verified = [...new Map(items.flatMap(item => getItemProducts(catalog,item)).map(product => [product.id, product])).values()];
-      return html`<${ShoppingResults} catalog=${verified} title=${title} pageSize=${pageSize} onMore=${loadMore} sort=${sort} onSort=${sortProducts} ...${shared} ...${dataState}/>`;
+      return html`<${ShoppingResults} catalog=${verified} collectionImages=${shopifyCollectionImages} title=${title} pageSize=${pageSize} onMore=${loadMore} sort=${sort} onSort=${sortProducts} ...${shared} ...${dataState}/>`;
     }
     return html`<${ShoppingInformation} page=${route.page} onNavigate=${navigate}/>`;
   };

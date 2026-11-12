@@ -144,9 +144,10 @@ test("variant sheet content keeps Shopify identity, price, availability, and act
   }));
   const css = await readFile(new URL("../src/shopping.css", import.meta.url), "utf8");
   assert.equal((markup.match(/class="shopping-variant-line"/g) || []).length, 2);
-  assert.match(markup, />Option 1</);
-  assert.match(markup, />Option 2</);
-  assert.doesNotMatch(markup, /SKU:|RG166|RG168/);
+  assert.match(markup, />RG166</);
+  assert.match(markup, />RG168</);
+  assert.doesNotMatch(markup, />Option [12]</);
+  assert.doesNotMatch(markup, /SKU:/);
   assert.match(markup, /₹3,490/);
   assert.match(markup, /₹3,890/);
   assert.match(markup, /Available/);
@@ -215,8 +216,9 @@ test("shared-cart preview never renders internal SKU labels", () => {
     items: [{ status: "available", product: { ...product, variants: [variant, { ...variant, id: "gid://shopify/ProductVariant/2", sku: "RG168" }] }, variant, quantity: 1 }],
     onNavigate() {},
   }));
-  assert.match(share, />Option 1</);
-  assert.doesNotMatch(share, /SKU:|RG166|RG168/);
+  assert.match(share, />RG166</);
+  assert.doesNotMatch(share, />Option 1</);
+  assert.doesNotMatch(share, /SKU:/);
 });
 
 test("desktop product cards keep one boundary around the image and action tile", async () => {

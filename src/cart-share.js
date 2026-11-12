@@ -78,7 +78,7 @@ export function buildCartShare({ lines, baseUrl, publicSiteUrl } = {}) {
   });
   return {
     title: "Crystal Baaz cart",
-    text: `Review this Crystal Baaz cart with current Shopify prices and availability.\n\n${linesText.join("\n")}\n\n${storefront.href}`,
+    text: `Review this Crystal Baaz cart with current Shopify prices and availability.\n\n${linesText.join("\n")}`,
     url: storefront.href,
     reason: "",
   };
@@ -86,7 +86,7 @@ export function buildCartShare({ lines, baseUrl, publicSiteUrl } = {}) {
 
 export function buildWhatsAppShareUrl(options = {}) {
   const payload = buildCartShare(options);
-  return payload.url ? `https://wa.me/?text=${encodeURIComponent(payload.text)}` : "";
+  return payload.url ? `https://wa.me/?text=${encodeURIComponent(`${payload.text}\n\n${payload.url}`)}` : "";
 }
 
 export function parseSharedCartItems(serialized) {

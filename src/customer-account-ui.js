@@ -68,7 +68,7 @@ function AddressForm({ initial, isNew, busy, onCancel, onSave }) {
   </form>`;
 }
 
-export function CustomerAccountPage({ state, account }) {
+export function CustomerAccountPage({ state, account, onNavigate }) {
   const [dashboardLoading, setDashboardLoading] = useState(false);
   const [dashboardError, setDashboardError] = useState("");
   const [editingAddress, setEditingAddress] = useState(null);
@@ -131,7 +131,7 @@ export function CustomerAccountPage({ state, account }) {
   };
 
   return html`<main className="customer-account-page">
-    <header className="customer-account-heading"><span>CRYSTAL BAAZ</span><h1>Your account</h1><p>Sign in securely with Shopify to view your profile, saved addresses and orders.</p></header>
+    <header className="customer-account-heading"><button type="button" className="customer-account-back" aria-label="Back to shopping" onClick=${() => onNavigate?.("#home")}>←</button><span>CRYSTAL BAAZ</span><h1>Your account</h1><p>Sign in securely with Shopify to view your profile, saved addresses and orders.</p></header>
     ${state.status === "unconfigured" && html`<section className="customer-account-notice" role="status"><h2>Customer sign-in setup is pending</h2><p>${state.error || "Shopify Customer Accounts are not configured for this storefront yet."}</p><p>Sign-in will be available after the Shopify Client ID and registered HTTPS callback URLs are added.</p><button className="customer-account-secondary" type="button" onClick=${() => window.location.hash = "#home"}>Continue shopping</button></section>`}
     ${["signed-out", "error"].includes(state.status) && html`<section className="customer-account-signin"><h2>Sign in to Crystal Baaz</h2><p>Shopify will securely verify your account using its hosted sign-in.</p>${state.error && html`<p className="customer-account-error" role="alert">${state.error}</p>`}<button className="customer-account-primary" type="button" onClick=${() => void account.login()}>Sign in with Shopify</button></section>`}
     ${state.status === "authenticating" && html`<p className="customer-account-loading" role="status">Signing in securely…</p>`}

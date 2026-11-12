@@ -41,8 +41,16 @@ export function selectProducts(products, { filter = { kind: "all", value: "" }, 
     items = items.filter((product) => terms.some((term) => searchableText(product).includes(term)));
   }
   if (query.trim()) {
-    const needle = query.trim().toLowerCase();
-    items = items.filter((product) => searchableText(product).includes(needle));
+    items = items.map((product, index) => ({ product, index, score: scoreProductSearch(product, query) }))
+      .filter(item => item.score > 0)
+      .sort((left, right) => right.score - left.score || left.index - right.index)
+      .map(item => item.product);
+    const queryIntent = normalizeSearchText(query);
+    if (/\b(?:cheap|cheapest|affordable|budget|lowest|low price)\b/.test(queryIntent)) {
+      items.sort((a, b) => (Number(a.price) || Number.MAX_SAFE_INTEGER) - (Number(b.price) || Number.MAX_SAFE_INTEGER));
+    } else if (/\b(?:expensive|premium|highest|high price)\b/.test(queryIntent)) {
+      items.sort((a, b) => (Number(b.price) || -1) - (Number(a.price) || -1));
+    }
   }
   if (sort === "price-low") items.sort((a, b) => (a.price ?? Number.MAX_SAFE_INTEGER) - (b.price ?? Number.MAX_SAFE_INTEGER));
   if (sort === "price-high") items.sort((a, b) => (b.price ?? -1) - (a.price ?? -1));
@@ -66,6 +74,115 @@ function searchableText(product) {
   ].filter(Boolean).join(" ").toLowerCase();
 }
 
+const SEARCH_SYNONYMS = [
+  ["rudraksha", "rudraksh", "rudraksha bead", "rudraksha beads"],
+  ["mala", "malas", "rosary", "japa", "jaap", "prayer bead", "prayer beads"],
+  ["bracelet", "bracelets", "kada", "kadas", "bangle", "bangles"],
+  ["crystal", "crystals", "gemstone", "gemstones", "gem", "gems"],
+  ["ring", "rings", "anguthi"],
+  ["puja", "pooja", "worship", "ritual"],
+  ["necklace", "necklaces", "pendant", "pendants"],
+  ["zodiac", "rashi", "horoscope"],
+  ["gift", "gifts", "present", "presents"],
+  ["pearl", "pearls", "moti"],
+  ["earring", "earrings", "stud", "studs"],
+];
+const SEARCH_SYNONYM_LOOKUP = new Map();
+for (const group of SEARCH_SYNONYMS) {
+  const alternatives = group.map(normalizeSearchText);
+  for (const phrase of alternatives) {
+    for (const token of searchWords(phrase)) {
+      SEARCH_SYNONYM_LOOKUP.set(token, [...new Set([...(SEARCH_SYNONYM_LOOKUP.get(token) || []), ...alternatives])]);
+    }
+  }
+}
+const SEARCH_STOPWORDS = new Set(["a", "an", "and", "are", "best", "buy", "can", "cheap", "cheapest", "affordable", "budget", "lowest", "low", "expensive", "premium", "highest", "high", "for", "find", "give", "i", "in", "me", "my", "of", "on", "or", "please", "product", "products", "show", "some", "the", "to", "want", "with", "under", "below", "less", "than", "upto", "up", "above", "over", "more", "max", "min", "price", "rs", "rupee", "rupees", "inr"]);
+
+function normalizeSearchText(value) {
+  return String(value || "").normalize("NFKD").replace(/[\u0300-\u036f]/g, "").toLocaleLowerCase()
+    .replace(/(\d),(?=\d)/g, "$1")
+    .replace(/(\d+)\s+(mm|cm|kg|g)\b/g, "$1$2")
+    .replace(/&/g, " and ").replace(/[^\p{L}\p{N}]+/gu, " ").trim();
+}
+
+function searchWords(value) {
+  return normalizeSearchText(value).split(/\s+/).filter(Boolean).map(word => word.length > 4 && word.endsWith("s") ? word.slice(0, -1) : word);
+}
+
+function editDistanceWithin(left, right, limit) {
+  if (Math.abs(left.length - right.length) > limit) return false;
+  let previous = Array.from({ length: right.length + 1 }, (_, index) => index);
+  for (let row = 1; row <= left.length; row += 1) {
+    const current = [row];
+    let smallest = row;
+    for (let column = 1; column <= right.length; column += 1) {
+      current[column] = Math.min(current[column - 1] + 1, previous[column] + 1, previous[column - 1] + (left[row - 1] === right[column - 1] ? 0 : 1));
+      smallest = Math.min(smallest, current[column]);
+    }
+    if (smallest > limit) return false;
+    previous = current;
+  }
+  return previous[right.length] <= limit;
+}
+
+function priceIntent(query) {
+  const text = normalizeSearchText(query);
+  const under = text.match(/\b(?:under|below|less than|upto|up to|max)\s+(\d[\d,]*)\b/);
+  const over = text.match(/\b(?:above|over|more than|min)\s+(\d[\d,]*)\b/);
+  return {
+    max: under ? Number(under[1].replace(/,/g, "")) : null,
+    min: over ? Number(over[1].replace(/,/g, "")) : null,
+  };
+}
+
+function scoreProductSearch(product, query) {
+  const price = priceIntent(query);
+  const amount = Number(product.price);
+  if (price.max !== null && (!Number.isFinite(amount) || amount > price.max)) return 0;
+  if (price.min !== null && (!Number.isFinite(amount) || amount < price.min)) return 0;
+
+  const cleanedQuery = normalizeSearchText(query)
+    .replace(/\b(?:under|below|less than|upto|up to|max|above|over|more than|min)\s+\d[\d,]*\b/g, " ")
+    .replace(/\b(?:rs|inr|rupees?)\b/g, " ");
+  let terms = searchWords(cleanedQuery).filter(word => !SEARCH_STOPWORDS.has(word));
+  if (price.max !== null || price.min !== null) terms = terms.filter(word => !/^\d{2,}$/.test(word));
+  const uniqueTerms = [...new Set(terms)];
+  if (!uniqueTerms.length) return price.max !== null || price.min !== null ? 1 : 0;
+
+  const titleWords = new Set(searchWords(product.title));
+  const titleText = ` ${normalizeSearchText(product.title)} `;
+  const documentText = ` ${normalizeSearchText(searchableText(product))} `;
+  const documentWords = new Set(searchWords(documentText));
+  const fuzzyWords = [...titleWords];
+  let score = 0;
+  let matched = 0;
+  for (const term of uniqueTerms) {
+    let best = titleWords.has(term) ? 14 : documentWords.has(term) ? 8 : 0;
+    if (!best) {
+      const titlePrefix = [...titleWords].some(word => word.startsWith(term) || (term.length >= 4 && term.startsWith(word)));
+      const documentPrefix = [...documentWords].some(word => word.startsWith(term) || (term.length >= 4 && term.startsWith(word)));
+      if (titlePrefix) best = 10;
+      else if (documentPrefix) best = 5;
+    }
+    if (!best) {
+      const aliases = SEARCH_SYNONYM_LOOKUP.get(term) || [];
+      for (const alias of aliases) {
+        const phrase = ` ${alias} `;
+        if (titleText.includes(phrase)) best = Math.max(best, 11);
+        else if (documentText.includes(phrase)) best = Math.max(best, 6);
+      }
+    }
+    if (!best && term.length >= 4) {
+      const tolerance = term.length >= 8 ? 2 : 1;
+      if (fuzzyWords.some(word => editDistanceWithin(term, word, tolerance))) best = 7;
+    }
+    if (best) { matched += 1; score += best; }
+  }
+
+  const requiredMatches = uniqueTerms.length <= 3 ? uniqueTerms.length : Math.ceil(uniqueTerms.length * 0.7);
+  return matched >= requiredMatches ? score + matched / uniqueTerms.length : 0;
+}
+
 export function getQuizMatches(products, goal, limit = 3) {
   const handle = collections.find((collection) => collection.title.toLowerCase() === String(goal).toLowerCase())?.handle;
   if (!handle) return [];
@@ -78,7 +195,7 @@ export function productHash(product, variantId = "") {
 }
 
 const genericVariantText = (value) => !String(value || "").trim()
-  || /^(?:default title|standard|variant\s*\d+)$/i.test(String(value).trim());
+  || /^(?:default title|standard|(?:option|variant)\s*\d+)$/i.test(String(value).trim());
 
 export function formatVariantLabel(product, variant) {
   if (!variant) return "";
@@ -108,14 +225,12 @@ export function customerVariantLabel(product, variant, storedTitle = "") {
   const label = String(formatVariantLabel(product, variant) || "").trim();
   const sku = String(variant.sku || "").trim();
   const skuOnly = Boolean(label && (/^SKU\s*:/i.test(label) || (sku && label.toLowerCase() === sku.toLowerCase())));
-  if (label && !skuOnly) return label;
+  if (label) return skuOnly ? (sku || label.replace(/^SKU\s*:\s*/i, "")) : label;
   const savedLabel = String(storedTitle || "").trim();
   const savedSkuOnly = /^SKU\s*:/i.test(savedLabel) || (sku && savedLabel.toLowerCase() === sku.toLowerCase());
-  const generic = /^(?:default title|standard|variant\s*\d+)$/i.test(savedLabel);
-  if (savedLabel && !savedSkuOnly && !generic) return savedLabel;
-  if ((product?.variants || []).length <= 1) return "";
-  const index = product.variants.findIndex((item) => item.id === variant.id);
-  return `Option ${index >= 0 ? index + 1 : 1}`;
+  const generic = /^(?:default title|standard|(?:option|variant)\s*\d+)$/i.test(savedLabel);
+  if (savedLabel && !generic) return savedSkuOnly ? (sku || savedLabel.replace(/^SKU\s*:\s*/i, "")) : savedLabel;
+  return "";
 }
 
 export function variantCorrectionReport(products = []) {

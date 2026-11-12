@@ -466,7 +466,7 @@ test("variant formatter avoids invented or ambiguous labels and ignores a single
   assert.equal(formatVariantLabel({ ...ambiguous, variants: [{}, {}] }, { title: "Variant 1", selectedOptions: [{ name: "Variant", value: "Variant 1" }] }), "");
 });
 
-test("generic Shopify variants get neutral customer labels and a merchant correction report", () => {
+test("generic Shopify variant titles use unique SKU labels and a merchant correction report", () => {
   const product = {
     id: "gid://shopify/Product/42", handle: "blue-sapphire-ring", title: "Blue Sapphire Ring", variantsComplete: true,
     options: [{ name: "Title", values: ["Variant 1", "Variant 2"] }],
@@ -475,8 +475,8 @@ test("generic Shopify variants get neutral customer labels and a merchant correc
       { id: "gid://shopify/ProductVariant/422", title: "Variant 2", sku: "RG168", selectedOptions: [{ name: "Title", value: "Variant 2" }] },
     ],
   };
-  assert.equal(customerVariantLabel(product, product.variants[0]), "Option 1");
-  assert.equal(customerVariantLabel(product, product.variants[1]), "Option 2");
+  assert.equal(customerVariantLabel(product, product.variants[0]), "RG166");
+  assert.equal(customerVariantLabel(product, product.variants[1]), "RG168");
   const report = variantCorrectionReport([product]);
   assert.equal(report.length, 2);
   assert.equal(report[0].sku, "RG166");
