@@ -103,6 +103,42 @@ export function formatVariantLabel(product, variant) {
   return "";
 }
 
+export function customerVariantLabel(product, variant, storedTitle = "") {
+  if (!variant) return "";
+  const label = String(formatVariantLabel(product, variant) || "").trim();
+  const sku = String(variant.sku || "").trim();
+  const skuOnly = Boolean(label && (/^SKU\s*:/i.test(label) || (sku && label.toLowerCase() === sku.toLowerCase())));
+  if (label && !skuOnly) return label;
+  const savedLabel = String(storedTitle || "").trim();
+  const savedSkuOnly = /^SKU\s*:/i.test(savedLabel) || (sku && savedLabel.toLowerCase() === sku.toLowerCase());
+  const generic = /^(?:default title|standard|variant\s*\d+)$/i.test(savedLabel);
+  if (savedLabel && !savedSkuOnly && !generic) return savedLabel;
+  if ((product?.variants || []).length <= 1) return "";
+  const index = product.variants.findIndex((item) => item.id === variant.id);
+  return `Option ${index >= 0 ? index + 1 : 1}`;
+}
+
+export function variantCorrectionReport(products = []) {
+  return products.filter((product) => /^gid:\/\/shopify\/Product\//.test(product.id || ""))
+    .flatMap((product) => (product.variants || []).length > 1
+      ? product.variants.flatMap((variant) => {
+        const label = String(formatVariantLabel(product, variant) || "").trim();
+        const skuOnly = /^SKU\s*:/i.test(label);
+        if (label && !skuOnly) return [];
+        return [{
+          productId: product.id,
+          productTitle: product.title || "Untitled Shopify product",
+          productHandle: product.handle || "",
+          variantId: variant.id,
+          sku: variant.sku || "",
+          currentVariantTitle: variant.title || "",
+          selectedOptions: (variant.selectedOptions || []).map((option) => ({ name: option?.name || "", value: option?.value || "" })),
+          correction: "Add meaningful option names and values in Shopify; the storefront currently uses a neutral option label.",
+        }];
+      })
+      : []);
+}
+
 export function productFromHash(products, hash) {
   if (!hash.startsWith("#product/")) return null;
   let key = hash.slice("#product/".length).split("?")[0];

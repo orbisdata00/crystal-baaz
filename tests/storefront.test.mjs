@@ -4,7 +4,7 @@ import { readFile } from "node:fs/promises";
 import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import htm from "htm";
-import { catalogGroups, collections, crystals, formatVariantLabel, mapShopifyCatalog, mergeShopifyProduct, normalizeShopifyProduct, productFromHash, productHash, selectProducts, zodiacSigns, navigation } from "../src/catalog.js";
+import { catalogGroups, collections, crystals, customerVariantLabel, formatVariantLabel, mapShopifyCatalog, mergeShopifyProduct, normalizeShopifyProduct, productFromHash, productHash, selectProducts, variantCorrectionReport, zodiacSigns, navigation } from "../src/catalog.js";
 import { addCartLine, calculateCart, changeCartQuantity, removeCartLine, reconcileShopifyCartLines } from "../src/cart.js";
 import { createHostedCheckout, hasShopifyConnection } from "../src/shopify.js";
 import { resolveCatalogProvider, shopifyConfig } from "../src/config.js";
@@ -464,6 +464,25 @@ test("variant formatter avoids invented or ambiguous labels and ignores a single
   const ambiguous = { options: [{ name: "Variant", values: ["Variant 1", "Variant 2"] }], variants: [{ sku: "DUP" }, { sku: "DUP" }] };
   assert.equal(formatVariantLabel(ambiguous, { title: "Variant 1", sku: "DUP", selectedOptions: [{ name: "Variant", value: "Variant 1" }] }), "");
   assert.equal(formatVariantLabel({ ...ambiguous, variants: [{}, {}] }, { title: "Variant 1", selectedOptions: [{ name: "Variant", value: "Variant 1" }] }), "");
+});
+
+test("generic Shopify variants get neutral customer labels and a merchant correction report", () => {
+  const product = {
+    id: "gid://shopify/Product/42", handle: "blue-sapphire-ring", title: "Blue Sapphire Ring", variantsComplete: true,
+    options: [{ name: "Title", values: ["Variant 1", "Variant 2"] }],
+    variants: [
+      { id: "gid://shopify/ProductVariant/421", title: "Variant 1", sku: "RG166", selectedOptions: [{ name: "Title", value: "Variant 1" }] },
+      { id: "gid://shopify/ProductVariant/422", title: "Variant 2", sku: "RG168", selectedOptions: [{ name: "Title", value: "Variant 2" }] },
+    ],
+  };
+  assert.equal(customerVariantLabel(product, product.variants[0]), "Option 1");
+  assert.equal(customerVariantLabel(product, product.variants[1]), "Option 2");
+  const report = variantCorrectionReport([product]);
+  assert.equal(report.length, 2);
+  assert.equal(report[0].sku, "RG166");
+  assert.match(report[0].correction, /meaningful option names and values/);
+  const meaningful = { ...product, variants: product.variants.map((variant, index) => ({ ...variant, title: `${5 + index} Ratti / Silver`, selectedOptions: [{ name: "Size", value: `${5 + index} Ratti` }] })) };
+  assert.deepEqual(variantCorrectionReport([meaningful]), []);
 });
 
 test("missing and placeholder product media render a neutral unavailable state", () => {

@@ -1,4 +1,4 @@
-import { formatVariantLabel, productHash } from "./catalog.js";
+import { customerVariantLabel, productHash } from "./catalog.js";
 import { shopifyConfig } from "./config.js";
 
 const SHOPIFY_VARIANT_ID = /^gid:\/\/shopify\/ProductVariant\/([1-9]\d{0,23})$/;
@@ -71,9 +71,7 @@ export function buildCartShare({ lines, baseUrl, publicSiteUrl } = {}) {
   const linesText = items.map(({ quantity, line }) => {
     const product = line?.product;
     const variant = product?.variants?.find(item => item.id === line.variantId);
-    const label = line?.variantTitle && !/^(?:default title|standard|variant\s*\d+)$/i.test(line.variantTitle)
-      ? line.variantTitle
-      : formatVariantLabel(product, variant);
+    const label = customerVariantLabel(product, variant, line?.variantTitle);
     const title = String(product?.title || "").trim();
     const details = title && label ? `${title} (${label})` : title || label;
     return details ? `${quantity} × ${details}` : `${quantity} item${quantity === 1 ? "" : "s"}`;
@@ -113,7 +111,7 @@ export async function shareProductLink({ product, variantId, navigator: browser 
   const url = buildProductShareUrl(product, variantId, { baseUrl, publicSiteUrl });
   if (!url) return { status: "unavailable", message: "A public Crystal Baaz storefront URL is required to share this product." };
   const variant = product?.variants?.find(item => item.id === variantId);
-  const variantLabel = formatVariantLabel(product, variant);
+  const variantLabel = customerVariantLabel(product, variant);
   const payload = { title: product.title || "Crystal Baaz product", text: `Explore ${product.title || "this product"}${variantLabel ? ` · ${variantLabel}` : ""} at Crystal Baaz`, url };
   if (typeof browser?.share === "function") {
     try { await browser.share(payload); return { status: "shared", message: "Product link shared." }; }

@@ -18,7 +18,13 @@ const SHOPIFY_PRODUCT_ID = /^gid:\/\/shopify\/Product\/[1-9]\d+$/;
 const SHOPIFY_VARIANT_ID = /^gid:\/\/shopify\/ProductVariant\/[1-9]\d+$/;
 const INITIAL_PAGE_SIZE = 48;
 const FOLLOWUP_PAGE_SIZE = 100;
-const defaultWorkbookPromise = import("./data/product-mapping.json", { with: { type: "json" } }).then(module => module.default);
+// Vite serves JSON as a JavaScript module in development; browsers reject a
+// JSON import assertion against that text/javascript response. Node still
+// requires the JSON attribute, so keep it for tests and non-dev runtimes.
+const defaultWorkbookPromise = (import.meta.env?.DEV
+  ? import("./data/product-mapping.json")
+  : import("./data/product-mapping.json", { with: { type: "json" } }))
+  .then(module => module.default);
 
 const shopifyAdapter = {
   hasConnection: hasShopifyConnection,

@@ -3,7 +3,8 @@ import { readFile } from "node:fs/promises";
 import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { test } from "node:test";
-import { NewArrivalsPreview, PdpPurchaseBar, ShoppingBrowse, ShoppingCard, ShoppingHeader, ShoppingHome, ShoppingProduct, ShoppingResults, VariantSheetContent } from "../src/shopping-ui.js";
+import { CatalogStatus, NewArrivalsPreview, PdpPurchaseBar, ShoppingBrowse, ShoppingCard, ShoppingCart, ShoppingHeader, ShoppingHome, ShoppingProduct, ShoppingResults, ShoppingSharedCart, VariantSheetContent } from "../src/shopping-ui.js";
+import { CartSummaryThumbs } from "../src/shopping-experience.js";
 
 const product = {
   id: "gid://shopify/Product/1",
@@ -59,7 +60,8 @@ test("product card aligns current price with Buy Now and keeps title copy outsid
   const purchaseRow = markup.slice(markup.indexOf('class="shopping-tile-purchase-row"'), copyStart);
   assert.match(purchaseRow, /shopping-tile-prices/);
   assert.match(purchaseRow, /shopping-add/);
-  assert.match(markup, /40% OFF/);
+  assert.match(markup, /class="shopping-product-discount"[^>]*>40% OFF/);
+  assert.doesNotMatch(markup, /shopping-tile-comparison[^]*?40% OFF/);
   assert.doesNotMatch(markup, /on MRP/i);
   assert.match(markup, /class="shopping-product-attributes"><span[^>]*>Ring<\/span>/);
   assert.doesNotMatch(markup, /Variant 1/);
@@ -110,8 +112,9 @@ test("variant sheet content keeps Shopify identity, price, availability, and act
   }));
   const css = await readFile(new URL("../src/shopping.css", import.meta.url), "utf8");
   assert.equal((markup.match(/class="shopping-variant-line"/g) || []).length, 2);
-  assert.match(markup, /SKU: RG166/);
-  assert.match(markup, /SKU: RG168/);
+  assert.match(markup, />Option 1</);
+  assert.match(markup, />Option 2</);
+  assert.doesNotMatch(markup, /SKU:|RG166|RG168/);
   assert.match(markup, /₹3,490/);
   assert.match(markup, /₹3,890/);
   assert.match(markup, /Available/);
@@ -121,6 +124,67 @@ test("variant sheet content keeps Shopify identity, price, availability, and act
   assert.match(css, /@media\(max-width:780px\)[\s\S]*?\.shopping-variant-line \{ grid-template-columns:46px minmax\(0,1fr\) 86px;/);
   assert.match(css, /@media\(max-width:359px\)[\s\S]*?\.shopping-variant-line \{ grid-template-columns:40px minmax\(0,1fr\) 76px;/);
   assert.match(css, /@media\(max-width:380px\) \{\s*\.shopping-browse-content \.shopping-product-grid \{ grid-template-columns:minmax\(0,1fr\); \}/);
+  assert.match(css, /\.shopping-variant-sheet>header>button \{[^}]*width:44px; min-width:44px; height:44px; min-height:44px/);
+});
+
+test("product card gallery uses only the product's images and shows dots only for multiple images", () => {
+  const multiple = {
+    ...product,
+    galleryMedia: [
+      { type: "image", src: product.image, alt: "Moonstone front" },
+      { type: "video", src: "https://cdn.shopify.com/videos/unrelated.mp4" },
+      { type: "image", src: "https://cdn.shopify.com/s/files/1/moonstone-detail.jpg", alt: "Moonstone detail" },
+    ],
+  };
+  const markup = renderToStaticMarkup(React.createElement(ShoppingCard, {
+    product: multiple, onOpen() {}, onAdd() {}, onSave() {}, onUpdate() {}, saved: [], cart: [],
+  }));
+  assert.equal((markup.match(/class="shopping-product-image-dots"/g) || []).length, 1);
+  assert.equal((markup.match(/aria-label="Show image \d of 2"/g) || []).length, 2);
+  assert.doesNotMatch(markup, /unrelated\.mp4/);
+  const single = render();
+  assert.doesNotMatch(single, /shopping-product-image-dots/);
+});
+
+test("cart thumbnail stack uses real product images and has a neutral icon fallback", () => {
+  const markup = renderToStaticMarkup(React.createElement(CartSummaryThumbs, {
+    items: [
+      { key: "real", productId: product.id, variantId: product.variants[0].id, product },
+      { key: "missing", productId: "missing", variantId: "missing", product: { variants: [], image: "/assets/product-placeholder.svg" } },
+    ],
+  }));
+  assert.match(markup, /class="shopping-view-cart-thumbs"/);
+  assert.match(markup, /src="https:\/\/cdn\.shopify\.com\/s\/files\/1\/product\.jpg"/);
+  assert.match(markup, /<svg/);
+  assert.doesNotMatch(markup, /product-placeholder\.svg|▣/);
+});
+
+test("loading status uses skeletons and no customer-facing Shopify loading copy", () => {
+  const markup = renderToStaticMarkup(React.createElement(CatalogStatus, { loading: true, error: "", onRetry() {} }));
+  assert.match(markup, /shopping-skeleton-grid/);
+  assert.doesNotMatch(markup, /Loading from Shopify|Shopify/);
+  const sharedCart = renderToStaticMarkup(React.createElement(ShoppingSharedCart, { loading: true }));
+  assert.match(sharedCart, /shopping-shared-skeleton/);
+  assert.doesNotMatch(sharedCart, /Loading from Shopify|Checking the shared items with Shopify/);
+});
+
+test("cart hydration uses skeleton rows without technical loading copy", () => {
+  const markup = renderToStaticMarkup(React.createElement(ShoppingCart, {
+    cart: [], catalog: [], syncing: true, error: "", remoteCart: null,
+  }));
+  assert.match(markup, /shopping-cart-loading/);
+  assert.match(markup, /aria-label="Refreshing cart"/);
+  assert.doesNotMatch(markup, /Checking your saved cart|Loading from Shopify|Shopify/);
+});
+
+test("shared-cart preview never renders internal SKU labels", () => {
+  const variant = { ...product.variants[0], sku: "RG166", title: "Variant 1" };
+  const share = renderToStaticMarkup(React.createElement(ShoppingSharedCart, {
+    items: [{ status: "available", product: { ...product, variants: [variant, { ...variant, id: "gid://shopify/ProductVariant/2", sku: "RG168" }] }, variant, quantity: 1 }],
+    onNavigate() {},
+  }));
+  assert.match(share, />Option 1</);
+  assert.doesNotMatch(share, /SKU:|RG166|RG168/);
 });
 
 test("desktop product cards keep one boundary around the image and action tile", async () => {

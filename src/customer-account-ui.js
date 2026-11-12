@@ -11,7 +11,7 @@ function connectionNodes(connection) {
 function formatAmount(amount, currency = "INR") {
   if (!amount || !Number.isFinite(Number(amount.amount))) return "Amount unavailable";
   try {
-    return formatCurrencyAmount(amount.amount, currency, 2);
+    return formatCurrencyAmount(amount.amount, currency, currency?.toUpperCase() === "INR" ? 0 : 2);
   } catch { return `${amount.amount} ${currency}`; }
 }
 
@@ -134,8 +134,8 @@ export function CustomerAccountPage({ state, account }) {
     <header className="customer-account-heading"><span>CRYSTAL BAAZ</span><h1>Your account</h1><p>Sign in securely with Shopify to view your profile, saved addresses and orders.</p></header>
     ${state.status === "unconfigured" && html`<section className="customer-account-notice" role="status"><h2>Customer sign-in setup is pending</h2><p>${state.error || "Shopify Customer Accounts are not configured for this storefront yet."}</p><p>Sign-in will be available after the Shopify Client ID and registered HTTPS callback URLs are added.</p><button className="customer-account-secondary" type="button" onClick=${() => window.location.hash = "#home"}>Continue shopping</button></section>`}
     ${["signed-out", "error"].includes(state.status) && html`<section className="customer-account-signin"><h2>Sign in to Crystal Baaz</h2><p>Shopify will securely verify your account using its hosted sign-in.</p>${state.error && html`<p className="customer-account-error" role="alert">${state.error}</p>`}<button className="customer-account-primary" type="button" onClick=${() => void account.login()}>Sign in with Shopify</button></section>`}
-    ${state.status === "authenticating" && html`<p className="customer-account-loading" role="status">Connecting to Shopify securely…</p>`}
-    ${state.status === "authenticated" && !customer && html`<section className="customer-account-loading" role="status"><p>${dashboardLoading ? "Loading your current Shopify account…" : dashboardError || "Loading your account…"}</p>${dashboardError && html`<button className="customer-account-secondary" type="button" onClick=${loadDashboard}>Retry</button>`}</section>`}
+    ${state.status === "authenticating" && html`<p className="customer-account-loading" role="status">Signing in securely…</p>`}
+    ${state.status === "authenticated" && !customer && html`<section className="customer-account-loading" role="status"><p>${dashboardLoading ? "Loading your account…" : dashboardError ? "Your account couldn’t be loaded. Please try again." : "Loading your account…"}</p>${dashboardError && html`<button className="customer-account-secondary" type="button" onClick=${loadDashboard}>Retry</button>`}</section>`}
     ${customer && html`<div className="customer-account-dashboard">
       <section className="customer-account-section"><header><div><span>PROFILE</span><h2>${customer.displayName || "Shopify customer"}</h2></div><button type="button" className="customer-account-secondary" onClick=${() => void account.logout()}>Sign out</button></header><dl><div><dt>Name</dt><dd>${[customer.firstName, customer.lastName].filter(Boolean).join(" ") || customer.displayName}</dd></div><div><dt>Email</dt><dd>${customer.emailAddress?.emailAddress || "Not available from Shopify"}</dd></div><div><dt>Phone</dt><dd>${customer.phoneNumber?.phoneNumber || "Not available from Shopify"}</dd></div></dl></section>
       <section className="customer-account-section customer-address-section"><header><div><span>ADDRESSES</span><h2>Your saved addresses</h2></div><button type="button" className="customer-account-secondary" onClick=${() => { setAddressFeedback(""); setEditingAddress({ mode: "create", address: null }); }}>Add address</button></header>
