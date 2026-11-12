@@ -9,6 +9,7 @@
 .shopping-logo small { display:block; margin-top:7px; color:var(--muted); font:10px/1.2 var(--sans); letter-spacing:0; }
 .shopping-search { min-width:0; min-height:48px; position:relative; display:flex; align-items:center; gap:10px; padding:0 13px; border:1px solid var(--line); border-radius:10px; background:#f7f7f7; }
 .shopping-search input { min-width:0; flex:1; width:100%; border:0; outline:0; color:var(--ink); background:transparent; font-size:14px; }
+.shopping-search>button { display:grid; width:44px; height:44px; flex:0 0 44px; place-items:center; padding:0; border:0; border-radius:8px; color:var(--shop-accent); background:transparent; }
 .shopping-tools { display:flex; align-items:center; gap:16px; }
 .shopping-tools>button { display:flex; align-items:center; justify-content:center; gap:8px; padding:8px 0; border:0; background:none; font-size:13px; }
 .shopping-tools>.shopping-cart-button { min-height:48px; padding:0 18px; border-radius:9px; color:white; background:var(--shop-accent); font-weight:650; }
@@ -167,6 +168,7 @@
  .shopping-logo small { display:none; }
  .shopping-search { grid-column:1/-1; grid-row:2; min-height:42px; }
  .shopping-search input { font-size:12px; }
+ .shopping-search>button { width:44px; height:44px; }
  .shopping-tools { gap:12px; }
  .shopping-tools>button { min-width:30px; min-height:30px; padding:0; }
  .shopping-tools>button>span { display:none; }

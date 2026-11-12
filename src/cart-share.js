@@ -12,13 +12,14 @@ function isLocalHost(hostname) {
 }
 
 export function publicStorefrontBaseUrl(options = {}) {
-  const hasBaseUrlOverride = options.baseUrl !== undefined;
-  const hasPublicSiteUrlOverride = options.publicSiteUrl !== undefined;
-  const candidates = hasPublicSiteUrlOverride
-    ? [options.publicSiteUrl, ...(hasBaseUrlOverride ? [options.baseUrl] : [])]
-    : hasBaseUrlOverride
+  const explicitBaseUrl = typeof options.baseUrl === "string" && options.baseUrl.trim().length > 0;
+  const explicitPublicSiteUrl = typeof options.publicSiteUrl === "string" && options.publicSiteUrl.trim().length > 0;
+  const baseUrl = explicitBaseUrl ? options.baseUrl : globalThis.location?.href;
+  const candidates = explicitPublicSiteUrl
+    ? [options.publicSiteUrl, baseUrl]
+    : explicitBaseUrl
       ? [options.baseUrl]
-      : [shopifyConfig.publicSiteUrl, globalThis.location?.href];
+      : [shopifyConfig.publicSiteUrl, baseUrl].filter(Boolean);
   for (const candidate of candidates) {
     try {
       const url = new URL(candidate);
