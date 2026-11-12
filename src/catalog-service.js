@@ -70,6 +70,7 @@ export function createCatalogService({ provider = catalogProvider, adapter = sho
   let initialPromise = null;
   let initialFreshPromise = null;
   let cachePromise = null;
+  let cacheWritePromise = Promise.resolve();
   let remainingPromise = null;
   let fullCatalogPromise = null;
   let cacheWasShown = false;
@@ -163,6 +164,7 @@ export function createCatalogService({ provider = catalogProvider, adapter = sho
             await replaceCurrent(result.products);
             pageInfo = result.pageInfo || pageInfoDefault();
             cacheWasShown = false;
+            void saveCurrentCache();
             notify({ event: "initial-page", pageProducts: products(), fresh: true, cached: false });
             return snapshot();
           });
@@ -173,6 +175,7 @@ export function createCatalogService({ provider = catalogProvider, adapter = sho
         await replaceCurrent(result.products);
         pageInfo = result.pageInfo || pageInfoDefault();
         initialized = true;
+        void saveCurrentCache();
         initialFreshPromise = Promise.resolve(snapshot());
         return snapshot({ cached: Boolean(result.cached), fresh: true });
       })().catch(error => {
@@ -185,7 +188,9 @@ export function createCatalogService({ provider = catalogProvider, adapter = sho
 
   async function saveCurrentCache() {
     if (!adapter.saveCatalogCache || !rawProducts.size) return;
-    try { await adapter.saveCatalogCache([...rawProducts.values()]); } catch { /* Cache failures never replace Shopify state. */ }
+    const productsToSave = [...rawProducts.values()];
+    cacheWritePromise = cacheWritePromise.then(() => adapter.saveCatalogCache(productsToSave)).catch(() => { /* Cache failures never replace Shopify state. */ });
+    await cacheWritePromise;
   }
 
   async function fetchNextPage() {

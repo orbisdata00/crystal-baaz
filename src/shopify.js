@@ -207,7 +207,7 @@ export async function loadShopifyCollections({ first = 100, after = null } = {})
   if (!configured()) return null;
   const gql = `query CrystalBazzCollections($first: Int!, $after: String) {
     collections(first: $first, after: $after) {
-      nodes { id handle title description image { url altText } productsCount { count } }
+      nodes { handle image { url } }
       pageInfo { hasNextPage endCursor }
     }
   }`;
