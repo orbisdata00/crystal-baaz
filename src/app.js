@@ -1090,7 +1090,7 @@ function StoreApp() {
   const cartCount = calculateCart(cart, catalog).count;
   const retryCatalog = () => setRetryTick(value => value + 1);
   const openCart = useCallback(() => { if (route.page !== "cart") cartReturnHash.current = window.location.hash || "#home"; navigate("#cart"); }, [route.page, navigate]);
-  const buyNow = useMemo(() => createBuyNowHandler(addToCart, openCart), [addToCart, openCart]);
+  const buyNow = useMemo(() => createBuyNowHandler(addToCart), [addToCart]);
   const shared = { onOpen: openProduct, onAdd: buyNow, onSave: toggleSaved, saved, cart, pendingKeys: cartPendingKeys, pendingOperations: cartPendingOperations, onUpdate: updateCart, onNavigate: navigate, onNotice: setToast };
   const dataState = { loading, loadingMore: catalogLoadingMore, error: !online ? "You are offline. Reconnect to load current Shopify products and prices." : catalogError, onRetry: retryCatalog };
   const sortProducts = value => { setSort(value); setPageSize(24); updateViewOption("sort", value); };

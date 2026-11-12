@@ -13,16 +13,16 @@ function storage(initial = {}) {
 }
 const line = { key: "p1:v1", productId: "p1", variantId: "v1", quantity: 2, variantTitle: "Small", sku: "C1" };
 
-test("Buy Now preserves the selected variant and opens cart review only after a confirmed add", async () => {
-  const calls = [], reviews = [];
-  const buyNow = createBuyNowHandler(async (...args) => { calls.push(args); return true; }, () => reviews.push("open"));
+test("Buy Now preserves the selected variant and never navigates to cart", async () => {
+  const calls = [], navigation = [];
+  const buyNow = createBuyNowHandler(async (...args) => { calls.push(args); return true; }, () => navigation.push("cart"));
   assert.equal(await buyNow(product, "gid://shopify/ProductVariant/selected", 3), true);
   assert.deepEqual(calls, [[product, "gid://shopify/ProductVariant/selected", 3]]);
-  assert.deepEqual(reviews, ["open"]);
+  assert.deepEqual(navigation, []);
 
-  const refused = createBuyNowHandler(async () => false, () => reviews.push("incorrect"));
+  const refused = createBuyNowHandler(async () => false, () => navigation.push("cart"));
   assert.equal(await refused(product, "gid://shopify/ProductVariant/unavailable"), false);
-  assert.deepEqual(reviews, ["open"]);
+  assert.deepEqual(navigation, []);
 });
 
 test("addition is optimistic, duplicate taps are ignored, and confirmation is not persisted early", async () => {
@@ -105,6 +105,38 @@ test("removal to zero accepts a null remote cart and clears persistence", async 
   assert.equal(saved.getItem("crystal-baaz-shopify-cart-id"), undefined);
   await controller.add(product, "v1");
   assert.equal(controller.getSnapshot().cart[0].quantity, 1);
+});
+
+test("decreasing a one-item Shopify line to zero syncs removal and clears shared cart state", async () => {
+  const sent = [], saved = storage();
+  const controller = createShopifyCartController({ storage: saved, service: { source: "shopify", async syncCart(_id, lines) {
+    sent.push(lines.map(item => ({ ...item })));
+    return { cart: lines.length ? remote(lines) : null };
+  } } });
+  await controller.hydrate([product]);
+  assert.equal(await controller.add(product, "v1"), true);
+  assert.equal(controller.getSnapshot().cart[0].quantity, 1);
+
+  assert.equal(await controller.update("p1:v1", -1), true);
+  assert.deepEqual(sent.at(-1), []);
+  assert.deepEqual(controller.getSnapshot().cart, []);
+  assert.equal(controller.getSnapshot().cartId, null);
+  assert.equal(controller.getSnapshot().cart.reduce((count, item) => count + item.quantity, 0), 0);
+  assert.deepEqual(JSON.parse(saved.getItem("crystal-baaz-shopify-cart-lines")), []);
+  assert.equal(saved.getItem("crystal-baaz-shopify-cart-id"), undefined);
+});
+
+test("failed quantity-one removal restores the confirmed cart line", async () => {
+  const controller = createShopifyCartController({ service: { source: "shopify", async syncCart(_id, lines) {
+    if (!lines.length) throw new Error("mutation failed");
+    return { cart: remote(lines) };
+  } } });
+  await controller.hydrate([product]);
+  await controller.add(product, "v1");
+  assert.equal(await controller.update("p1:v1", -1), false);
+  assert.equal(controller.getSnapshot().cart.length, 1);
+  assert.equal(controller.getSnapshot().cart[0].quantity, 1);
+  assert.equal(controller.getSnapshot().pending, false);
 });
 
 test("rapid additions to different products share one mutation and keep optimistic lines visible", async () => {

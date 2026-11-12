@@ -38,10 +38,55 @@ function Purchase({product,variant,cart,pendingKeys=[],pendingOperations=[],onAd
  if(line&&operation?.type==='add')return html`<button className="shopping-add shopping-add-pending" type="button" disabled aria-busy="true" aria-label="Saving item to cart">Buy Now</button>`;
  return line?html`<${Quantity} line=${line} onUpdate=${onUpdate} label=${product.title} pending=${pendingKeys.includes(line.key)}/>`:html`<button className="shopping-add" type="button" disabled=${busy||(!enabled&&!onOptions)} aria-busy=${busy} aria-label=${busy?'Saving item to cart':label} onClick=${async()=>{if(onOptions){onOptions();return;}flushSync(()=>setBusy(true));try{await onAdd(product,variant.id);}finally{setBusy(false);}}}>${label}</button>`;
 }
+export function VariantSheetContent({product,onClose,cart=[],pendingKeys=[],pendingOperations=[],onAdd,onUpdate,status='',sheetRef}) {
+ return html`<section className="shopping-variant-sheet" ref=${sheetRef} tabIndex="-1" role="dialog" aria-modal="true" aria-label=${`Select ${product.title} variant`}>
+  <header><h2>${product.title}</h2><button type="button" aria-label="Close variants" onClick=${onClose}>×</button></header>
+  <p className="shopping-variant-prompt">Select an option</p>
+  ${status&&html`<p className="shopping-variant-status" role="alert">${status}</p>`}
+  <div className="shopping-variant-list" aria-label="Product variants">${product.variants.map(variant=>{
+   const label=formatVariantLabel(product,variant),sku=String(variant.sku||'').trim();
+   const labelIsSku=Boolean(sku&&label&&[sku,`SKU: ${sku}`].some(value=>value.toLowerCase()===label.trim().toLowerCase()));
+   const availability=variant.available===false||variant.canPurchase===false?'Unavailable':variant.canPurchase===true?'Available':'Availability not confirmed';
+   return html`<div className="shopping-variant-line" key=${variant.id} data-variant-id=${variant.id}>
+    <${ProductImage} className="shopping-variant-thumb" src=${variant.image||product.image} alt=${product.title} width=${100} sizes="52px"/>
+    <div className="shopping-variant-details">${label&&!labelIsSku&&html`<strong className="shopping-variant-label">${label}</strong>`}${sku&&html`<span className="shopping-variant-sku">SKU: ${sku}</span>`}${!label&&!sku&&html`<strong className="shopping-variant-label">Option details need confirmation</strong>`}<strong className="shopping-variant-price">${Number(variant.price)>0?money(variant.price):'Price unavailable'}</strong><small className="shopping-variant-availability">${availability}</small></div>
+    <${Purchase} product=${product} variant=${variant} cart=${cart} pendingKeys=${pendingKeys} pendingOperations=${pendingOperations} onAdd=${onAdd} onUpdate=${onUpdate}/>
+   </div>`;
+  })}</div>
+ </section>`;
+}
 function VariantSheet({product,onClose,...props}) {
  useShoppingOverlay();
- const ref=useRef(null);useEffect(()=>{const previous=document.activeElement;const overflow=document.body.style.overflow;document.body.style.overflow='hidden';ref.current?.focus();const key=e=>{if(e.key==='Escape')onClose();if(e.key==='Tab'){const controls=[...ref.current.querySelectorAll('button:not(:disabled)')];const first=controls[0],last=controls.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last?.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first?.focus();}}};document.addEventListener('keydown',key);return()=>{document.body.style.overflow=overflow;document.removeEventListener('keydown',key);previous?.focus?.();};},[]);
- return html`<div className="shopping-modal-backdrop" onClick=${onClose}><section className="shopping-variant-sheet" ref=${ref} tabIndex="-1" role="dialog" aria-modal="true" aria-label=${`Select ${product.title} variant`} onClick=${e=>e.stopPropagation()}><header><h2>${product.title}</h2><button aria-label="Close variants" onClick=${onClose}>×</button></header><p>Select an option</p>${product.variants.map(v=>{const label=formatVariantLabel(product,v);return html`<div className="shopping-variant-line" key=${v.id} data-variant-id=${v.id}><${ProductImage} src=${v.image||product.image} alt=${product.title}/><span>${label||'Option details need confirmation'}<small>${v.price?money(v.price):'Price unavailable'} · ${v.available===false?'Out of stock':v.canPurchase===true?'Available':'Unavailable for purchase'}</small></span><${Purchase} product=${product} variant=${v} ...${props}/></div>`;})}</section></div>`;
+ const ref=useRef(null),[status,setStatus]=useState('');
+ useEffect(()=>{
+  const previous=document.activeElement,body=document.body,scrollY=window.scrollY;
+  const oldStyle={overflow:body.style.overflow,position:body.style.position,top:body.style.top,width:body.style.width};
+  body.style.overflow='hidden';body.style.position='fixed';body.style.top=`-${scrollY}px`;body.style.width='100%';
+  ref.current?.querySelector('button:not(:disabled)')?.focus();
+  const key=e=>{
+   if(e.key==='Escape'){onClose();return;}
+   if(e.key==='Tab'){
+    const controls=[...ref.current.querySelectorAll('button:not(:disabled)')],first=controls[0],last=controls.at(-1);
+    if(e.shiftKey&&document.activeElement===first){e.preventDefault();last?.focus();}
+    else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first?.focus();}
+   }
+  };
+  document.addEventListener('keydown',key);
+  return()=>{Object.assign(body.style,oldStyle);document.removeEventListener('keydown',key);window.scrollTo(0,scrollY);previous?.focus?.({preventScroll:true});};
+ },[]);
+ const addVariant=async(...args)=>{
+  setStatus('');
+  try{
+   const added=await props.onAdd(...args);
+   if(added===true){onClose();return true;}
+   setStatus('Shopify could not confirm this addition. Your cart has not been confirmed; please try again.');
+   return added;
+  }catch{
+   setStatus('Shopify could not confirm this addition. Your cart has not been confirmed; please try again.');
+   return false;
+  }
+ };
+ return createPortal(html`<div className="shopping-modal-backdrop shopping-variant-backdrop" onClick=${event=>{if(event.target===event.currentTarget)onClose();}}><${VariantSheetContent} product=${product} onClose=${onClose} cart=${props.cart||[]} pendingKeys=${props.pendingKeys||[]} pendingOperations=${props.pendingOperations||[]} onAdd=${addVariant} onUpdate=${props.onUpdate} status=${status} sheetRef=${ref}/></div>`,document.body,`variant-sheet-${product.id}`);
 }
 
 function productAttributeLabels(product) {
@@ -167,6 +212,7 @@ export function PdpPurchaseBar({product,variant,off,thumbnail,cart=[],pendingKey
  const identityVerified=product.variants.length<=1||Boolean(formatVariantLabel(product,variant));
  const enabled=variant?.canPurchase===true&&variant?.available===true&&Number(variant.price)>0&&identityVerified;
  const pending=Boolean(line&&pendingKeys.includes(line.key))||pendingOperations.some(item=>item.productId===product.id&&item.variantId===variant?.id);
+ const pendingAdd=pendingOperations.some(item=>item.productId===product.id&&item.variantId===variant?.id&&item.type==='add');
  useEffect(()=>{setQuantity(1);setBusy(false);setQuantityBusy(false);},[product.id,variant?.id]);
  const changeQuantity=async delta=>{
   if(busy||quantityBusy||pending||!enabled)return;
@@ -175,12 +221,12 @@ export function PdpPurchaseBar({product,variant,off,thumbnail,cart=[],pendingKey
  };
  const buy=async()=>{
   if(busy||quantityBusy||pending||!enabled)return;
-  if(line){onNavigate('#cart');return;}
+  if(line)return;
   setBusy(true);try{await onAdd(product,variant.id,quantity);}finally{setBusy(false);}
  };
  const offer=(Array.isArray(product.offers)?product.offers:[]).find(item=>item?.verified===true&&item?.active===true&&typeof (item.title||item.text)==='string'&&(item.title||item.text).trim());
- const buttonLabel=busy?'Adding…':enabled?'Buy Now':'Unavailable';
- return html`<div className="shopping-pdp-sticky-wrap">${offer&&html`<div className="shopping-pdp-offer" role="note">${offer.title||offer.text}</div>`}<section className="shopping-pdp-sticky" aria-label="Purchase product"><${ProductImage} className="shopping-pdp-sticky-thumb" src=${thumbnail} alt="" width=${100} sizes="52px"/><div className="shopping-pdp-sticky-price"><strong>${Number(variant?.price)>0?money(variant.price):'Price pending'}</strong>${off>0&&html`<span><small>MRP</small><del>${money(variant.compareAt)}</del></span>`}</div><div className="shopping-pdp-quantity" role="group" aria-label=${`Quantity for ${product.title}`} aria-busy=${busy||quantityBusy||pending}><button type="button" aria-label=${`Decrease ${product.title} quantity`} disabled=${!enabled||busy||quantityBusy||pending||Boolean(line?line.quantity<=1:quantity<=1)} onClick=${()=>changeQuantity(-1)}>−</button><span aria-live="polite">${line?.quantity||quantity}</span><button type="button" aria-label=${`Increase ${product.title} quantity`} disabled=${!enabled||busy||quantityBusy||pending||(line&&line.quantity>=999)} onClick=${()=>changeQuantity(1)}>+</button></div><button type="button" className="shopping-primary shopping-pdp-buy" disabled=${!enabled||busy||quantityBusy||pending} aria-busy=${busy} onClick=${buy}>${buttonLabel}</button></section></div>`;
+ const buttonLabel=pendingAdd||busy?'Adding…':pending?'Updating…':line?'Added':enabled?'Buy Now':'Unavailable';
+ return html`<div className="shopping-pdp-sticky-wrap">${offer&&html`<div className="shopping-pdp-offer" role="note">${offer.title||offer.text}</div>`}<section className=${`shopping-pdp-sticky ${line?'has-cart-line':''}`} aria-label="Purchase product"><${ProductImage} className="shopping-pdp-sticky-thumb" src=${thumbnail} alt="" width=${100} sizes="52px"/><div className="shopping-pdp-sticky-price"><strong>${Number(variant?.price)>0?money(variant.price):'Price pending'}</strong>${off>0&&html`<span><small>MRP</small><del>${money(variant.compareAt)}</del></span>`}</div><div className="shopping-pdp-quantity" role="group" aria-label=${`Quantity for ${product.title}`} aria-busy=${busy||quantityBusy||pending}><button type="button" aria-label=${`Decrease ${product.title} quantity`} disabled=${!enabled||busy||quantityBusy||pending||Boolean(line?line.quantity<=0:quantity<=1)} onClick=${()=>changeQuantity(-1)}>−</button><span aria-live="polite">${line?.quantity||quantity}</span><button type="button" aria-label=${`Increase ${product.title} quantity`} disabled=${!enabled||busy||quantityBusy||pending||(line&&line.quantity>=999)} onClick=${()=>changeQuantity(1)}>+</button></div><button type="button" className="shopping-primary shopping-pdp-buy" disabled=${!enabled||busy||quantityBusy||pending||Boolean(line)} aria-busy=${busy||pending} onClick=${buy}>${buttonLabel}</button></section></div>`;
 }
 export function ShoppingProduct({product,catalog,loading,error,onRetry,onBack,selectedVariantId='',...props}) {
  const [variantId,setVariantId]=useState(selectedVariantId),[photo,setPhoto]=useState(0),[zoom,setZoom]=useState(false);const galleryTouch=useRef(null);
@@ -268,7 +314,7 @@ export function ShoppingSharedCart({items=[],loading=false,error='',cartCount=0,
  const currency=available[0]?.variant?.currencyCode||'INR';
  const subtotal=available.reduce((sum,item)=>sum+(Number(item.variant.price)||0)*item.quantity,0),totalQuantity=available.reduce((sum,item)=>sum+item.quantity,0);
  const formatMoney=(amount,code=currency)=>formatCurrencyAmount(amount,code,2);
- const add=async()=>{if(adding||cartSyncing||cartError||!available.length)return;setAdding(true);setStatus('');try{const result=await onAddItems(available);if(result){onNavigate('#cart');return;}setStatus('Some items were not confirmed. Any successful additions are already in your cart.');}finally{setAdding(false);setConfirmMerge(false);}};
+ const add=async()=>{if(adding||cartSyncing||cartError||!available.length)return;setAdding(true);setStatus('');try{const result=await onAddItems(available);if(result){setStatus(`${totalQuantity} ${totalQuantity===1?'item':'items'} added to your cart.`);return;}setStatus('Some items were not confirmed. Any successful additions are already in your cart.');}finally{setAdding(false);setConfirmMerge(false);}};
  const beginAdd=()=>{setStatus('');if(cartCount>0)setConfirmMerge(true);else void add();};
  return html`<main className="shopping-shared-cart"><header><button type="button" className="shopping-back" onClick=${()=>onNavigate('#home')}>← Back</button><span className="shopping-breadcrumb">CRYSTAL BAAZ</span><h1>Shared cart</h1><p>Review current Shopify prices and availability before adding these items to your cart.</p></header>${loading?html`<p className="shopping-shared-status" role="status">Checking the shared items with Shopify…</p>`:error?html`<section className="shopping-shared-error" role="alert"><p>${error}</p>${onRetryVerification&&html`<button type="button" className="shopping-primary" onClick=${onRetryVerification}>Try again</button>`}</section>`:items.length?html`<section className="shopping-shared-items" aria-label="Shared products">${items.map((item,index)=>{const product=item.product;const variant=item.variant;const canAdd=item.status==='available'&&product&&variant;const label=formatVariantLabel(product,variant);const title=product?.title||'';const statusLabel=canAdd?'Available':item.status==='unavailable'?'No longer available or out of stock':'Could not verify in the approved catalog';return html`<article className=${`shopping-shared-item ${canAdd?'':'is-unavailable'}`} key=${item.variantId||index}><${ProductImage} src=${variant?.image||product?.image} alt=${title}/><div className="shopping-shared-item-copy">${title&&html`<h2>${title}</h2>`}${label&&html`<p>${label}</p>`}<p className="shopping-shared-availability">${statusLabel} · Quantity ${item.quantity}</p>${Number(variant?.price)>0&&html`<strong>${formatMoney(variant.price,variant.currencyCode||currency)}</strong>`}${product&&html`<button type="button" className="shopping-text-button" onClick=${()=>onOpenProduct?.(product,variant?.id)}>View product</button>`}</div></article>`;})}</section>`:html`<p className="shopping-shared-status" role="status">This shared cart has no valid items.</p>`}${cartError&&html`<section className="shopping-shared-error" role="alert"><p>${cartError}</p><button type="button" className="shopping-primary" disabled=${cartSyncing} onClick=${onRetryCart}>Retry cart sync</button></section>`}${!loading&&!error&&available.length>0&&html`<section className="shopping-shared-summary"><div><span>${totalQuantity} available ${totalQuantity===1?'item':'items'}</span><strong>${formatMoney(subtotal)}</strong></div><p>Prices come from Shopify now. Shipping and taxes are not included.</p><button type="button" className="shopping-primary" disabled=${adding||cartSyncing||Boolean(cartError)} onClick=${beginAdd}>${adding?'Adding items…':`Add ${totalQuantity} ${totalQuantity===1?'item':'items'} to my cart`}</button>${confirmMerge&&cartCount>0&&html`<div className="shopping-shared-confirm" role="alertdialog" aria-label="Confirm adding shared items"><strong>Add these items to your current cart?</strong><p>Your existing ${cartCount} ${cartCount===1?'item will':'items will'} stay in your cart.</p><div><button type="button" className="shopping-secondary" disabled=${adding||cartSyncing||Boolean(cartError)} onClick=${()=>setConfirmMerge(false)}>Keep current cart</button><button type="button" className="shopping-primary" disabled=${adding||cartSyncing||Boolean(cartError)} onClick=${add}>Add to current cart</button></div></div>`}</section>`}${status&&html`<p className="shopping-shared-status" role="status">${status}</p>`}<footer><span>Unavailable items are shown above and will not be added.</span><button type="button" className="shopping-text-button" onClick=${()=>onNavigate('#home')}>Continue shopping</button></footer></main>`;
 }

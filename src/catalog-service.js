@@ -18,7 +18,7 @@ const SHOPIFY_PRODUCT_ID = /^gid:\/\/shopify\/Product\/[1-9]\d+$/;
 const SHOPIFY_VARIANT_ID = /^gid:\/\/shopify\/ProductVariant\/[1-9]\d+$/;
 const INITIAL_PAGE_SIZE = 48;
 const FOLLOWUP_PAGE_SIZE = 100;
-const defaultWorkbookPromise = import("./data/product-mapping.json").then(module => module.default);
+const defaultWorkbookPromise = import("./data/product-mapping.json", { with: { type: "json" } }).then(module => module.default);
 
 const shopifyAdapter = {
   hasConnection: hasShopifyConnection,

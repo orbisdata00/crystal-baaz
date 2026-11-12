@@ -3,7 +3,7 @@ import { readFile } from "node:fs/promises";
 import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { test } from "node:test";
-import { NewArrivalsPreview, PdpPurchaseBar, ShoppingBrowse, ShoppingCard, ShoppingHeader, ShoppingHome, ShoppingProduct, ShoppingResults } from "../src/shopping-ui.js";
+import { NewArrivalsPreview, PdpPurchaseBar, ShoppingBrowse, ShoppingCard, ShoppingHeader, ShoppingHome, ShoppingProduct, ShoppingResults, VariantSheetContent } from "../src/shopping-ui.js";
 
 const product = {
   id: "gid://shopify/Product/1",
@@ -92,7 +92,35 @@ test("mobile rails and navigation use compact, separate visual containers", asyn
   assert.match(css, /\.shopping-home-category-grid \{ display:flex; gap:12px; overflow-x:auto/);
   assert.match(css, /\.shopping-category-artwork \{[^}]*aspect-ratio:1;/);
   assert.match(css, /\.shopping-tile-purchase-row \{ display:flex; align-items:center; justify-content:space-between/);
+  assert.doesNotMatch(css, /\.shopping-browse-content \.shopping-add,\.shopping-browse-content \.shopping-quantity \{ width:100%/);
   assert.match(css, /\.shopping-search>button \{ width:44px; height:44px;/);
+});
+
+test("variant sheet content keeps Shopify identity, price, availability, and action in separate columns", async () => {
+  const variantProduct = {
+    ...product,
+    variantsComplete: true,
+    variants: [
+      { ...product.variants[0], id: "gid://shopify/ProductVariant/166", title: "Variant 1", sku: "RG166", selectedOptions: [{ name: "Title", value: "Variant 1" }], price: 3490 },
+      { ...product.variants[0], id: "gid://shopify/ProductVariant/168", title: "Variant 2", sku: "RG168", selectedOptions: [{ name: "Title", value: "Variant 2" }], price: 3890 },
+    ],
+  };
+  const markup = renderToStaticMarkup(React.createElement(VariantSheetContent, {
+    product: variantProduct, onClose() {}, cart: [], pendingKeys: [], pendingOperations: [], onAdd() {}, onUpdate() {},
+  }));
+  const css = await readFile(new URL("../src/shopping.css", import.meta.url), "utf8");
+  assert.equal((markup.match(/class="shopping-variant-line"/g) || []).length, 2);
+  assert.match(markup, /SKU: RG166/);
+  assert.match(markup, /SKU: RG168/);
+  assert.match(markup, /₹3,490/);
+  assert.match(markup, /₹3,890/);
+  assert.match(markup, /Available/);
+  assert.equal((markup.match(/>Buy Now<\/button>/g) || []).length, 2);
+  assert.match(css, /\.shopping-variant-line \{ display:grid; grid-template-columns:52px minmax\(0,1fr\) 92px;/);
+  assert.match(css, /\.shopping-modal-backdrop\.shopping-variant-backdrop \{ --shop-accent:#0c831f;[^}]*z-index:140/);
+  assert.match(css, /@media\(max-width:780px\)[\s\S]*?\.shopping-variant-line \{ grid-template-columns:46px minmax\(0,1fr\) 86px;/);
+  assert.match(css, /@media\(max-width:359px\)[\s\S]*?\.shopping-variant-line \{ grid-template-columns:40px minmax\(0,1fr\) 76px;/);
+  assert.match(css, /@media\(max-width:380px\) \{\s*\.shopping-browse-content \.shopping-product-grid \{ grid-template-columns:minmax\(0,1fr\); \}/);
 });
 
 test("desktop product cards keep one boundary around the image and action tile", async () => {
@@ -210,6 +238,17 @@ test("sticky PDP purchase bar uses live variant price, MRP, quantity and Buy Now
   assert.match(markup, /Increase Moonstone Ring quantity/);
   assert.match(markup, /shopping-pdp-buy[^>]*>Buy Now<\/button>/);
   assert.doesNotMatch(markup, /shopping-pdp-offer/);
+});
+
+test("PDP quantity one can be decremented and Buy Now stays disabled for an existing line", () => {
+  const markup = renderToStaticMarkup(React.createElement(PdpPurchaseBar, {
+    product, variant: product.variants[0], off: 40, thumbnail: product.image,
+    cart: [{ key: "line-1", productId: product.id, variantId: product.variants[0].id, quantity: 1 }],
+    pendingKeys: [], pendingOperations: [], onAdd() {}, onUpdate() {}, onNavigate() {},
+  }));
+  assert.match(markup, /aria-label="Decrease Moonstone Ring quantity"(?![^>]*disabled)/);
+  assert.match(markup, /aria-live="polite">1<\/span>/);
+  assert.match(markup, /shopping-pdp-buy[^>]*disabled[^>]*>Added<\/button>/);
 });
 
 test("PDP gallery renders actual Shopify video media and responsive sticky purchase styling", async () => {

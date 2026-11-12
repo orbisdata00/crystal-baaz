@@ -1,10 +1,10 @@
 import { selectProductMedia } from "./product-media.js";
-import registry from "./data/catalog-registry.json";
+import registry from "./data/catalog-registry.json" with { type: "json" };
 let clientCatalog = { ...registry, products: [] };
 let clientProducts = [];
 export const loadPreviewCatalog = async () => {
   if (import.meta.env?.PROD === true) return Promise.reject(new Error("Workbook catalog preview is available only in development."));
-  const module = await import("./data/client-catalog.json");
+  const module = await import("./data/client-catalog.json", { with: { type: "json" } });
   clientCatalog = module.default;
   clientProducts = module.default.products;
   return clientProducts;

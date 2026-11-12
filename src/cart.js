@@ -22,12 +22,8 @@ export function selectVariant(product, selector) {
     };
 }
 
-export function createBuyNowHandler(addToCart, openCartReview) {
-  return async (product, variantId, quantity = 1) => {
-    const added = await addToCart(product, variantId, quantity);
-    if (added === true) openCartReview();
-    return added;
-  };
+export function createBuyNowHandler(addToCart) {
+  return (product, variantId, quantity = 1) => addToCart(product, variantId, quantity);
 }
 
 export function cartLinePrice(line, product) {

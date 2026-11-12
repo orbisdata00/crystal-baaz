@@ -1,6 +1,6 @@
 import { collections, catalogGroups, navigation, selectProducts } from "./catalog.js";
-import iconRegistry from "./data/category-icons.json";
-import mainRegistry from "./data/main-categories.json";
+import iconRegistry from "./data/category-icons.json" with { type: "json" };
+import mainRegistry from "./data/main-categories.json" with { type: "json" };
 
 export const categoryIconMap = iconRegistry.icons;
 export const mainCategoryRules = mainRegistry.rules;
