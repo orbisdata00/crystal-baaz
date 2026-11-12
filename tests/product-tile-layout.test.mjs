@@ -63,8 +63,24 @@ test("product card aligns current price with Buy Now and keeps title copy outsid
   assert.match(markup, /class="shopping-product-discount"[^>]*>40% OFF/);
   assert.doesNotMatch(markup, /shopping-tile-comparison[^]*?40% OFF/);
   assert.doesNotMatch(markup, /on MRP/i);
-  assert.match(markup, /class="shopping-product-attributes"><span[^>]*>Ring<\/span>/);
+  assert.doesNotMatch(markup, /shopping-product-attributes|>Ring<\/span>/);
   assert.doesNotMatch(markup, /Variant 1/);
+});
+
+test("product cards omit category labels and retain a compact variant options link", () => {
+  const variantProduct = {
+    ...product,
+    type: "Ring",
+    collectionTitles: ["Best Seller"],
+    attributes: [{ label: "Stone", value: "Natural Quartz" }, { label: "Product category", value: "Rings" }, "Rings"],
+    variants: [product.variants[0], { ...product.variants[0], id: "gid://shopify/ProductVariant/2" }],
+  };
+  const markup = renderToStaticMarkup(React.createElement(ShoppingCard, {
+    product: variantProduct, onOpen() {}, onAdd() {}, onSave() {}, onUpdate() {}, saved: [], cart: [],
+  }));
+  assert.doesNotMatch(markup, />Rings?<\/span>|Best Seller|Product category/);
+  assert.match(markup, /Stone: Natural Quartz/);
+  assert.match(markup, /class="shopping-option-link"[^>]*>2 options<\/button>/);
 });
 
 test("product add control reflects the current cart quantity", () => {
@@ -85,7 +101,7 @@ test("unavailable variants keep a disabled unavailable state", () => {
 test("mobile rails and navigation use compact, separate visual containers", async () => {
   const css = await readFile(new URL("../src/shopping.css", import.meta.url), "utf8");
   assert.match(css, /\.shopping-product-card \{[^}]*border:0; border-radius:0; background:transparent; box-shadow:none;/);
-  assert.match(css, /\.shopping-product-image-panel \{ height:clamp\(145px,39vw,170px\); margin:0; border-radius:10px;/);
+  assert.match(css, /\.shopping-product-image-panel \{ margin:0; border-radius:10px;/);
   assert.match(css, /\.shopping-rail-track>\.shopping-product-card \{ flex:0 0 clamp\(104px,28vw,124px\); \}/);
   assert.match(css, /\.shopping-product-card:not\(\[data-fully-visible="true"\]\) \.shopping-tile-action \{ visibility:hidden; \}/);
   assert.match(css, /\.shopping-bottom-nav[^}]*border-radius:999px; background:#ffffff/);
@@ -94,8 +110,23 @@ test("mobile rails and navigation use compact, separate visual containers", asyn
   assert.match(css, /\.shopping-home-category-grid \{ display:flex; gap:12px; overflow-x:auto/);
   assert.match(css, /\.shopping-category-artwork \{[^}]*aspect-ratio:1;/);
   assert.match(css, /\.shopping-tile-purchase-row \{ display:flex; align-items:center; justify-content:space-between/);
+  assert.match(css, /\.shopping-product-copy \{ flex:0 0 auto; min-height:0; padding:4px 6px 3px; \}/);
+  assert.doesNotMatch(css, /\.shopping-product-image-panel \{ height:/);
+  assert.match(css, /\.shopping-product-image-panel \{ position:relative; display:flex;[^}]*height:auto;/);
+  assert.match(css, /\.shopping-product-image-link \{ display:flex; flex:0 0 auto;[^}]*aspect-ratio:1;[^}]*padding:0;/);
+  assert.match(css, /\.shopping-product-image-link>img,.shopping-product-image-link>\.shopping-image-unavailable \{ display:block; width:100%; height:100%; min-height:0; object-fit:contain; object-position:center; \}/);
+  assert.match(css, /\.shopping-option-link \{ position:static; margin:2px 0 0;/);
   assert.doesNotMatch(css, /\.shopping-browse-content \.shopping-add,\.shopping-browse-content \.shopping-quantity \{ width:100%/);
   assert.match(css, /\.shopping-search>button \{ width:44px; height:44px;/);
+});
+
+test("product image tiles use a square, edge-to-edge viewport without cropping or stretching", () => {
+  const markup = render();
+  const imageStart = markup.indexOf('class="shopping-product-image-link"');
+  const imageEnd = markup.indexOf("</button>", imageStart);
+  const imageMarkup = markup.slice(imageStart, imageEnd);
+  assert.match(imageMarkup, /<img[^>]+width="420"[^>]+height="420"/);
+  assert.match(imageMarkup, /src="https:\/\/cdn\.shopify\.com\/s\/files\/1\/product\.jpg\?width=420"/);
 });
 
 test("variant sheet content keeps Shopify identity, price, availability, and action in separate columns", async () => {
@@ -244,6 +275,7 @@ test("category and product listing screens omit product counts without removing 
   }
   assert.match(browse, /Share category/);
   assert.match(results, /data-product-id="gid:\/\/shopify\/Product\/1"/);
+  assert.doesNotMatch(results, /shopping-product-attributes|>Ring<\/span>/);
 });
 
 test("category browsing has sharing and no stock or price range filters", () => {

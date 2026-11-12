@@ -6,6 +6,7 @@ import { catalogGroups, collections, customerVariantLabel, formatVariantLabel, n
 import { addCartLine, calculateCart, changeCartQuantity, removeCartLine, selectVariant, reconcileShopifyCartLines, createBuyNowHandler } from "./cart.js";
 import { categoryTabs, discoveryById, discoverySections, discoveryHref, selectDiscoveryProducts } from "./discovery.js";
 import { catalogService } from "./catalog-service.js";
+import { loadShopifyCollections } from "./shopify.js";
 import { parseRoute } from "./routes.js";
 import { loadPreviewCatalog } from "./catalog.js";
 import { categoryParents, getParentCategory, hierarchyHref } from "./category-hierarchy.js";
@@ -429,7 +430,6 @@ function ProductCard({ product, onOpen, onAdd, isSaved, onSave, cart = [], onUpd
       <button className=${`save-button ${isSaved ? "is-saved" : ""}`} type="button" aria-label=${isSaved ? "Remove from wishlist" : "Add to wishlist"} aria-pressed=${isSaved} onClick=${() => onSave(product.id)}><${Icon} name="heart" size=${17}/></button>
     </div>
     <div className="product-info"><button className="product-title" type="button" onClick=${() => onOpen(product)}>${title}</button>
-      <p className="product-meta">${(product.collectionTitles || []).slice(0, 2).join(" · ") || product.type || "Catalog record"}</p>
       <div className="product-price">${hasPrice ? html`<strong>${(product.variants || []).length > 1 ? "From " : ""}${money(price)}</strong>` : html`<strong className="price-pending">Price pending review</strong>`}${discountPercent(price, compareAt) > 0 && html`<del key="compare-at">MRP ${money(compareAt)}</del><span key="discount" className="product-discount">${discountPercent(price, compareAt)}% off</span>`}<span className="price-note">${product.previewOnly ? "Workbook price · preview only" : "Shopify Storefront price"}</span></div>
     </div>
     <div className="desktop-product-action">${cartLine ? html`<div className="quick-quantity" role="group" aria-label=${`Quantity for ${title}`}><button type="button" onClick=${() => onUpdate(cartLine.key, -1)} aria-label=${`Decrease ${title} quantity`}><${Icon} name="minus" size=${14}/></button><span aria-live="polite">${cartLine.quantity}</span><button type="button" onClick=${() => onUpdate(cartLine.key, 1)} aria-label=${`Increase ${title} quantity`}><${Icon} name="plus" size=${14}/></button></div>` : html`<button className="quick-add" type="button" disabled=${!addEnabled} onClick=${() => onAdd(product, defaultVariant.id)}>${addLabel}</button>`}</div>
@@ -811,6 +811,7 @@ function StoreApp() {
   const productReturnHash = useRef("#collections");
   const reportedVariantCorrections = useRef(new Set());
   const [catalog, setCatalog] = useState([]);
+  const [shopifyCollectionImages, setShopifyCollectionImages] = useState({});
   const [sharedCartData, setSharedCartData] = useState({ itemsKey: "", items: [], loading: false, error: "" });
   const [loading, setLoading] = useState(true);
   const [online, setOnline] = useState(navigator.onLine);
@@ -833,6 +834,28 @@ function StoreApp() {
   const { cart, remoteCart: shopifyCart, pending: cartSyncing, pendingKeys: cartPendingKeys, pendingOperations: cartPendingOperations, error: cartError } = cartState;
 
   useEffect(() => { void customerAccount.initialize(); }, []);
+  useEffect(() => {
+    if (!catalogService.isLive) { setShopifyCollectionImages({}); return undefined; }
+    let active = true;
+    const loadCollectionImages = async () => {
+      const images = {};
+      let after = null;
+      let hasNextPage = true;
+      while (hasNextPage) {
+        const result = await loadShopifyCollections({ first: 100, after });
+        if (!result) break;
+        for (const collection of result.collections || []) {
+          if (collection.handle && collection.image?.url) images[collection.handle] = collection.image.url;
+        }
+        const pageInfo = result.pageInfo || {};
+        hasNextPage = Boolean(pageInfo.hasNextPage && pageInfo.endCursor && pageInfo.endCursor !== after);
+        after = pageInfo.endCursor || null;
+      }
+      if (active) setShopifyCollectionImages(images);
+    };
+    void loadCollectionImages().catch(() => { if (active) setShopifyCollectionImages({}); });
+    return () => { active = false; };
+  }, [retryTick]);
 
   const navigate = useCallback((hash) => {
     window.history.pushState({}, "", hash || "#home");
@@ -1112,14 +1135,14 @@ function StoreApp() {
   const dataState = { loading, loadingMore: catalogLoadingMore, error: !online ? "You are offline. Reconnect to load current Shopify products and prices." : catalogError, onRetry: retryCatalog };
   const sortProducts = value => { setSort(value); setPageSize(24); updateViewOption("sort", value); };
   const pageContent = () => {
-    if (["home", "cart"].includes(route.page)) return html`<${ShoppingHome} catalog=${catalog} ...${shared} ...${dataState}/>`;
+    if (["home", "cart"].includes(route.page)) return html`<${ShoppingHome} catalog=${catalog} collectionImages=${shopifyCollectionImages} ...${shared} ...${dataState}/>`;
     if (route.page === "account") return html`<${CustomerAccountPage} state=${accountState} account=${customerAccount}/>`;
     if (route.page === "shared-cart") return html`<${ShoppingSharedCart} items=${sharedCartData.items} loading=${sharedCartData.loading} error=${sharedCartData.error} cartCount=${cartCount} cartSyncing=${cartSyncing} cartError=${cartError} onRetryVerification=${retryCatalog} onRetryCart=${cartState.retry} onAddItems=${addSharedItems} onNavigate=${navigate} onOpenProduct=${openSharedProduct}/>`;
     let browseRoute = route;
     if (route.page === "nav" && getParentCategory(route.label)) browseRoute = { ...route, page: "collections", group: getParentCategory(route.label).id };
     if (route.page === "crystals") browseRoute = { ...route, page: "collections", group: "crystals" };
     if (route.page === "zodiac") browseRoute = { ...route, page: "collections", group: "zodiac", category: route.sign ? `zodiac:${route.sign}` : "" };
-    if (["collections", "collection", "group"].includes(browseRoute.page)) return html`<${ShoppingBrowse} route=${browseRoute} catalog=${catalog} sort=${sort} onSort=${sortProducts} pageSize=${pageSize} onMore=${loadMore} ...${shared} ...${dataState}/>`;
+    if (["collections", "collection", "group"].includes(browseRoute.page)) return html`<${ShoppingBrowse} route=${browseRoute} catalog=${catalog} collectionImages=${shopifyCollectionImages} sort=${sort} onSort=${sortProducts} pageSize=${pageSize} onMore=${loadMore} ...${shared} ...${dataState}/>`;
     if (route.page === "product") return html`<${ShoppingProduct} key=${route.handle} product=${activeProduct} selectedVariantId=${route.variantId||""} catalog=${catalog} onBack=${() => navigate(productReturnHash.current || "#collections")} ...${shared} ...${dataState}/>`;
     if (route.page === "search" || route.page === "wishlist") return html`<${ShoppingResults} catalog=${catalog} title=${route.page === "wishlist" ? "Your wishlist" : route.query ? `Search results for “${route.query}”` : "Search products"} query=${route.query || ""} savedOnly=${route.page === "wishlist"} pageSize=${pageSize} onMore=${loadMore} sort=${sort} onSort=${sortProducts} ...${shared} ...${dataState}/>`;
     if (route.page === "nav" || route.page === "discovery") {

@@ -1,3 +1,41 @@
 {
-  "icons": {}
+  "icons": {},
+  "temporary": {
+    "source": "original-generated-artwork",
+    "assetUrl": "assets/category-icon-sprite.png",
+    "columns": 4,
+    "rows": 4,
+    "sprites": {
+      "rudraksha": 0,
+      "mala": 1,
+      "rudrakshaBracelet": 2,
+      "crystalBracelet": 3,
+      "gemstones": 4,
+      "ring": 5,
+      "pujaDiya": 6,
+      "crystalCluster": 7,
+      "pendant": 8,
+      "earrings": 9,
+      "ankletBangle": 10,
+      "spheres": 11,
+      "pyramid": 12,
+      "zodiac": 13,
+      "gift": 14,
+      "assortment": 15
+    },
+    "overrides": {
+      "parent/best-seller": "assortment",
+      "parent/new-arrivals": "gift",
+      "parent/zodiac": "zodiac",
+      "parent/zodiac-signs": "zodiac",
+      "parent/bracelets": "crystalBracelet",
+      "parent/rudraksha": "rudraksha",
+      "parent/crystals": "gemstones",
+      "parent/pooja": "pujaDiya",
+      "parent/intentions": "assortment",
+      "parent/mala": "mala",
+      "parent/pendants": "pendant",
+      "parent/decor": "assortment"
+    }
+  }
 }

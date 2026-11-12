@@ -1,9 +1,9 @@
 {
   "registry": "src/data/category-icons.json",
-  "instructions": "Add a client-approved asset URL under icons[iconKey]. Product images, generated artwork and unrelated fallback icons must not be substituted.",
+  "instructions": "Shopify collection images have priority. When no Shopify image exists, use the relevant original local icon from public/assets/category-icon-sprite.png; otherwise keep a text-only tile. Rudraksha Life images are not copied or hotlinked. Product images and product membership continue to come from verified Shopify product records.",
   "totalControls": 162,
   "suppliedAssets": 0,
-  "missingAssets": 162,
+  "missingAssets": 1,
   "controls": [
     {
       "categoryId": "best-seller",
@@ -16,7 +16,10 @@
       "displayOrder": 0,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 15
     },
     {
       "categoryId": "collection:money",
@@ -29,7 +32,10 @@
       "displayOrder": 0,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 15
     },
     {
       "categoryId": "group:group-rashirings",
@@ -42,7 +48,10 @@
       "displayOrder": 1,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 5
     },
     {
       "categoryId": "group:group-gembracelets",
@@ -55,7 +64,10 @@
       "displayOrder": 2,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 3
     },
     {
       "categoryId": "group:group-rudrakshamala",
@@ -68,7 +80,10 @@
       "displayOrder": 3,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 1
     },
     {
       "categoryId": "group:group-rudrakshabracelet",
@@ -81,7 +96,10 @@
       "displayOrder": 4,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 2
     },
     {
       "categoryId": "pending:zodiacbracelets",
@@ -94,7 +112,10 @@
       "displayOrder": 5,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 3
     },
     {
       "categoryId": "collection:gifts",
@@ -107,7 +128,10 @@
       "displayOrder": 6,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 14
     },
     {
       "categoryId": "rule:kavach-main",
@@ -120,7 +144,10 @@
       "displayOrder": 7,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 8
     },
     {
       "categoryId": "group:group-rashipendants",
@@ -133,7 +160,10 @@
       "displayOrder": 8,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 8
     },
     {
       "categoryId": "new-arrivals",
@@ -146,7 +176,10 @@
       "displayOrder": 1,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 14
     },
     {
       "categoryId": "zodiac",
@@ -159,7 +192,10 @@
       "displayOrder": 2,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 13
     },
     {
       "categoryId": "pending:rashibracelets",
@@ -172,7 +208,10 @@
       "displayOrder": 0,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 3
     },
     {
       "categoryId": "group:group-rashirings",
@@ -185,7 +224,10 @@
       "displayOrder": 1,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 5
     },
     {
       "categoryId": "group:group-rashipendants",
@@ -198,7 +240,10 @@
       "displayOrder": 2,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 8
     },
     {
       "categoryId": "category:zodiac-signs",
@@ -211,7 +256,10 @@
       "displayOrder": 3,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 13
     },
     {
       "categoryId": "pending:yantra",
@@ -224,7 +272,10 @@
       "displayOrder": 4,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 6
     },
     {
       "categoryId": "pending:pen",
@@ -237,7 +288,7 @@
       "displayOrder": 5,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "text-only-until-a-relevant-shopify-or-temporary-image-exists"
     },
     {
       "categoryId": "bracelets",
@@ -250,7 +301,10 @@
       "displayOrder": 3,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 3
     },
     {
       "categoryId": "rudraksha",
@@ -263,7 +317,10 @@
       "displayOrder": 4,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 0
     },
     {
       "categoryId": "pending:121mukhi",
@@ -276,7 +333,10 @@
       "displayOrder": 0,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 0
     },
     {
       "categoryId": "pending:kavach",
@@ -289,7 +349,10 @@
       "displayOrder": 1,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 8
     },
     {
       "categoryId": "group:group-rudrakshabracelet",
@@ -302,7 +365,10 @@
       "displayOrder": 2,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 2
     },
     {
       "categoryId": "group:group-rudrakshamala",
@@ -315,7 +381,10 @@
       "displayOrder": 3,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 1
     },
     {
       "categoryId": "pending:sidhmala",
@@ -328,7 +397,10 @@
       "displayOrder": 4,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 1
     },
     {
       "categoryId": "collection:pendants",
@@ -341,7 +413,10 @@
       "displayOrder": 5,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 8
     },
     {
       "categoryId": "pending:other",
@@ -354,7 +429,10 @@
       "displayOrder": 6,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 0
     },
     {
       "categoryId": "crystals",
@@ -367,7 +445,10 @@
       "displayOrder": 5,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "collection:bracelets",
@@ -380,7 +461,10 @@
       "displayOrder": 0,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 3
     },
     {
       "categoryId": "collection:mala",
@@ -393,7 +477,10 @@
       "displayOrder": 1,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 1
     },
     {
       "categoryId": "collection:earrings-tops",
@@ -406,7 +493,10 @@
       "displayOrder": 2,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 9
     },
     {
       "categoryId": "collection:pendants",
@@ -419,7 +509,10 @@
       "displayOrder": 3,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 8
     },
     {
       "categoryId": "collection:anklet",
@@ -432,7 +525,10 @@
       "displayOrder": 4,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 10
     },
     {
       "categoryId": "collection:frames",
@@ -445,7 +541,10 @@
       "displayOrder": 5,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "collection:sphere",
@@ -458,7 +557,10 @@
       "displayOrder": 6,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 11
     },
     {
       "categoryId": "collection:pyramid",
@@ -471,7 +573,10 @@
       "displayOrder": 7,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 12
     },
     {
       "categoryId": "collection:cluster",
@@ -484,7 +589,10 @@
       "displayOrder": 8,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 7
     },
     {
       "categoryId": "collection:rings",
@@ -497,7 +605,10 @@
       "displayOrder": 9,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 5
     },
     {
       "categoryId": "collection:bangle",
@@ -510,7 +621,10 @@
       "displayOrder": 10,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 10
     },
     {
       "categoryId": "collection:agate-slices",
@@ -523,7 +637,10 @@
       "displayOrder": 11,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "collection:angels",
@@ -536,7 +653,10 @@
       "displayOrder": 12,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "collection:knife",
@@ -549,7 +669,10 @@
       "displayOrder": 13,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "collection:diyas",
@@ -562,7 +685,10 @@
       "displayOrder": 14,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 6
     },
     {
       "categoryId": "collection:glass",
@@ -575,7 +701,10 @@
       "displayOrder": 15,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "collection:hanger",
@@ -588,7 +717,10 @@
       "displayOrder": 16,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "pending:heart",
@@ -601,7 +733,10 @@
       "displayOrder": 17,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "collection:keyrings",
@@ -614,7 +749,10 @@
       "displayOrder": 18,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "pending:pens",
@@ -627,7 +765,10 @@
       "displayOrder": 19,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "collection:pencil-towers",
@@ -640,7 +781,10 @@
       "displayOrder": 20,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "collection:rollers",
@@ -653,7 +797,10 @@
       "displayOrder": 21,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "collection:selenite-plates",
@@ -666,7 +813,10 @@
       "displayOrder": 22,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "collection:statue-murti",
@@ -679,7 +829,10 @@
       "displayOrder": 23,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "collection:tortoise-turtle",
@@ -692,7 +845,10 @@
       "displayOrder": 24,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "collection:trees",
@@ -705,7 +861,10 @@
       "displayOrder": 25,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "collection:tumbles",
@@ -718,7 +877,10 @@
       "displayOrder": 26,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "collection:yantra",
@@ -731,7 +893,10 @@
       "displayOrder": 27,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 6
     },
     {
       "categoryId": "collection:zibu-coins",
@@ -744,7 +909,10 @@
       "displayOrder": 28,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "pending:owl",
@@ -757,7 +925,10 @@
       "displayOrder": 29,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "collection:clock-watch",
@@ -770,7 +941,10 @@
       "displayOrder": 30,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "collection:vase",
@@ -783,7 +957,10 @@
       "displayOrder": 31,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "pending:potli",
@@ -796,7 +973,10 @@
       "displayOrder": 32,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "collection:bowl",
@@ -809,7 +989,10 @@
       "displayOrder": 33,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "collection:shivling",
@@ -822,7 +1005,10 @@
       "displayOrder": 34,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "pooja",
@@ -835,7 +1021,10 @@
       "displayOrder": 6,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 6
     },
     {
       "categoryId": "collection:shaligram",
@@ -848,7 +1037,10 @@
       "displayOrder": 0,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 6
     },
     {
       "categoryId": "collection:ganesh-ji-murti",
@@ -861,7 +1053,10 @@
       "displayOrder": 1,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 6
     },
     {
       "categoryId": "collection:shivling",
@@ -874,7 +1069,10 @@
       "displayOrder": 2,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 6
     },
     {
       "categoryId": "collection:yantra",
@@ -887,7 +1085,10 @@
       "displayOrder": 3,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 6
     },
     {
       "categoryId": "collection:jaap-mala",
@@ -900,7 +1101,10 @@
       "displayOrder": 4,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 1
     },
     {
       "categoryId": "collection:diyas",
@@ -913,7 +1117,10 @@
       "displayOrder": 5,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 6
     },
     {
       "categoryId": "group:group-paradlaxmiandganeshji",
@@ -926,7 +1133,10 @@
       "displayOrder": 6,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 6
     },
     {
       "categoryId": "group:group-charanpadukabox",
@@ -939,7 +1149,10 @@
       "displayOrder": 7,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 6
     },
     {
       "categoryId": "intentions",
@@ -952,7 +1165,10 @@
       "displayOrder": 7,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 15
     },
     {
       "categoryId": "collection:money",
@@ -965,7 +1181,10 @@
       "displayOrder": 0,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "pending:depressionandstressrelief",
@@ -978,7 +1197,10 @@
       "displayOrder": 1,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "pending:angercontrol",
@@ -991,7 +1213,10 @@
       "displayOrder": 2,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "pending:memoryfocusandconcentration",
@@ -1004,7 +1229,10 @@
       "displayOrder": 3,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "pending:loneliness",
@@ -1017,7 +1245,10 @@
       "displayOrder": 4,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "pending:patiencetolerance",
@@ -1030,7 +1261,10 @@
       "displayOrder": 5,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "pending:confidenceselfesteem",
@@ -1043,7 +1277,10 @@
       "displayOrder": 6,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "pending:leadership",
@@ -1056,7 +1293,10 @@
       "displayOrder": 7,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "pending:studylearningeducation",
@@ -1069,7 +1309,10 @@
       "displayOrder": 8,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "pending:loverelationship",
@@ -1082,7 +1325,10 @@
       "displayOrder": 9,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "pending:marriageproblemsdesiredlove",
@@ -1095,7 +1341,10 @@
       "displayOrder": 10,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "pending:backpainrelief",
@@ -1108,7 +1357,10 @@
       "displayOrder": 11,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "pending:bodypainreleif",
@@ -1121,7 +1373,10 @@
       "displayOrder": 12,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "pending:blackmagicprotection",
@@ -1134,7 +1389,10 @@
       "displayOrder": 13,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "pending:harmonyinhome",
@@ -1147,7 +1405,10 @@
       "displayOrder": 14,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "pending:tophealers",
@@ -1160,7 +1421,10 @@
       "displayOrder": 15,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "pending:motivation",
@@ -1173,7 +1437,10 @@
       "displayOrder": 16,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "pending:addictionrelief",
@@ -1186,7 +1453,10 @@
       "displayOrder": 17,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "pending:weightcontrol",
@@ -1199,7 +1469,10 @@
       "displayOrder": 18,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "pending:weightgain",
@@ -1212,7 +1485,10 @@
       "displayOrder": 19,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "pending:recoveryafterillnessorinjury",
@@ -1225,7 +1501,10 @@
       "displayOrder": 20,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "pending:goodsleep",
@@ -1238,7 +1517,10 @@
       "displayOrder": 21,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "pending:protectionfromnegativeenergies",
@@ -1251,7 +1533,10 @@
       "displayOrder": 22,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "pending:success",
@@ -1264,7 +1549,10 @@
       "displayOrder": 23,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "pending:beginners",
@@ -1277,7 +1565,10 @@
       "displayOrder": 24,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "pending:bloodpressurerelief",
@@ -1290,7 +1581,10 @@
       "displayOrder": 25,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "pending:healthoveralllongevity",
@@ -1303,7 +1597,10 @@
       "displayOrder": 26,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "pending:kidneyhealthoverall",
@@ -1316,7 +1613,10 @@
       "displayOrder": 27,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "pending:migraineheadacherelief",
@@ -1329,7 +1629,10 @@
       "displayOrder": 28,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "pending:thyroidrelief",
@@ -1342,7 +1645,10 @@
       "displayOrder": 29,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "pending:diabetesrelief",
@@ -1355,7 +1661,10 @@
       "displayOrder": 30,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "pending:cholesterolrelief",
@@ -1368,7 +1677,10 @@
       "displayOrder": 31,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "pending:arthritispainrelief",
@@ -1381,7 +1693,10 @@
       "displayOrder": 32,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "pending:asthmabreatheeasy",
@@ -1394,7 +1709,10 @@
       "displayOrder": 33,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "pending:allergyrelief",
@@ -1407,7 +1725,10 @@
       "displayOrder": 34,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "pending:fertilitypregnancy",
@@ -1420,7 +1741,10 @@
       "displayOrder": 35,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "pending:pcodpcosproblem",
@@ -1433,7 +1757,10 @@
       "displayOrder": 36,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "pending:courtcaselegalissues",
@@ -1446,7 +1773,10 @@
       "displayOrder": 37,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "pending:positiveenergy",
@@ -1459,7 +1789,10 @@
       "displayOrder": 38,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "pending:ariesrashibraceletmeshzodiacrashibracelets",
@@ -1472,7 +1805,10 @@
       "displayOrder": 39,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 3
     },
     {
       "categoryId": "pending:taurusrashibraceletvrishabhzodiacrashibracelets",
@@ -1485,7 +1821,10 @@
       "displayOrder": 40,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 3
     },
     {
       "categoryId": "pending:geminirashibraceletmithunzodiacrashibracelets",
@@ -1498,7 +1837,10 @@
       "displayOrder": 41,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 3
     },
     {
       "categoryId": "pending:cancerrashibraceletkarkzodiacrashibracelets",
@@ -1511,7 +1853,10 @@
       "displayOrder": 42,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 3
     },
     {
       "categoryId": "pending:leorashibraceletsinghzodiacrashibracelets",
@@ -1524,7 +1869,10 @@
       "displayOrder": 43,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 3
     },
     {
       "categoryId": "pending:virgorashibraceletkanyazodiacrashibracelets",
@@ -1537,7 +1885,10 @@
       "displayOrder": 44,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 3
     },
     {
       "categoryId": "pending:sagittariusrashibraceletdhanuzodiacrashibracelets",
@@ -1550,7 +1901,10 @@
       "displayOrder": 45,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 3
     },
     {
       "categoryId": "pending:librarashibracelettulazodiacrashibracelets",
@@ -1563,7 +1917,10 @@
       "displayOrder": 46,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 3
     },
     {
       "categoryId": "pending:scorpiorashibraceletvrishchikzodiacrashibracelets",
@@ -1576,7 +1933,10 @@
       "displayOrder": 47,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 3
     },
     {
       "categoryId": "pending:capricornrashibraceletmakarzodiacrashibracelets",
@@ -1589,7 +1949,10 @@
       "displayOrder": 48,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 3
     },
     {
       "categoryId": "pending:aquariusrashibraceletkumbhzodiacrashibracelets",
@@ -1602,7 +1965,10 @@
       "displayOrder": 49,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 3
     },
     {
       "categoryId": "pending:piscesrashibraceletmeenzodiacrashibracelets",
@@ -1615,7 +1981,10 @@
       "displayOrder": 50,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 3
     },
     {
       "categoryId": "pending:rulingnumber1",
@@ -1628,7 +1997,10 @@
       "displayOrder": 51,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "pending:rulingnumber2",
@@ -1641,7 +2013,10 @@
       "displayOrder": 52,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "pending:rulingnumber3",
@@ -1654,7 +2029,10 @@
       "displayOrder": 53,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "pending:rulingnumber4",
@@ -1667,7 +2045,10 @@
       "displayOrder": 54,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "pending:rulingnumber5",
@@ -1680,7 +2061,10 @@
       "displayOrder": 55,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "pending:rulingnumber6",
@@ -1693,7 +2077,10 @@
       "displayOrder": 56,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "pending:rulingnumber7",
@@ -1706,7 +2093,10 @@
       "displayOrder": 57,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "pending:rulingnumber8",
@@ -1719,7 +2109,10 @@
       "displayOrder": 58,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "pending:rulingnumber9",
@@ -1732,7 +2125,10 @@
       "displayOrder": 59,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "pending:missingnumber1",
@@ -1745,7 +2141,10 @@
       "displayOrder": 60,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "pending:missingnumber2",
@@ -1758,7 +2157,10 @@
       "displayOrder": 61,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "pending:missingnumber3",
@@ -1771,7 +2173,10 @@
       "displayOrder": 62,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "pending:missingnumber4",
@@ -1784,7 +2189,10 @@
       "displayOrder": 63,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "pending:missingnumber5",
@@ -1797,7 +2205,10 @@
       "displayOrder": 64,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "pending:missingnumber6",
@@ -1810,7 +2221,10 @@
       "displayOrder": 65,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "pending:missingnumber7",
@@ -1823,7 +2237,10 @@
       "displayOrder": 66,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "pending:missingnumber8",
@@ -1836,7 +2253,10 @@
       "displayOrder": 67,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "pending:missingnumber9",
@@ -1849,7 +2269,10 @@
       "displayOrder": 68,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 4
     },
     {
       "categoryId": "zodiac-signs",
@@ -1862,7 +2285,10 @@
       "displayOrder": 0,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 13
     },
     {
       "categoryId": "zodiac:Aries",
@@ -1875,7 +2301,10 @@
       "displayOrder": 0,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 13
     },
     {
       "categoryId": "zodiac:Taurus",
@@ -1888,7 +2317,10 @@
       "displayOrder": 1,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 13
     },
     {
       "categoryId": "zodiac:Gemini",
@@ -1901,7 +2333,10 @@
       "displayOrder": 2,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 13
     },
     {
       "categoryId": "zodiac:Cancer",
@@ -1914,7 +2349,10 @@
       "displayOrder": 3,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 13
     },
     {
       "categoryId": "zodiac:Leo",
@@ -1927,7 +2365,10 @@
       "displayOrder": 4,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 13
     },
     {
       "categoryId": "zodiac:Virgo",
@@ -1940,7 +2381,10 @@
       "displayOrder": 5,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 13
     },
     {
       "categoryId": "zodiac:Libra",
@@ -1953,7 +2397,10 @@
       "displayOrder": 6,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 13
     },
     {
       "categoryId": "zodiac:Scorpio",
@@ -1966,7 +2413,10 @@
       "displayOrder": 7,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 13
     },
     {
       "categoryId": "zodiac:Sagittarius–",
@@ -1979,7 +2429,10 @@
       "displayOrder": 8,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 13
     },
     {
       "categoryId": "zodiac:Capricorn",
@@ -1992,7 +2445,10 @@
       "displayOrder": 9,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 13
     },
     {
       "categoryId": "zodiac:Aquarius",
@@ -2005,7 +2461,10 @@
       "displayOrder": 10,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 13
     },
     {
       "categoryId": "zodiac:Pisces",
@@ -2018,7 +2477,10 @@
       "displayOrder": 11,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 13
     },
     {
       "categoryId": "mala",
@@ -2031,7 +2493,10 @@
       "displayOrder": 0,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 1
     },
     {
       "categoryId": "collection:pearl-mala",
@@ -2044,7 +2509,10 @@
       "displayOrder": 0,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 1
     },
     {
       "categoryId": "collection:ruby-mala",
@@ -2057,7 +2525,10 @@
       "displayOrder": 1,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 1
     },
     {
       "categoryId": "rashi-rings",
@@ -2070,7 +2541,10 @@
       "displayOrder": 0,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 5
     },
     {
       "categoryId": "rashi-pendants",
@@ -2083,7 +2557,10 @@
       "displayOrder": 0,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 8
     },
     {
       "categoryId": "pendants",
@@ -2096,7 +2573,10 @@
       "displayOrder": 0,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 8
     },
     {
       "categoryId": "decor",
@@ -2109,7 +2589,12 @@
       "displayOrder": 0,
       "active": true,
       "supplied": false,
-      "status": "text-only-until-client-supplies-icon"
+      "status": "temporary-local-icon-with-shopify-image-priority",
+      "temporary": true,
+      "temporaryAssetUrl": "./assets/category-icon-sprite.png",
+      "temporarySpriteIndex": 15
     }
-  ]
+  ],
+  "temporaryAsset": "public/assets/category-icon-sprite.png",
+  "temporaryIcons": 161
 }
