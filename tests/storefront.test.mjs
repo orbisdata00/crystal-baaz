@@ -552,7 +552,7 @@ test("customer-facing brand copy and PWA metadata use Crystal Baaz", async () =>
   assert.equal(manifest.short_name, "Crystal Baaz");
   const app = await readFile(new URL("../src/app.js", import.meta.url), "utf8");
   assert.match(app, /aria-label="Crystal Baaz home"/);
-  assert.match(app, /crystal baaz/);
+  assert.match(app, /className="brand-name">Crystal Baaz/);
 });
 
 
