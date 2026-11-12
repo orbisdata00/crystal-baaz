@@ -99,6 +99,7 @@
 .shopping-skeleton { height:260px; border:1px solid var(--line); border-radius:10px; background:linear-gradient(110deg,#eee 25%,#fafafa 45%,#eee 65%); background-size:250% 100%; animation:shopping-shimmer 1.4s infinite; }
 @keyframes shopping-shimmer { to { background-position:-200% 0; } }
 .shopping-loadmore { padding:22px 0; display:flex; align-items:center; justify-content:center; gap:15px; font-size:11px; }
+.shopping-infinite-sentinel { min-height:1px; display:flex; align-items:center; justify-content:center; padding:5px 0; color:var(--muted); font-size:11px; }
 .shopping-footer { padding:25px max(24px,calc((100vw - 1280px)/2)); background:var(--shop-accent); color:#fff; }
 .shopping-footer>strong { font:600 26px var(--serif); }
 .shopping-footer p { margin:5px 0 12px; font-size:11px; color:#757575; }

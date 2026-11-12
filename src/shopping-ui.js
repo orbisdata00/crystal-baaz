@@ -128,10 +128,11 @@ function WishlistControl({product,saved,onSave}) {
 }
 function VariantAddControl({product,variant,line,cart,pendingKeys,pendingOperations,onAdd,onUpdate,onOptions,off}) {
  const label=customerVariantLabel(product,variant,line?.variantTitle);
+ const displayLabel=/^option\s+\d+$/i.test(label)?'':label;
  const optionsCta=Boolean(onOptions&&!line);
  const price=html`<${ProductPriceInfo} price=${Number(variant?.price)} compare=${Number(variant?.compareAt)}/>`;
  const purchase=html`<${Purchase} product=${product} variant=${variant} cart=${cart} pendingKeys=${pendingKeys} pendingOperations=${pendingOperations} onAdd=${onAdd} onUpdate=${onUpdate} onOptions=${onOptions}/>`;
- return html`<div className=${`shopping-tile-action ${label?'has-variant-label':''}`}>${label&&html`<span className="shopping-tile-variant-label">${label}</span>`}<div className=${`shopping-tile-purchase-row ${optionsCta?'has-options-cta':''}`}>${optionsCta?purchase:price}${optionsCta?price:purchase}</div></div>`;
+ return html`<div className=${`shopping-tile-action ${displayLabel?'has-variant-label':''}`}>${displayLabel&&html`<span className="shopping-tile-variant-label">${displayLabel}</span>`}<div className=${`shopping-tile-purchase-row ${optionsCta?'has-options-cta':''}`}>${optionsCta?purchase:price}${optionsCta?price:purchase}</div></div>`;
 }
 function ProductImagePanel({product,saved,onOpen,onSave,variant,line,cart,pendingKeys,pendingOperations,onAdd,onUpdate,onOptions,imagePriority=false,off}) {
  const imageSources=[variant?.image,...(product.galleryMedia||[]).filter(media=>media?.type==='image').map(media=>media.src),...(product.images||[]),product.image].filter(src=>validImage(src));
@@ -158,18 +159,58 @@ function sameProductState(left,right) {
  return left.product===right.product&&left.saved===right.saved&&left.imagePriority===right.imagePriority&&left.onOpen===right.onOpen&&left.onAdd===right.onAdd&&left.onSave===right.onSave&&left.onUpdate===right.onUpdate&&sameLines&&samePending;
 }
 export const ShoppingCard=React.memo(ShoppingCardView,sameProductState);
-export function ShoppingGrid({products,...props}) {return html`<div className="shopping-product-grid">${products.map((p,index)=>html`<${ShoppingCard} key=${p.id} product=${p} imagePriority=${index<4} ...${props}/>` )}</div>`;}
+export function ShoppingGrid({products,gridRef,...props}) {return html`<div className="shopping-product-grid" ref=${gridRef}>${products.map((p,index)=>html`<${ShoppingCard} key=${p.id} product=${p} imagePriority=${index<4} ...${props}/>` )}</div>`;}
 function Empty({title='No products in this category',text='No verified Shopify products are assigned here yet.'}) {return html`<div className="shopping-empty"><h2>${title}</h2><p>${text}</p></div>`;}
 function LoadingCards({count=4}) {return html`<div className="shopping-skeleton-grid" role="status" aria-label="Loading products">${Array.from({length:count},(_,i)=>html`<div key=${i} className="shopping-skeleton"></div>`)}</div>`;}
-export function CatalogStatus({loading,error,onRetry}) {return error?html`<div className="shopping-error" role="alert"><h2>Products couldn’t be loaded</h2><p>We couldn’t load products just now. Please try again.</p><button className="shopping-primary" onClick=${onRetry}>Retry</button></div>`:loading?html`<div className="shopping-loading"><${LoadingCards} count=${8}/></div>`:null;}
+export function CatalogStatus({loading,error,onRetry}) {return error?html`<div className="shopping-error" role="alert"><h2>Products couldn’t be loaded</h2><p>We couldn’t load products just now. Please try again.</p><button className="shopping-primary" onClick=${onRetry}>Retry</button></div>`:loading?html`<div className="shopping-loading"><${LoadingCards} count=${viewportProductBatch(null,null)}/></div>`:null;}
+function viewportProductBatch(grid,root) {
+ if(typeof window==='undefined')return 8;
+ const fallbackColumns=window.innerWidth<=780?2:4;
+ if(!grid)return Math.max(fallbackColumns,Math.min(24,fallbackColumns*Math.ceil((window.innerHeight-160)/(window.innerWidth<=780?250:360))));
+ const style=window.getComputedStyle(grid);
+ const columns=Math.max(1,style.gridTemplateColumns.split(/\s+/).filter(Boolean).length);
+ const cardHeight=grid.firstElementChild?.getBoundingClientRect().height|| (window.innerWidth<=780?250:360);
+ const rowGap=Number.parseFloat(style.rowGap)||0;
+ const rootRect=root?.getBoundingClientRect();
+ const gridRect=grid.getBoundingClientRect();
+ const offset=rootRect?Math.max(0,gridRect.top-rootRect.top):Math.max(0,gridRect.top);
+ const available=Math.max(cardHeight,(root?.clientHeight||window.innerHeight)-offset-80);
+ return Math.max(columns,Math.min(24,columns*Math.ceil(available/(cardHeight+rowGap))));
+}
+function useInfiniteGrid(itemCount,resetKey,rootRef) {
+ const gridRef=useRef(null),sentinelRef=useRef(null);
+ const [batchSize,setBatchSize]=useState(()=>viewportProductBatch(null,null)),[visibleCount,setVisibleCount]=useState(()=>viewportProductBatch(null,null));
+ useEffect(()=>{
+  const update=()=>setBatchSize(viewportProductBatch(gridRef.current,rootRef?.current));
+  update();window.addEventListener('resize',update);
+  return()=>window.removeEventListener('resize',update);
+ },[rootRef]);
+ useEffect(()=>{
+  const next=viewportProductBatch(gridRef.current,rootRef?.current);
+  setBatchSize(next);setVisibleCount(next);
+ },[resetKey,rootRef]);
+ useEffect(()=>{if(itemCount>0&&visibleCount>itemCount)setVisibleCount(Math.min(itemCount,batchSize));},[batchSize,itemCount,visibleCount]);
+ useEffect(()=>{
+  const sentinel=sentinelRef.current;
+  if(!sentinel)return;
+  if(typeof IntersectionObserver==='undefined'){setVisibleCount(itemCount);return;}
+  const observer=new IntersectionObserver(([entry])=>{
+   if(entry.isIntersecting)setVisibleCount(current=>Math.min(itemCount,current+batchSize));
+  },{root:rootRef?.current||null,rootMargin:'0px 0px -96px 0px'});
+  observer.observe(sentinel);
+  return()=>observer.disconnect();
+ },[batchSize,itemCount,resetKey,rootRef,visibleCount]);
+ return {gridRef,sentinelRef,visibleCount};
+}
 export function ShoppingBrowse({route,catalog,sort,onSort,onNavigate,pageSize,onMore,loading,loadingMore=false,error,onRetry,collectionImages={},...props}) {
  const {parent,item,parents,items,state,invalidSelection}=resolveHierarchy(route);const [categoryQuery,setCategoryQuery]=useState('');const ref=useRef(null);const key=`${parent.id}/${item?.id||''}`;
  useEffect(()=>{ref.current?.scrollTo({top:0});setCategoryQuery('');},[key]);
  const raw=productsForCategory(catalog,item);const matches=selectProducts(raw,{sort});const siblings=state==='products'&&items.length?(item?.id===parent.id?[parent,...items]:items):parents;
+ const {gridRef,sentinelRef,visibleCount}=useInfiniteGrid(matches.length,key,ref);
  const select=choice=>state==='products'&&items.length?onNavigate(choice.id===parent.id?`#${parent.kind}/${parent.target}`:hierarchyHref(parent.id,choice.id)):onNavigate(hierarchyHref(choice.id));
  const shareCategory=async()=>{const label=item?.label||parent.label;const result=await shareCategoryLink({category:label,routeHash:hierarchyHref(parent.id,item?.id)});if(result.message)props.onNotice?.(result.message);};
  const headingStatus=state==='overview'?`${items.length} categories`:error?'Products unavailable':'';
- return html`<main className="shopping-browse" data-browse-state=${state} data-parent=${parent.id}><aside className="shopping-sidebar" aria-label=${state==='products'&&items.length?`${parent.label} subcategories`:'Parent categories'}>${state==='products'&&items.length&&html`<button className="shopping-parent-back" aria-label=${`Back to ${parent.label} categories`} onClick=${()=>onNavigate(hierarchyHref(parent.id))}><${Icon} name="arrowLeft" size=${15}/><span className="shopping-parent-back-short">Back</span><span className="shopping-parent-back-full">Back to ${parent.label}</span></button>`}<div className="shopping-sidebar-scroll">${siblings.map(choice=>html`<button className=${`shopping-sidebar-item ${choice.id===(state==='products'&&items.length?item.id:parent.id)?'is-active':''}`} key=${choice.id} aria-current=${choice.id===(state==='products'&&items.length?item.id:parent.id)?'page':undefined} onClick=${()=>select(choice)}><${CategoryArtwork} item=${choice} collectionImages=${collectionImages}/><span>${choice.label}</span></button>`)}</div></aside><section className="shopping-browse-content" ref=${ref}><header className="shopping-list-heading"><div><span className="shopping-breadcrumb">${state==='products'&&items.length?parent.label:'Shop by category'}</span><h1>${item?.label||parent.label}</h1>${headingStatus&&html`<p>${headingStatus}</p>`}</div>${state==='overview'?html`<input className="shopping-subcategory-filter" aria-label="Find a subcategory" placeholder="Find a category" value=${categoryQuery} onChange=${e=>setCategoryQuery(e.target.value)}/>`:html`<div className="shopping-list-controls"><button type="button" className="shopping-category-share" onClick=${shareCategory}><${Icon} name="share" size=${16}/> Share category</button></div>`}</header>${invalidSelection?html`<${Empty} title="Category not found" text="Choose a category from the sidebar."/>`:state==='overview'?html`<div className="shopping-subcategory-grid">${items.filter(i=>i.label.toLowerCase().includes(categoryQuery.toLowerCase())).map(i=>{const artwork=resolveCategoryArtwork(i,collectionImages);return html`<button key=${i.id} className=${`shopping-category-card ${artwork?'has-artwork':'is-text-only'}`} onClick=${()=>onNavigate(hierarchyHref(i.relatedParentId||parent.id,i.relatedParentId?null:i.id))}><${CategoryArtwork} item=${i} collectionImages=${collectionImages}/><strong>${i.label}</strong></button>`;})}</div>`:html`<${CatalogStatus} key="catalog-status" loading=${loading} error=${error} onRetry=${onRetry}/>${!loading&&!error&&(matches.length?html`<${ShoppingGrid} key="product-grid" products=${matches.slice(0,pageSize)} ...${props}/>${matches.length>pageSize&&html`<div key="load-more" className="shopping-loadmore"><button className="shopping-primary" onClick=${onMore}>Load more</button></div>`}`:loadingMore?html`<${LoadingCards} count=${4}/>`:html`<${Empty} text=${item.mappingIssue||'No verified Shopify products match this category.'}/>` )}`}</section></main>`;
+ return html`<main className="shopping-browse" data-browse-state=${state} data-parent=${parent.id}><aside className="shopping-sidebar" aria-label=${state==='products'&&items.length?`${parent.label} subcategories`:'Parent categories'}>${state==='products'&&items.length&&html`<button className="shopping-parent-back" aria-label=${`Back to ${parent.label} categories`} onClick=${()=>onNavigate(hierarchyHref(parent.id))}><${Icon} name="arrowLeft" size=${15}/><span className="shopping-parent-back-short">Back</span><span className="shopping-parent-back-full">Back to ${parent.label}</span></button>`}<div className="shopping-sidebar-scroll">${siblings.map(choice=>html`<button className=${`shopping-sidebar-item ${choice.id===(state==='products'&&items.length?item.id:parent.id)?'is-active':''}`} key=${choice.id} aria-current=${choice.id===(state==='products'&&items.length?item.id:parent.id)?'page':undefined} onClick=${()=>select(choice)}><${CategoryArtwork} item=${choice} collectionImages=${collectionImages}/><span>${choice.label}</span></button>`)}</div></aside><section className="shopping-browse-content" ref=${ref}><header className="shopping-list-heading"><div><span className="shopping-breadcrumb">${state==='products'&&items.length?parent.label:'Shop by category'}</span><h1>${item?.label||parent.label}</h1>${headingStatus&&html`<p>${headingStatus}</p>`}</div>${state==='overview'?html`<input className="shopping-subcategory-filter" aria-label="Find a subcategory" placeholder="Find a category" value=${categoryQuery} onChange=${e=>setCategoryQuery(e.target.value)}/>`:html`<div className="shopping-list-controls"><button type="button" className="shopping-category-share" onClick=${shareCategory}><${Icon} name="share" size=${16}/> Share category</button></div>`}</header>${invalidSelection?html`<${Empty} title="Category not found" text="Choose a category from the sidebar."/>`:state==='overview'?html`<div className="shopping-subcategory-grid">${items.filter(i=>i.label.toLowerCase().includes(categoryQuery.toLowerCase())).map(i=>{const artwork=resolveCategoryArtwork(i,collectionImages);return html`<button key=${i.id} className=${`shopping-category-card ${artwork?'has-artwork':'is-text-only'}`} onClick=${()=>onNavigate(hierarchyHref(i.relatedParentId||parent.id,i.relatedParentId?null:i.id))}><${CategoryArtwork} item=${i} collectionImages=${collectionImages}/><strong>${i.label}</strong></button>`;})}</div>`:html`<${CatalogStatus} key="catalog-status" loading=${loading} error=${error} onRetry=${onRetry}/>${!loading&&!error&&(matches.length?html`<${ShoppingGrid} key="product-grid" products=${matches.slice(0,visibleCount)} gridRef=${gridRef} ...${props}/>${(visibleCount<matches.length||loadingMore)&&html`<div ref=${sentinelRef} className="shopping-infinite-sentinel">${loadingMore&&visibleCount>=matches.length&&html`<span role="status">Loading more products…</span>`}</div>`}`:loadingMore?html`<${LoadingCards} count=${4}/>`:html`<${Empty} text=${item.mappingIssue||'No verified Shopify products match this category.'}/>` )}`}</section></main>`;
 }
 function ProductRail({title,products,onView,priority=false,...props}) {
  const ref=useRef(null);
@@ -198,7 +239,8 @@ export function ShoppingHome({catalog,onNavigate,loading,loadingMore=false,error
 export function ShoppingResults({catalog,title,query='',savedOnly=false,saved=[],loading,loadingMore=false,error,onRetry,pageSize,onMore,sort,onSort,...props}) {
  const products=selectProducts(catalog,{query,sort,filter:savedOnly?{kind:'saved'}:{kind:'all'},saved});
  const headingStatus=error?'Products unavailable':'';
- return html`<main className="shopping-results"><header className="shopping-list-heading"><div><h1>${title}</h1>${headingStatus&&html`<p>${headingStatus}</p>`}</div></header><${CatalogStatus} key="catalog-status" loading=${loading} error=${error} onRetry=${onRetry}/>${!loading&&!error&&(products.length?html`<${ShoppingGrid} key="product-grid" products=${products.slice(0,pageSize)} saved=${saved} ...${props}/>${products.length>pageSize&&html`<div key="load-more" className="shopping-loadmore"><button className="shopping-primary" onClick=${onMore}>Load more</button></div>`}`:loadingMore?html`<${LoadingCards} count=${4}/>`:html`<${Empty} title=${savedOnly?'Your wishlist is empty':'No products found'} text=${savedOnly?'Save a product using its heart button.':'Try a different search.'}/>` )}</main>`;
+ const {gridRef,sentinelRef,visibleCount}=useInfiniteGrid(products.length,title,null);
+ return html`<main className="shopping-results"><header className="shopping-list-heading"><div><h1>${title}</h1>${headingStatus&&html`<p>${headingStatus}</p>`}</div></header><${CatalogStatus} key="catalog-status" loading=${loading} error=${error} onRetry=${onRetry}/>${!loading&&!error&&(products.length?html`<${ShoppingGrid} key="product-grid" products=${products.slice(0,visibleCount)} gridRef=${gridRef} saved=${saved} ...${props}/>${(visibleCount<products.length||loadingMore)&&html`<div ref=${sentinelRef} className="shopping-infinite-sentinel">${loadingMore&&visibleCount>=products.length&&html`<span role="status">Loading more products…</span>`}</div>`}`:loadingMore?html`<${LoadingCards} count=${4}/>`:html`<${Empty} title=${savedOnly?'Your wishlist is empty':'No products found'} text=${savedOnly?'Save a product using its heart button.':'Try a different search.'}/>` )}</main>`;
 }
 function shopifyDescriptionText(value) {
  if(typeof value!=='string')return '';
