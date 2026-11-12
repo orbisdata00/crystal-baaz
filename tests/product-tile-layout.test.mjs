@@ -96,7 +96,7 @@ test("unavailable variants keep a disabled unavailable state", () => {
   const markup = renderToStaticMarkup(React.createElement(ShoppingCard, {
     product: unavailable, onOpen() {}, onAdd() {}, onSave() {}, onUpdate() {}, saved: [], cart: [],
   }));
-  assert.match(markup, /class="shopping-add"[^>]*disabled[^>]*>Unavailable<\/button>/);
+  assert.match(markup, /class="shopping-add(?: [^"]*)?"[^>]*disabled[^>]*>Unavailable<\/button>/);
 });
 
 test("mobile rails and navigation use compact, separate visual containers", async () => {

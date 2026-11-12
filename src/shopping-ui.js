@@ -46,8 +46,8 @@ export function ShoppingHeader({catalog,query,setQuery,onSearch,onNavigate,onCar
   <div className="shopping-header-main">
    ${focused?html`<button type="button" className="shopping-search-back" aria-label="Back to shopping" onMouseDown=${event=>event.preventDefault()} onClick=${()=>{document.activeElement?.blur?.();setFocused(false);}}><${Icon} name="arrowLeft" size=${20}/></button>`:html`<button className="shopping-logo" onClick=${()=>onNavigate('#home')} aria-label="Crystal Baaz home">Crystal Baaz<span>.</span><small>Crystals · jewellery · spiritual essentials</small></button>`}
    <form className="shopping-search" role="search" onSubmit=${event=>{event.preventDefault();search(query);}}>
-    ${!focused&&html`<${Icon} name="search" size=${20}/>`}
     <input aria-label="Search products" placeholder=${focused?'Search crystals, rings, malas...':'Search "crystals"'} value=${query} onChange=${event=>setQuery(event.target.value)} onFocus=${()=>setFocused(true)} onBlur=${()=>setTimeout(()=>setFocused(false),150)} onKeyDown=${event=>{if(event.key==='Escape'){setFocused(false);event.currentTarget.blur();}}}/>
+    <button type="submit" aria-label="Search"><${Icon} name="search" size=${20}/></button>
    </form>
    ${!focused&&html`<div className="shopping-tools"><button aria-label="Wishlist" onClick=${()=>onNavigate('#wishlist')}><${Icon} name="heart" size=${20}/><span>Saved${savedCount?` (${savedCount})`:''}</span></button><button aria-label=${accountAuthenticated?'My account':'Account'} onClick=${()=>onNavigate('#account')}><${Icon} name="user" size=${20}/><span>${accountAuthenticated?'My account':'Account'}</span></button><button className="shopping-cart-button" onClick=${onCart}><${Icon} name="bag" size=${20}/><span>${cartCount?`${cartCount} ${cartCount===1?'item':'items'}`:'My cart'}${cartCount>0&&html`<small>${cartError||!remoteCart?'Unconfirmed':money(remoteCart.cost.totalAmount.amount)}</small>`}</span></button></div>`}
   </div>
@@ -65,11 +65,12 @@ function Purchase({product,variant,cart,pendingKeys=[],pendingOperations=[],onAd
  const unavailable=variant?.available===false;
  const label=enabled?'Buy Now':unavailable?'Unavailable':Number(variant?.price)>0?'Needs confirmation':'Price pending';
  const stateClass=onOptions?'':unavailable?'shopping-add-unavailable':!enabled?'shopping-add-unconfirmed':'';
+ const buttonClass=['shopping-add',stateClass].filter(Boolean).join(' ');
  const optionLabel=product.variantsComplete===false?'More options':`${product.variants.length} options`;
  const content=onOptions?html`<span>Buy Now</span><small className="shopping-add-option-count">${optionLabel}</small>`:label;
  const operation=pendingOperations.find(item=>item.key===line?.key);
  if(line&&operation?.type==='add')return html`<button className="shopping-add shopping-add-pending" type="button" disabled aria-busy="true" aria-label="Saving item to cart">${content}</button>`;
- return line?html`<${Quantity} line=${line} onUpdate=${onUpdate} label=${product.title} pending=${pendingKeys.includes(line.key)}/>`:html`<button className=${`shopping-add ${stateClass}`} type="button" disabled=${busy||(!enabled&&!onOptions)} aria-busy=${busy} aria-label=${onOptions?product.variantsComplete===false?`View more options for ${product.title}`:`Choose from ${optionLabel} for ${product.title}`:busy?'Saving item to cart':label} aria-haspopup=${onOptions&&product.variantsComplete!==false?'dialog':undefined} onClick=${async()=>{if(onOptions){onOptions();return;}flushSync(()=>setBusy(true));try{await onAdd(product,variant.id);}finally{setBusy(false);}}}>${content}</button>`;
+ return line?html`<${Quantity} line=${line} onUpdate=${onUpdate} label=${product.title} pending=${pendingKeys.includes(line.key)}/>`:html`<button className=${buttonClass} type="button" disabled=${busy||(!enabled&&!onOptions)} aria-busy=${busy} aria-label=${onOptions?product.variantsComplete===false?`View more options for ${product.title}`:`Choose from ${optionLabel} for ${product.title}`:busy?'Saving item to cart':label} aria-haspopup=${onOptions&&product.variantsComplete!==false?'dialog':undefined} onClick=${async()=>{if(onOptions){onOptions();return;}flushSync(()=>setBusy(true));try{await onAdd(product,variant.id);}finally{setBusy(false);}}}>${content}</button>`;
 }
 export function VariantSheetContent({product,onClose,cart=[],pendingKeys=[],pendingOperations=[],onAdd,onUpdate,status='',sheetRef}) {
  return html`<section className="shopping-variant-sheet" ref=${sheetRef} tabIndex="-1" role="dialog" aria-modal="true" aria-label=${`Select ${product.title} variant`}>
