@@ -11,8 +11,14 @@ function isLocalHost(hostname) {
   return host === "localhost" || host === "127.0.0.1" || host === "0.0.0.0" || host === "::1" || host.endsWith(".localhost");
 }
 
-export function publicStorefrontBaseUrl({ baseUrl = globalThis.location?.href, publicSiteUrl = shopifyConfig.publicSiteUrl } = {}) {
-  const candidates = [publicSiteUrl, baseUrl].filter(Boolean);
+export function publicStorefrontBaseUrl(options = {}) {
+  const hasBaseUrlOverride = options.baseUrl !== undefined;
+  const hasPublicSiteUrlOverride = options.publicSiteUrl !== undefined;
+  const candidates = hasPublicSiteUrlOverride
+    ? [options.publicSiteUrl, ...(hasBaseUrlOverride ? [options.baseUrl] : [])]
+    : hasBaseUrlOverride
+      ? [options.baseUrl]
+      : [shopifyConfig.publicSiteUrl, globalThis.location?.href];
   for (const candidate of candidates) {
     try {
       const url = new URL(candidate);

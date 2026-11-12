@@ -226,6 +226,57 @@ test("Customer Account API validates signed identity, state, nonce, callback, da
   assert.equal(browser.sessionStorage.getItem("crystal-baaz-customer-session-hint"), null);
 });
 
+test("Shopify public app sessions without refresh tokens renew through silent authorization", async () => {
+  const keys = await createKeys();
+  const browser = makeBrowser();
+  let now = Date.now();
+  let transaction;
+  const grants = [];
+  const discovery = {
+    authorization_endpoint: "https://crystalbaaz.myshopify.com/authentication/oauth/authorize",
+    token_endpoint: "https://crystalbaaz.myshopify.com/authentication/oauth/token",
+    end_session_endpoint: "https://crystalbaaz.myshopify.com/authentication/logout",
+    jwks_uri: "https://crystalbaaz.myshopify.com/authentication/.well-known/jwks.json",
+    issuer: "https://shopify.com/authentication/test-store",
+  };
+  const fetchImpl = async (url, init = {}) => {
+    if (String(url).endsWith("/.well-known/openid-configuration")) return response(discovery);
+    if (url === discovery.jwks_uri) return response({ keys: [keys.jwk] });
+    if (url === discovery.token_endpoint) {
+      const form = new URLSearchParams(init.body);
+      grants.push(form.get("grant_type"));
+      assert.equal(form.get("grant_type"), "authorization_code");
+      return response({
+        access_token: "short-lived-public-app-token",
+        expires_in: 1,
+        id_token: await createSignedIdToken({ nonce: transaction.nonce, now, keys }),
+      });
+    }
+    throw new Error(`Unexpected request: ${url}`);
+  };
+
+  const startClient = createCustomerAccountClient({ config: configured, windowRef: browser, fetchImpl, cryptoApi: webcrypto, now: () => now });
+  await startClient.initialize();
+  await startClient.login();
+  transaction = JSON.parse(browser.sessionStorage.getItem("crystal-baaz-customer-oauth-transaction"));
+
+  browser.location.pathname = "/account/callback";
+  browser.location.href = `${configured.customerAccountRedirectUri}?code=initial&state=${transaction.state}`;
+  const callbackClient = createCustomerAccountClient({ config: configured, windowRef: browser, fetchImpl, cryptoApi: webcrypto, now: () => now });
+  await callbackClient.initialize();
+  assert.equal(callbackClient.getSnapshot().status, "authenticated");
+
+  now += 2000;
+  await assert.rejects(callbackClient.loadDashboard(), /needs to be renewed/);
+  await new Promise(resolve => setTimeout(resolve, 0));
+  const renewal = new URL(browser.assigned.at(-1));
+  assert.equal(renewal.searchParams.get("prompt"), "none");
+  assert.equal(renewal.searchParams.get("response_type"), "code");
+  assert.equal(renewal.searchParams.get("code_challenge_method"), "S256");
+  assert.deepEqual(grants, ["authorization_code"]);
+  assert.ok([...browser.values.values()].every(value => !String(value).includes("short-lived-public-app-token")));
+});
+
 test("invalid OAuth state, nonce and JWT signature are rejected before customer data is fetched", async () => {
   const keys = await createKeys();
   const now = Date.now();
