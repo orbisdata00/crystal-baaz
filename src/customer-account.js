@@ -66,7 +66,7 @@ export function isSecureShopifyUrl(value) {
 }
 
 export async function verifyCustomerIdToken(idToken, {
-  clientId, issuer, nonce, jwksUri, jwksFallbackUris = [], fetchImpl = fetch, cryptoApi = globalThis.crypto,
+  clientId, issuer, nonce, jwksUri, fetchImpl = fetch, cryptoApi = globalThis.crypto,
   now = Date.now(),
 } = {}) {
   if (typeof idToken !== "string") throw new Error("Shopify returned an invalid identity token.");
@@ -75,20 +75,11 @@ export async function verifyCustomerIdToken(idToken, {
   const header = decodeJwtPart(parts[0]);
   const claims = decodeJwtPart(parts[1]);
   if (!header.kid || !["RS256", "ES256"].includes(header.alg)) throw new Error("Shopify returned an unsupported identity token.");
-  let jwk = null;
-  let receivedKeySet = false;
-  const keySetUris = [...new Set([...jwksFallbackUris, jwksUri].filter(Boolean))];
-  for (const keySetUri of keySetUris) {
-    try {
-      const response = await fetchImpl(keySetUri, { headers: { Accept: "application/json" } });
-      if (!response.ok) continue;
-      receivedKeySet = true;
-      const keySet = await response.json();
-      jwk = keySet.keys?.find(key => key.kid === header.kid && key.use !== "enc") || null;
-      if (jwk) break;
-    } catch { /* Try Shopify's documented shop-domain JWKS URL next. */ }
-  }
-  if (!jwk) throw new Error(receivedKeySet ? "Shopify identity verification failed." : "Shopify identity verification is unavailable. Please retry.");
+  const response = await fetchImpl(jwksUri, { headers: { Accept: "application/json" } });
+  if (!response.ok) throw new Error("Shopify identity verification is unavailable. Please retry.");
+  const keySet = await response.json();
+  const jwk = keySet.keys?.find(key => key.kid === header.kid && key.use !== "enc");
+  if (!jwk) throw new Error("Shopify identity verification failed.");
 
   let importAlgorithm;
   let verifyAlgorithm;
@@ -153,18 +144,6 @@ function customerConfiguration(config, location) {
     || (config.publicSiteUrl && (callbackUrl.pathname !== basePath || logoutUrl.pathname !== basePath))
     || callbackUrl.hash || logoutUrl.hash) return null;
   return { clientId: config.customerAccountClientId, callbackUri: callbackUrl.href, logoutUri: logoutUrl.href };
-}
-
-function customerJwksFallbackUris(config, endpoints) {
-  const domain = config.storeDomain.replace(/^https?:\/\//, "").replace(/\/$/, "");
-  const shopDomainJwks = `https://${domain}/authentication/.well-known/jwks.json`;
-  try {
-    // Shopify's documented JWKS URL is served from the storefront domain. Some
-    // discovery responses instead return an issuer-host URL without browser CORS.
-    return new URL(endpoints.jwks_uri).hostname === "shopify.com" ? [shopDomainJwks] : [];
-  } catch {
-    return [];
-  }
 }
 
 export function createCustomerAccountClient({
@@ -288,22 +267,15 @@ export function createCustomerAccountClient({
     if (!response.ok) throw new Error("Shopify could not complete sign-in. Check the Customer Account API setup and try again.");
     const result = await response.json();
     if (!result.access_token || !result.id_token || !Number.isFinite(Number(result.expires_in))) throw new Error("Shopify returned an incomplete sign-in response.");
-    const claims = await verifyCustomerIdToken(result.id_token, {
-      clientId: config.customerAccountClientId,
-      issuer: endpoints.issuer,
-      nonce: transaction.nonce,
-      jwksUri: endpoints.jwks_uri,
-      jwksFallbackUris: customerJwksFallbackUris(config, endpoints),
-      fetchImpl,
-      cryptoApi,
-      now: now(),
-    });
+    // Shopify's token/JWKS endpoints don't expose readable JWKS responses to
+    // this browser origin. Treat the access token as an opaque credential: the
+    // Customer Account API validates it on every request. Do not trust claims
+    // decoded from the ID token in this client.
     return {
       accessToken: result.access_token,
       refreshToken: result.refresh_token || "",
       idToken: result.id_token,
       expiresAt: now() + Math.max(1, Number(result.expires_in)) * 1000,
-      subject: claims.sub,
       endpoints,
     };
   }
@@ -334,7 +306,7 @@ export function createCustomerAccountClient({
       const endpoints = await discoverOpenId();
       tokens = await exchangeCode(code, transaction, endpoints);
       windowRef.sessionStorage.setItem(SESSION_HINT_KEY, "1");
-      publish({ status: "authenticated", customer: null, error: "", subject: tokens.subject });
+      publish({ status: "authenticated", customer: null, error: "" });
       returnTo(transaction.returnPath);
     } catch (error) {
       tokens = null;
@@ -358,12 +330,8 @@ export function createCustomerAccountClient({
     if (!response.ok) return false;
     const result = await response.json();
     if (!result.access_token || !Number.isFinite(Number(result.expires_in))) return false;
-    if (result.id_token) {
-      await verifyCustomerIdToken(result.id_token, {
-        clientId: config.customerAccountClientId, issuer: endpoints.issuer,
-        jwksUri: endpoints.jwks_uri, jwksFallbackUris: customerJwksFallbackUris(config, endpoints), fetchImpl, cryptoApi, now: now(),
-      });
-    }
+    // Keep ID tokens opaque here too; only the API's access-token response is
+    // used for authorization in the storefront.
     tokens = {
       ...tokens,
       accessToken: result.access_token,
