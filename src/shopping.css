@@ -1201,12 +1201,22 @@ body { background:#fff; }
 @media(max-width:359px) {
  .shopping-tile-action .shopping-add-unconfirmed:disabled { width:70px; min-width:62px; max-width:70px; flex-basis:70px; padding-inline:3px; font-size:8px; }
 }
-.shopping-home-category-grid { display:flex; flex-flow:row nowrap; justify-content:flex-start; column-gap:4px; }
-.shopping-home-category-grid .shopping-category-card { flex:0 0 104px; width:104px; max-width:104px; }
+.shopping-home-category-grid { display:flex; flex-flow:row nowrap; justify-content:flex-start; column-gap:5px; }
+.shopping-home-category-grid .shopping-category-card { flex:0 0 92px; width:92px; max-width:92px; }
+.shopping-home-category-grid .shopping-category-card strong { display:block; width:100%; text-align:center; font-size:11px; line-height:1.2; }
 @media(max-width:780px) {
- .shopping-home-category-grid { column-gap:3px; }
- .shopping-home-category-grid .shopping-category-card { flex-basis:72px; width:72px; max-width:72px; }
+ .shopping-home-category-grid { column-gap:4px; }
+ .shopping-home-category-grid .shopping-category-card { flex-basis:68px; width:68px; max-width:68px; }
 }
+
+/* Reduce the vertical jump from home categories into the product sections. */
+.shopping-home { gap:0; }
+.shopping-home-category-grid { padding-bottom:0; }
+.shopping-home-category-grid .shopping-category-card { gap:2px; }
+.shopping-home-category-grid .shopping-category-card { grid-template-columns:minmax(0,1fr); justify-items:stretch; align-content:start; }
+.shopping-home-category-grid .shopping-category-artwork { width:100%; min-width:0; aspect-ratio:1; }
+.shopping-home-categories>header,.shopping-rail>header { margin-bottom:2px; }
+.shopping-home>.shopping-home-categories+[data-home-section] { margin-top:-18px; }
 
 /* Keep category-page headings and product cards close together. */
 .shopping-browse-content { padding:10px 14px 14px; }
@@ -1256,4 +1266,16 @@ body { background:#fff; }
  .shopping-search-chips { gap:8px; }
  .shopping-header.is-searching .shopping-search-chip { min-height:32px; padding:7px 9px; border-radius:9px; font-size:12px; }
  .shopping-search-results>button:not(.shopping-search-all) { min-height:52px; }
+}
+
+/* Desktop gets a balanced category grid; compact PWA rails keep their own layout. */
+@media(min-width:781px) {
+ .shopping-home { gap:8px; }
+ .shopping-home-categories>header { margin-bottom:8px; }
+ .shopping-home-category-grid { display:grid; grid-template-columns:repeat(8,minmax(0,1fr)); gap:12px; overflow:visible; padding:0 2px; }
+ .shopping-home-category-grid .shopping-category-card { width:auto; max-width:none; min-width:0; flex:none; gap:6px; padding:0; text-align:center; }
+ .shopping-home-category-grid .shopping-category-card.has-artwork { padding:0; }
+ .shopping-home-category-grid .shopping-category-card strong { font-size:14px; line-height:1.2; }
+ .shopping-home-category-grid .shopping-category-artwork { width:100%; aspect-ratio:1; }
+ .shopping-home>.shopping-home-categories+[data-home-section] { margin-top:0; }
 }
