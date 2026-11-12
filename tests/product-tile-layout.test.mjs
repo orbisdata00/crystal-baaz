@@ -57,7 +57,7 @@ test("product card aligns current price with Buy Now and keeps title copy outsid
   assert.match(markup, /₹60/);
   assert.doesNotMatch(markup, />\s*ADD\s*</i);
   assert.ok(priceStart > tileStart && priceStart < copyStart && titleStart > copyStart);
-  const purchaseRow = markup.slice(markup.indexOf('class="shopping-tile-purchase-row"'), copyStart);
+  const purchaseRow = markup.slice(markup.indexOf('class="shopping-tile-purchase-row '), copyStart);
   assert.match(purchaseRow, /shopping-tile-prices/);
   assert.match(purchaseRow, /shopping-add/);
   assert.match(markup, /class="shopping-product-discount"[^>]*>40% OFF/);
@@ -67,7 +67,7 @@ test("product card aligns current price with Buy Now and keeps title copy outsid
   assert.doesNotMatch(markup, /Variant 1/);
 });
 
-test("product cards omit category labels and retain a compact variant options link", () => {
+test("product cards omit category labels and show variant options in the purchase button", () => {
   const variantProduct = {
     ...product,
     type: "Ring",
@@ -80,7 +80,8 @@ test("product cards omit category labels and retain a compact variant options li
   }));
   assert.doesNotMatch(markup, />Rings?<\/span>|Best Seller|Product category/);
   assert.match(markup, /Stone: Natural Quartz/);
-  assert.match(markup, /class="shopping-option-link"[^>]*>2 options<\/button>/);
+  assert.match(markup, /class="shopping-tile-purchase-row has-options-cta"><button class="shopping-add"[^>]*aria-label="Choose from 2 options for Moonstone Ring"[^>]*aria-haspopup="dialog"[^>]*><span>Buy Now<\/span><small class="shopping-add-option-count">2 options<\/small><\/button><div class="shopping-tile-prices">/);
+  assert.doesNotMatch(markup, /class="shopping-option-link"/);
 });
 
 test("product add control reflects the current cart quantity", () => {
