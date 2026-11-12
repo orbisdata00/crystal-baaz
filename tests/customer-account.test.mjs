@@ -91,6 +91,25 @@ test("account view renders setup state and address management from actual accoun
   assert.match(dashboard, /Delete/);
 });
 
+test("the site root can be the callback URL without treating ordinary visits as OAuth callbacks", async () => {
+  const browser = makeBrowser();
+  const rootConfig = {
+    ...configured,
+    customerAccountRedirectUri: "https://crystalbaaz.example/",
+    customerAccountLogoutUri: "https://crystalbaaz.example/",
+  };
+  const client = createCustomerAccountClient({
+    config: rootConfig,
+    windowRef: browser,
+    cryptoApi: webcrypto,
+    fetchImpl: async url => { throw new Error(`Unexpected request: ${url}`); },
+  });
+
+  await client.initialize();
+  assert.equal(client.getSnapshot().status, "signed-out");
+  assert.equal(client.getSnapshot().error, "");
+});
+
 test("public OAuth client uses PKCE S256 and rejects insecure or unregistered origins", async () => {
   const verifier = "secure-verifier-from-cryptographic-randomness";
   assert.match(await createPkceChallenge(verifier, webcrypto), /^[A-Za-z0-9_-]+$/);

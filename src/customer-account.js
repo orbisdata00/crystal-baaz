@@ -459,7 +459,9 @@ export function createCustomerAccountClient({
       return current;
     }
     const configuredCallback = new URL(customerConfiguration(config, windowRef.location).callbackUri);
-    if (windowRef.location.pathname === configuredCallback.pathname) {
+    const currentUrl = new URL(windowRef.location.href);
+    const hasOAuthResponse = ["code", "state", "error"].some(parameter => currentUrl.searchParams.has(parameter));
+    if (windowRef.location.pathname === configuredCallback.pathname && hasOAuthResponse) {
       await completeCallback();
       return current;
     }
