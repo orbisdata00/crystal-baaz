@@ -111,17 +111,29 @@ export async function verifyCustomerIdToken(idToken, {
   return claims;
 }
 
-function safeReturnPath(value, origin) {
+function storefrontBasePath(config, location) {
   try {
-    const url = new URL(value || "/#account", origin);
-    if (url.origin !== origin || !url.pathname.startsWith("/") || url.pathname.startsWith("//")) return "/#account";
+    const siteUrl = new URL(config.publicSiteUrl || `${location.origin}/`, location.origin);
+    if (siteUrl.origin !== location.origin || !siteUrl.pathname.startsWith("/")) return "/";
+    return siteUrl.pathname.endsWith("/") ? siteUrl.pathname : `${siteUrl.pathname}/`;
+  } catch {
+    return "/";
+  }
+}
+
+function safeReturnPath(value, origin, basePath = "/") {
+  const fallback = `${basePath}#account`;
+  try {
+    const url = new URL(value || fallback, origin);
+    if (url.origin !== origin || !url.pathname.startsWith(basePath) || url.pathname.startsWith("//")) return fallback;
     return `${url.pathname}${url.hash || "#account"}`;
   } catch {
-    return "/#account";
+    return fallback;
   }
 }
 
 function customerConfiguration(config, location) {
+  const basePath = storefrontBasePath(config, location);
   const callback = config.customerAccountRedirectUri;
   const logout = config.customerAccountLogoutUri;
   let callbackUrl;
@@ -129,6 +141,7 @@ function customerConfiguration(config, location) {
   try { callbackUrl = new URL(callback); logoutUrl = new URL(logout); } catch { return null; }
   if (!config.customerAccountClientId || !isSecureShopifyUrl(callbackUrl.href) || !isSecureShopifyUrl(logoutUrl.href)
     || callbackUrl.origin !== location.origin || logoutUrl.origin !== location.origin
+    || (config.publicSiteUrl && (callbackUrl.pathname !== basePath || logoutUrl.pathname !== basePath))
     || callbackUrl.hash || logoutUrl.hash) return null;
   return { clientId: config.customerAccountClientId, callbackUri: callbackUrl.href, logoutUri: logoutUrl.href };
 }
@@ -198,7 +211,7 @@ export function createCustomerAccountClient({
   }
 
   function returnTo(path) {
-    const safe = safeReturnPath(path, windowRef.location.origin);
+    const safe = safeReturnPath(path, windowRef.location.origin, storefrontBasePath(config, windowRef.location));
     windowRef.history.replaceState({}, "", safe);
     try { windowRef.dispatchEvent(new Event("popstate")); } catch { /* The URL still restores on the next render. */ }
   }
@@ -215,7 +228,7 @@ export function createCustomerAccountClient({
         state: randomToken(cryptoApi),
         nonce: randomToken(cryptoApi),
         verifier: randomToken(cryptoApi, 48),
-        returnPath: safeReturnPath(returnPath || `${windowRef.location.pathname}${windowRef.location.hash}`, windowRef.location.origin),
+        returnPath: safeReturnPath(returnPath || `${windowRef.location.pathname}${windowRef.location.hash}`, windowRef.location.origin, storefrontBasePath(config, windowRef.location)),
         silent: prompt === "none",
         createdAt: now(),
       };
@@ -304,7 +317,7 @@ export function createCustomerAccountClient({
       tokens = null;
       try { windowRef.sessionStorage.removeItem(SESSION_HINT_KEY); } catch { /* Storage can be unavailable. */ }
       publish({ status: "error", customer: null, error: error.message || "Shopify sign-in failed." });
-      returnTo(transaction?.returnPath || "/#account");
+      returnTo(transaction?.returnPath || `${storefrontBasePath(config, windowRef.location)}#account`);
     }
   }
 
@@ -342,7 +355,7 @@ export function createCustomerAccountClient({
     if (!tokens) throw new Error("Sign in to view your Shopify account.");
     if (tokens.expiresAt > now() + 60_000) return tokens.accessToken;
     if (await refreshTokens()) return tokens.accessToken;
-    const returnPath = `${windowRef.location.pathname}${windowRef.location.hash || "#account"}`;
+    const returnPath = safeReturnPath(`${windowRef.location.pathname}${windowRef.location.hash || "#account"}`, windowRef.location.origin, storefrontBasePath(config, windowRef.location));
     void beginAuthorization({ prompt: "none", returnPath });
     throw new Error("Your Shopify session needs to be renewed. Reconnecting securely…");
   }
@@ -435,7 +448,7 @@ export function createCustomerAccountClient({
     try { windowRef.sessionStorage.removeItem(SESSION_HINT_KEY); } catch { /* Storage can be unavailable. */ }
     publish({ status: available() ? "signed-out" : "unconfigured", customer: null, error: "" });
     if (!idToken || !customerSettings) {
-      windowRef.history.replaceState({}, "", "/#home");
+      windowRef.history.replaceState({}, "", `${storefrontBasePath(config, windowRef.location)}#home`);
       windowRef.dispatchEvent?.(new Event("popstate"));
       return;
     }
@@ -446,7 +459,7 @@ export function createCustomerAccountClient({
       url.searchParams.set("post_logout_redirect_uri", customerSettings.logoutUri);
       windowRef.location.assign(url.href);
     } catch {
-      windowRef.history.replaceState({}, "", "/#home");
+      windowRef.history.replaceState({}, "", `${storefrontBasePath(config, windowRef.location)}#home`);
       windowRef.dispatchEvent?.(new Event("popstate"));
     }
   }
@@ -467,7 +480,7 @@ export function createCustomerAccountClient({
     }
     try {
       if (windowRef.sessionStorage.getItem(SESSION_HINT_KEY) === "1") {
-        await beginAuthorization({ prompt: "none", returnPath: `${windowRef.location.pathname}${windowRef.location.hash || "#account"}` });
+        await beginAuthorization({ prompt: "none", returnPath: safeReturnPath(`${windowRef.location.pathname}${windowRef.location.hash || "#account"}`, windowRef.location.origin, storefrontBasePath(config, windowRef.location)) });
       } else {
         publish({ status: "signed-out", customer: null, error: "" });
       }

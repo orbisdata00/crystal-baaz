@@ -20,8 +20,9 @@ jobs:
     environment: github-pages
     env:
       VITE_SHOPIFY_CUSTOMER_ACCOUNT_CLIENT_ID: ${{ vars.VITE_SHOPIFY_CUSTOMER_ACCOUNT_CLIENT_ID || secrets.VITE_SHOPIFY_CUSTOMER_ACCOUNT_CLIENT_ID }}
-      VITE_SHOPIFY_CUSTOMER_ACCOUNT_REDIRECT_URI: ${{ vars.VITE_SHOPIFY_CUSTOMER_ACCOUNT_REDIRECT_URI || secrets.VITE_SHOPIFY_CUSTOMER_ACCOUNT_REDIRECT_URI }}
-      VITE_SHOPIFY_CUSTOMER_ACCOUNT_LOGOUT_URI: ${{ vars.VITE_SHOPIFY_CUSTOMER_ACCOUNT_LOGOUT_URI || secrets.VITE_SHOPIFY_CUSTOMER_ACCOUNT_LOGOUT_URI }}
+      VITE_SHOPIFY_CUSTOMER_ACCOUNT_REDIRECT_URI: 'https://orbisdata00.github.io/crystal-baaz/'
+      VITE_SHOPIFY_CUSTOMER_ACCOUNT_LOGOUT_URI: 'https://orbisdata00.github.io/crystal-baaz/'
+      VITE_PUBLIC_SITE_URL: 'https://orbisdata00.github.io/crystal-baaz/'
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-node@v6
@@ -33,10 +34,11 @@ jobs:
       - name: Check Customer Account build configuration
         run: |
           test -n "$VITE_SHOPIFY_CUSTOMER_ACCOUNT_CLIENT_ID" || { echo "Missing Customer Account client ID in the github-pages environment."; exit 1; }
-          test -n "$VITE_SHOPIFY_CUSTOMER_ACCOUNT_REDIRECT_URI" || { echo "Missing Customer Account callback URL in the github-pages environment."; exit 1; }
-          test -n "$VITE_SHOPIFY_CUSTOMER_ACCOUNT_LOGOUT_URI" || { echo "Missing Customer Account logout URL in the github-pages environment."; exit 1; }
+          test "$VITE_SHOPIFY_CUSTOMER_ACCOUNT_REDIRECT_URI" = 'https://orbisdata00.github.io/crystal-baaz/' || { echo "Customer Account callback URL must match the Crystal Baaz GitHub Pages project URL."; exit 1; }
+          test "$VITE_SHOPIFY_CUSTOMER_ACCOUNT_LOGOUT_URI" = 'https://orbisdata00.github.io/crystal-baaz/' || { echo "Customer Account logout URL must match the Crystal Baaz GitHub Pages project URL."; exit 1; }
       - run: npm run build
         env:
+          VITE_PUBLIC_SITE_URL: 'https://orbisdata00.github.io/crystal-baaz/'
           VITE_SHOPIFY_STORE_DOMAIN: ${{ vars.VITE_SHOPIFY_STORE_DOMAIN || 'crystalbaaz.myshopify.com' }}
           VITE_SHOPIFY_STOREFRONT_PUBLIC_TOKEN: ${{ vars.VITE_SHOPIFY_STOREFRONT_PUBLIC_TOKEN || secrets.VITE_SHOPIFY_STOREFRONT_PUBLIC_TOKEN || '281a71c5808bef1d3783448b3e430411' }}
           VITE_SHOPIFY_API_VERSION: ${{ vars.VITE_SHOPIFY_API_VERSION || '2026-10' }}

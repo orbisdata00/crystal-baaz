@@ -18,8 +18,21 @@ import { parseSharedCartItems } from "./cart-share.js";
 import { customerAccount, useCustomerAccount } from "./customer-account.js";
 import { CustomerAccountPage } from "./customer-account-ui.js";
 import { formatCurrencyAmount } from "./money.js";
+import { shopifyConfig } from "./config.js";
 
 const html = htm.bind(React.createElement);
+// Keep this GitHub Pages project on its configured path if an old OAuth link
+// opens the app at the account-level root instead.
+if (typeof window !== "undefined") {
+  try {
+    const publicSiteUrl = new URL(shopifyConfig.publicSiteUrl, window.location.origin);
+    if (publicSiteUrl.origin === window.location.origin && publicSiteUrl.pathname !== "/" && window.location.pathname === "/") {
+      const canonicalUrl = new URL(window.location.href);
+      canonicalUrl.pathname = publicSiteUrl.pathname;
+      window.location.replace(canonicalUrl.href);
+    }
+  } catch { /* Invalid optional public URL does not block the storefront. */ }
+}
 const money = (amount) => formatCurrencyAmount(Number(amount || 0), "INR", 0);
 const productLabel = (product) => product.title?.trim() || "Product title pending";
 const discountPercent = (price, compareAt) => Number(compareAt) > Number(price) && Number(price) > 0 ? Math.round((1 - Number(price) / Number(compareAt)) * 100) : 0;
