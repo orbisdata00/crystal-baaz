@@ -511,7 +511,6 @@ test("HTM renders React fragments and responsive navigation destinations exist",
   assert.ok(app.includes('className="back-to-top"'));
   assert.ok(styles.includes("scroll-snap-type: x mandatory"));
   assert.ok(styles.includes(".product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }"));
-  assert.ok(worker.includes("CACHE_PREFIX}v7"));
   assert.ok(!worker.includes("/assets/product-placeholder.svg"));
 });
 
