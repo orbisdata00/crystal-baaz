@@ -66,7 +66,7 @@ export function isSecureShopifyUrl(value) {
 }
 
 export async function verifyCustomerIdToken(idToken, {
-  clientId, issuer, nonce, jwksUri, fetchImpl = fetch, cryptoApi = globalThis.crypto,
+  clientId, issuer, nonce, jwksUri, jwksFallbackUris = [], fetchImpl = fetch, cryptoApi = globalThis.crypto,
   now = Date.now(),
 } = {}) {
   if (typeof idToken !== "string") throw new Error("Shopify returned an invalid identity token.");
@@ -75,11 +75,20 @@ export async function verifyCustomerIdToken(idToken, {
   const header = decodeJwtPart(parts[0]);
   const claims = decodeJwtPart(parts[1]);
   if (!header.kid || !["RS256", "ES256"].includes(header.alg)) throw new Error("Shopify returned an unsupported identity token.");
-  const response = await fetchImpl(jwksUri, { headers: { Accept: "application/json" } });
-  if (!response.ok) throw new Error("Shopify identity verification is unavailable. Please retry.");
-  const keySet = await response.json();
-  const jwk = keySet.keys?.find(key => key.kid === header.kid && key.use !== "enc");
-  if (!jwk) throw new Error("Shopify identity verification failed.");
+  let jwk = null;
+  let receivedKeySet = false;
+  const keySetUris = [...new Set([...jwksFallbackUris, jwksUri].filter(Boolean))];
+  for (const keySetUri of keySetUris) {
+    try {
+      const response = await fetchImpl(keySetUri, { headers: { Accept: "application/json" } });
+      if (!response.ok) continue;
+      receivedKeySet = true;
+      const keySet = await response.json();
+      jwk = keySet.keys?.find(key => key.kid === header.kid && key.use !== "enc") || null;
+      if (jwk) break;
+    } catch { /* Try Shopify's documented shop-domain JWKS URL next. */ }
+  }
+  if (!jwk) throw new Error(receivedKeySet ? "Shopify identity verification failed." : "Shopify identity verification is unavailable. Please retry.");
 
   let importAlgorithm;
   let verifyAlgorithm;
@@ -144,6 +153,18 @@ function customerConfiguration(config, location) {
     || (config.publicSiteUrl && (callbackUrl.pathname !== basePath || logoutUrl.pathname !== basePath))
     || callbackUrl.hash || logoutUrl.hash) return null;
   return { clientId: config.customerAccountClientId, callbackUri: callbackUrl.href, logoutUri: logoutUrl.href };
+}
+
+function customerJwksFallbackUris(config, endpoints) {
+  const domain = config.storeDomain.replace(/^https?:\/\//, "").replace(/\/$/, "");
+  const shopDomainJwks = `https://${domain}/authentication/.well-known/jwks.json`;
+  try {
+    // Shopify's documented JWKS URL is served from the storefront domain. Some
+    // discovery responses instead return an issuer-host URL without browser CORS.
+    return new URL(endpoints.jwks_uri).hostname === "shopify.com" ? [shopDomainJwks] : [];
+  } catch {
+    return [];
+  }
 }
 
 export function createCustomerAccountClient({
@@ -272,6 +293,7 @@ export function createCustomerAccountClient({
       issuer: endpoints.issuer,
       nonce: transaction.nonce,
       jwksUri: endpoints.jwks_uri,
+      jwksFallbackUris: customerJwksFallbackUris(config, endpoints),
       fetchImpl,
       cryptoApi,
       now: now(),
@@ -292,6 +314,7 @@ export function createCustomerAccountClient({
     const returnedState = callbackUrl.searchParams.get("state");
     const code = callbackUrl.searchParams.get("code");
     const providerError = callbackUrl.searchParams.get("error");
+    windowRef.history.replaceState({}, "", `${callbackUrl.pathname}${callbackUrl.hash}`);
     clearTransaction();
     try {
       if (!transaction || !returnedState || returnedState !== transaction.state) throw new Error("Shopify sign-in could not be verified. Please start again.");
@@ -338,7 +361,7 @@ export function createCustomerAccountClient({
     if (result.id_token) {
       await verifyCustomerIdToken(result.id_token, {
         clientId: config.customerAccountClientId, issuer: endpoints.issuer,
-        jwksUri: endpoints.jwks_uri, fetchImpl, cryptoApi, now: now(),
+        jwksUri: endpoints.jwks_uri, jwksFallbackUris: customerJwksFallbackUris(config, endpoints), fetchImpl, cryptoApi, now: now(),
       });
     }
     tokens = {
