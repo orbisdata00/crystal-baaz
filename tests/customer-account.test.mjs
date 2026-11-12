@@ -245,7 +245,7 @@ test("Customer Account API validates signed identity, state, nonce, callback, da
   assert.equal(browser.sessionStorage.getItem("crystal-baaz-customer-session-hint"), null);
 });
 
-test("Shopify public app sessions without refresh tokens renew through silent authorization", async () => {
+test("Shopify public app sessions without refresh tokens renew through silent authorization", { timeout: 10000 }, async () => {
   const keys = await createKeys();
   const browser = makeBrowser();
   let now = Date.now();
@@ -286,9 +286,9 @@ test("Shopify public app sessions without refresh tokens renew through silent au
   assert.equal(callbackClient.getSnapshot().status, "authenticated");
 
   now += 2000;
+  const navigation = new Promise(resolve => { browser.location.assign = resolve; });
   await assert.rejects(callbackClient.loadDashboard(), /needs to be renewed/);
-  await new Promise(resolve => setTimeout(resolve, 0));
-  const renewal = new URL(browser.assigned.at(-1));
+  const renewal = new URL(await navigation);
   assert.equal(renewal.searchParams.get("prompt"), "none");
   assert.equal(renewal.searchParams.get("response_type"), "code");
   assert.equal(renewal.searchParams.get("code_challenge_method"), "S256");
