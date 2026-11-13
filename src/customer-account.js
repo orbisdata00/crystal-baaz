@@ -487,7 +487,7 @@ export function createCustomerAccountClient({
     get isAuthenticated() { return current.status === "authenticated" && Boolean(tokens); },
     get isConfigured() { return available(); },
     initialize,
-    login() { return beginAuthorization({ prompt: "login" }); },
+    login({ returnPath } = {}) { return beginAuthorization({ prompt: "login", returnPath }); },
     logout,
     loadDashboard,
     queryCustomerApi,

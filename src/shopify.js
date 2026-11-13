@@ -289,13 +289,18 @@ export async function loadShopifyCheckoutDestination(cartId) {
   if (typeof cartId !== "string" || !cartId.startsWith("gid://shopify/Cart/")) throw new Error("A confirmed Shopify cart is required before checkout.");
   const gql = `query CrystalBazzCartCheckout($id: ID!) {
     cart(id: $id) { id checkoutUrl cost { totalAmount { amount currencyCode } } }
+    shop { primaryDomain { host } }
   }`;
   const data = await storefrontRequest(gql, { id: cartId });
   const cart = data.cart;
   if (!cart?.checkoutUrl) throw new Error("Shopify could not create a checkout link for this cart. Refresh the cart and retry.");
   let checkoutUrl;
   try { checkoutUrl = new URL(cart.checkoutUrl); } catch { throw new Error("Shopify returned an invalid checkout link."); }
-  if (checkoutUrl.protocol !== "https:" || checkoutUrl.username || checkoutUrl.password) throw new Error("Shopify returned an insecure checkout link.");
+  const storeDomain = shopifyConfig.storeDomain.replace(/^https?:\/\//, "").replace(/\/$/, "").toLowerCase();
+  const allowedHosts = new Set([storeDomain, data.shop?.primaryDomain?.host?.toLowerCase()].filter(Boolean));
+  if (checkoutUrl.protocol !== "https:" || checkoutUrl.username || checkoutUrl.password || checkoutUrl.port || !allowedHosts.has(checkoutUrl.hostname.toLowerCase())) {
+    throw new Error("Shopify returned a checkout link outside this store's secure domains.");
+  }
   return { checkoutUrl: checkoutUrl.href, cart };
 }
 

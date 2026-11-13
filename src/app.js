@@ -831,6 +831,7 @@ function StoreApp() {
   const experience = useExperience();
   const accountState = useCustomerAccount();
   const [route, setRoute] = useState(() => parseRoute(window.location.hash));
+  const [accountDrawerOpen, setAccountDrawerOpen] = useState(() => parseRoute(window.location.hash).page === "account");
   const productReturnHash = useRef("#collections");
   const reportedVariantCorrections = useRef(new Set());
   const [catalog, setCatalog] = useState([]);
@@ -888,6 +889,24 @@ function StoreApp() {
     if (next.page === "search") setQuery(next.query);
     resetPageScroll();
   }, []);
+  const closeAccount = useCallback((destination) => {
+    setAccountDrawerOpen(false);
+    if (destination) navigate(destination);
+    else if (route.page === "account") navigate("#home");
+  }, [route.page, navigate]);
+  const openAccount = useCallback(() => {
+    if (accountDrawerOpen || route.page === "account") {
+      closeAccount();
+      return;
+    }
+    if (accountState.status === "signed-out" && customerAccount.isConfigured) {
+      void customerAccount.login({ returnPath: `${window.location.pathname}#account` }).then(started => {
+        if (!started) setAccountDrawerOpen(true);
+      });
+      return;
+    }
+    setAccountDrawerOpen(true);
+  }, [accountDrawerOpen, route.page, closeAccount, accountState.status]);
   const routeScrollKey = [route.page, route.handle, route.id, route.label, route.sign, route.query, route.group, route.category, route.items, route.variantId].join("|");
   useLayoutEffect(() => { resetPageScroll(); }, [routeScrollKey]);
   useEffect(() => {
@@ -1159,12 +1178,12 @@ function StoreApp() {
   const retryCatalog = () => setRetryTick(value => value + 1);
   const openCart = useCallback(() => { if (route.page !== "cart") cartReturnHash.current = window.location.hash || "#home"; navigate("#cart"); }, [route.page, navigate]);
   const buyNow = useMemo(() => createBuyNowHandler(addToCart), [addToCart]);
-  const shared = { onOpen: openProduct, onAdd: buyNow, onSave: toggleSaved, saved, cart, pendingKeys: cartPendingKeys, pendingOperations: cartPendingOperations, onUpdate: updateCart, onNavigate: navigate, onNotice: setToast };
+  const shared = { onOpen: openProduct, onAdd: buyNow, onSave: toggleSaved, saved, cart, pendingKeys: cartPendingKeys, pendingOperations: cartPendingOperations, onUpdate: updateCart, onNavigate: navigate, onAccount: openAccount, onNotice: setToast };
   const dataState = { loading, loadingMore: catalogLoadingMore, error: !online ? "You are offline. Reconnect to load current Shopify products and prices." : catalogError, onRetry: retryCatalog };
   const sortProducts = value => { setSort(value); setPageSize(24); updateViewOption("sort", value); };
   const pageContent = () => {
     if (["home", "cart"].includes(route.page)) return html`<${ShoppingHome} catalog=${catalog} collectionImages=${shopifyCollectionImages} ...${shared} ...${dataState}/>`;
-    if (route.page === "account") return html`<${CustomerAccountPage} state=${accountState} account=${customerAccount} onNavigate=${navigate}/>`;
+    if (route.page === "account") return html`<${ShoppingHome} catalog=${catalog} collectionImages=${shopifyCollectionImages} ...${shared} ...${dataState}/>`;
     if (route.page === "shared-cart") return html`<${ShoppingSharedCart} items=${sharedCartData.items} loading=${sharedCartData.loading} error=${sharedCartData.error} cartCount=${cartCount} cartSyncing=${cartSyncing} cartError=${cartError} onRetryVerification=${retryCatalog} onRetryCart=${cartState.retry} onAddItems=${addSharedItems} onNavigate=${navigate} onOpenProduct=${openSharedProduct}/>`;
     let browseRoute = route;
     if (route.page === "nav" && getParentCategory(route.label)) browseRoute = { ...route, page: "collections", group: getParentCategory(route.label).id };
@@ -1181,13 +1200,14 @@ function StoreApp() {
     return html`<${ShoppingInformation} page=${route.page} onNavigate=${navigate}/>`;
   };
   return html`<div className="shopping-shell" data-catalog-source=${catalogService.source} data-catalog-loaded=${liveCatalog} data-catalog-loading-more=${catalogLoadingMore} data-catalog-product-count=${catalog.length} data-shopify-product-count=${shopifyProductCount} data-route=${route.page} data-cart-pending=${cartSyncing} data-mobile-mode=${experience.mode(route.page, cartCount)}>
-    <${ShoppingHeader} route=${route} onBack=${() => navigate(productReturnHash.current)} catalog=${catalog} query=${query} setQuery=${setQuery} onSearch=${term => navigate(`#search/${encodeURIComponent(term || "")}`)} onNavigate=${navigate} onCart=${openCart} cartCount=${cartCount} remoteCart=${shopifyCart} pending=${cartSyncing} cartError=${cartError} savedCount=${saved.length} loading=${loading} accountAuthenticated=${accountState.status === "authenticated"}/>
+    <${ShoppingHeader} route=${route} onBack=${() => navigate(productReturnHash.current)} catalog=${catalog} query=${query} setQuery=${setQuery} onSearch=${term => navigate(`#search/${encodeURIComponent(term || "")}`)} onNavigate=${navigate} onAccount=${openAccount} onCart=${openCart} cartCount=${cartCount} remoteCart=${shopifyCart} pending=${cartSyncing} cartError=${cartError} savedCount=${saved.length} loading=${loading} accountAuthenticated=${accountState.status === "authenticated"}/>
     ${pageContent()}
     <${ShoppingFooter} onNavigate=${navigate}/>
     ${toast && route.page !== "cart" && html`<div className="toast" role=${retryCartToast || toast.startsWith("Could not update your wishlist") ? "alert" : "status"}><span>${toast}</span>${retryCartToast && html`<button type="button" onClick=${() => { setToast(""); void cartState.retry(); }}>Retry</button>`}</div>`}
     <${experience.Controls} route=${route} count=${cartCount} cartItems=${cartTotals.lines} remoteCart=${shopifyCart} pending=${cartSyncing} error=${cartError} onCart=${openCart}/>
     <${ShoppingBottom} route=${route} onNavigate=${navigate} onCart=${openCart} count=${cartCount}/>
     ${route.page === "cart" && html`<${ShoppingCart} cart=${cart} catalog=${catalog} remoteCart=${shopifyCart} syncing=${cartSyncing} pendingKeys=${cartPendingKeys} pendingOperations=${cartPendingOperations} error=${!online ? "Reconnect to update your Shopify cart." : cartError} onRetry=${cartState.retry} onClose=${() => navigate(cartReturnHash.current)} onUpdate=${updateCart} onRemove=${removeCart} checkoutEnabled=${catalogService.canCheckout} checkoutBusy=${checkoutBusy} onCheckout=${checkout}/>`}
+    ${(accountDrawerOpen || route.page === "account") && html`<${CustomerAccountPage} state=${accountState} account=${customerAccount} onNavigate=${navigate} onClose=${closeAccount}/>`}
   </div>`;
 }
 

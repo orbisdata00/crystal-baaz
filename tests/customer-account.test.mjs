@@ -72,10 +72,10 @@ const configured = {
   customerAccountLogoutUri: "https://crystalbaaz.example/",
 };
 
-test("account view renders setup state and address management from actual account data", () => {
+test("account drawer renders pending sign-in copy and the authenticated account menu", () => {
   const account = { login() {}, logout() {}, updateAddress() {}, deleteAddress() {}, createAddress() {} };
   const pending = renderToStaticMarkup(React.createElement(CustomerAccountPage, { state: { status: "unconfigured", error: "Setup pending" }, account }));
-  assert.match(pending, /Customer sign-in setup is pending/);
+  assert.match(pending, /<h1>Sign in<\/h1>/);
   assert.match(pending, /Setup pending/);
 
   const address = { id: "gid://shopify/CustomerAddress/42", firstName: "Asha", lastName: "Rao", address1: "12 Market Road", city: "Pune", zoneCode: "MH", countryCode: "IN", zip: "411001", formatted: ["Asha Rao", "12 Market Road", "Pune, MH 411001", "India"] };
@@ -83,12 +83,13 @@ test("account view renders setup state and address management from actual accoun
     id: "gid://shopify/Customer/42", displayName: "Asha Rao", emailAddress: { emailAddress: "asha@example.test" },
     defaultAddress: address, addresses: { nodes: [{ ...address, id: "gid://shopify/CustomerAddress/43", address1: "18 Garden Lane", isDefault: false }] }, orders: { nodes: [] },
   } }, account }));
+  assert.match(dashboard, /<h1>My Account<\/h1>/);
   assert.match(dashboard, /asha@example\.test/);
-  assert.match(dashboard, /Add address/);
-  assert.match(dashboard, /Default address/);
-  assert.match(dashboard, /Make default/);
-  assert.match(dashboard, /Edit/);
-  assert.match(dashboard, /Delete/);
+  assert.match(dashboard, /My Orders/);
+  assert.match(dashboard, /Saved Addresses/);
+  assert.match(dashboard, /Wishlist/);
+  assert.match(dashboard, /Account Privacy/);
+  assert.match(dashboard, /Log Out/);
 });
 
 test("the site root can be the callback URL without treating ordinary visits as OAuth callbacks", async () => {

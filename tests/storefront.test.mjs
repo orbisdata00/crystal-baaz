@@ -6,7 +6,7 @@ import { renderToStaticMarkup } from "react-dom/server";
 import htm from "htm";
 import { catalogGroups, collections, crystals, customerVariantLabel, formatVariantLabel, mapShopifyCatalog, mergeShopifyProduct, normalizeShopifyProduct, productFromHash, productHash, selectProducts, variantCorrectionReport, zodiacSigns, navigation } from "../src/catalog.js";
 import { addCartLine, calculateCart, changeCartQuantity, removeCartLine, reconcileShopifyCartLines } from "../src/cart.js";
-import { createHostedCheckout, hasShopifyConnection } from "../src/shopify.js";
+import { createHostedCheckout, hasShopifyConnection, loadShopifyCheckoutDestination } from "../src/shopify.js";
 import { resolveCatalogProvider, shopifyConfig } from "../src/config.js";
 import { catalogService, createCatalogService } from "../src/catalog-service.js";
 import { parseRoute } from "../src/routes.js";
@@ -154,6 +154,38 @@ test("Shopify connection remains disabled without public credentials", async () 
   assert.equal(shopifyConfig.storefrontAccessToken, "");
   assert.equal(shopifyConfig.apiVersion, "2026-10");
   assert.deepEqual(await createHostedCheckout(addCartLine([], fixture[0]), fixture), { disabled: true });
+});
+
+test("checkout fetches the existing cart destination fresh and accepts only this Shopify store's HTTPS domains", async () => {
+  const oldFetch = globalThis.fetch;
+  const oldToken = shopifyConfig.storefrontAccessToken;
+  const cartId = "gid://shopify/Cart/existing?key=preserved";
+  shopifyConfig.storefrontAccessToken = "test-public-token";
+  let requestBody;
+  globalThis.fetch = async (_url, options) => {
+    requestBody = JSON.parse(options.body);
+    return new Response(JSON.stringify({ data: {
+      cart: { id: cartId, checkoutUrl: "https://checkout.crystalbaaz.example/cart/c/current?key=redacted", cost: { totalAmount: { amount: "2340.00", currencyCode: "INR" } } },
+      shop: { primaryDomain: { host: "checkout.crystalbaaz.example" } },
+    } }), { status: 200, headers: { "content-type": "application/json" } });
+  };
+  try {
+    const result = await loadShopifyCheckoutDestination(cartId);
+    assert.equal(result.cart.id, cartId);
+    assert.equal(result.checkoutUrl, "https://checkout.crystalbaaz.example/cart/c/current?key=redacted");
+    assert.equal(requestBody.variables.id, cartId);
+    assert.match(requestBody.query, /cart\(id: \$id\).*checkoutUrl/s);
+    assert.match(requestBody.query, /shop\s*\{\s*primaryDomain\s*\{\s*host\s*\}/);
+
+    globalThis.fetch = async () => new Response(JSON.stringify({ data: {
+      cart: { id: cartId, checkoutUrl: "https://attacker.example/checkout", cost: { totalAmount: { amount: "2340.00", currencyCode: "INR" } } },
+      shop: { primaryDomain: { host: "checkout.crystalbaaz.example" } },
+    } }), { status: 200, headers: { "content-type": "application/json" } });
+    await assert.rejects(loadShopifyCheckoutDestination(cartId), /outside this store's secure domains/);
+  } finally {
+    globalThis.fetch = oldFetch;
+    shopifyConfig.storefrontAccessToken = oldToken;
+  }
 });
 
 test("preview remains opt-in and checkout remains disabled", async () => {

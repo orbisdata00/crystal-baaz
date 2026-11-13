@@ -42,6 +42,7 @@ jobs:
           VITE_SHOPIFY_STORE_DOMAIN: ${{ vars.VITE_SHOPIFY_STORE_DOMAIN || 'crystalbaaz.myshopify.com' }}
           VITE_SHOPIFY_STOREFRONT_PUBLIC_TOKEN: ${{ vars.VITE_SHOPIFY_STOREFRONT_PUBLIC_TOKEN || secrets.VITE_SHOPIFY_STOREFRONT_PUBLIC_TOKEN || '281a71c5808bef1d3783448b3e430411' }}
           VITE_SHOPIFY_API_VERSION: ${{ vars.VITE_SHOPIFY_API_VERSION || '2026-10' }}
+          VITE_SHOPIFY_CHECKOUT_ENABLED: ${{ vars.VITE_SHOPIFY_CHECKOUT_ENABLED || 'false' }}
       - uses: actions/upload-pages-artifact@v3
         if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
         with:

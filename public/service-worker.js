@@ -1,6 +1,6 @@
 const APP_URL = new URL("./", self.location.href);
 const CACHE_PREFIX = `crystal-bazz-public-${APP_URL.pathname}-`;
-const CACHE_NAME = `${CACHE_PREFIX}v9`;
+const CACHE_NAME = `${CACHE_PREFIX}v10`;
 const appUrl = (path) => new URL(path, APP_URL).href;
 const APP_SHELL = ["./", "offline.html", "manifest.webmanifest", "assets/pwa-icon-180.png", "assets/pwa-icon-192.png", "assets/pwa-icon-512.png", "assets/category-icon-sprite.png"].map(appUrl);
 

@@ -3,6 +3,7 @@ import React from "react";
 const paths = {
   search: [["circle", { cx: 10.8, cy: 10.8, r: 6.4 }], ["path", { d: "m16 16 4.2 4.2" }]],
   bag: [["path", { d: "M5 8h14l1 13H4L5 8Z" }], ["path", { d: "M9 9V6a3 3 0 0 1 6 0v3" }]],
+  cart: [["path", { d: "M3 4h2l2.5 11.2a2 2 0 0 0 2 1.6h8.1a2 2 0 0 0 1.9-1.4L22 8H6" }], ["circle", { cx: 10, cy: 20, r: 1.2 }], ["circle", { cx: 18, cy: 20, r: 1.2 }]],
   user: [["circle", { cx: 12, cy: 8, r: 3.5 }], ["path", { d: "M5 21a7 7 0 0 1 14 0" }]],
   menu: [["path", { d: "M4 7h16M4 12h16M4 17h16" }]],
   close: [["path", { d: "m6 6 12 12M18 6 6 18" }]],
