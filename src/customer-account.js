@@ -199,15 +199,49 @@ export function createCustomerAccountClient({
     return apiDiscoveryPromise;
   }
 
-  function readTransaction() {
+  function transactionStorageKey(state) {
+    return `${TRANSACTION_KEY}:${state}`;
+  }
+
+  function persistTransaction(transaction) {
+    const serialized = JSON.stringify(transaction);
+    let persisted = false;
+    try { windowRef.sessionStorage.setItem(TRANSACTION_KEY, serialized); persisted = true; } catch { /* PWA handoff may not preserve session storage. */ }
+    try { windowRef.localStorage.setItem(transactionStorageKey(transaction.state), serialized); persisted = true; } catch { /* Use session storage when persistent storage is unavailable. */ }
+    if (!persisted) throw new Error("Your browser could not save the secure sign-in request. Please allow site storage and try again.");
+  }
+
+  function readTransaction(expectedState) {
+    if (!expectedState) return null;
+    const isValid = value => value && value.state === expectedState
+      && Number.isFinite(value.createdAt) && now() - value.createdAt >= 0
+      && now() - value.createdAt <= TRANSACTION_TTL_MS;
     try {
       const value = JSON.parse(windowRef.sessionStorage.getItem(TRANSACTION_KEY) || "null");
-      return value && now() - value.createdAt <= TRANSACTION_TTL_MS ? value : null;
+      if (isValid(value)) return value;
+    } catch { /* Continue with persistent storage for browser/PWA handoffs. */ }
+    try {
+      const value = JSON.parse(windowRef.localStorage.getItem(transactionStorageKey(expectedState)) || "null");
+      return isValid(value) ? value : null;
     } catch { return null; }
   }
 
-  function clearTransaction() {
+  function clearTransaction(transaction) {
+    if (!transaction?.state) return;
+    try {
+      const value = JSON.parse(windowRef?.sessionStorage?.getItem(TRANSACTION_KEY) || "null");
+      if (value?.state === transaction.state) windowRef.sessionStorage.removeItem(TRANSACTION_KEY);
+    } catch { /* Storage can be unavailable. */ }
+    try { windowRef?.localStorage?.removeItem(transactionStorageKey(transaction.state)); } catch { /* Storage can be unavailable. */ }
+  }
+
+  function clearAllTransactions() {
     try { windowRef?.sessionStorage?.removeItem(TRANSACTION_KEY); } catch { /* Storage can be unavailable. */ }
+    try {
+      const storage = windowRef?.localStorage;
+      const keys = Array.from({ length: storage?.length || 0 }, (_, index) => storage.key(index));
+      keys.filter(key => key?.startsWith(`${TRANSACTION_KEY}:`)).forEach(key => storage.removeItem(key));
+    } catch { /* Storage can be unavailable. */ }
   }
 
   function returnTo(path) {
@@ -222,9 +256,10 @@ export function createCustomerAccountClient({
       return false;
     }
     publish({ status: "authenticating", error: "" });
+    let transaction;
     try {
       const endpoints = await discoverOpenId();
-      const transaction = {
+      transaction = {
         state: randomToken(cryptoApi),
         nonce: randomToken(cryptoApi),
         verifier: randomToken(cryptoApi, 48),
@@ -232,7 +267,7 @@ export function createCustomerAccountClient({
         silent: prompt === "none",
         createdAt: now(),
       };
-      windowRef.sessionStorage.setItem(TRANSACTION_KEY, JSON.stringify(transaction));
+      persistTransaction(transaction);
       const challenge = await createPkceChallenge(transaction.verifier, cryptoApi);
       const authorization = new URL(endpoints.authorization_endpoint);
       authorization.searchParams.set("scope", "openid email customer-account-api:full");
@@ -247,7 +282,7 @@ export function createCustomerAccountClient({
       windowRef.location.assign(authorization.href);
       return true;
     } catch (error) {
-      clearTransaction();
+      clearTransaction(transaction);
       publish({ status: "error", error: error.message || "Could not start Shopify sign-in." });
       return false;
     }
@@ -282,12 +317,12 @@ export function createCustomerAccountClient({
 
   async function completeCallback() {
     const callbackUrl = new URL(windowRef.location.href);
-    const transaction = readTransaction();
     const returnedState = callbackUrl.searchParams.get("state");
+    const transaction = readTransaction(returnedState);
     const code = callbackUrl.searchParams.get("code");
     const providerError = callbackUrl.searchParams.get("error");
     windowRef.history.replaceState({}, "", `${callbackUrl.pathname}${callbackUrl.hash}`);
-    clearTransaction();
+    clearTransaction(transaction);
     try {
       if (!transaction || !returnedState || returnedState !== transaction.state) throw new Error("Shopify sign-in could not be verified. Please start again.");
       if (providerError) {
@@ -435,7 +470,7 @@ export function createCustomerAccountClient({
     const idToken = tokens?.idToken;
     const customerSettings = customerConfiguration(config, windowRef.location);
     tokens = null;
-    clearTransaction();
+    clearAllTransactions();
     try { windowRef.sessionStorage.removeItem(SESSION_HINT_KEY); } catch { /* Storage can be unavailable. */ }
     publish({ status: available() ? "signed-out" : "unconfigured", customer: null, error: "" });
     if (!idToken || !customerSettings) {

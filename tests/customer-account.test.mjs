@@ -38,7 +38,7 @@ function response(body, status = 200) {
   return { ok: status >= 200 && status < 300, status, json: async () => body };
 }
 
-function makeBrowser() {
+function makeBrowser({ localValues = new Map() } = {}) {
   const values = new Map();
   const assigned = [];
   const location = {
@@ -54,6 +54,13 @@ function makeBrowser() {
     setItem(key, value) { values.set(key, String(value)); },
     removeItem(key) { values.delete(key); },
   };
+  const localStorage = {
+    get length() { return localValues.size; },
+    key(index) { return [...localValues.keys()][index] ?? null; },
+    getItem(key) { return localValues.get(key) ?? null; },
+    setItem(key, value) { localValues.set(key, String(value)); },
+    removeItem(key) { localValues.delete(key); },
+  };
   const history = {
     replaceState(_state, _title, value) {
       const url = new URL(value, location.origin);
@@ -62,7 +69,7 @@ function makeBrowser() {
       location.href = url.href;
     },
   };
-  return { location, sessionStorage, history, assigned, values, dispatchEvent() {} };
+  return { location, sessionStorage, localStorage, history, assigned, values, localValues, dispatchEvent() {} };
 }
 
 const configured = {
@@ -145,6 +152,38 @@ test("public OAuth client uses PKCE S256 and rejects insecure or unregistered or
   await insecure.initialize();
   assert.equal(insecure.getSnapshot().status, "unconfigured");
   assert.equal(fetchCount, 1);
+});
+
+test("OAuth callback restores the matching PKCE transaction after a PWA browser-context handoff", async () => {
+  const callbackUri = "https://crystalbaaz.example/";
+  const config = { ...configured, customerAccountRedirectUri: callbackUri, customerAccountLogoutUri: callbackUri };
+  const browserBeforeLogin = makeBrowser();
+  const discovery = {
+    authorization_endpoint: "https://shopify.test/authorize",
+    token_endpoint: "https://shopify.test/token",
+    end_session_endpoint: "https://shopify.test/logout",
+    jwks_uri: "https://shopify.test/jwks",
+    issuer: "https://shopify.test",
+  };
+  const fetchImpl = async url => {
+    if (String(url).endsWith("/.well-known/openid-configuration")) return response(discovery);
+    if (url === discovery.token_endpoint) return response({ access_token: "handoff-access-token", id_token: "opaque-id-token", expires_in: 3600 });
+    throw new Error(`Unexpected request: ${url}`);
+  };
+  const loginClient = createCustomerAccountClient({ config, windowRef: browserBeforeLogin, fetchImpl, cryptoApi: webcrypto });
+  await loginClient.initialize();
+  assert.equal(await loginClient.login(), true);
+  const transaction = JSON.parse(browserBeforeLogin.sessionStorage.getItem("crystal-baaz-customer-oauth-transaction"));
+
+  const browserAfterLogin = makeBrowser({ localValues: browserBeforeLogin.localValues });
+  browserAfterLogin.location.href = `${callbackUri}?code=one-use-code&state=${encodeURIComponent(transaction.state)}#account`;
+  const callbackClient = createCustomerAccountClient({ config, windowRef: browserAfterLogin, fetchImpl, cryptoApi: webcrypto });
+  await callbackClient.initialize();
+
+  assert.equal(callbackClient.getSnapshot().status, "authenticated");
+  assert.equal(callbackClient.isAuthenticated, true);
+  assert.equal(browserAfterLogin.sessionStorage.getItem("crystal-baaz-customer-session-hint"), "1");
+  assert.equal(browserAfterLogin.localStorage.getItem(`crystal-baaz-customer-oauth-transaction:${transaction.state}`), null);
 });
 
 test("Customer Account API validates signed identity, state, nonce, callback, dashboard scopes, refresh and logout", async () => {
