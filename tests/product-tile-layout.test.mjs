@@ -114,7 +114,7 @@ test("mobile rails and navigation use compact, separate visual containers", asyn
   assert.match(css, /\.shopping-product-copy \{ flex:0 0 auto; min-height:0; padding:4px 6px 3px; \}/);
   assert.doesNotMatch(css, /\.shopping-product-image-panel \{ height:/);
   assert.match(css, /\.shopping-product-image-panel \{ position:relative; display:flex;[^}]*height:auto;/);
-  assert.match(css, /\.shopping-product-image-link \{ display:flex; flex:0 0 auto;[^}]*aspect-ratio:1;[^}]*padding:0;/);
+  assert.match(css, /\.shopping-product-image-link \{(?=[^}]*display:flex;)(?=[^}]*flex:0 0 auto;)(?=[^}]*aspect-ratio:1;)(?=[^}]*padding:0;)[^}]*\}/);
   assert.match(css, /\.shopping-product-image-link>img,.shopping-product-image-link>\.shopping-image-unavailable \{ display:block; width:100%; height:100%; min-height:0; object-fit:contain; object-position:center; \}/);
   assert.match(css, /\.shopping-option-link \{ position:static; margin:2px 0 0;/);
   assert.doesNotMatch(css, /\.shopping-browse-content \.shopping-add,\.shopping-browse-content \.shopping-quantity \{ width:100%/);
