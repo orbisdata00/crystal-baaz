@@ -181,7 +181,7 @@ test("checkout fetches the existing cart destination fresh and accepts only this
       cart: { id: cartId, checkoutUrl: "https://attacker.example/checkout", cost: { totalAmount: { amount: "2340.00", currencyCode: "INR" } } },
       shop: { primaryDomain: { host: "checkout.crystalbaaz.example" } },
     } }), { status: 200, headers: { "content-type": "application/json" } });
-    await assert.rejects(loadShopifyCheckoutDestination(cartId), /outside this store's secure domains/);
+    await assert.rejects(loadShopifyCheckoutDestination(cartId), /outside this store's approved secure domains/);
   } finally {
     globalThis.fetch = oldFetch;
     shopifyConfig.storefrontAccessToken = oldToken;
@@ -230,7 +230,7 @@ test("Shopify API failures remain errors and an empty Shopify response remains e
     hasConnection: () => true,
     loadCatalog: async () => ({ products: null }),
   } });
-  await assert.rejects(malformed.loadCatalog(), /invalid product catalog response/);
+  await assert.rejects(malformed.loadCatalog(), /invalid product response/);
 });
 
 test("home renders the first Shopify cursor page before loading the remaining catalog", async () => {
@@ -596,7 +596,7 @@ test("a removed Shopify product never falls back to its cached catalog record", 
     loadProduct: async () => null,
   } });
   assert.equal((await service.loadCatalog()).products.length, 1);
-  await assert.rejects(service.loadRoute({ page: "product", handle: cached.handle }), /no longer available from Shopify/);
+  await assert.rejects(service.loadRoute({ page: "product", handle: cached.handle }), /no longer available in the live catalog/);
 });
 
 
