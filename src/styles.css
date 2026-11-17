@@ -1369,6 +1369,12 @@ body { color: var(--ink); background: var(--paper); }
   .section-subtitle, .section-heading > p { display: none; }
   .product-carousel .carousel-track { gap: 10px; padding: 2px 0 10px; }
   .product-carousel .product-card { width: clamp(145px, 40vw, 176px); border-radius: 21px; }
+  /* Keep the purchase controls in a steady row as cards slide past. */
+  .product-carousel .carousel-track { align-items: stretch; }
+  .product-carousel .product-card { height: auto; display: flex; flex-direction: column; }
+  .product-carousel .product-info { flex: 1 1 auto; }
+  .product-carousel .mobile-product-action { margin-top: auto; }
+  .product-carousel .mobile-product-action > button { justify-content: flex-start; padding-left: 12px; text-align: left; }
   .product-carousel .product-image-wrap { aspect-ratio: 1 / 1; border-radius: 17px 17px 12px 12px; }
   .product-carousel .product-info { min-height: 90px; padding: 7px 8px 4px; }
   .product-carousel .product-title { min-height: 31px; margin: 0; font: 600 11px/1.2 var(--sans); text-align: center; }
@@ -2180,4 +2186,14 @@ body { color: var(--ink); background: var(--cream); }
 .cart-line-info > strong {
   font-family: var(--money-font);
   font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 780px) {
+  /* Keep every home carousel card's Buy Now row inside the card while swiping. */
+  .home-reference-rail .product-carousel .carousel-track { align-items: stretch; }
+  .home-reference-rail .product-carousel .product-card { height: auto; display: flex; flex-direction: column; }
+  .home-reference-rail .product-carousel .product-info { flex: 1 1 auto; }
+  .home-reference-rail .product-carousel .mobile-product-action { display: block; flex: 0 0 auto; margin-top: auto; }
+  .home-reference-rail .product-carousel .mobile-product-action > button,
+  .home-reference-rail .product-carousel .mobile-card-quantity { width: 100%; min-height: 34px; display: flex; align-items: center; }
 }
