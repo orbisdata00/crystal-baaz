@@ -1068,6 +1068,22 @@ body { background:#fff; }
 .shopping-variant-line { grid-template-columns:46px minmax(0,1fr) 92px; gap:8px; min-height:68px; padding:7px 12px; }
 .shopping-variant-line>.shopping-variant-thumb,.shopping-variant-line>.shopping-image-unavailable { width:46px; height:48px; }
 
+/* Keep cart sections close together and prevent default heading margins from
+   creating large gaps between the cart title, items, note, and bill. */
+.shopping-cart-layout { display:grid; gap:12px; }
+.shopping-cart-content { padding:10px; }
+.shopping-cart-savings { margin-bottom:8px; padding:10px 12px; }
+.shopping-cart-lines { padding:0 12px; }
+.shopping-cart-lines>h2 { margin:10px 0 4px; font-size:18px; line-height:1.2; }
+.shopping-cart-line { padding:9px 0; }
+.shopping-cart-line-copy h3 { margin:0 0 4px; font-size:16px; line-height:1.25; }
+.shopping-cart-line-copy p { margin:0 0 4px; }
+.shopping-cart-note { margin-top:10px; }
+.shopping-cart-note h2 { margin:0 0 6px; font-size:18px; line-height:1.25; }
+.shopping-cart-note p { margin:0; line-height:1.45; }
+.shopping-cart-summary { margin-top:0; padding:0; background:transparent; }
+.shopping-bill { margin-top:0; }
+
 @media(max-width:780px) {
  .shopping-home,.shopping-results { padding-top:10px; padding-bottom:14px; }
  .shopping-product-page { padding-top:0; padding-bottom:10px; }
@@ -1151,6 +1167,15 @@ body { background:#fff; }
 .shopping-cart-page,.shopping-cart-page .shopping-cart-panel { touch-action:pan-x pan-y; }
 .shopping-cart-page { overscroll-behavior:contain; }
 
+/* Browser storefront pages use the document for vertical scrolling. */
+html:not(.pwa-standalone) .shopping-browse,
+html:not(.pwa-standalone) .shopping-results-layout { height:auto; min-height:0; }
+html:not(.pwa-standalone) .shopping-sidebar { min-height:0; }
+html:not(.pwa-standalone) .shopping-sidebar-scroll { min-height:0; flex:0 0 auto; overflow:visible; overscroll-behavior:auto; }
+html:not(.pwa-standalone) .shopping-browse-content,
+html:not(.pwa-standalone) .shopping-results-content { min-height:0; overflow:visible; overscroll-behavior:auto; }
+html:not(.pwa-standalone) .shopping-topnav { display:none; }
+
 .customer-account-heading { position:relative; padding-left:52px; }
 .customer-account-back { position:absolute; top:0; left:0; display:grid; width:40px; height:40px; place-items:center; padding:0; border:1px solid var(--line); border-radius:50%; color:var(--shop-accent); background:#fff; font-size:24px; line-height:1; }
 @media(max-width:1100px) and (min-width:781px) { .shopping-results-layout { grid-template-columns:180px minmax(0,1fr); } .shopping-results-content { padding:18px; } }
@@ -1179,6 +1204,25 @@ body { background:#fff; }
  .shopping-browse[data-browse-state="overview"] .shopping-list-heading .shopping-category-share { grid-column:2; min-height:34px; gap:4px; padding:5px 7px; font-size:9px; }
  .shopping-browse[data-browse-state="overview"] .shopping-list-heading .shopping-category-share svg { width:14px; height:14px; }
  .shopping-browse[data-browse-state="overview"] .shopping-subcategory-grid { gap:6px; }
+}
+@media(max-width:780px) {
+ .shopping-header:not(.is-searching) .shopping-header-main { padding-bottom:2px; }
+ .shopping-header:not(.is-searching) .shopping-topnav { padding-top:0; }
+ .shopping-header:not(.is-searching) .shopping-topnav>button { min-height:62px; gap:2px; padding:2px 4px 4px; }
+ .shopping-back-to-top { position:fixed; z-index:34; top:calc(env(safe-area-inset-top) + 136px); left:50%; display:inline-flex; min-height:30px; align-items:center; justify-content:center; gap:5px; padding:0 12px; transform:translateX(-50%); border:0; border-radius:18px; color:#fff; background:#111; box-shadow:0 2px 7px #0002; font:600 11px/1 var(--sans); white-space:nowrap; }
+ .shopping-back-to-top span { width:14px; height:14px; display:grid; place-items:center; border:1px solid #fff; border-radius:50%; font-size:10px; line-height:1; }
+}
+
+/* Use platform fonts for currency figures so the ₹ glyph is present and aligned. */
+.shopping-shell .shopping-prices,
+.shopping-shell .shopping-bill strong,
+.shopping-shell .shopping-cart-savings strong,
+.shopping-shell .shopping-cart-checkout strong,
+.shopping-shell .shopping-pdp-price strong,
+.shopping-shell .shopping-pdp-sticky-price strong,
+.shopping-shell .shopping-search-results button>span>small {
+  font-family:var(--money-font,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans Devanagari",sans-serif);
+  font-variant-numeric:tabular-nums;
 }
 
 /* Blinkit-style search field and neutral, rectangular popular-search chips. */
@@ -1436,4 +1480,33 @@ body { background:#fff; }
 @media(min-width:781px) {
  .shopping-topnav>button.is-active { color:var(--shop-accent); font-weight:700; }
  .shopping-topnav>button.is-active::after { display:block; height:2px; margin-top:-2px; background:var(--shop-accent); content:""; }
+}
+
+@media(max-width:780px) {
+ .shopping-header:not(.is-searching) .shopping-header-main { padding-bottom:2px; }
+ .shopping-header:not(.is-searching) .shopping-topnav { padding-top:0; }
+ .shopping-header:not(.is-searching) .shopping-topnav>button { min-height:62px; gap:2px; padding:2px 4px 4px; }
+}
+
+@media(max-width:780px) {
+ .shopping-header:not(.is-searching) .shopping-search input,
+ .shopping-header.is-searching .shopping-search input { font-size:16px; line-height:1.25; -webkit-text-size-adjust:100%; }
+ .shopping-breadcrumb { display:none; }
+}
+
+.shopping-footer-accordion { min-width:0; align-self:start; }
+.shopping-footer-accordion>summary { display:flex; width:max-content; max-width:100%; align-items:center; justify-content:flex-start; gap:9px; margin:0; color:var(--ink); font:650 16px/1.3 var(--sans); cursor:pointer; list-style:none; }
+.shopping-footer-accordion>summary::-webkit-details-marker { display:none; }
+.shopping-footer-accordion>summary::after { content:"+"; color:var(--shop-accent); font-size:20px; font-weight:400; line-height:1; }
+.shopping-footer-accordion[open]>summary::after { content:"−"; }
+.shopping-footer-accordion>nav { margin:12px 0 0; }
+@media(max-width:780px) {
+ .shopping-footer-accordion>summary { min-height:40px; font-size:14px; }
+ .shopping-footer-accordion>nav { margin-top:6px; }
+ .shopping-footer { padding-top:18px; padding-bottom:14px; }
+ .shopping-footer-columns { grid-template-columns:1fr 1fr; gap:8px 10px; }
+ .shopping-footer-brand>strong { font-size:23px; }
+ .shopping-footer p { margin:5px 0 7px; }
+ .shopping-footer-install { min-height:38px; }
+ .shopping-footer-bottom { margin-top:10px; padding-top:9px; }
 }

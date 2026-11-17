@@ -21,6 +21,11 @@ import { formatCurrencyAmount } from "./money.js";
 import { shopifyConfig } from "./config.js";
 
 const html = htm.bind(React.createElement);
+// Keep the compact category rail in the installed PWA, but omit it in browser tabs.
+if (typeof window !== "undefined") {
+  const isStandalonePwa = window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true;
+  document.documentElement.classList.toggle("pwa-standalone", isStandalonePwa);
+}
 // Keep this GitHub Pages project on its configured path if an old OAuth link
 // opens the app at the account-level root instead.
 if (typeof window !== "undefined") {

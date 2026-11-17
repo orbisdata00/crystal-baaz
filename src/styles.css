@@ -2197,3 +2197,7 @@ body { color: var(--ink); background: var(--cream); }
   .home-reference-rail .product-carousel .mobile-product-action > button,
   .home-reference-rail .product-carousel .mobile-card-quantity { width: 100%; min-height: 34px; display: flex; align-items: center; }
 }
+
+/* The category rail is reserved for the installed mobile PWA experience. */
+.category-tabs { display: none; }
+.pwa-standalone .category-tabs { display: flex; }
