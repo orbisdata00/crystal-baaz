@@ -1494,6 +1494,11 @@ html:not(.pwa-standalone) .shopping-topnav { display:none; }
  .shopping-breadcrumb { display:none; }
  .shopping-header:not(.is-searching) .shopping-topnav { justify-content:flex-start; gap:0; padding-right:3px; padding-left:3px; }
  .shopping-header:not(.is-searching) .shopping-topnav>button { flex:0 0 clamp(58px,12vw,72px); align-items:center; justify-content:center; padding-right:2px; padding-left:2px; }
+ html.pwa-standalone .shopping-header:not(.is-searching) .shopping-header-main { position:relative; }
+ html.pwa-standalone .shopping-header:not(.is-searching) .shopping-search { padding-right:50px; }
+ html.pwa-standalone .shopping-header:not(.is-searching) .shopping-tools { position:absolute; top:calc(10px + env(safe-area-inset-top) + 7px); right:20px; display:flex; gap:0; }
+ html.pwa-standalone .shopping-header:not(.is-searching) .shopping-tools>button:not(.shopping-account-trigger) { display:none; }
+ html.pwa-standalone .shopping-header:not(.is-searching) .shopping-tools>.shopping-account-trigger { display:grid; width:34px; min-width:34px; min-height:34px; place-items:center; padding:0; color:var(--shop-accent); }
 }
 
 .shopping-footer-accordion { min-width:0; align-self:start; }

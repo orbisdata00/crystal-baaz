@@ -890,13 +890,21 @@ function StoreApp() {
     return () => { active = false; };
   }, [liveCatalog, retryTick]);
 
-  const navigate = useCallback((hash) => {
-    window.history.pushState({}, "", hash || "#home");
+  const navigate = useCallback((hash, options = {}) => {
+    window.history.pushState({ crystalBaazProductEntry: options.productEntry === true }, "", hash || "#home");
     const next = parseRoute(hash || "#home");
     setRoute(next); setSort(next.sort || "featured"); setTypeFilter(next.facet || ""); setPageSize(24);
     if (next.page === "search") setQuery(next.query);
     resetPageScroll();
   }, []);
+  const backFromProduct = useCallback(() => {
+    if (window.history.state?.crystalBaazProductEntry === true) {
+      window.history.back();
+      return;
+    }
+    const destination = productReturnHash.current;
+    navigate(destination && destination !== window.location.hash ? destination : "#collections");
+  }, [navigate]);
   const closeAccount = useCallback((destination) => {
     setAccountDrawerOpen(false);
     if (destination) navigate(destination);
@@ -1151,8 +1159,8 @@ function StoreApp() {
     });
     wishlistMutationQueue.current = operation;
   }, [saved]);
-  const openProduct = useCallback((product) => { productReturnHash.current = window.location.hash || "#collections"; navigate(productHash(product)); }, [navigate]);
-  const openSharedProduct = useCallback((product, variantId) => { productReturnHash.current = window.location.hash || "#home"; navigate(productHash(product, variantId)); }, [navigate]);
+  const openProduct = useCallback((product) => { productReturnHash.current = window.location.hash || "#collections"; navigate(productHash(product), { productEntry: true }); }, [navigate]);
+  const openSharedProduct = useCallback((product, variantId) => { productReturnHash.current = window.location.hash || "#home"; navigate(productHash(product, variantId), { productEntry: true }); }, [navigate]);
   const checkout = async () => {
     if (!catalogService.canCheckout) { setToast("Checkout is not enabled for this storefront yet."); return; }
     if (!shopifyCart?.id || cartSyncing || cartError) { setToast("Confirm your current cart before checkout."); return; }
@@ -1255,7 +1263,7 @@ function StoreApp() {
     if (route.page === "crystals") browseRoute = { ...route, page: "collections", group: "crystals" };
     if (route.page === "zodiac") browseRoute = { ...route, page: "collections", group: "zodiac", category: route.sign ? `zodiac:${route.sign}` : "" };
     if (["collections", "collection", "group"].includes(browseRoute.page)) return html`<${ShoppingBrowse} route=${browseRoute} catalog=${catalog} collectionImages=${shopifyCollectionImages} sort=${sort} onSort=${sortProducts} pageSize=${pageSize} onMore=${loadMore} ...${shared} ...${dataState}/>`;
-    if (route.page === "product") return html`<${ShoppingProduct} key=${route.handle} product=${activeProduct} selectedVariantId=${route.variantId||""} catalog=${catalog} onBack=${() => navigate(productReturnHash.current || "#collections")} ...${shared} ...${dataState}/>`;
+    if (route.page === "product") return html`<${ShoppingProduct} key=${route.handle} product=${activeProduct} selectedVariantId=${route.variantId||""} catalog=${catalog} onBack=${backFromProduct} ...${shared} ...${dataState}/>`;
     if (route.page === "search" || route.page === "wishlist") return html`<${ShoppingResults} catalog=${catalog} collectionImages=${shopifyCollectionImages} title=${route.page === "wishlist" ? "Your wishlist" : route.query ? `Search results for “${route.query}”` : "Search products"} query=${route.query || ""} savedOnly=${route.page === "wishlist"} pageSize=${pageSize} onMore=${loadMore} sort=${sort} onSort=${sortProducts} ...${shared} ...${dataState}/>`;
     if (route.page === "nav" || route.page === "discovery") {
       const items = routeNav ? [...(routeNav.items || []), ...(routeNav.formItems || [])].filter(item => ["collection", "group"].includes(item.kind)) : (routeDiscovery?.collectionHandles || []).map(target => ({ kind: "collection", target }));
@@ -1265,7 +1273,7 @@ function StoreApp() {
     return html`<${ShoppingInformation} page=${route.page} onNavigate=${navigate}/>`;
   };
   return html`<div className="shopping-shell" data-catalog-source=${catalogService.source} data-catalog-loaded=${liveCatalog} data-catalog-loading-more=${catalogLoadingMore} data-catalog-product-count=${catalog.length} data-shopify-product-count=${shopifyProductCount} data-route=${route.page} data-cart-pending=${cartSyncing} data-mobile-mode=${experience.mode(route.page, cartCount)}>
-    <${ShoppingHeader} route=${route} onBack=${() => navigate(productReturnHash.current)} catalog=${catalog} query=${query} setQuery=${setQuery} onSearch=${term => navigate(`#search/${encodeURIComponent(term || "")}`)} onNavigate=${navigate} onAccount=${openAccount} onCart=${openCart} cartCount=${cartCount} remoteCart=${shopifyCart} pending=${cartSyncing} cartError=${cartError} savedCount=${saved.length} loading=${loading} accountAuthenticated=${accountState.status === "authenticated"}/>
+    <${ShoppingHeader} route=${route} onBack=${backFromProduct} catalog=${catalog} query=${query} setQuery=${setQuery} onSearch=${term => navigate(`#search/${encodeURIComponent(term || "")}`)} onNavigate=${navigate} onAccount=${openAccount} onCart=${openCart} cartCount=${cartCount} remoteCart=${shopifyCart} pending=${cartSyncing} cartError=${cartError} savedCount=${saved.length} loading=${loading} accountAuthenticated=${accountState.status === "authenticated"}/>
     ${pageContent()}
     <${ShoppingFooter} onNavigate=${navigate}/>
     ${toast && route.page !== "cart" && html`<div className="toast" role=${retryCartToast || /wishlist/i.test(toast) ? "alert" : "status"}><span>${toast}</span>${retryCartToast && html`<button type="button" onClick=${() => { setToast(""); void cartState.retry(); }}>Retry</button>`}</div>`}
