@@ -80,7 +80,7 @@ test("product cards omit category labels and show variant options in the purchas
   }));
   assert.doesNotMatch(markup, />Rings?<\/span>|Best Seller|Product category/);
   assert.match(markup, /Stone: Natural Quartz/);
-  assert.match(markup, /class="shopping-tile-purchase-row has-options-cta"><button class="shopping-add"[^>]*aria-label="Choose from 2 options for Moonstone Ring"[^>]*aria-haspopup="dialog"[^>]*><span>Buy Now<\/span><small class="shopping-add-option-count">2 options<\/small><\/button><div class="shopping-tile-prices">/);
+  assert.match(markup, /class="shopping-tile-purchase-row has-options-cta"><div class="shopping-tile-prices">[^]*?<\/div><button class="shopping-add"[^>]*aria-label="Choose from 2 options for Moonstone Ring"[^>]*aria-haspopup="dialog"[^>]*><span>Buy Now<\/span><small class="shopping-add-option-count">2 options<\/small><\/button>/);
   assert.doesNotMatch(markup, /class="shopping-option-link"/);
 });
 
@@ -104,7 +104,8 @@ test("mobile rails and navigation use compact, separate visual containers", asyn
   assert.match(css, /\.shopping-product-card \{[^}]*border:0; border-radius:0; background:transparent; box-shadow:none;/);
   assert.match(css, /\.shopping-product-image-panel \{ margin:0; border-radius:10px;/);
   assert.match(css, /\.shopping-rail-track>\.shopping-product-card \{ flex:0 0 clamp\(104px,28vw,124px\); \}/);
-  assert.match(css, /\.shopping-product-card:not\(\[data-fully-visible="true"\]\) \.shopping-tile-action \{ visibility:hidden; \}/);
+  assert.match(css, /\.shopping-rail-track>\.shopping-product-card \.shopping-save,\s*\.shopping-rail-track>\.shopping-product-card \.shopping-tile-action \{ visibility:visible; \}/);
+  assert.doesNotMatch(css, /\.shopping-product-card:not\(\[data-fully-visible="true"\]\) \.shopping-tile-action \{ visibility:hidden; \}/);
   assert.match(css, /\.shopping-bottom-nav[^}]*border-radius:999px; background:#ffffff/);
   assert.match(css, /\.shopping-tile-action \.shopping-add \{ min-width:70px;[^}]*white-space:nowrap/);
   assert.match(css, /\.shopping-tile-action \.shopping-add \{ min-width:58px; min-height:30px;/);
