@@ -69,17 +69,17 @@ export async function verifyCustomerIdToken(idToken, {
   clientId, issuer, nonce, jwksUri, fetchImpl = fetch, cryptoApi = globalThis.crypto,
   now = Date.now(),
 } = {}) {
-  if (typeof idToken !== "string") throw new Error("Shopify returned an invalid identity token.");
+  if (typeof idToken !== "string") throw new Error("The sign-in response is invalid.");
   const parts = idToken.split(".");
-  if (parts.length !== 3) throw new Error("Shopify returned an invalid identity token.");
+  if (parts.length !== 3) throw new Error("The sign-in response is invalid.");
   const header = decodeJwtPart(parts[0]);
   const claims = decodeJwtPart(parts[1]);
-  if (!header.kid || !["RS256", "ES256"].includes(header.alg)) throw new Error("Shopify returned an unsupported identity token.");
+  if (!header.kid || !["RS256", "ES256"].includes(header.alg)) throw new Error("The sign-in response uses an unsupported format.");
   const response = await fetchImpl(jwksUri, { headers: { Accept: "application/json" } });
-  if (!response.ok) throw new Error("Shopify identity verification is unavailable. Please retry.");
+  if (!response.ok) throw new Error("Account verification is unavailable. Please retry.");
   const keySet = await response.json();
   const jwk = keySet.keys?.find(key => key.kid === header.kid && key.use !== "enc");
-  if (!jwk) throw new Error("Shopify identity verification failed.");
+  if (!jwk) throw new Error("Account verification failed.");
 
   let importAlgorithm;
   let verifyAlgorithm;
@@ -106,7 +106,7 @@ export async function verifyCustomerIdToken(idToken, {
     || (claims.iat != null && claims.iat > nowSeconds + 60)
     || (nonce && claims.nonce !== nonce)
     || typeof claims.sub !== "string" || !claims.sub) {
-    throw new Error("Shopify identity verification failed. Please sign in again.");
+    throw new Error("Account verification failed. Please sign in again.");
   }
   return claims;
 }
@@ -164,7 +164,7 @@ export function createCustomerAccountClient({
   const publish = patch => { current = { ...current, ...patch }; notify(); };
   const available = () => Boolean(windowRef && fetchImpl && cryptoApi?.subtle && customerConfiguration(config, windowRef.location));
   const configurationMessage = () => !config.customerAccountClientId
-    ? "Shopify Customer Accounts are not configured yet. Add the public Client ID and registered HTTPS callback URLs."
+    ? "Customer sign-in is not configured yet. Add the public Client ID and registered HTTPS callback URLs."
     : "Open Crystal Baaz on its registered HTTPS domain to use customer sign-in.";
 
   async function discoverOpenId() {
@@ -173,12 +173,12 @@ export function createCustomerAccountClient({
       const domain = config.storeDomain.replace(/^https?:\/\//, "").replace(/\/$/, "");
       openIdPromise = fetchImpl(`https://${domain}/.well-known/openid-configuration`, { headers: { Accept: "application/json" } })
         .then(async response => {
-          if (!response.ok) throw new Error("Shopify Customer Accounts are not available for this store yet.");
+          if (!response.ok) throw new Error("Customer account access is not available for this store yet.");
           const discovery = await response.json();
           for (const key of ["authorization_endpoint", "token_endpoint", "end_session_endpoint", "jwks_uri"]) {
-            if (!isSecureShopifyUrl(discovery[key])) throw new Error("Shopify returned incomplete customer authentication settings.");
+            if (!isSecureShopifyUrl(discovery[key])) throw new Error("Sign-in settings are incomplete.");
           }
-          if (typeof discovery.issuer !== "string" || !discovery.issuer.startsWith("https://")) throw new Error("Shopify returned incomplete customer authentication settings.");
+          if (typeof discovery.issuer !== "string" || !discovery.issuer.startsWith("https://")) throw new Error("Sign-in settings are incomplete.");
           return discovery;
         }).catch(error => { openIdPromise = null; throw error; });
     }
@@ -190,9 +190,9 @@ export function createCustomerAccountClient({
       const domain = config.storeDomain.replace(/^https?:\/\//, "").replace(/\/$/, "");
       apiDiscoveryPromise = fetchImpl(`https://${domain}/.well-known/customer-account-api`, { headers: { Accept: "application/json" } })
         .then(async response => {
-          if (!response.ok) throw new Error("Shopify Customer Account API is not available for this store yet.");
+          if (!response.ok) throw new Error("Customer account access is not available for this store yet.");
           const result = await response.json();
-          if (!isSecureShopifyUrl(result.graphql_api)) throw new Error("Shopify returned an invalid customer API endpoint.");
+          if (!isSecureShopifyUrl(result.graphql_api)) throw new Error("The account API endpoint is invalid.");
           return result.graphql_api;
         }).catch(error => { apiDiscoveryPromise = null; throw error; });
     }
@@ -283,7 +283,7 @@ export function createCustomerAccountClient({
       return true;
     } catch (error) {
       clearTransaction(transaction);
-      publish({ status: "error", error: error.message || "Could not start Shopify sign-in." });
+      publish({ status: "error", error: "Could not start sign-in." });
       return false;
     }
   }
@@ -299,9 +299,9 @@ export function createCustomerAccountClient({
     const response = await fetchImpl(endpoints.token_endpoint, {
       method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: form,
     });
-    if (!response.ok) throw new Error("Shopify could not complete sign-in. Check the Customer Account API setup and try again.");
+    if (!response.ok) throw new Error("Sign-in could not be completed. Check account setup and try again.");
     const result = await response.json();
-    if (!result.access_token || !result.id_token || !Number.isFinite(Number(result.expires_in))) throw new Error("Shopify returned an incomplete sign-in response.");
+    if (!result.access_token || !result.id_token || !Number.isFinite(Number(result.expires_in))) throw new Error("The sign-in response is incomplete.");
     // Shopify's token/JWKS endpoints don't expose readable JWKS responses to
     // this browser origin. Treat the access token as an opaque credential: the
     // Customer Account API validates it on every request. Do not trust claims
@@ -324,7 +324,7 @@ export function createCustomerAccountClient({
     windowRef.history.replaceState({}, "", `${callbackUrl.pathname}${callbackUrl.hash}`);
     clearTransaction(transaction);
     try {
-      if (!transaction || !returnedState || returnedState !== transaction.state) throw new Error("Shopify sign-in could not be verified. Please start again.");
+      if (!transaction || !returnedState || returnedState !== transaction.state) throw new Error("Sign-in could not be verified. Please start again.");
       if (providerError) {
         const silentFailure = transaction.silent && ["login_required", "interaction_required"].includes(providerError);
         if (silentFailure) {
@@ -337,7 +337,7 @@ export function createCustomerAccountClient({
         returnTo(transaction.returnPath);
         return;
       }
-      if (!code) throw new Error("Shopify did not return a sign-in code. Please try again.");
+      if (!code) throw new Error("No sign-in code was returned. Please try again.");
       const endpoints = await discoverOpenId();
       tokens = await exchangeCode(code, transaction, endpoints);
       windowRef.sessionStorage.setItem(SESSION_HINT_KEY, "1");
@@ -346,7 +346,7 @@ export function createCustomerAccountClient({
     } catch (error) {
       tokens = null;
       try { windowRef.sessionStorage.removeItem(SESSION_HINT_KEY); } catch { /* Storage can be unavailable. */ }
-      publish({ status: "error", customer: null, error: error.message || "Shopify sign-in failed." });
+      publish({ status: "error", customer: null, error: "Sign-in failed." });
       returnTo(transaction?.returnPath || `${storefrontBasePath(config, windowRef.location)}#account`);
     }
   }
@@ -378,12 +378,12 @@ export function createCustomerAccountClient({
   }
 
   async function ensureAccessToken() {
-    if (!tokens) throw new Error("Sign in to view your Shopify account.");
+    if (!tokens) throw new Error("Sign in to view your account.");
     if (tokens.expiresAt > now() + 60_000) return tokens.accessToken;
     if (await refreshTokens()) return tokens.accessToken;
     const returnPath = safeReturnPath(`${windowRef.location.pathname}${windowRef.location.hash || "#account"}`, windowRef.location.origin, storefrontBasePath(config, windowRef.location));
     void beginAuthorization({ prompt: "none", returnPath });
-    throw new Error("Your Shopify session needs to be renewed. Reconnecting securely…");
+    throw new Error("Your session needs to be renewed. Reconnecting securely…");
   }
 
   async function queryCustomerApi(query = ACCOUNT_QUERY, variables = {}) {
@@ -396,19 +396,19 @@ export function createCustomerAccountClient({
     });
     if (response.status === 401) {
       tokens = null;
-      publish({ status: "signed-out", customer: null, error: "Your Shopify session expired. Sign in again to continue." });
+      publish({ status: "signed-out", customer: null, error: "Your session expired. Sign in again to continue." });
       try { windowRef.sessionStorage.removeItem(SESSION_HINT_KEY); } catch { /* Storage can be unavailable. */ }
-      throw new Error("Your Shopify session expired. Sign in again to continue.");
+      throw new Error("Your session expired. Sign in again to continue.");
     }
-    if (!response.ok) throw new Error("Shopify account information could not be loaded. Please retry.");
+    if (!response.ok) throw new Error("Account information could not be loaded. Please retry.");
     const result = await response.json();
-    if (result.errors?.length) throw new Error(result.errors[0].message || "Shopify account information could not be loaded.");
+    if (result.errors?.length) throw new Error("Account information could not be loaded. Please retry.");
     return result.data;
   }
 
   async function loadDashboard() {
     const data = await queryCustomerApi();
-    if (!data?.customer) throw new Error("Shopify did not return an account for this session.");
+    if (!data?.customer) throw new Error("No account was returned for this session.");
     publish({ status: "authenticated", customer: data.customer, error: "" });
     return data.customer;
   }
@@ -416,8 +416,8 @@ export function createCustomerAccountClient({
   async function customerMutation(field, query, variables) {
     const data = await queryCustomerApi(query, variables);
     const result = data?.[field];
-    if (!result) throw new Error("Shopify could not update your account. Please retry.");
-    if (result.userErrors?.length) throw new Error(result.userErrors.map(error => error.message).filter(Boolean).join(" ") || "Shopify could not update your account.");
+    if (!result) throw new Error("Could not update your account. Please retry.");
+    if (result.userErrors?.length) throw new Error("Could not update your account. Please retry.");
     return result;
   }
 
@@ -447,7 +447,7 @@ export function createCustomerAccountClient({
   }
 
   async function updateAddress(addressId, address, { defaultAddress } = {}) {
-    if (typeof addressId !== "string" || !addressId.startsWith("gid://shopify/CustomerAddress/")) throw new Error("Choose a saved Shopify address to update.");
+    if (typeof addressId !== "string" || !addressId.startsWith("gid://shopify/CustomerAddress/")) throw new Error("Choose a saved address to update.");
     const input = address == null ? undefined : saveAddressFields(address);
     const result = await customerMutation("customerAddressUpdate", `mutation CrystalBaazCustomerAddressUpdate($addressId: ID!, $address: CustomerAddressInput, $defaultAddress: Boolean) {
       customerAddressUpdate(addressId: $addressId, address: $address, defaultAddress: $defaultAddress) {
@@ -459,7 +459,7 @@ export function createCustomerAccountClient({
   }
 
   async function deleteAddress(addressId) {
-    if (typeof addressId !== "string" || !addressId.startsWith("gid://shopify/CustomerAddress/")) throw new Error("Choose a saved Shopify address to delete.");
+    if (typeof addressId !== "string" || !addressId.startsWith("gid://shopify/CustomerAddress/")) throw new Error("Choose a saved address to delete.");
     const result = await customerMutation("customerAddressDelete", `mutation CrystalBaazCustomerAddressDelete($addressId: ID!) {
       customerAddressDelete(addressId: $addressId) { deletedAddressId userErrors { field message code } }
     }`, { addressId });

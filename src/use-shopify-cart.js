@@ -3,7 +3,7 @@ import { catalogService } from "./catalog-service.js";
 import { addCartLine, changeCartQuantity, removeCartLine, reconcileShopifyCartLines } from "./cart.js";
 
 const CART_ERROR = "Your cart could not be confirmed. Check your connection and retry.";
-const ADD_ERROR = "Shopify could not add this item at the requested quantity. Retry to try again.";
+const ADD_ERROR = "We could not add this item at the requested quantity. Please try again.";
 
 function read(storage, key, fallback) {
   try { return JSON.parse(storage?.getItem(key) || "null") ?? fallback; } catch { return fallback; }

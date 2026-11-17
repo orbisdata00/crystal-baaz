@@ -242,13 +242,13 @@ export function variantCorrectionReport(products = []) {
         if (label && !skuOnly) return [];
         return [{
           productId: product.id,
-          productTitle: product.title || "Untitled Shopify product",
+          productTitle: product.title || "Untitled product",
           productHandle: product.handle || "",
           variantId: variant.id,
           sku: variant.sku || "",
           currentVariantTitle: variant.title || "",
           selectedOptions: (variant.selectedOptions || []).map((option) => ({ name: option?.name || "", value: option?.value || "" })),
-          correction: "Add meaningful option names and values in Shopify; the storefront currently uses a neutral option label.",
+          correction: "Add meaningful option names and values; the storefront currently uses a neutral option label.",
         }];
       })
       : []);

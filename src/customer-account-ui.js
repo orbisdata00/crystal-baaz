@@ -30,7 +30,7 @@ function OrderCard({ order }) {
     <summary><span><strong>${order.name}</strong><small>${formatDate(order.createdAt)}</small></span><span><strong>${formatAmount(order.totalPrice?.amount ? order.totalPrice : null, order.totalPrice?.currencyCode)}</strong><small>${fulfillment || payment || "Status unavailable"}</small></span></summary>
     <div className="customer-order-details">
       <p>Payment: ${payment || "Status unavailable"} · Fulfilment: ${fulfillment || "Status unavailable"}</p>
-      <ul>${items.map((item, index) => html`<li key=${`${order.id}:${index}`}><span>${item.title || "Shopify item"}</span><span>Qty ${item.quantity || 0}</span></li>`)}</ul>
+      <ul>${items.map((item, index) => html`<li key=${`${order.id}:${index}`}><span>${item.title || "Item"}</span><span>Qty ${item.quantity || 0}</span></li>`)}</ul>
     </div>
   </details>`;
 }
@@ -118,7 +118,7 @@ export function CustomerAccountPage({ state, account, onNavigate, onClose }) {
     setDashboardLoading(true);
     setDashboardError("");
     try { await account.loadDashboard(); }
-    catch (error) { setDashboardError(error.message || "Shopify account information could not be loaded."); }
+    catch (error) { setDashboardError("Account information could not be loaded. Please retry."); }
     finally { setDashboardLoading(false); }
   };
 
@@ -137,10 +137,10 @@ export function CustomerAccountPage({ state, account, onNavigate, onClose }) {
       if (editingAddress?.mode === "edit") await account.updateAddress(editingAddress.address.id, values, { defaultAddress: makeDefault });
       else await account.createAddress(values, { defaultAddress: makeDefault });
       setEditingAddress(null);
-      setAddressFeedback("Your address was saved to Shopify.");
-      try { await account.loadDashboard(); } catch (error) { setDashboardError(error.message || "Address saved, but account details could not be refreshed."); }
+      setAddressFeedback("Your address was saved.");
+      try { await account.loadDashboard(); } catch (error) { setDashboardError("Your address was saved, but account details could not be refreshed. Please reload."); }
     } catch (error) {
-      setAddressFeedback(error.message || "Shopify could not save this address. Check account permissions and try again.");
+      setAddressFeedback("Could not save this address. Check account permissions and try again.");
     } finally { setAddressBusy(false); }
   };
 
@@ -149,23 +149,23 @@ export function CustomerAccountPage({ state, account, onNavigate, onClose }) {
     setAddressFeedback("");
     try {
       await account.updateAddress(address.id, null, { defaultAddress: true });
-      setAddressFeedback("Your default address was updated in Shopify.");
-      try { await account.loadDashboard(); } catch (error) { setAddressFeedback(`Default address updated, but account details could not be refreshed: ${error.message || "Please reload."}`); }
+      setAddressFeedback("Your default address was updated.");
+      try { await account.loadDashboard(); } catch (error) { setAddressFeedback("Your default address was updated, but account details could not be refreshed. Please reload."); }
     } catch (error) {
-      setAddressFeedback(error.message || "Shopify could not update the default address.");
+      setAddressFeedback("Could not update the default address.");
     } finally { setAddressBusy(false); }
   };
 
   const removeAddress = async address => {
-    if (!window.confirm("Delete this saved address from your Shopify account?")) return;
+    if (!window.confirm("Delete this saved address?")) return;
     setAddressBusy(true);
     setAddressFeedback("");
     try {
       await account.deleteAddress(address.id);
-      setAddressFeedback("Your address was deleted from Shopify.");
-      try { await account.loadDashboard(); } catch (error) { setAddressFeedback(`Address deleted, but account details could not be refreshed: ${error.message || "Please reload."}`); }
+      setAddressFeedback("Your address was deleted.");
+      try { await account.loadDashboard(); } catch (error) { setAddressFeedback("Your address was deleted, but account details could not be refreshed. Please reload."); }
     } catch (error) {
-      setAddressFeedback(error.message || "Shopify could not delete this address.");
+      setAddressFeedback("Could not delete this address.");
     } finally { setAddressBusy(false); }
   };
 
@@ -204,7 +204,7 @@ export function CustomerAccountPage({ state, account, onNavigate, onClose }) {
       </nav>`}
       ${activePanel === "menu" && html`<section className="customer-drawer-promo"><img src="./assets/pwa-icon-192.png" alt=""/><div><strong>Explore Crystal Baaz</strong><p>Crystals, jewellery and spiritual essentials, wherever you are.</p></div></section>`}
       ${activePanel === "sign-in" && html`<section className="customer-drawer-content customer-account-signin">
-        <p className="customer-account-signin-explainer">Shopify will securely verify your account using its hosted sign-in.</p>
+        <p className="customer-account-signin-explainer">Your account will be verified securely during sign-in.</p>
         ${needsRegisteredDomain ? html`<div className="customer-account-domain-note" role="status"><p>Open Crystal Baaz on its registered HTTPS domain to use customer sign-in.</p>${liveAccountUrl && html`<a className="customer-account-primary customer-account-open-live" href=${liveAccountUrl}>Open Crystal Baaz</a>`}</div>` : state.status === "unconfigured" ? html`<p className="customer-account-error" role="status">${state.error || "Customer sign-in setup is pending. Please try again later."}</p>` : null}
         ${["signed-out", "error"].includes(state.status) && state.error && html`<p className="customer-account-error" role="alert">${state.error}</p>`}
         ${state.status === "authenticating" ? html`<p className="customer-account-signin-progress" role="status">Signing in securely…</p>` : !["unconfigured", "authenticated"].includes(state.status) && html`<button className="customer-account-primary" type="button" onClick=${startLogin}>Login</button>`}
@@ -216,10 +216,10 @@ export function CustomerAccountPage({ state, account, onNavigate, onClose }) {
         ${addresses.length ? html`<div className="customer-address-list">${addresses.map(address => {
           const isDefault = address.id === customer.defaultAddress?.id;
           return html`<article key=${address.id}><div><strong>${isDefault ? "Default address" : "Saved address"}</strong><p>${(address.formatted || []).join(", ") || [address.address1, address.address2, address.city, address.province, address.zip, address.country].filter(Boolean).join(", ")}</p></div><div className="customer-address-actions"><button type="button" className="customer-account-secondary" onClick=${() => { setAddressFeedback(""); setEditingAddress({ mode: "edit", address: { ...address, isDefault } }); }}>Edit</button>${!isDefault && html`<button type="button" className="customer-account-secondary" disabled=${addressBusy} onClick=${() => void setDefaultAddress(address)}>Make default</button>`}<button type="button" className="customer-account-secondary customer-address-delete" disabled=${addressBusy} onClick=${() => void removeAddress(address)}>Delete</button></div></article>`;
-        })}</div>` : !editingAddress && html`<p className="customer-account-empty">Shopify has no saved addresses for this account yet.</p>`}
+        })}</div>` : !editingAddress && html`<p className="customer-account-empty">No saved addresses yet.</p>`}
       </section>
       `}
-      ${customer && activePanel === "orders" && html`<section className="customer-drawer-content customer-account-section"><header><div><span>ORDERS</span><h2>Your recent orders</h2></div></header>${orders.length ? html`<div className="customer-order-list">${orders.map(order => html`<${OrderCard} key=${order.id} order=${order}/>` )}</div>` : html`<p className="customer-account-empty">Shopify has no orders for this account yet.</p>`}</section>`}
+      ${customer && activePanel === "orders" && html`<section className="customer-drawer-content customer-account-section"><header><div><span>ORDERS</span><h2>Your recent orders</h2></div></header>${orders.length ? html`<div className="customer-order-list">${orders.map(order => html`<${OrderCard} key=${order.id} order=${order}/>` )}</div>` : html`<p className="customer-account-empty">No orders yet.</p>`}</section>`}
     </aside>
   </main>`;
 }

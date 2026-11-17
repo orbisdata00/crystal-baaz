@@ -449,11 +449,11 @@ function ProductCard({ product, onOpen, onAdd, isSaved, onSave, cart = [], onUpd
   return html`<article className="product-card">
     <div className="product-image-wrap">
       <button type="button" className="product-open" onClick=${() => onOpen(product)} aria-label=${`View ${title}`}><${ProductImage} className="product-image" src=${product.image} alt=${title}/></button>
-      <span className="product-badge">${product.previewOnly ? "Catalog preview" : "Shopify"}</span>
+      <span className="product-badge">${product.previewOnly ? "Catalog preview" : "Live"}</span>
       <button className=${`save-button ${isSaved ? "is-saved" : ""}`} type="button" aria-label=${isSaved ? "Remove from wishlist" : "Add to wishlist"} aria-pressed=${isSaved} onClick=${() => onSave(product.id)}><${Icon} name="heart" size=${17}/></button>
     </div>
     <div className="product-info"><button className="product-title" type="button" onClick=${() => onOpen(product)}>${title}</button>
-      <div className="product-price">${hasPrice ? html`<strong>${(product.variants || []).length > 1 ? "From " : ""}${money(price)}</strong>` : html`<strong className="price-pending">Price pending review</strong>`}${discountPercent(price, compareAt) > 0 && html`<del key="compare-at">MRP ${money(compareAt)}</del><span key="discount" className="product-discount">${discountPercent(price, compareAt)}% off</span>`}<span className="price-note">${product.previewOnly ? "Workbook price · preview only" : "Shopify Storefront price"}</span></div>
+      <div className="product-price">${hasPrice ? html`<strong>${(product.variants || []).length > 1 ? "From " : ""}${money(price)}</strong>` : html`<strong className="price-pending">Price pending review</strong>`}${discountPercent(price, compareAt) > 0 && html`<del key="compare-at">MRP ${money(compareAt)}</del><span key="discount" className="product-discount">${discountPercent(price, compareAt)}% off</span>`}<span className="price-note">${product.previewOnly ? "Workbook price · preview only" : "Current catalog price"}</span></div>
     </div>
     <div className="desktop-product-action">${cartLine ? html`<div className="quick-quantity" role="group" aria-label=${`Quantity for ${title}`}><button type="button" onClick=${() => onUpdate(cartLine.key, -1)} aria-label=${`Decrease ${title} quantity`}><${Icon} name="minus" size=${14}/></button><span aria-live="polite">${cartLine.quantity}</span><button type="button" onClick=${() => onUpdate(cartLine.key, 1)} aria-label=${`Increase ${title} quantity`}><${Icon} name="plus" size=${14}/></button></div>` : html`<button className="quick-add" type="button" disabled=${!addEnabled} onClick=${() => onAdd(product, defaultVariant.id)}>${addLabel}</button>`}</div>
     <div className="mobile-product-action">${cartLine ? html`<div className="mobile-card-quantity" role="group" aria-label=${`Quantity for ${title}`}><button type="button" onClick=${() => onUpdate(cartLine.key, -1)} aria-label=${`Decrease ${title} quantity`}><${Icon} name="minus" size=${15}/></button><span aria-live="polite">${cartLine.quantity}</span><button type="button" onClick=${() => onUpdate(cartLine.key, 1)} aria-label=${`Increase ${title} quantity`}><${Icon} name="plus" size=${15}/></button></div>` : html`<button type="button" disabled=${!addEnabled} onClick=${() => onAdd(product, defaultVariant.id)}>${addLabel}</button>`}</div>
@@ -577,7 +577,7 @@ function CatalogPage({ title, eyebrow, description, products, total, sort, setSo
   return html`<main className="page-main catalog-page">
     <section className="page-hero section-pad desktop-catalog-hero"><div className="eyebrow">${eyebrow}</div><h1>${title}</h1><p>${description}</p>${pending && html`<div className="pending-note"><span>Catalog mapping in progress</span><p>The workbook names this category, but its final product list still needs client confirmation.</p></div>`}</section>
     <section className=${`mobile-catalog-layout ${browseRoute ? "has-sidebar" : "no-sidebar"}`}>${browseRoute && html`<${CategorySidebar} route=${route} catalog=${catalog} onNavigate=${onNavigate}/>`}<div className="mobile-catalog-main"><header className="mobile-catalog-heading"><h1>${title}</h1><button type="button" onClick=${() => setFilterOpen(true)}><${Icon} name="filter" size=${17}/>Filter${activeFilterCount ? html`<i>${activeFilterCount}</i>` : null}</button></header>${error && html`<div className="inline-error" role="status">${error}</div>`}${pending && html`<div className="pending-note"><span>Catalog mapping in progress</span><p>The final product list still needs client confirmation.</p></div>`}${results(page)}${(priceFiltered.length > pageSize || hasNextPage) && html`<div className="load-more"><button className="button button--outline" type="button" onClick=${onMore}>Load more</button></div>`}<p className="preview-disclaimer">Catalog preview · product details and availability remain under review.</p></div><${FilterDrawer} open=${filterOpen} onClose=${() => setFilterOpen(false)} typeFilter=${typeFilter} setTypeFilter=${setTypeFilter} typeOptions=${typeOptions} sort=${sort} setSort=${setSort} minPrice=${minPrice} setMinPrice=${setMinPrice} maxPrice=${maxPrice} setMaxPrice=${setMaxPrice}/></section>
-    <section className="products-section section-pad listing-section desktop-catalog-listing"><div className="listing-topline"><span className="catalog-status">${liveCatalog ? "Shopify Storefront" : "Client workbook preview"}</span></div>${error && html`<div className="inline-error" role="status">${error}</div>`}<div className="collection-toolbar listing-toolbar"><label className="type-filter"><span>Filter by collection</span><select value=${typeFilter} onChange=${(event) => setTypeFilter(event.target.value)} aria-label="Filter by collection"><option value="">All mapped categories</option>${typeOptions.map((option) => html`<option key=${option} value=${option}>${option}</option>`)}</select></div>${results(products.slice(0, pageSize))}${(products.length > pageSize || hasNextPage) && html`<div className="load-more"><button className="button button--outline" type="button" onClick=${onMore}>Load more products <${Icon} name="arrow" size=${16}/></button></div>`}${products.length > 0 && html`<p className="preview-disclaimer">Preview only. Inventory, weights, content approval, and product options are not verified. No real orders or payments can be placed.</p>`}</section>
+    <section className="products-section section-pad listing-section desktop-catalog-listing"><div className="listing-topline"><span className="catalog-status">${liveCatalog ? "Live catalog" : "Client workbook preview"}</span></div>${error && html`<div className="inline-error" role="status">${error}</div>`}<div className="collection-toolbar listing-toolbar"><label className="type-filter"><span>Filter by collection</span><select value=${typeFilter} onChange=${(event) => setTypeFilter(event.target.value)} aria-label="Filter by collection"><option value="">All mapped categories</option>${typeOptions.map((option) => html`<option key=${option} value=${option}>${option}</option>`)}</select></div>${results(products.slice(0, pageSize))}${(products.length > pageSize || hasNextPage) && html`<div className="load-more"><button className="button button--outline" type="button" onClick=${onMore}>Load more products <${Icon} name="arrow" size=${16}/></button></div>`}${products.length > 0 && html`<p className="preview-disclaimer">Preview only. Inventory, weights, content approval, and product options are not verified. No real orders or payments can be placed.</p>`}</section>
   </main>`;
 }
 
@@ -730,8 +730,8 @@ function CartPage({ cart, catalog, onUpdate, onRemove, onCheckout, checkoutBusy,
   const originalTotal = totals.lines.reduce((sum, line) => Number(line.compareAt) > Number(line.price) ? sum + Number(line.compareAt) * line.quantity : sum, 0);
   const savings = originalTotal > displayedSubtotal ? originalTotal - displayedSubtotal : 0;
   const canCheckout = checkoutEnabled && totals.lines.length > 0 && totals.lines.every((line) => line.variantId?.startsWith("gid://shopify/ProductVariant/"));
-  return html`<main className="page-main cart-route"><section className="page-hero section-pad cart-hero"><div className="eyebrow">YOUR BAG</div><h1>Your <em>cart.</em></h1><p>Cart changes are stored in this browser. Checkout remains disabled until Shopify is configured.</p></section>
-    <section className="cart-page section-pad">${totals.lines.length ? html`<div key="cart-list" className="cart-list">${totals.lines.map((line, index) => { const discount = discountPercent(line.price, line.compareAt); const lineKey = line.key || `${line.productId}:${line.variantId || line.variantTitle || index}`; const variant = line.product.variants?.find(item => item.id === line.variantId); const variantLabel = customerVariantLabel(line.product, variant); return html`<article key=${lineKey} className="cart-line cart-page-line"><${ProductImage} src=${variant?.image || line.product.image} alt=${productLabel(line.product)}/><div className="cart-line-info"><h2>${productLabel(line.product)}</h2>${variantLabel&&html`<span>${variantLabel}</span>`}<div className="cart-line-price"><strong>${line.price ? money(line.price * line.quantity) : "Price pending"}</strong>${discount > 0 && html`<del key="compare-at">${money(line.compareAt * line.quantity)}</del><i key="discount">${discount}% off</i>`}</div><div className="cart-qty"><button type="button" aria-label="Decrease quantity" onClick=${() => onUpdate(line.key || lineKey, -1)}><${Icon} name="minus" size=${13}/></button><span>${line.quantity}</span><button type="button" aria-label="Increase quantity" onClick=${() => onUpdate(line.key || lineKey, 1)}><${Icon} name="plus" size=${13}/></button></div></div><button className="remove-line" type="button" onClick=${() => onRemove(line.key || lineKey)} aria-label="Remove item"><${Icon} name="trash" size=${16}/></button></article>`;})}</div><aside key="cart-summary" className="cart-summary"><div className="subtotal-row"><span>Cart total</span><strong>${money(displayedSubtotal)}</strong>${savings > 0 && html`<del key="original-total">${money(originalTotal)}</del><small key="savings">You save ${money(savings)}</small>`}</div><p>Shipping, taxes, and stock are not verified in this preview.</p><button className="button button--dark checkout-button" type="button" disabled=${!canCheckout || checkoutBusy} onClick=${onCheckout}>${checkoutBusy ? "Preparing checkout…" : canCheckout ? "Continue to Shopify checkout" : "Checkout unavailable in preview"}</button><span className="secure-note">No payment is taken in this preview.</span></aside>` : html`<div className="cart-empty"><span className="empty-sparkle">✧</span><h3>Your cart is empty.</h3><p>Browse the client catalog to add priced items to your preview cart.</p></div>`}</section>
+  return html`<main className="page-main cart-route"><section className="page-hero section-pad cart-hero"><div className="eyebrow">YOUR BAG</div><h1>Your <em>cart.</em></h1><p>Cart changes are stored in this browser. Checkout is currently unavailable.</p></section>
+    <section className="cart-page section-pad">${totals.lines.length ? html`<div key="cart-list" className="cart-list">${totals.lines.map((line, index) => { const discount = discountPercent(line.price, line.compareAt); const lineKey = line.key || `${line.productId}:${line.variantId || line.variantTitle || index}`; const variant = line.product.variants?.find(item => item.id === line.variantId); const variantLabel = customerVariantLabel(line.product, variant); return html`<article key=${lineKey} className="cart-line cart-page-line"><${ProductImage} src=${variant?.image || line.product.image} alt=${productLabel(line.product)}/><div className="cart-line-info"><h2>${productLabel(line.product)}</h2>${variantLabel&&html`<span>${variantLabel}</span>`}<div className="cart-line-price"><strong>${line.price ? money(line.price * line.quantity) : "Price pending"}</strong>${discount > 0 && html`<del key="compare-at">${money(line.compareAt * line.quantity)}</del><i key="discount">${discount}% off</i>`}</div><div className="cart-qty"><button type="button" aria-label="Decrease quantity" onClick=${() => onUpdate(line.key || lineKey, -1)}><${Icon} name="minus" size=${13}/></button><span>${line.quantity}</span><button type="button" aria-label="Increase quantity" onClick=${() => onUpdate(line.key || lineKey, 1)}><${Icon} name="plus" size=${13}/></button></div></div><button className="remove-line" type="button" onClick=${() => onRemove(line.key || lineKey)} aria-label="Remove item"><${Icon} name="trash" size=${16}/></button></article>`;})}</div><aside key="cart-summary" className="cart-summary"><div className="subtotal-row"><span>Cart total</span><strong>${money(displayedSubtotal)}</strong>${savings > 0 && html`<del key="original-total">${money(originalTotal)}</del><small key="savings">You save ${money(savings)}</small>`}</div><p>Shipping, taxes, and stock are not verified in this preview.</p><button className="button button--dark checkout-button" type="button" disabled=${!canCheckout || checkoutBusy} onClick=${onCheckout}>${checkoutBusy ? "Preparing checkout…" : canCheckout ? "Proceed to checkout" : "Checkout unavailable in preview"}</button><span className="secure-note">No payment is taken in this preview.</span></aside>` : html`<div className="cart-empty"><span className="empty-sparkle">✧</span><h3>Your cart is empty.</h3><p>Browse the client catalog to add priced items to your preview cart.</p></div>`}</section>
   </main>`;
 }
 
@@ -753,7 +753,7 @@ function ProfilePage({ onNavigate, onNotice }) {
     ["Privacy Policy", "Privacy details pending", "user", "#policies"],
     ["Help & Support", "Verified contact details pending", "chat", "#contact"],
   ];
-  return html`<main className="page-main profile-page"><section className="profile-desktop page-hero section-pad content-page"><div className="eyebrow">CRYSTAL BAAZ</div><h1>Customer account</h1><p>Shopify customer sign-in is not connected. Account access will be enabled after the client configures a supported authentication flow. This preview does not collect customer data.</p><div className="content-preview-note">This private preview uses the client product workbook for catalog structure. No customer reviews, certification claims, or delivery promises are shown.</div></section><div className="profile-mobile-content"><section className="profile-welcome"><span className="profile-avatar"><${Icon} name="user" size=${25}/></span><div><h1>Welcome, Guest</h1><p>Sign in for a personalized experience</p></div><div className="profile-auth-actions"><button type="button" onClick=${() => onNotice("Customer sign-in will be available after account setup.")}>Sign In</button><button type="button" onClick=${() => onNotice("Account creation is not connected in this preview.")}>Create Account</button></div></section><section className="profile-menu" aria-label="Account links">${items.map(([title, subtitle, icon, href]) => html`<button type="button" key=${title} className="profile-menu-row" onClick=${() => onNavigate(href)}><span className="profile-menu-icon"><${Icon} name=${icon} size=${20}/></span><span className="profile-menu-copy"><b>${title}</b><small>${subtitle}</small></span><${Icon} name="chevron" size=${18}/></button>`)}</section><div className="profile-preview-note">Guest preview · customer accounts and order history are not connected.</div></div></main>`;
+  return html`<main className="page-main profile-page"><section className="profile-desktop page-hero section-pad content-page"><div className="eyebrow">CRYSTAL BAAZ</div><h1>Customer account</h1><p>Customer sign-in is not connected. Account access will be available after account setup. This preview does not collect customer data.</p><div className="content-preview-note">This private preview uses the client product workbook for catalog structure. No customer reviews, certification claims, or delivery promises are shown.</div></section><div className="profile-mobile-content"><section className="profile-welcome"><span className="profile-avatar"><${Icon} name="user" size=${25}/></span><div><h1>Welcome, Guest</h1><p>Sign in for a personalized experience</p></div><div className="profile-auth-actions"><button type="button" onClick=${() => onNotice("Customer sign-in will be available after account setup.")}>Sign In</button><button type="button" onClick=${() => onNotice("Account creation is not connected in this preview.")}>Create Account</button></div></section><section className="profile-menu" aria-label="Account links">${items.map(([title, subtitle, icon, href]) => html`<button type="button" key=${title} className="profile-menu-row" onClick=${() => onNavigate(href)}><span className="profile-menu-icon"><${Icon} name=${icon} size=${20}/></span><span className="profile-menu-copy"><b>${title}</b><small>${subtitle}</small></span><${Icon} name="chevron" size=${18}/></button>`)}</section><div className="profile-preview-note">Guest preview · customer accounts and order history are not connected.</div></div></main>`;
 }
 
 function ContentPage({ page, onNavigate }) {
@@ -761,9 +761,9 @@ function ContentPage({ page, onNavigate }) {
     about: ["About Crystal Baaz", "Approved brand story and client information will be added when supplied."],
     contact: ["Contact", "Verified contact details have not been supplied for this preview."],
     copilot: ["Crystal Copilot", "The shopping assistant is not available in this preview yet. Your client catalog can still be browsed by category or search."],
-    account: ["Customer account", "Shopify customer sign-in is not connected. Account access will be enabled after the client configures a supported authentication flow. This preview does not collect customer data."],
-    orders: ["Order tracking", "Order lookup is disabled until Shopify customer authentication and an approved order-status integration are configured. No order status is simulated in this preview."],
-    faq: ["Frequently asked questions", "Product availability, care, delivery, and return details will be added after client approval and Shopify setup."],
+    account: ["Customer account", "Customer sign-in is not connected. Account access will be available after account setup. This preview does not collect customer data."],
+    orders: ["Order tracking", "Order lookup is disabled until customer authentication and an approved order-status integration are configured. No order status is simulated in this preview."],
+    faq: ["Frequently asked questions", "Product availability, care, delivery, and return details will be added after client approval and account setup."],
     policies: ["Store policies", "Shipping, returns, privacy, and terms require client-approved policy text before checkout is enabled."],
   }[page] || ["Information", "Content is pending client approval."];
   const relatedAction = page === "account"
@@ -823,7 +823,7 @@ function HomePage({ catalog, onNavigate, onSearch, onOpen, onAdd, saved, onSave,
     ${section("JEWELLERY", "Jewellery", "Bracelets and wearable crystal collections from the workbook.", jewelleryProducts, "Jewellery products", "#nav/Bracelets")}
     ${section("DECOR", "Decor", "Pyramids, spheres and crystal pieces for your space.", decorProducts, "Decor products", "#collection/pyramid")}
     <section className="home-why-section"><div className="home-why-art"><img src="./assets/crystal-bazz-campaign-hero.png" alt="A warm crystal arrangement with gemstone bracelets and lamps" loading="lazy"/></div><div className="home-why-copy"><span>WHY CRYSTAL BAAZ</span><h2>A thoughtful catalog for crystal discovery.</h2><p>This preview is built around the client’s own products and collection names. Product claims, availability, delivery and checkout remain subject to verification.</p><button type="button" onClick=${() => onNavigate("#collections")}>Browse the catalog <${Icon} name="arrow" size=${15}/></button></div></section>
-    <section className="faq-section section-pad"><div className="faq-intro"><span className="eyebrow">PREVIEW INFORMATION</span><h2>Good to <em>know.</em></h2><p>This page uses the client catalog as its data source.</p><button type="button" className="text-link" onClick=${() => onNavigate("#faq")}>Read the FAQs <span>↗</span></button></div><div className="faq-list"><details><summary>Can I place an order? <span>＋</span></summary><p>No. The current view is a private catalog preview. Shopify checkout will remain disabled until the merchant connection and product data are verified.</p></details><details><summary>Why are some prices missing? <span>＋</span></summary><p>Some products do not have final prices. They show a pending price and cannot be added until confirmed.</p></details><details><summary>Are product claims and certifications verified? <span>＋</span></summary><p>Descriptions and claims are under review. No ratings, certification marks, or health outcomes are presented as verified facts.</p></details></div></section>
+    <section className="faq-section section-pad"><div className="faq-intro"><span className="eyebrow">PREVIEW INFORMATION</span><h2>Good to <em>know.</em></h2><p>This page uses the client catalog as its data source.</p><button type="button" className="text-link" onClick=${() => onNavigate("#faq")}>Read the FAQs <span>↗</span></button></div><div className="faq-list"><details><summary>Can I place an order? <span>＋</span></summary><p>No. The current view is a private catalog preview. Checkout will remain disabled until the merchant connection and product data are verified.</p></details><details><summary>Why are some prices missing? <span>＋</span></summary><p>Some products do not have final prices. They show a pending price and cannot be added until confirmed.</p></details><details><summary>Are product claims and certifications verified? <span>＋</span></summary><p>Descriptions and claims are under review. No ratings, certification marks, or health outcomes are presented as verified facts.</p></details></div></section>
   </main>`;
 }
 
@@ -846,7 +846,7 @@ function StoreApp() {
   const [pageInfo, setPageInfo] = useState({ hasNextPage: false, endCursor: null });
   const [catalogLoadingMore, setCatalogLoadingMore] = useState(false);
   const [shopifyProductCount, setShopifyProductCount] = useState(0);
-  const [catalogError, setCatalogError] = useState(() => catalogService.source === "shopify" && !catalogService.hasConnection ? "Shopify mode is selected, but public Storefront API configuration is missing." : "");
+  const [catalogError, setCatalogError] = useState(() => catalogService.source === "shopify" && !catalogService.hasConnection ? "Live catalog mode is selected, but connection settings are missing." : "");
   const [pageSize, setPageSize] = useState(24);
   const [sort, setSort] = useState(() => parseRoute(window.location.hash).sort || "featured");
   const [typeFilter, setTypeFilter] = useState(() => parseRoute(window.location.hash).facet || "");
@@ -928,7 +928,7 @@ function StoreApp() {
     const corrections = variantCorrectionReport(catalog).filter((item) => !reportedVariantCorrections.current.has(item.variantId));
     if (!corrections.length) return;
     corrections.forEach((item) => reportedVariantCorrections.current.add(item.variantId));
-    console.warn("Crystal Baaz Shopify variant corrections required:", corrections);
+    console.warn("Crystal Baaz product variant corrections required:", corrections);
   }, [catalog, liveCatalog]);
   useEffect(() => { if (toast) { const timer = setTimeout(() => setToast(""), 3200); return () => clearTimeout(timer); } }, [toast]);
 
@@ -939,7 +939,7 @@ function StoreApp() {
         try { const previewProducts = await loadPreviewCatalog(); if (active) setCatalog(previewProducts); } catch { if (active) setCatalogError("Preview catalog could not be loaded."); } finally { if (active) setLoading(false); }
         return;
       }
-      if (!catalogService.isLive) { setCatalogError("Shopify Storefront API configuration is missing."); setLoading(false); return; }
+      if (!catalogService.isLive) { setCatalogError("Live catalog connection settings are missing."); setLoading(false); return; }
       setCatalogError("");
       setLoading(route.page === "product" || catalog.length === 0);
       try {
@@ -963,7 +963,7 @@ function StoreApp() {
         if (route.page !== "product") {
           setLoading(false);
         }
-      } catch (error) { if (active) setCatalogError(error.message || "The Shopify catalog could not be loaded."); } finally { if (active) setLoading(false); }
+      } catch (error) { if (active) setCatalogError("The product catalog could not be loaded. Please retry."); } finally { if (active) setLoading(false); }
     };
     loadRouteCatalog();
     return () => { active = false; };
@@ -995,7 +995,7 @@ function StoreApp() {
     }).catch(error => {
       if (active) {
         setCatalogLoadingMore(false);
-        setCatalogError(error.message || "More Shopify products could not be loaded.");
+        setCatalogError("More products could not be loaded. Please retry.");
       }
     });
     return () => { active = false; unsubscribe(); };
@@ -1011,11 +1011,11 @@ function StoreApp() {
       return undefined;
     }
     if (!online) {
-      setSharedCartData({ itemsKey, items: [], loading: false, error: "Reconnect to verify current Shopify prices and availability." });
+      setSharedCartData({ itemsKey, items: [], loading: false, error: "Reconnect to verify current prices and availability." });
       return undefined;
     }
     if (!catalogService.isLive) {
-      setSharedCartData({ itemsKey, items: [], loading: false, error: "Shared carts require live Shopify data. Preview catalog items are not added from shared links." });
+      setSharedCartData({ itemsKey, items: [], loading: false, error: "Shared carts require live catalog data. Preview items are not added from shared links." });
       return undefined;
     }
     setSharedCartData({ itemsKey, items: [], loading: true, error: "" });
@@ -1036,18 +1036,18 @@ function StoreApp() {
       });
       setSharedCartData({ itemsKey, items, loading: false, error: "" });
     }).catch(error => {
-      if (active) setSharedCartData({ itemsKey, items: [], loading: false, error: error.message || "Shopify could not verify the shared cart." });
+      if (active) setSharedCartData({ itemsKey, items: [], loading: false, error: "We couldn’t verify this shared cart. Please try again." });
     });
     return () => { active = false; };
   }, [route.page, route.items, online, retryTick]);
 
   const addToCart = useCallback(async (product, variantSelector, quantity = 1) => {
-    if (!navigator.onLine) { setToast("Reconnect to update your Shopify cart."); return false; }
+    if (!navigator.onLine) { setToast("Reconnect to update your cart."); return false; }
     let selectedProduct = product;
     if (catalogService.isLive && (product.stale === true || !product.variantsComplete)) {
       try {
         const result = await catalogService.loadRoute({ page: "product", handle: product.handle });
-        if (!result?.product) { setToast("This product could not be verified with Shopify."); return false; }
+        if (!result?.product) { setToast("This product could not be verified. Please try again."); return false; }
         selectedProduct = result.product;
         setCatalog((current) => {
           const details = new Map(current.map(item => [item.id, item]));
@@ -1056,7 +1056,7 @@ function StoreApp() {
           return [...details.values()];
         });
       } catch (error) {
-        setToast(error.message || "Product variants could not be verified with Shopify.");
+        setToast("Product options could not be verified. Please try again.");
         return;
       }
     }
@@ -1089,16 +1089,16 @@ function StoreApp() {
   const openProduct = useCallback((product) => { productReturnHash.current = window.location.hash || "#collections"; navigate(productHash(product)); }, [navigate]);
   const openSharedProduct = useCallback((product, variantId) => { productReturnHash.current = window.location.hash || "#home"; navigate(productHash(product, variantId)); }, [navigate]);
   const checkout = async () => {
-    if (!catalogService.canCheckout) { setToast("Shopify checkout is not enabled for this storefront yet."); return; }
-    if (!shopifyCart?.id || cartSyncing || cartError) { setToast("Confirm your current Shopify cart before checkout."); return; }
+    if (!catalogService.canCheckout) { setToast("Checkout is not enabled for this storefront yet."); return; }
+    if (!shopifyCart?.id || cartSyncing || cartError) { setToast("Confirm your current cart before checkout."); return; }
     setCheckoutBusy(true);
     setToast("");
     try {
       const result = await catalogService.checkout(shopifyCart.id, { authenticated: customerAccount.isAuthenticated });
-      if (result.disabled || !result.url) { setToast("Shopify checkout is unavailable for this cart."); return; }
+      if (result.disabled || !result.url) { setToast("Checkout is unavailable for this cart."); return; }
       window.location.assign(result.url);
     } catch (error) {
-      setToast(error.message || "Shopify could not prepare checkout. Please retry.");
+      setToast("Could not prepare checkout. Please retry.");
     } finally {
       setCheckoutBusy(false);
     }
@@ -1122,7 +1122,7 @@ function StoreApp() {
           setPageInfo(result.pageInfo);
           setCatalogLoadingMore(Boolean(result.pageInfo?.hasNextPage));
         }
-      } catch (error) { setCatalogError(error.message || "More products could not be loaded."); }
+      } catch (error) { setCatalogError("More products could not be loaded. Please try again."); }
       return;
     }
     setPageSize((current) => current + 24);
@@ -1148,7 +1148,7 @@ function StoreApp() {
     rawProducts = selectDiscoveryProducts(catalog, routeDiscovery);
   } else if (route.page === "group" && routeGroup) {
     title = routeGroup.title; eyebrow = "CLIENT-CURATED GROUP";
-    description = `${routeGroup.explicit_product_count || 0} explicitly mapped product matches. This group is separate from the 111 Shopify collection registry.`;
+    description = `${routeGroup.explicit_product_count || 0} explicitly mapped product matches. This group is separate from the 111 collection registry.`;
     rawProducts = selectProducts(catalog, { filter: { kind: "group", value: route.id } });
   } else if (route.page === "nav" && routeNav) {
     title = routeNav.label; eyebrow = "CLIENT NAVIGATION";
@@ -1174,12 +1174,12 @@ function StoreApp() {
   const activeProduct = route.page === "product" ? catalog.find((product) => product.handle === route.handle || product.id === route.handle) : null;
   const cartTotals = calculateCart(cart, catalog);
   const cartCount = cartTotals.count;
-  const retryCartToast = cartError && (toast === "Your cart could not be confirmed. Check your connection and retry." || toast === "Shopify could not add this item at the requested quantity. Retry to try again.");
+  const retryCartToast = cartError && (toast === "Your cart could not be confirmed. Check your connection and retry." || toast === "We could not add this item at the requested quantity. Please try again.");
   const retryCatalog = () => setRetryTick(value => value + 1);
   const openCart = useCallback(() => { if (route.page !== "cart") cartReturnHash.current = window.location.hash || "#home"; navigate("#cart"); }, [route.page, navigate]);
   const buyNow = useMemo(() => createBuyNowHandler(addToCart), [addToCart]);
   const shared = { onOpen: openProduct, onAdd: buyNow, onSave: toggleSaved, saved, cart, pendingKeys: cartPendingKeys, pendingOperations: cartPendingOperations, onUpdate: updateCart, onNavigate: navigate, onAccount: openAccount, onNotice: setToast };
-  const dataState = { loading, loadingMore: catalogLoadingMore, error: !online ? "You are offline. Reconnect to load current Shopify products and prices." : catalogError, onRetry: retryCatalog };
+  const dataState = { loading, loadingMore: catalogLoadingMore, error: !online ? "You are offline. Reconnect to load current products and prices." : catalogError, onRetry: retryCatalog };
   const sortProducts = value => { setSort(value); setPageSize(24); updateViewOption("sort", value); };
   const pageContent = () => {
     if (["home", "cart"].includes(route.page)) return html`<${ShoppingHome} catalog=${catalog} collectionImages=${shopifyCollectionImages} ...${shared} ...${dataState}/>`;
@@ -1206,7 +1206,7 @@ function StoreApp() {
     ${toast && route.page !== "cart" && html`<div className="toast" role=${retryCartToast || toast.startsWith("Could not update your wishlist") ? "alert" : "status"}><span>${toast}</span>${retryCartToast && html`<button type="button" onClick=${() => { setToast(""); void cartState.retry(); }}>Retry</button>`}</div>`}
     <${experience.Controls} route=${route} count=${cartCount} cartItems=${cartTotals.lines} remoteCart=${shopifyCart} pending=${cartSyncing} error=${cartError} onCart=${openCart}/>
     <${ShoppingBottom} route=${route} onNavigate=${navigate} onCart=${openCart} count=${cartCount}/>
-    ${route.page === "cart" && html`<${ShoppingCart} cart=${cart} catalog=${catalog} remoteCart=${shopifyCart} syncing=${cartSyncing} pendingKeys=${cartPendingKeys} pendingOperations=${cartPendingOperations} error=${!online ? "Reconnect to update your Shopify cart." : cartError} onRetry=${cartState.retry} onClose=${() => navigate(cartReturnHash.current)} onUpdate=${updateCart} onRemove=${removeCart} checkoutEnabled=${catalogService.canCheckout} checkoutBusy=${checkoutBusy} onCheckout=${checkout}/>`}
+    ${route.page === "cart" && html`<${ShoppingCart} cart=${cart} catalog=${catalog} remoteCart=${shopifyCart} syncing=${cartSyncing} pendingKeys=${cartPendingKeys} pendingOperations=${cartPendingOperations} error=${!online ? "Reconnect to update your cart." : cartError} onRetry=${cartState.retry} onClose=${() => navigate(cartReturnHash.current)} onUpdate=${updateCart} onRemove=${removeCart} checkoutEnabled=${catalogService.canCheckout} checkoutBusy=${checkoutBusy} onCheckout=${checkout}/>`}
     ${(accountDrawerOpen || route.page === "account") && html`<${CustomerAccountPage} state=${accountState} account=${customerAccount} onNavigate=${navigate} onClose=${closeAccount}/>`}
   </div>`;
 }

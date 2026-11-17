@@ -85,7 +85,7 @@ export function buildCartShare({ lines, baseUrl, publicSiteUrl } = {}) {
   });
   return {
     title: "Crystal Baaz cart",
-    text: `Review this Crystal Baaz cart with current Shopify prices and availability.\n\n${linesText.join("\n")}`,
+    text: `Review this Crystal Baaz cart with current prices and availability.\n\n${linesText.join("\n")}`,
     url: storefront.href,
     reason: "",
   };
