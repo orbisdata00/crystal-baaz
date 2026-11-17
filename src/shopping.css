@@ -1220,6 +1220,8 @@ html:not(.pwa-standalone) .shopping-topnav { display:none; }
 .shopping-shell .shopping-cart-checkout strong,
 .shopping-shell .shopping-pdp-price strong,
 .shopping-shell .shopping-pdp-sticky-price strong,
+.shopping-shell .shopping-detail-variants>button>span,
+.shopping-shell .shopping-variant-price,
 .shopping-shell .shopping-search-results button>span>small {
   font-family:var(--money-font,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans Devanagari",sans-serif);
   font-variant-numeric:tabular-nums;
