@@ -319,7 +319,7 @@ test("Customer Account API validates signed identity, state, nonce, callback, da
   assert.deepEqual(addressMutations[1].variables, { addressId: createdAddress.id, defaultAddress: true });
   assert.equal(await callbackClient.deleteAddress(createdAddress.id), createdAddress.id);
   assert.equal(addressMutations.length, 3);
-  await assert.rejects(callbackClient.deleteAddress("not-a-customer-address-id"), /Choose a saved Shopify address/);
+  await assert.rejects(callbackClient.deleteAddress("not-a-customer-address-id"), /Choose a saved address to delete/);
 
   await callbackClient.logout();
   const logoutUrl = new URL(browser.assigned.at(-1));
@@ -389,13 +389,13 @@ test("invalid OAuth state, nonce and JWT signature are rejected before customer 
   await assert.rejects(verifyCustomerIdToken(jwt, {
     clientId: configured.customerAccountClientId, issuer: "https://shopify.com/authentication/test-store",
     nonce: "different", jwksUri: "https://accounts.shopify.com/jwks", fetchImpl: fetchJwks, cryptoApi: webcrypto, now,
-  }), /identity verification failed/);
+  }), /Account verification failed/);
   const [header, payload, signature] = jwt.split(".");
   const tampered = `${header}.${base64url(JSON.stringify({ iss: "https://shopify.com/authentication/test-store", aud: configured.customerAccountClientId, sub: "attacker", exp: Math.floor(now / 1000) + 600, nonce: "expected" }))}.${signature}`;
   await assert.rejects(verifyCustomerIdToken(tampered, {
     clientId: configured.customerAccountClientId, issuer: "https://shopify.com/authentication/test-store",
     nonce: "expected", jwksUri: "https://accounts.shopify.com/jwks", fetchImpl: fetchJwks, cryptoApi: webcrypto, now,
-  }), /identity verification failed/);
+  }), /Account verification failed/);
 
   const browser = makeBrowser();
   browser.location.pathname = "/account/callback";
