@@ -1492,6 +1492,8 @@ html:not(.pwa-standalone) .shopping-topnav { display:none; }
  .shopping-header:not(.is-searching) .shopping-search input,
  .shopping-header.is-searching .shopping-search input { font-size:16px; line-height:1.25; -webkit-text-size-adjust:100%; }
  .shopping-breadcrumb { display:none; }
+ .shopping-header:not(.is-searching) .shopping-topnav { justify-content:flex-start; gap:0; padding-right:3px; padding-left:3px; }
+ .shopping-header:not(.is-searching) .shopping-topnav>button { flex:0 0 clamp(58px,12vw,72px); align-items:center; justify-content:center; padding-right:2px; padding-left:2px; }
 }
 
 .shopping-footer-accordion { min-width:0; align-self:start; }
