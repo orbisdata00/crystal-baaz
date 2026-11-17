@@ -118,6 +118,51 @@ test("the site root can be the callback URL without treating ordinary visits as 
   assert.equal(client.getSnapshot().error, "");
 });
 
+test("customer wishlist uses the authenticated customer ID and compare-and-set metafield writes", async () => {
+  const browser = makeBrowser();
+  const apiCalls = [];
+  const config = { ...configured };
+  const fetchImpl = async (url, init = {}) => {
+    const target = String(url);
+    if (target.endsWith("/.well-known/openid-configuration")) return response({
+      authorization_endpoint: "https://shopify.test/authorize", token_endpoint: "https://shopify.test/token",
+      end_session_endpoint: "https://shopify.test/logout", jwks_uri: "https://shopify.test/jwks", issuer: "https://shopify.test",
+    });
+    if (target.endsWith("/.well-known/customer-account-api")) return response({ graphql_api: "https://shopify.test/customer-api" });
+    if (target.endsWith("/token")) return response({ access_token: "access-token", id_token: "opaque-id-token", expires_in: 3600 });
+    if (target.endsWith("/customer-api")) {
+      const request = JSON.parse(init.body); apiCalls.push(request);
+      if (request.query.includes("CrystalBaazCustomerAccount")) return response({ data: { customer: { id: "gid://shopify/Customer/321", displayName: "Customer" } } });
+      if (request.query.includes("CrystalBaazCustomerWishlist")) return response({ data: { customer: {
+        id: "gid://shopify/Customer/321",
+        metafield: { value: JSON.stringify({ version: 1, items: [{ productId: "gid://shopify/Product/123" }] }), jsonValue: { version: 1, items: [{ productId: "gid://shopify/Product/123" }] }, compareDigest: "digest-1" },
+      } } });
+      if (request.query.includes("CrystalBaazSaveWishlist")) return response({ data: { metafieldsSet: {
+        metafields: [{ namespace: "custom", key: "crystal_baaz_wishlist", value: JSON.stringify({ version: 1, items: [] }), compareDigest: "digest-2" }], userErrors: [],
+      } } });
+    }
+    throw new Error(`Unexpected request: ${target}`);
+  };
+  const starter = createCustomerAccountClient({ config, windowRef: browser, fetchImpl, cryptoApi: webcrypto });
+  await starter.initialize();
+  await starter.login();
+  const transaction = JSON.parse(browser.sessionStorage.getItem("crystal-baaz-customer-oauth-transaction"));
+  browser.location.pathname = "/account/callback";
+  browser.location.href = `${config.customerAccountRedirectUri}?code=one-use-code&state=${transaction.state}`;
+  const client = createCustomerAccountClient({ config, windowRef: browser, fetchImpl, cryptoApi: webcrypto });
+  await client.initialize();
+  await client.loadDashboard();
+  const wishlist = await client.readWishlist();
+  assert.deepEqual(wishlist.items, ["gid://shopify/Product/123"]);
+  assert.equal(wishlist.compareDigest, "digest-1");
+  await client.writeWishlist([], wishlist.compareDigest);
+  const mutation = apiCalls.find(call => call.query.includes("CrystalBaazSaveWishlist"));
+  assert.deepEqual(mutation.variables.metafields[0], {
+    ownerId: "gid://shopify/Customer/321", namespace: "custom", key: "crystal_baaz_wishlist", type: "json",
+    value: JSON.stringify({ version: 1, items: [] }), compareDigest: "digest-1",
+  });
+});
+
 test("public OAuth client uses PKCE S256 and rejects insecure or unregistered origins", async () => {
   const verifier = "secure-verifier-from-cryptographic-randomness";
   assert.match(await createPkceChallenge(verifier, webcrypto), /^[A-Za-z0-9_-]+$/);

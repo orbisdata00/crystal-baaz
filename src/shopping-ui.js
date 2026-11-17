@@ -11,6 +11,7 @@ import { resolveCategoryArtwork } from './category-artwork.js';
 import { customerVariantLabel, formatVariantLabel, selectProducts } from './catalog.js';
 import { selectVariant, calculateCart } from './cart.js';
 import { formatCurrencyAmount } from './money.js';
+import { normalizeWishlistIds } from './wishlist.js';
 const html=htm.bind(React.createElement);
 const money=value=>formatCurrencyAmount(value,'INR',0);
 const discount=(price,compare,currencyCode,compareAtCurrencyCode)=>verifiedDiscount({price,compareAt:compare,currencyCode,compareAtCurrencyCode})||0;
@@ -266,7 +267,9 @@ export function ShoppingHome({catalog,onNavigate,loading,loadingMore=false,error
  return html`<main className="shopping-home"><section className="shopping-home-categories"><header><h2>Shop by category</h2><button onClick=${()=>onNavigate(hierarchyHref())}>See all →</button></header><div className="shopping-home-category-grid" aria-label="Main categories">${homepageParents.map(p=>{const artwork=resolveCategoryArtwork(p,collectionImages);return html`<button className=${`shopping-category-card ${artwork?'has-artwork':'is-text-only'}`} key=${p.id} data-main-category=${p.id} onClick=${()=>onNavigate(hierarchyHref(p.id))}><${CategoryArtwork} item=${p} collectionImages=${collectionImages}/><strong>${p.label}</strong></button>`;})}</div></section><${CatalogStatus} key="catalog-status" loading=${loading} error=${error} onRetry=${onRetry}/>${!loading&&!error&&homepageParents.map(parent=>{const items=productsForCategory(catalog,parent);return items.length?html`<div key=${parent.id} data-home-section=${parent.id} className=${parent.id==='best-seller'?'home-best-seller-section':''}>${parent.id==='new-arrivals'?html`<${NewArrivalsPreview} products=${items} onView=${()=>onNavigate(hierarchyHref(parent.id))} ...${props}/>`:html`<${ProductRail} title=${parent.label} products=${items} priority=${parent.id==='best-seller'} onView=${()=>onNavigate(hierarchyHref(parent.id))} ...${props}/>`}</div>`:html`<section key=${parent.id} className=${`shopping-pending-section ${parent.id==='best-seller'?'home-best-seller-section':''}`} data-home-section=${parent.id}><header><h2>${parent.label}</h2><button onClick=${()=>onNavigate(hierarchyHref(parent.id))}>Explore →</button></header>${parent.id!=='new-arrivals'&&html`<p>No verified products are currently assigned to this category.</p>`}${loadingMore&&html`<${LoadingCards} count=${4}/>`}</section>`;})}</main>`;
 }
 export function ShoppingResults({catalog,title,query='',savedOnly=false,saved=[],loading,loadingMore=false,error,onRetry,pageSize,onMore,sort,onSort,collectionImages={},onNavigate,...props}) {
- const products=selectProducts(catalog,{query,sort,filter:savedOnly?{kind:'saved'}:{kind:'all'},saved});
+ const wishlistProducts=savedOnly?catalog.filter(product=>/^gid:\/\/shopify\/Product\/[1-9]\d{0,23}$/.test(product.id||'')&&product.stale!==true&&product.previewOnly!==true):catalog;
+ const wishlistIds=savedOnly?normalizeWishlistIds(saved):saved;
+ const products=selectProducts(wishlistProducts,{query,sort,filter:savedOnly?{kind:'saved'}:{kind:'all'},saved:wishlistIds});
  const headingStatus=error?'Products unavailable':'';
  const ref=useRef(null);
  const {gridRef,sentinelRef,visibleCount}=useInfiniteGrid(products.length,title,ref);

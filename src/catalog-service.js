@@ -123,9 +123,9 @@ export function createCatalogService({ provider = catalogProvider, adapter = sho
         ? adapter.loadPage({ first, after })
         : adapter.loadCatalog())
         .then(result => {
-          if (!Array.isArray(result?.products)) throw new Error("Shopify returned an invalid product catalog response.");
+          if (!Array.isArray(result?.products)) throw new Error("The live catalog returned an invalid product response.");
           if (result.products.length && !result.products.some(product => SHOPIFY_PRODUCT_ID.test(product?.id || ""))) {
-            throw new Error("Shopify returned no verifiable product records.");
+            throw new Error("The live catalog returned no verifiable products.");
           }
           return result;
         })
@@ -141,7 +141,7 @@ export function createCatalogService({ provider = catalogProvider, adapter = sho
   }
 
   async function ensureInitial() {
-    if (!isLive) throw new Error("Shopify mode is selected, but public Storefront API configuration is missing.");
+    if (!isLive) throw new Error("Live catalog mode is selected, but public Storefront API configuration is missing.");
     if (initialized) return snapshot({ cached: cacheWasShown, fresh: !cacheWasShown });
     if (!initialPromise) {
       initialPromise = (async () => {
@@ -202,7 +202,7 @@ export function createCatalogService({ provider = catalogProvider, adapter = sho
   }
 
   async function loadCompleteCatalog() {
-    if (!isLive) throw new Error("Shopify mode is selected, but public Storefront API configuration is missing.");
+    if (!isLive) throw new Error("Live catalog mode is selected, but public Storefront API configuration is missing.");
     if (!fullCatalogPromise) {
       fullCatalogPromise = (async () => {
         let result;
@@ -215,7 +215,7 @@ export function createCatalogService({ provider = catalogProvider, adapter = sho
             all.push(...result.products);
             hasNextPage = Boolean(result.pageInfo?.hasNextPage);
             after = result.pageInfo?.endCursor || null;
-            if (hasNextPage && !after) throw new Error("Shopify returned an incomplete product cursor.");
+            if (hasNextPage && !after) throw new Error("The live catalog returned an incomplete product cursor.");
           }
           await replaceCurrent(all);
           rawProducts.clear();
@@ -225,7 +225,7 @@ export function createCatalogService({ provider = catalogProvider, adapter = sho
           cacheWasShown = false;
         } else {
           result = await adapter.loadCatalog();
-          if (!Array.isArray(result?.products)) throw new Error("Shopify returned an invalid product catalog response.");
+          if (!Array.isArray(result?.products)) throw new Error("The live catalog returned an invalid product response.");
           await replaceCurrent(result.products);
           pageInfo = pageInfoDefault();
           initialized = true;
@@ -247,7 +247,7 @@ export function createCatalogService({ provider = catalogProvider, adapter = sho
           const result = await fetchNextPage();
           if (!result) break;
           notify({ event: "catalog-page", pageProducts: result.pageProducts, fresh: true, cached: false });
-          if (pageInfo.hasNextPage && !pageInfo.endCursor) throw new Error("Shopify returned an incomplete product cursor.");
+          if (pageInfo.hasNextPage && !pageInfo.endCursor) throw new Error("The live catalog returned an incomplete product cursor.");
         }
         await saveCurrentCache();
         notify({ event: "catalog-complete", pageProducts: [], fresh: true, cached: false });
@@ -258,13 +258,13 @@ export function createCatalogService({ provider = catalogProvider, adapter = sho
   }
 
   async function loadDetail(handle) {
-    if (!isLive) throw new Error("Shopify mode is selected, but public Storefront API configuration is missing.");
+    if (!isLive) throw new Error("Live catalog mode is selected, but public Storefront API configuration is missing.");
     await ensureWorkbook();
     const liveProduct = await adapter.loadProduct(handle);
-    if (!liveProduct || !SHOPIFY_PRODUCT_ID.test(liveProduct.id || "")) throw new Error("This product is no longer available from Shopify.");
+    if (!liveProduct || !SHOPIFY_PRODUCT_ID.test(liveProduct.id || "")) throw new Error("This product is no longer available in the live catalog.");
     const workbookProduct = workbookByHandle.get(handle);
     const product = mergeShopifyProduct(liveProduct, workbookProduct);
-    if (!product) throw new Error("This product is no longer available from Shopify.");
+    if (!product) throw new Error("This product is no longer available in the live catalog.");
     rawProducts.set(product.id, liveProduct);
     productsById.set(product.id, product);
     return { ...snapshot(), product };
@@ -290,9 +290,9 @@ export function createCatalogService({ provider = catalogProvider, adapter = sho
       const loaded = [];
       for (const handle of handles) {
         const detail = await adapter.loadProduct(handle);
-        if (!detail) throw new Error("A saved cart item is no longer available from Shopify.");
+        if (!detail) throw new Error("A saved cart item is no longer available in the live catalog.");
         const product = await installVerifiedProduct(detail, workbookByHandle.get(handle));
-        if (!product) throw new Error("A saved cart item could not be verified against the approved Shopify catalog.");
+        if (!product) throw new Error("A saved cart item could not be verified against the approved live catalog.");
         loaded.push(product);
       }
       return loaded;
@@ -311,7 +311,7 @@ export function createCatalogService({ provider = catalogProvider, adapter = sho
       const product = productsByVariant.get(line.variantId);
       const variant = product?.variants.find(item => item.id === line.variantId);
       if (!product || product.id !== line.productId || variant?.canPurchase !== true || variant.available !== true) {
-        throw new Error("A saved cart item could not be verified against current Shopify products and availability.");
+        throw new Error("A saved cart item could not be verified against current products and availability.");
       }
     }
     return [...new Map(productsByVariant.values().map(product => [product.id, product])).values()];
@@ -350,7 +350,7 @@ export function createCatalogService({ provider = catalogProvider, adapter = sho
     },
 
     async resolveSharedVariants(variantIds) {
-      if (!isLive) throw new Error("Shared carts require current Shopify Storefront data.");
+      if (!isLive) throw new Error("Shared carts require current storefront data.");
       await ensureWorkbook();
       const resolved = await adapter.loadVariants(variantIds);
       const fullProducts = new Map();
@@ -391,17 +391,17 @@ export function createCatalogService({ provider = catalogProvider, adapter = sho
     },
 
     async syncCart(cartId, lines, knownCart = null, { verified = false } = {}) {
-      if (!isLive) throw new Error("Live Shopify cart is unavailable until Storefront API configuration is present.");
+      if (!isLive) throw new Error("The live cart is unavailable until Storefront API configuration is present.");
       let verifiedProducts = [];
       if (verified) {
         for (const line of lines) {
           if (!SHOPIFY_PRODUCT_ID.test(line.productId || "") || !SHOPIFY_VARIANT_ID.test(line.variantId || "") || !Number.isInteger(line.quantity) || line.quantity < 1) {
-            throw new Error("A cart line does not have a verified Shopify product and variant ID.");
+            throw new Error("A cart line does not have a verified product and variant ID.");
           }
           const product = productsById.get(line.productId);
           const variant = product?.variants.find(item => item.id === line.variantId);
           if (!product || variant?.canPurchase !== true || variant.available !== true || !(Number(variant.price) > 0)) {
-            throw new Error("A cart variant no longer matches an available Shopify product and workbook SKU.");
+            throw new Error("A cart variant no longer matches an available product and workbook SKU.");
           }
         }
       } else {

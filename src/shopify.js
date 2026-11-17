@@ -51,7 +51,7 @@ const CART_FIELDS = `
 `;
 
 async function storefrontRequest(query, variables = {}) {
-  if (!configured()) throw new Error("Shopify Storefront API settings are not configured.");
+  if (!configured()) throw new Error("Storefront API settings are not configured.");
   const domain = shopifyConfig.storeDomain.replace(/^https?:\/\//, "").replace(/\/$/, "");
   const response = await fetch(`https://${domain}/api/${shopifyConfig.apiVersion}/graphql.json`, {
     method: "POST",
@@ -61,9 +61,9 @@ async function storefrontRequest(query, variables = {}) {
     },
     body: JSON.stringify({ query, variables }),
   });
-  if (!response.ok) throw new Error(`Shopify request failed (${response.status})`);
+  if (!response.ok) throw new Error(`Storefront request failed (${response.status})`);
   const result = await response.json();
-  if (result.errors?.length) throw new Error(result.errors[0].message || "Shopify request failed");
+  if (result.errors?.length) throw new Error("The catalog request could not be completed.");
   return result.data;
 }
 
@@ -131,7 +131,7 @@ const DETAIL_PRODUCT_FIELDS = `
 `;
 
 export async function loadShopifyCatalogPage({ first = CATALOG_FIRST_PAGE_SIZE, after = null } = {}) {
-  if (!configured()) throw new Error("Shopify Storefront API settings are not configured.");
+  if (!configured()) throw new Error("Storefront API settings are not configured.");
   const key = `${first}:${after || "first"}`;
   if (!catalogPageRequests.has(key)) {
     const gql = `query CrystalBazzCatalogPage($first: Int!, $after: String) {
@@ -158,14 +158,14 @@ async function fetchAllShopifyProducts() {
     products.push(...page.products);
     hasNextPage = Boolean(page.pageInfo?.hasNextPage);
     after = page.pageInfo?.endCursor || null;
-    if (hasNextPage && !after) throw new Error("Shopify returned an incomplete product cursor.");
+    if (hasNextPage && !after) throw new Error("The live catalog returned an incomplete product cursor.");
   }
   return products;
 }
 
 let catalogRequest = null;
 export async function loadAllShopifyProducts() {
-  if (!configured()) throw new Error("Shopify Storefront API settings are not configured.");
+  if (!configured()) throw new Error("Storefront API settings are not configured.");
   if (!catalogRequest) {
     catalogRequest = fetchAllShopifyProducts().finally(() => { catalogRequest = null; });
   }
@@ -241,7 +241,7 @@ export async function loadShopifyProduct(handle) {
 }
 
 export async function loadShopifyVariants(variantIds) {
-  if (!configured()) throw new Error("Shopify Storefront API settings are not configured.");
+  if (!configured()) throw new Error("Storefront API settings are not configured.");
   if (!Array.isArray(variantIds) || !variantIds.length || variantIds.length > 50
     || variantIds.some(id => !/^gid:\/\/shopify\/ProductVariant\/[1-9]\d{0,23}$/.test(String(id)))) {
     throw new Error("The shared cart link contains invalid variant IDs.");
@@ -285,27 +285,27 @@ export async function fetchShopifyCart(cartId) {
 }
 
 export async function loadShopifyCheckoutDestination(cartId) {
-  if (!configured()) throw new Error("Shopify Storefront API settings are not configured.");
-  if (typeof cartId !== "string" || !cartId.startsWith("gid://shopify/Cart/")) throw new Error("A confirmed Shopify cart is required before checkout.");
+  if (!configured()) throw new Error("Storefront API settings are not configured.");
+  if (typeof cartId !== "string" || !cartId.startsWith("gid://shopify/Cart/")) throw new Error("A confirmed cart is required before checkout.");
   const gql = `query CrystalBazzCartCheckout($id: ID!) {
     cart(id: $id) { id checkoutUrl cost { totalAmount { amount currencyCode } } }
     shop { primaryDomain { host } }
   }`;
   const data = await storefrontRequest(gql, { id: cartId });
   const cart = data.cart;
-  if (!cart?.checkoutUrl) throw new Error("Shopify could not create a checkout link for this cart. Refresh the cart and retry.");
+  if (!cart?.checkoutUrl) throw new Error("A checkout link is not available for this cart. Refresh the cart and retry.");
   let checkoutUrl;
-  try { checkoutUrl = new URL(cart.checkoutUrl); } catch { throw new Error("Shopify returned an invalid checkout link."); }
+  try { checkoutUrl = new URL(cart.checkoutUrl); } catch { throw new Error("The checkout link is invalid."); }
   const storeDomain = shopifyConfig.storeDomain.replace(/^https?:\/\//, "").replace(/\/$/, "").toLowerCase();
   const allowedHosts = new Set([storeDomain, data.shop?.primaryDomain?.host?.toLowerCase()].filter(Boolean));
   if (checkoutUrl.protocol !== "https:" || checkoutUrl.username || checkoutUrl.password || checkoutUrl.port || !allowedHosts.has(checkoutUrl.hostname.toLowerCase())) {
-    throw new Error("Shopify returned a checkout link outside this store's secure domains.");
+    throw new Error("The checkout link is outside this store's approved secure domains.");
   }
   return { checkoutUrl: checkoutUrl.href, cart };
 }
 
 function storeErrors(payload, operation) {
-  if (payload?.userErrors?.length) throw new Error(payload.userErrors[0].message || `${operation} failed.`);
+  if (payload?.userErrors?.length) throw new Error(`${operation} could not be completed. Please retry.`);
   return payload?.cart || null;
 }
 
@@ -385,7 +385,7 @@ export async function syncShopifyCart(cartId, localLines, knownCart = null) {
 export async function createHostedCheckout(cart, catalog, cartId = null, { enabled = shopifyConfig.checkoutEnabled, authenticated = false, loadDestination = loadShopifyCheckoutDestination } = {}) {
   if (!enabled) return { disabled: true };
   const id = cartId || cart?.id;
-  if (!id) throw new Error("A confirmed Shopify cart is required before checkout.");
+  if (!id) throw new Error("A confirmed cart is required before checkout.");
   const result = await loadDestination(id);
   const checkoutUrl = new URL(result.checkoutUrl);
   if (authenticated) checkoutUrl.searchParams.set("sso", "silent");

@@ -27,6 +27,38 @@ const ACCOUNT_QUERY = `query CrystalBaazCustomerAccount {
     }
   }
 }`;
+const WISHLIST_QUERY = `query CrystalBaazCustomerWishlist {
+  customer {
+    id
+    metafield(namespace: "custom", key: "crystal_baaz_wishlist") {
+      value jsonValue compareDigest
+    }
+  }
+}`;
+const WISHLIST_WRITE = `mutation CrystalBaazSaveWishlist($metafields: [MetafieldsSetInput!]!) {
+  metafieldsSet(metafields: $metafields) {
+    metafields { namespace key value compareDigest }
+    userErrors { field message code }
+  }
+}`;
+const SHOPIFY_CUSTOMER_ID = /^gid:\/\/shopify\/Customer\/[1-9]\d{0,23}$/;
+const SHOPIFY_PRODUCT_ID = /^gid:\/\/shopify\/Product\/[1-9]\d{0,23}$/;
+
+function wishlistIds(metafield) {
+  if (!metafield) return [];
+  let parsed = metafield.jsonValue ?? metafield.value;
+  if (typeof parsed === "string") {
+    try { parsed = JSON.parse(parsed); }
+    catch { throw new Error("Your account wishlist data could not be read safely."); }
+  }
+  const entries = Array.isArray(parsed) ? parsed : Array.isArray(parsed?.items) ? parsed.items : null;
+  if (!entries) throw new Error("Your account wishlist data could not be read safely.");
+  const ids = entries.map(item => typeof item === "string" ? item : item?.productId);
+  if (ids.some(id => typeof id !== "string" || !SHOPIFY_PRODUCT_ID.test(id))) {
+    throw new Error("Your account wishlist data could not be read safely.");
+  }
+  return [...new Set(ids)];
+}
 
 function base64Url(bytes) {
   let binary = "";
@@ -159,6 +191,7 @@ export function createCustomerAccountClient({
   let apiDiscoveryPromise = null;
   let initialized = false;
   let tokens = null;
+  let wishlistOwnerId = "";
 
   const notify = () => listeners.forEach(listener => listener());
   const publish = patch => { current = { ...current, ...patch }; notify(); };
@@ -396,6 +429,7 @@ export function createCustomerAccountClient({
     });
     if (response.status === 401) {
       tokens = null;
+      wishlistOwnerId = "";
       publish({ status: "signed-out", customer: null, error: "Your session expired. Sign in again to continue." });
       try { windowRef.sessionStorage.removeItem(SESSION_HINT_KEY); } catch { /* Storage can be unavailable. */ }
       throw new Error("Your session expired. Sign in again to continue.");
@@ -409,8 +443,45 @@ export function createCustomerAccountClient({
   async function loadDashboard() {
     const data = await queryCustomerApi();
     if (!data?.customer) throw new Error("No account was returned for this session.");
+    wishlistOwnerId = SHOPIFY_CUSTOMER_ID.test(data.customer.id || "") ? data.customer.id : "";
     publish({ status: "authenticated", customer: data.customer, error: "" });
     return data.customer;
+  }
+
+  async function readWishlist() {
+    const data = await queryCustomerApi(WISHLIST_QUERY);
+    const customer = data?.customer;
+    if (!customer || !SHOPIFY_CUSTOMER_ID.test(customer.id || "")) throw new Error("Your saved products could not be verified for this account.");
+    wishlistOwnerId = customer.id;
+    const metafield = customer.metafield;
+    return {
+      ownerId: customer.id,
+      items: wishlistIds(metafield),
+      compareDigest: metafield?.compareDigest ?? null,
+    };
+  }
+
+  async function writeWishlist(items, compareDigest) {
+    if (!tokens || !SHOPIFY_CUSTOMER_ID.test(wishlistOwnerId)) throw new Error("Sign in to save your wishlist.");
+    const validItems = Array.isArray(items) ? [...new Set(items.filter(id => typeof id === "string" && SHOPIFY_PRODUCT_ID.test(id)))] : [];
+    if (!Array.isArray(items) || validItems.length !== items.length) throw new Error("The wishlist contains an invalid product.");
+    const data = await queryCustomerApi(WISHLIST_WRITE, { metafields: [{
+      ownerId: wishlistOwnerId,
+      namespace: "custom",
+      key: "crystal_baaz_wishlist",
+      type: "json",
+      value: JSON.stringify({ version: 1, items: validItems.map(productId => ({ productId })) }),
+      compareDigest: compareDigest ?? null,
+    }] });
+    const result = data?.metafieldsSet;
+    if (!result) throw new Error("Your wishlist could not be saved. Check Shopify customer metafield access.");
+    if (result.userErrors?.length) {
+      const conflict = result.userErrors.find(error => error.code === "INVALID_COMPARE_DIGEST");
+      const error = new Error(conflict ? "Your wishlist changed on another device. Refreshing it now." : "Your wishlist could not be saved. Check Shopify customer metafield access.");
+      if (conflict) error.code = conflict.code;
+      throw error;
+    }
+    return { ownerId: wishlistOwnerId, compareDigest: result.metafields?.[0]?.compareDigest ?? null };
   }
 
   async function customerMutation(field, query, variables) {
@@ -470,6 +541,7 @@ export function createCustomerAccountClient({
     const idToken = tokens?.idToken;
     const customerSettings = customerConfiguration(config, windowRef.location);
     tokens = null;
+    wishlistOwnerId = "";
     clearAllTransactions();
     try { windowRef.sessionStorage.removeItem(SESSION_HINT_KEY); } catch { /* Storage can be unavailable. */ }
     publish({ status: available() ? "signed-out" : "unconfigured", customer: null, error: "" });
@@ -525,6 +597,8 @@ export function createCustomerAccountClient({
     login({ returnPath } = {}) { return beginAuthorization({ prompt: "login", returnPath }); },
     logout,
     loadDashboard,
+    readWishlist,
+    writeWishlist,
     queryCustomerApi,
     createAddress,
     updateAddress,

@@ -11,7 +11,7 @@ import { parseRoute } from "./routes.js";
 import { loadPreviewCatalog } from "./catalog.js";
 import { categoryParents, getParentCategory, hierarchyHref } from "./category-hierarchy.js";
 import { useShopifyCart } from "./use-shopify-cart.js";
-import { persistWishlistToggle } from "./wishlist.js";
+import { mergeWishlistIds, normalizeWishlistIds, persistWishlistToggle, SHOPIFY_PRODUCT_GID, toggleWishlistId, updateCustomerWishlist } from "./wishlist.js";
 import { ShoppingExperience, useExperience } from "./shopping-experience.js";
 import { ProductImage, ShoppingHeader, ShoppingHome, ShoppingBrowse, ShoppingResults, ShoppingProduct, ShoppingCart, ShoppingSharedCart, ShoppingFooter, ShoppingBottom, ShoppingInformation } from "./shopping-ui.js";
 import { parseSharedCartItems } from "./cart-share.js";
@@ -852,6 +852,9 @@ function StoreApp() {
   const [typeFilter, setTypeFilter] = useState(() => parseRoute(window.location.hash).facet || "");
   const [query, setQuery] = useState(() => parseRoute(window.location.hash).query || "");
   const [saved, setSaved] = useState(() => { try { return JSON.parse(localStorage.getItem("crystal-bazz-saved") || "[]"); } catch { return []; } });
+  const guestSavedRef = useRef(saved);
+  const wasWishlistAuthenticated = useRef(false);
+  const wishlistMutationQueue = useRef(Promise.resolve());
   const [checkoutBusy, setCheckoutBusy] = useState(false);
   const [toast, setToast] = useState("");
   const cartState = useShopifyCart({ catalog, setCatalog, onNotice: setToast });
@@ -922,7 +925,40 @@ function StoreApp() {
         .catch((error) => console.error("Crystal Baaz service worker registration failed:", error));
     }
   }, []);
-  useEffect(() => { try { localStorage.setItem("crystal-bazz-saved", JSON.stringify(saved)); } catch { /* Wishlist changes are confirmed in the click handler. */ } }, [saved]);
+  useEffect(() => {
+    if (customerAccount.isAuthenticated) { wasWishlistAuthenticated.current = true; return; }
+    if (wasWishlistAuthenticated.current) {
+      wasWishlistAuthenticated.current = false;
+      setSaved(guestSavedRef.current);
+      return;
+    }
+    guestSavedRef.current = saved;
+    try { localStorage.setItem("crystal-bazz-saved", JSON.stringify(saved)); } catch { /* Guest wishlist changes are confirmed in the click handler. */ }
+  }, [saved, accountState.status]);
+  useEffect(() => {
+    if (accountState.status !== "authenticated" || !customerAccount.isAuthenticated) return undefined;
+    let active = true;
+    wasWishlistAuthenticated.current = true;
+    setSaved([]);
+    const syncWishlist = async () => {
+      try {
+        await customerAccount.loadDashboard();
+        const guestItems = normalizeWishlistIds(guestSavedRef.current);
+        const result = await updateCustomerWishlist(customerAccount, current => mergeWishlistIds(current, guestItems));
+        if (!active || !customerAccount.isAuthenticated) return;
+        if (guestItems.length) {
+          guestSavedRef.current = guestSavedRef.current.filter(id => !guestItems.includes(id));
+          try { localStorage.setItem("crystal-bazz-saved", JSON.stringify(guestSavedRef.current)); } catch { /* The account copy is confirmed; guest storage is best effort. */ }
+        }
+        setSaved(result.items);
+        if (guestItems.length) setToast("Your guest wishlist is synced to your account.");
+      } catch {
+        if (active && customerAccount.isAuthenticated) setToast("Your account wishlist could not sync. Please try again.");
+      }
+    };
+    void syncWishlist();
+    return () => { active = false; };
+  }, [accountState.status]);
   useEffect(() => {
     if (!liveCatalog || !catalogService.isLive) return;
     const corrections = variantCorrectionReport(catalog).filter((item) => !reportedVariantCorrections.current.has(item.variantId));
@@ -1081,10 +1117,34 @@ function StoreApp() {
   const updateCart = useCallback((key, delta, label) => cartState.update(key, delta, label), [cartState.update]);
   const removeCart = useCallback((key, label) => cartState.remove(key, label), [cartState.remove]);
   const toggleSaved = useCallback((id) => {
-    const result = persistWishlistToggle(localStorage, saved, id);
-    if (!result.ok) { setToast("Could not update your wishlist. Please try again."); return; }
-    setSaved(result.saved);
-    setToast(result.wasSaved ? "Removed from wishlist" : "Added to wishlist");
+    if (!customerAccount.isAuthenticated) {
+      const result = persistWishlistToggle(localStorage, saved, id);
+      if (!result.ok) { setToast("Could not update your wishlist. Please try again."); return; }
+      guestSavedRef.current = result.saved;
+      setSaved(result.saved);
+      setToast(result.wasSaved ? "Removed from wishlist" : "Added to wishlist");
+      return;
+    }
+    if (!SHOPIFY_PRODUCT_GID.test(String(id))) { setToast("Only verified Shopify products can sync to your account wishlist."); return; }
+    const previous = saved;
+    setSaved(toggleWishlistId(saved, id));
+    const operation = wishlistMutationQueue.current.catch(() => {}).then(async () => {
+      let wasSaved = false;
+      const result = await updateCustomerWishlist(customerAccount, current => {
+        wasSaved = current.includes(id);
+        return toggleWishlistId(current, id);
+      });
+      if (customerAccount.isAuthenticated) {
+        setSaved(result.items);
+        setToast(wasSaved ? "Removed from wishlist" : "Added to wishlist");
+      }
+    }).catch(async () => {
+      if (!customerAccount.isAuthenticated) return;
+      try { const current = await customerAccount.readWishlist(); setSaved(current.items); }
+      catch { setSaved(previous); }
+      setToast("Could not update your account wishlist. Please try again.");
+    });
+    wishlistMutationQueue.current = operation;
   }, [saved]);
   const openProduct = useCallback((product) => { productReturnHash.current = window.location.hash || "#collections"; navigate(productHash(product)); }, [navigate]);
   const openSharedProduct = useCallback((product, variantId) => { productReturnHash.current = window.location.hash || "#home"; navigate(productHash(product, variantId)); }, [navigate]);
@@ -1203,7 +1263,7 @@ function StoreApp() {
     <${ShoppingHeader} route=${route} onBack=${() => navigate(productReturnHash.current)} catalog=${catalog} query=${query} setQuery=${setQuery} onSearch=${term => navigate(`#search/${encodeURIComponent(term || "")}`)} onNavigate=${navigate} onAccount=${openAccount} onCart=${openCart} cartCount=${cartCount} remoteCart=${shopifyCart} pending=${cartSyncing} cartError=${cartError} savedCount=${saved.length} loading=${loading} accountAuthenticated=${accountState.status === "authenticated"}/>
     ${pageContent()}
     <${ShoppingFooter} onNavigate=${navigate}/>
-    ${toast && route.page !== "cart" && html`<div className="toast" role=${retryCartToast || toast.startsWith("Could not update your wishlist") ? "alert" : "status"}><span>${toast}</span>${retryCartToast && html`<button type="button" onClick=${() => { setToast(""); void cartState.retry(); }}>Retry</button>`}</div>`}
+    ${toast && route.page !== "cart" && html`<div className="toast" role=${retryCartToast || /wishlist/i.test(toast) ? "alert" : "status"}><span>${toast}</span>${retryCartToast && html`<button type="button" onClick=${() => { setToast(""); void cartState.retry(); }}>Retry</button>`}</div>`}
     <${experience.Controls} route=${route} count=${cartCount} cartItems=${cartTotals.lines} remoteCart=${shopifyCart} pending=${cartSyncing} error=${cartError} onCart=${openCart}/>
     <${ShoppingBottom} route=${route} onNavigate=${navigate} onCart=${openCart} count=${cartCount}/>
     ${route.page === "cart" && html`<${ShoppingCart} cart=${cart} catalog=${catalog} remoteCart=${shopifyCart} syncing=${cartSyncing} pendingKeys=${cartPendingKeys} pendingOperations=${cartPendingOperations} error=${!online ? "Reconnect to update your cart." : cartError} onRetry=${cartState.retry} onClose=${() => navigate(cartReturnHash.current)} onUpdate=${updateCart} onRemove=${removeCart} checkoutEnabled=${catalogService.canCheckout} checkoutBusy=${checkoutBusy} onCheckout=${checkout}/>`}
