@@ -1385,7 +1385,8 @@ html:not(.pwa-standalone) .shopping-topnav { display:none; }
 .shopping-header.is-searching .shopping-search-chip { display:inline-flex; width:auto; min-height:34px; flex:0 0 auto; align-items:center; padding:7px 11px; border:1px solid #e4e7e4; border-radius:10px; color:#555; background:#fff; box-shadow:0 1px 4px #1f1f1f12; font-size:13px; font-weight:500; line-height:1.2; white-space:nowrap; }
 .shopping-search-results { display:grid; gap:0; }
 .shopping-search-results>button:not(.shopping-search-all) { display:flex; width:100%; min-height:58px; align-items:center; gap:11px; padding:8px 0; border:0; border-bottom:1px solid var(--line); color:var(--ink); background:#fff; text-align:left; }
-.shopping-search-results>button img,.shopping-search-results>button .shopping-image-unavailable { width:42px; height:42px; flex:0 0 42px; object-fit:contain; }
+.shopping-search-results>button .shopping-search-result-image,.shopping-search-results>button .shopping-search-result-image-fallback { box-sizing:border-box; width:42px; height:42px; flex:0 0 42px; object-fit:contain; }
+.shopping-search-results>button .shopping-search-result-image-fallback { display:grid; place-items:center; overflow:hidden; border:1px solid var(--line); border-radius:6px; color:var(--muted); background:#f7f7f7; font-size:20px; line-height:1; }
 .shopping-search-results>button span { min-width:0; font-size:13px; }
 .shopping-search-results>button span small { display:block; margin-top:3px; color:var(--muted); font-size:11px; }
 .shopping-search-results>p { margin:4px 0 10px; color:var(--muted); }
@@ -2507,3 +2508,40 @@ html:not(.pwa-standalone) .shopping-shell .shopping-footer-brand > strong { colo
 html:not(.pwa-standalone) .shopping-shell .shopping-footer-brand > strong span { color: var(--cb-gold); }
 html:not(.pwa-standalone) .shopping-shell .shopping-footer-accordion > summary { color: var(--cb-text-primary); }
 html:not(.pwa-standalone) .shopping-shell .shopping-footer-accordion > nav { color: var(--ink-soft); }
+
+/* Keep the web search focus ring on the full field instead of boxing the text. */
+html:not(.pwa-standalone) .shopping-shell .shopping-search input:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+html:not(.pwa-standalone) .shopping-shell .shopping-search:focus-within {
+  border-color: var(--cb-primary);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--cb-primary) 16%, transparent);
+}
+
+/* Reduce the logo footprint in the web header while preserving its proportions. */
+@media (min-width: 781px) {
+  html:not(.pwa-standalone) .shopping-shell .shopping-header:not(.shopping-pdp-header):not(.is-searching) .shopping-image-logo {
+    width: 110px;
+    height: 62px;
+  }
+}
+
+@media (min-width: 1101px) {
+  html:not(.pwa-standalone) .shopping-shell .shopping-header:not(.shopping-pdp-header):not(.is-searching) .shopping-image-logo {
+    width: 120px;
+    height: 66px;
+  }
+}
+
+/* Keep the product footer close to the fixed purchase bar in mobile web. */
+@media (max-width: 780px) {
+  html:not(.pwa-standalone) .shopping-shell[data-route="product"] {
+    padding-bottom: calc(106px + env(safe-area-inset-bottom));
+  }
+
+  html:not(.pwa-standalone) .shopping-shell[data-route="product"][data-mobile-mode="product-cart"]:not([data-product-handle="double-layer-money-magnet-bracelet"]) {
+    padding-bottom: calc(112px + env(safe-area-inset-bottom));
+  }
+}
