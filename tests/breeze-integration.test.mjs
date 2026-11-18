@@ -58,8 +58,8 @@ test("emits the documented lowercase Breeze button attributes with Crystal Baaz 
   assert.deepEqual(breezeButtonAttributes("crystalbaaz.myshopify.com"), {
     enable: "true", enableexternaltrackers: "false", enablega: "false", enablefbp: "false", enablesnaptracker: "false",
     errortext: "Checkout is temporarily unavailable. Please try again.",
-    buttonradius: "14px", buttoncolor: "#536b4a", logocolor: "#ffffff", buttontextcolor: "#ffffff",
-    logohovercolor: "#ffffff", texthovercolor: "#ffffff", buttonhovercolor: "#41563a", buttonminheight: "46px",
+    buttonradius: "14px", buttoncolor: "#631c24", logocolor: "#ffffff", buttontextcolor: "#ffffff",
+    logohovercolor: "#ffffff", texthovercolor: "#ffffff", buttonhovercolor: "#4b151c", buttonminheight: "46px",
     buttonfontsize: "15px", buttonminwidth: "200px", buttonpadding: "9px 16px", buttonfontweight: "600", fontfamily: "inherit", letterspacing: "0px",
     checkouttext: "Checkout with Breeze", buynowtext: "Checkout with Breeze", showlogo: "true", ghostmode: "false",
     platform: "shopifystorefront", shopurl: "crystalbaaz.myshopify.com",

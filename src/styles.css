@@ -1517,7 +1517,7 @@ body { color: var(--ink); background: var(--paper); }
   .product-detail-page .detail-price { min-height: 32px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 7px; margin: 7px 0 10px; padding: 0; border: 0; }
   .product-detail-page .detail-price strong { color: var(--ink); font-size: 20px; font-weight: 700; }
   .product-detail-page .detail-price del { color: var(--muted); font-size: 12px; }
-  .product-detail-page .detail-price .product-discount { padding: 4px 7px; border-radius: 7px; color: #fff; background: var(--sage); font-size: 10px; font-weight: 700; }
+  .product-detail-page .detail-price .product-discount { padding: 4px 7px; border-radius: 7px; color: var(--cb-primary); background: #f5e9e5; font-size: 10px; font-weight: 700; }
   .product-detail-page .detail-options { margin: 11px 0; }
   .product-detail-page .detail-option-head { margin-bottom: 7px; color: var(--ink); font-size: 12px; font-weight: 650; }
   .product-detail-page .size-options { display: flex; gap: 7px; overflow-x: auto; }
@@ -1670,7 +1670,7 @@ body { color: var(--ink); background: var(--cream); }
 .quick-add { color: white; background: var(--sage-deep); }
 .product-title { color: var(--ink); font-family: var(--sans); }
 .product-meta, .product-price, .product-price strong { color: #59473d; font-family: var(--sans); }
-.product-discount { color: #fff; background: #0b9c70; }
+.product-discount { color: var(--cb-primary); background: #f5e9e5; }
 .mobile-product-action > button, .mobile-card-quantity { color: #fff; background: var(--sage-deep); }
 .mobile-product-action > button:disabled { color: #715c4e; background: #f3e6d4; }
 .catalog-footer { color: #fff6eb; background: #701527; }
@@ -1685,7 +1685,7 @@ body { color: var(--ink); background: var(--cream); }
 .product-detail-page .detail-content h1 { color: var(--ink); }
 .product-detail-page .detail-price { border-color: var(--line); }
 .product-detail-page .detail-price strong { color: var(--ink); }
-.product-detail-page .detail-price .product-discount { background: #0b9c70; }
+.product-detail-page .detail-price .product-discount { background: #f5e9e5; }
 .product-detail-page .detail-option-head { color: var(--ink); }
 .product-detail-page .size-option.is-selected { border-color: var(--sage-deep); color: var(--sage-deep); background: #fff1e5; }
 .detail-preview-pill { color: var(--sage-deep); background: #f2e4d9; }
@@ -2201,3 +2201,81 @@ body { color: var(--ink); background: var(--cream); }
 /* The category rail is reserved for the installed mobile PWA experience. */
 .category-tabs { display: none; }
 .pwa-standalone .category-tabs { display: flex; }
+
+/* Crystal Baaz warm burgundy theme, shared with the mobile PWA. */
+:root {
+  --cb-primary: #631c24;
+  --cb-background: #fef9ec;
+  --cb-surface: #ffffff;
+  --cb-purchase-dark: #27222e;
+  --cb-text-primary: #33251e;
+  --cb-gold: #dca64b;
+  --cb-border: #e9decd;
+  --ink: var(--cb-text-primary);
+  --ink-soft: #59473d;
+  --sage: var(--cb-gold);
+  --sage-deep: var(--cb-primary);
+  --cream: var(--cb-background);
+  --paper: #ffffff;
+  --sand: #f7efdf;
+  --line: var(--cb-border);
+  --rose: #ead9d7;
+  --muted: #806f64;
+}
+body, .site-shell, .home-page, .product-page { color: var(--ink); background: var(--cb-background); }
+.announcement, .catalog-footer { color: #fff; background: var(--cb-primary); }
+.announcement > span, .announcement b, .announcement button { color: #fff; }
+.site-header { color: #fff; background: var(--cb-primary); border-color: #7a3037; }
+.brand-name, .brand-mark, .main-nav > a, .main-nav > button, .nav-mega-trigger,
+.icon-button, .tool-label, .section-heading h2, .discovery-section-heading h2,
+.mobile-browse-heading h2 { color: var(--ink); }
+.brand-dot, .section-heading h2 em { color: var(--sage-deep); }
+.main-nav { background: var(--cb-primary); border-color: #7a3037; }
+.button--dark, .quick-add, .mobile-product-action > button, .mobile-card-quantity,
+.detail-sticky-actions .detail-add, .cart-line-price i { color: #fff; background: var(--cb-primary); }
+.button--dark:hover { background: #4b151c; }
+.button--outline { color: var(--sage-deep); border-color: var(--sage-deep); }
+.bag-count, .saved-count, .catalog-value-strip .value-icon { background: var(--sage-deep); }
+.product-carousel .product-card, .product-grid .product-card { border-color: var(--line); box-shadow: 0 3px 14px #2424240d; }
+.product-badge, .detail-preview-pill, .mobile-browse-heading button { color: var(--sage-deep); background: #f6e9e5; }
+.mobile-category-pill.is-active { border-color: var(--sage-deep); background: var(--sage-deep); }
+.mobile-category-tile-image { border-color: var(--sage-deep); outline-color: var(--cb-gold); }
+.catalog-footer .brand-name, .catalog-footer .brand-name small,
+.catalog-footer .footer-links b, .catalog-footer .footer-links button { color: #fff; }
+@media (max-width: 780px) {
+  .site-header, .header-inner { background: var(--cb-primary); }
+  .menu-toggle, .header-tools .icon-button, .brand-mark, .brand-name { color: #fff; }
+  .brand-name small { color: #f1ded0; }
+  .bag-count { color: #fff; background: var(--sage-deep); }
+  .mobile-nav { color: var(--ink); background: var(--cb-surface); }
+}
+
+/* Keep the existing catalog structure while replacing legacy green/yellow styling. */
+body { color-scheme: light; background: var(--cb-background); }
+:is(.site-shell, .home-page, .product-page, .cart-route, .saved-page, .search-page) { color: var(--cb-text-primary); background: var(--cb-background); }
+:is(.site-header, .header-inner, .main-nav) { color: #fff; background-color: var(--cb-primary); }
+:is(.brand-name, .brand-mark, .menu-toggle, .header-tools .icon-button, .tool-label, .main-nav > a, .main-nav > button, .nav-mega-trigger) { color: #fff; }
+.brand-name small { color: #f0ded1; }
+:is(.nav-chevron, .main-nav > a::after, .main-nav > button::after) { border-color: #f0ded1; background-color: var(--cb-gold); }
+:is(.search-panel, .search-results, .search-suggestions, .mobile-nav, .mobile-nav-panel) { color: var(--cb-text-primary); background-color: var(--cb-surface); border-color: var(--cb-border); }
+:is(.hero-copy h1, .section-heading h2, .testimonial-top h2, .faq-intro h2, .story-content h2, .product-title, .detail-title, .cart-hero h1, .drawer-head h2) { color: var(--cb-text-primary); }
+:is(.hero-copy h1 em, .section-heading h2 em, .story-content h2 em, .testimonial-top h2 em, .faq-intro h2 em, .brand-dot) { color: var(--cb-gold); }
+:is(.category-card, .crystal-card, .product-card, .testimonial-card, .cart-summary, .cart-drawer, .variant-modal, .modal-card, .detail-panel) { border-color: var(--cb-border); color: var(--cb-text-primary); }
+:is(.category-card, .crystal-card, .product-card, .testimonial-card, .modal-card, .detail-panel) { background-color: var(--cb-surface); }
+:is(.category-name, .category-symbol, .category-arrow, .crystal-card-name, .crystal-card-symbol, .zodiac-name, .product-title, .product-price, .detail-price strong, .cart-line-info h2, .cart-summary strong) { color: var(--cb-text-primary); }
+:is(.products-section, .testimonial-section, .cart-summary, .cart-summary, .zodiac-section, .site-footer) { background-color: #f8f0df; }
+:is(.product-image-wrap, .detail-gallery, .detail-image, .cart-page-line > img) { background-color: var(--cb-surface); }
+:is(.product-badge, .detail-preview-pill, .mobile-browse-heading button, .cart-savings, .value-icon, .signature-mark, .person-avatar) { color: var(--cb-primary); background-color: #f5e9e5; }
+:is(.button--dark, .quick-add, .mobile-product-action > button, .mobile-card-quantity, .cart-summary .checkout-button, .detail-sticky-actions .detail-add, .cart-line-price i) { color: #fff; background-color: var(--cb-primary); }
+:is(.button--dark:hover, .quick-add:hover, .cart-summary .checkout-button:hover, .detail-sticky-actions .detail-add:hover) { background-color: #4b151c; }
+:is(.button--outline, .text-link, .wishlist-inline, .collection-tail button, .catalog-footer .footer-links button:hover) { color: var(--cb-primary); border-color: var(--cb-primary); }
+:is(.mobile-category-pill.is-active, .collection-tab.is-active)::after { background-color: var(--cb-primary); }
+:is(.mobile-category-pill.is-active, .bag-count, .saved-count) { color: #fff; background-color: var(--cb-primary); }
+:is(.rating-stars, .proof-rating > span, .quote-stars, .testimonial-score > span, .shopping-rating-stars) { color: var(--cb-gold); }
+:is(.cart-page, .cart-drawer, .drawer-foot, .cart-summary) { border-color: var(--cb-border); }
+:is(.site-footer, .catalog-footer) { color: #fff; background: var(--cb-primary); }
+.catalog-footer :is(.brand-name, .brand-name small, .footer-links b, .footer-links button, .footer-bottom, .footer-brand-col > p) { color: #fff; }
+:is(.newsletter-section, .quiz-banner-inner) { color: #fff; background-color: var(--cb-primary); }
+:is(.newsletter-copy h2, .quiz-banner-copy h2) { color: #fff; }
+:is(input, select, textarea, .newsletter-form) { accent-color: var(--cb-primary); }
+button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, summary:focus-visible { outline-color: var(--cb-gold); }

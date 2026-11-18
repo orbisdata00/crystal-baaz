@@ -44,7 +44,7 @@ Shopify's [Storefront cart guide](https://shopify.dev/docs/storefronts/headless/
 
 Completed: repository architecture review, paginated full-cart fetch, mapped stringified headless cart payload, single-load script manager, `breeze-button` attributes and event listener, dependency-injected backend verification/order boundaries, feature flag default-off, and mocked tests.
 
-The PDP sticky purchase bar now renders an offer only when the offer is explicitly marked both `verified` and `active`; the unverified hardcoded prepaid promotion was removed.
+The PDP sticky purchase bar now prefers Shopify offers marked both `verified` and `active`; if none is available, it temporarily shows the requested static “Namaste Offer: Extra 25% off on Prepaid” banner.
 
 Verification: all 132 automated tests pass and the Vite production build succeeds. The dependency audit could not reach the npm audit endpoint in this environment. No Chromium/Playwright executable is installed, so real-browser screenshots and UI interaction checks were not available. No real Breeze script render, sandbox payment/order test, or Shopify order synchronization was performed.
 

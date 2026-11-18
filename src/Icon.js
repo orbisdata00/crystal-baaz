@@ -30,6 +30,7 @@ const paths = {
   homeTab: [["path", { d: "m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1V10Z" }]],
   mic: [["rect", { x: 9, y: 3, width: 6, height: 12, rx: 3 }], ["path", { d: "M5 11a7 7 0 0 0 14 0M12 18v3m-4 0h8" }]],
   truck: [["path", { d: "M3 6h11v12H3zM14 10h4l3 3v5h-7z" }], ["circle", { cx: 7.5, cy: 18, r: 1.5 }], ["circle", { cx: 17.5, cy: 18, r: 1.5 }]],
+  gift: [["rect", { x: 3, y: 9, width: 18, height: 12, rx: 1.5 }], ["path", { d: "M12 9v12M2 6h20v3H2z" }], ["path", { d: "M12 6H8.5a2.5 2.5 0 1 1 2.5-2.5V6Zm0 0h3.5a2.5 2.5 0 1 0-2.5-2.5V6Z" }]],
   filter: [["path", { d: "M4 7h16M7 12h10M10 17h4" }], ["circle", { cx: 8, cy: 7, r: 1.5, fill: "currentColor" }], ["circle", { cx: 15, cy: 12, r: 1.5, fill: "currentColor" }], ["circle", { cx: 11, cy: 17, r: 1.5, fill: "currentColor" }]],
   chevron: [["path", { d: "m9 18 6-6-6-6" }]],
   chat: [["path", { d: "M20 11.5a7.5 7.5 0 0 1-11.2 6.5L4 19l1-4.1A7.5 7.5 0 1 1 20 11.5Z" }], ["path", { d: "M8 11.5h.01M12 11.5h.01M16 11.5h.01" }]],

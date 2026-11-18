@@ -154,7 +154,7 @@ test("variant sheet content keeps Shopify identity, price, availability, and act
   assert.match(markup, /Available/);
   assert.equal((markup.match(/>Buy Now<\/button>/g) || []).length, 2);
   assert.match(css, /\.shopping-variant-line \{ display:grid; grid-template-columns:52px minmax\(0,1fr\) 92px;/);
-  assert.match(css, /\.shopping-modal-backdrop\.shopping-variant-backdrop \{ --shop-accent:#0c831f;[^}]*z-index:140/);
+  assert.match(css, /\.shopping-modal-backdrop\.shopping-variant-backdrop \{ --shop-accent:var\(--cb-primary\);[^}]*z-index:140/);
   assert.match(css, /@media\(max-width:780px\)[\s\S]*?\.shopping-variant-line \{ grid-template-columns:46px minmax\(0,1fr\) 86px;/);
   assert.match(css, /@media\(max-width:359px\)[\s\S]*?\.shopping-variant-line \{ grid-template-columns:40px minmax\(0,1fr\) 76px;/);
   assert.match(css, /@media\(max-width:380px\) \{\s*\.shopping-browse-content \.shopping-product-grid \{ grid-template-columns:minmax\(0,1fr\); \}/);
@@ -336,10 +336,10 @@ test("sticky PDP purchase bar uses live variant price, MRP, quantity and Buy Now
   assert.match(markup, /₹100/);
   assert.match(markup, /Increase Moonstone Ring quantity/);
   assert.match(markup, /shopping-pdp-buy[^>]*>Buy Now<\/button>/);
-  assert.doesNotMatch(markup, /shopping-pdp-offer/);
+  assert.match(markup, /shopping-pdp-offer[^>]*>Namaste Offer: Extra 25% off on Prepaid/);
 });
 
-test("sticky PDP offer is shown only when Shopify marks it verified and active", () => {
+test("sticky PDP prefers verified active Shopify offers and falls back to the temporary prepaid offer", () => {
   const props = {
     product: { ...product, offers: [
       { title: "Unverified offer", active: true, verified: false },
@@ -352,6 +352,10 @@ test("sticky PDP offer is shown only when Shopify marks it verified and active",
   const markup = renderToStaticMarkup(React.createElement(PdpPurchaseBar, props));
   assert.match(markup, /shopping-pdp-offer[^>]*>Verified offer</);
   assert.doesNotMatch(markup, /Unverified offer|Expired offer|Namaste Offer/);
+  const fallback = renderToStaticMarkup(React.createElement(PdpPurchaseBar, {
+    ...props, product: { ...product, offers: [props.product.offers[0], props.product.offers[1]] },
+  }));
+  assert.match(fallback, /shopping-pdp-offer[^>]*>Namaste Offer: Extra 25% off on Prepaid/);
 });
 
 test("PDP quantity one can be decremented and Buy Now stays disabled for an existing line", () => {
