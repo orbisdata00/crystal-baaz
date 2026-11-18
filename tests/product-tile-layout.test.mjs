@@ -161,7 +161,7 @@ test("variant sheet content keeps Shopify identity, price, availability, and act
   assert.match(css, /\.shopping-variant-sheet>header>button \{[^}]*width:44px; min-width:44px; height:44px; min-height:44px/);
 });
 
-test("product card gallery uses only the product's images and shows dots only for multiple images", () => {
+test("product card gallery uses only its product images and omits dots from the card gallery", () => {
   const multiple = {
     ...product,
     galleryMedia: [
@@ -173,8 +173,7 @@ test("product card gallery uses only the product's images and shows dots only fo
   const markup = renderToStaticMarkup(React.createElement(ShoppingCard, {
     product: multiple, onOpen() {}, onAdd() {}, onSave() {}, onUpdate() {}, saved: [], cart: [],
   }));
-  assert.equal((markup.match(/class="shopping-product-image-dots"/g) || []).length, 1);
-  assert.equal((markup.match(/aria-label="Show image \d of 2"/g) || []).length, 2);
+  assert.doesNotMatch(markup, /shopping-product-image-dots|Show image \d of 2/);
   assert.doesNotMatch(markup, /unrelated\.mp4/);
   const single = render();
   assert.doesNotMatch(single, /shopping-product-image-dots/);
@@ -308,7 +307,7 @@ test("product details show Shopify description and only verified reviews/certifi
     assert.match(markup, /Natural moonstone ✨/);
     assert.match(markup, /Real verified review/);
     assert.doesNotMatch(markup, /Do not show this|Unverified issuer|>In stock<|>Ring<\/p>/);
-    assert.match(markup, /Verified certification details have not been supplied/);
+    assert.doesNotMatch(markup, /shopping-product-certification|Verified certification details have not been supplied/);
   } finally {
     if (previousDocument === undefined) delete globalThis.document;
     else globalThis.document = previousDocument;

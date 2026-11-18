@@ -19,6 +19,7 @@ import { customerAccount, useCustomerAccount } from "./customer-account.js";
 import { CustomerAccountPage } from "./customer-account-ui.js";
 import { formatCurrencyAmount } from "./money.js";
 import { shopifyConfig } from "./config.js";
+import { prepareBreezeCheckout } from "./breeze.js";
 
 const html = htm.bind(React.createElement);
 // Keep the compact category rail in the installed PWA, but omit it in browser tabs.
@@ -1162,6 +1163,18 @@ function StoreApp() {
   const openProduct = useCallback((product) => { productReturnHash.current = window.location.hash || "#collections"; navigate(productHash(product), { productEntry: true }); }, [navigate]);
   const openSharedProduct = useCallback((product, variantId) => { productReturnHash.current = window.location.hash || "#home"; navigate(productHash(product, variantId), { productEntry: true }); }, [navigate]);
   const checkout = async () => {
+    if (shopifyConfig.breeze.enabled) {
+      if (!shopifyCart?.id || cartSyncing || cartError) { setToast("Confirm your current cart before checkout."); return; }
+      setCheckoutBusy(true);
+      setToast("");
+      try {
+        await prepareBreezeCheckout({ cart: shopifyCart });
+        setToast("Checkout started. Payment must be verified before an order is confirmed.");
+      } catch {
+        setToast("Breeze checkout could not be prepared. Please retry.");
+      } finally { setCheckoutBusy(false); }
+      return;
+    }
     if (!catalogService.canCheckout) { setToast("Checkout is not enabled for this storefront yet."); return; }
     if (!shopifyCart?.id || cartSyncing || cartError) { setToast("Confirm your current cart before checkout."); return; }
     setCheckoutBusy(true);
@@ -1263,7 +1276,7 @@ function StoreApp() {
     if (route.page === "crystals") browseRoute = { ...route, page: "collections", group: "crystals" };
     if (route.page === "zodiac") browseRoute = { ...route, page: "collections", group: "zodiac", category: route.sign ? `zodiac:${route.sign}` : "" };
     if (["collections", "collection", "group"].includes(browseRoute.page)) return html`<${ShoppingBrowse} route=${browseRoute} catalog=${catalog} collectionImages=${shopifyCollectionImages} sort=${sort} onSort=${sortProducts} pageSize=${pageSize} onMore=${loadMore} ...${shared} ...${dataState}/>`;
-    if (route.page === "product") return html`<${ShoppingProduct} key=${route.handle} product=${activeProduct} selectedVariantId=${route.variantId||""} catalog=${catalog} onBack=${backFromProduct} ...${shared} ...${dataState}/>`;
+    if (route.page === "product") return html`<${ShoppingProduct} key=${route.handle} product=${activeProduct} selectedVariantId=${route.variantId||""} catalog=${catalog} collectionImages=${shopifyCollectionImages} remoteCart=${shopifyCart} onBack=${backFromProduct} ...${shared} ...${dataState}/>`;
     if (route.page === "search" || route.page === "wishlist") return html`<${ShoppingResults} catalog=${catalog} collectionImages=${shopifyCollectionImages} title=${route.page === "wishlist" ? "Your wishlist" : route.query ? `Search results for “${route.query}”` : "Search products"} query=${route.query || ""} savedOnly=${route.page === "wishlist"} pageSize=${pageSize} onMore=${loadMore} sort=${sort} onSort=${sortProducts} ...${shared} ...${dataState}/>`;
     if (route.page === "nav" || route.page === "discovery") {
       const items = routeNav ? [...(routeNav.items || []), ...(routeNav.formItems || [])].filter(item => ["collection", "group"].includes(item.kind)) : (routeDiscovery?.collectionHandles || []).map(target => ({ kind: "collection", target }));
@@ -1272,14 +1285,14 @@ function StoreApp() {
     }
     return html`<${ShoppingInformation} page=${route.page} onNavigate=${navigate}/>`;
   };
-  return html`<div className="shopping-shell" data-catalog-source=${catalogService.source} data-catalog-loaded=${liveCatalog} data-catalog-loading-more=${catalogLoadingMore} data-catalog-product-count=${catalog.length} data-shopify-product-count=${shopifyProductCount} data-route=${route.page} data-cart-pending=${cartSyncing} data-mobile-mode=${experience.mode(route.page, cartCount)}>
+  return html`<div className="shopping-shell" data-catalog-source=${catalogService.source} data-catalog-loaded=${liveCatalog} data-catalog-loading-more=${catalogLoadingMore} data-catalog-product-count=${catalog.length} data-shopify-product-count=${shopifyProductCount} data-route=${route.page} data-product-handle=${route.page==='product'?route.handle||'':''} data-cart-pending=${cartSyncing} data-mobile-mode=${experience.mode(route.page, cartCount)}>
     <${ShoppingHeader} route=${route} onBack=${backFromProduct} catalog=${catalog} query=${query} setQuery=${setQuery} onSearch=${term => navigate(`#search/${encodeURIComponent(term || "")}`)} onNavigate=${navigate} onAccount=${openAccount} onCart=${openCart} cartCount=${cartCount} remoteCart=${shopifyCart} pending=${cartSyncing} cartError=${cartError} savedCount=${saved.length} loading=${loading} accountAuthenticated=${accountState.status === "authenticated"}/>
     ${pageContent()}
     <${ShoppingFooter} onNavigate=${navigate}/>
     ${toast && route.page !== "cart" && html`<div className="toast" role=${retryCartToast || /wishlist/i.test(toast) ? "alert" : "status"}><span>${toast}</span>${retryCartToast && html`<button type="button" onClick=${() => { setToast(""); void cartState.retry(); }}>Retry</button>`}</div>`}
     <${experience.Controls} route=${route} count=${cartCount} cartItems=${cartTotals.lines} remoteCart=${shopifyCart} pending=${cartSyncing} error=${cartError} onCart=${openCart}/>
     <${ShoppingBottom} route=${route} onNavigate=${navigate} onCart=${openCart} count=${cartCount}/>
-    ${route.page === "cart" && html`<${ShoppingCart} cart=${cart} catalog=${catalog} remoteCart=${shopifyCart} syncing=${cartSyncing} pendingKeys=${cartPendingKeys} pendingOperations=${cartPendingOperations} error=${!online ? "Reconnect to update your cart." : cartError} onRetry=${cartState.retry} onClose=${() => navigate(cartReturnHash.current)} onUpdate=${updateCart} onRemove=${removeCart} checkoutEnabled=${catalogService.canCheckout} checkoutBusy=${checkoutBusy} onCheckout=${checkout}/>`}
+    ${route.page === "cart" && html`<${ShoppingCart} cart=${cart} catalog=${catalog} remoteCart=${shopifyCart} syncing=${cartSyncing} pendingKeys=${cartPendingKeys} pendingOperations=${cartPendingOperations} error=${!online ? "Reconnect to update your cart." : cartError} onRetry=${cartState.retry} onClose=${() => navigate(cartReturnHash.current)} onUpdate=${updateCart} onRemove=${removeCart} checkoutEnabled=${catalogService.canCheckout || shopifyConfig.breeze.enabled} checkoutBusy=${checkoutBusy} onCheckout=${checkout}/>`}
     ${(accountDrawerOpen || route.page === "account") && html`<${CustomerAccountPage} state=${accountState} account=${customerAccount} onNavigate=${navigate} onClose=${closeAccount}/>`}
   </div>`;
 }
