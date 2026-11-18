@@ -1723,10 +1723,13 @@ html:not(.pwa-standalone) .shopping-topnav { display:none; }
  .shopping-pdp-menu-panel { width:min(340px,82vw); }
  .shopping-pdp-menu-panel>header { min-height:76px; flex-basis:76px; margin-bottom:20px; }
  .shopping-pdp-menu-links>button { min-height:54px; }
- .shopping-pdp-menu-panel { padding-bottom:calc(130px + env(safe-area-inset-bottom)); }
+ .shopping-pdp-menu-panel { padding-bottom:calc(84px + env(safe-area-inset-bottom)); }
+ .shopping-shell[data-mobile-mode="product-cart"] .shopping-pdp-menu-panel { padding-bottom:calc(130px + env(safe-area-inset-bottom)); }
  .shopping-pdp-menu-campaign { margin-top:22px; }
  .shopping-pdp-menu-promos { margin-top:22px; }
  .shopping-shell:has(.shopping-pdp-header.menu-is-open) .shopping-pdp-sticky-wrap { z-index:110; }
+ .shopping-shell:has(.shopping-header.menu-is-open) .shopping-view-cart,
+ .shopping-shell:has(.shopping-header.menu-is-open) .shopping-bottom-nav { z-index:111; }
 }
 .shopping-image-logo { display:grid; width:170px; height:66px; place-items:center; overflow:hidden; border-radius:5px; background:#fff; }
 .shopping-image-logo>img { display:block; width:100%; height:100%; object-fit:cover; object-position:center; }
