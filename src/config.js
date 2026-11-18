@@ -20,11 +20,8 @@ export const shopifyConfig = {
   checkoutEnabled: env.VITE_SHOPIFY_CHECKOUT_ENABLED === "true",
   breeze: {
     enabled: env.VITE_BREEZE_CHECKOUT_ENABLED === "true",
-    merchantId: env.VITE_BREEZE_MERCHANT_ID || "",
-    shopUrl: env.VITE_BREEZE_SHOP_URL || "",
-    environment: env.VITE_BREEZE_ENVIRONMENT === "production" ? "production" : "sandbox",
-    backendUrl: env.VITE_BREEZE_BACKEND_URL || "",
-    productionApproved: env.VITE_BREEZE_PRODUCTION_APPROVED === "true",
+    platform: "shopifystorefront",
+    shopUrl: env.VITE_BREEZE_SHOP_URL || env.VITE_SHOPIFY_STORE_DOMAIN || "crystalbaaz.myshopify.com",
   },
   customerAccountClientId: env.VITE_SHOPIFY_CUSTOMER_ACCOUNT_CLIENT_ID || "",
   customerAccountRedirectUri: env.VITE_SHOPIFY_CUSTOMER_ACCOUNT_REDIRECT_URI || "",

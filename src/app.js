@@ -6,7 +6,7 @@ import { catalogGroups, collections, customerVariantLabel, formatVariantLabel, n
 import { addCartLine, calculateCart, changeCartQuantity, removeCartLine, selectVariant, reconcileShopifyCartLines, createBuyNowHandler } from "./cart.js";
 import { categoryTabs, discoveryById, discoverySections, discoveryHref, selectDiscoveryProducts } from "./discovery.js";
 import { catalogService } from "./catalog-service.js";
-import { loadShopifyCollections } from "./shopify.js";
+import { loadShopifyCollections, fetchCompleteShopifyCart } from "./shopify.js";
 import { parseRoute } from "./routes.js";
 import { loadPreviewCatalog } from "./catalog.js";
 import { categoryParents, getParentCategory, hierarchyHref } from "./category-hierarchy.js";
@@ -19,7 +19,6 @@ import { customerAccount, useCustomerAccount } from "./customer-account.js";
 import { CustomerAccountPage } from "./customer-account-ui.js";
 import { formatCurrencyAmount } from "./money.js";
 import { shopifyConfig } from "./config.js";
-import { prepareBreezeCheckout } from "./breeze.js";
 
 const html = htm.bind(React.createElement);
 // Keep the compact category rail in the installed PWA, but omit it in browser tabs.
@@ -862,9 +861,27 @@ function StoreApp() {
   const wasWishlistAuthenticated = useRef(false);
   const wishlistMutationQueue = useRef(Promise.resolve());
   const [checkoutBusy, setCheckoutBusy] = useState(false);
+  const [breezeCartData, setBreezeCartData] = useState(null);
+  const [breezeCartLoading, setBreezeCartLoading] = useState(false);
   const [toast, setToast] = useState("");
   const cartState = useShopifyCart({ catalog, setCatalog, onNotice: setToast });
   const { cart, remoteCart: shopifyCart, pending: cartSyncing, pendingKeys: cartPendingKeys, pendingOperations: cartPendingOperations, error: cartError } = cartState;
+
+  useEffect(() => {
+    if (!shopifyConfig.breeze.enabled || !shopifyCart?.id || cartSyncing || cartError) {
+      setBreezeCartData(null);
+      setBreezeCartLoading(false);
+      return undefined;
+    }
+    let active = true;
+    setBreezeCartData(null);
+    setBreezeCartLoading(true);
+    fetchCompleteShopifyCart(shopifyCart.id)
+      .then((completeCart) => { if (active) setBreezeCartData(completeCart); })
+      .catch(() => { if (active) setBreezeCartData(null); })
+      .finally(() => { if (active) setBreezeCartLoading(false); });
+    return () => { active = false; };
+  }, [shopifyCart, cartSyncing, cartError]);
 
   useEffect(() => { void customerAccount.initialize(); }, []);
   useEffect(() => {
@@ -1163,18 +1180,6 @@ function StoreApp() {
   const openProduct = useCallback((product) => { productReturnHash.current = window.location.hash || "#collections"; navigate(productHash(product), { productEntry: true }); }, [navigate]);
   const openSharedProduct = useCallback((product, variantId) => { productReturnHash.current = window.location.hash || "#home"; navigate(productHash(product, variantId), { productEntry: true }); }, [navigate]);
   const checkout = async () => {
-    if (shopifyConfig.breeze.enabled) {
-      if (!shopifyCart?.id || cartSyncing || cartError) { setToast("Confirm your current cart before checkout."); return; }
-      setCheckoutBusy(true);
-      setToast("");
-      try {
-        await prepareBreezeCheckout({ cart: shopifyCart });
-        setToast("Checkout started. Payment must be verified before an order is confirmed.");
-      } catch {
-        setToast("Breeze checkout could not be prepared. Please retry.");
-      } finally { setCheckoutBusy(false); }
-      return;
-    }
     if (!catalogService.canCheckout) { setToast("Checkout is not enabled for this storefront yet."); return; }
     if (!shopifyCart?.id || cartSyncing || cartError) { setToast("Confirm your current cart before checkout."); return; }
     setCheckoutBusy(true);
@@ -1189,6 +1194,10 @@ function StoreApp() {
       setCheckoutBusy(false);
     }
   };
+  const handleBreezeEvent = useCallback((event) => {
+    if (event?.detail !== "clear-cart") return;
+    setToast("Breeze reported checkout completion. The order still needs server verification; your cart has not been cleared.");
+  }, []);
 
   const updateViewOption = (name, value) => {
     const currentHash = window.location.hash || "#home";
@@ -1292,7 +1301,7 @@ function StoreApp() {
     ${toast && route.page !== "cart" && html`<div className="toast" role=${retryCartToast || /wishlist/i.test(toast) ? "alert" : "status"}><span>${toast}</span>${retryCartToast && html`<button type="button" onClick=${() => { setToast(""); void cartState.retry(); }}>Retry</button>`}</div>`}
     <${experience.Controls} route=${route} count=${cartCount} cartItems=${cartTotals.lines} remoteCart=${shopifyCart} pending=${cartSyncing} error=${cartError} onCart=${openCart}/>
     <${ShoppingBottom} route=${route} onNavigate=${navigate} onCart=${openCart} count=${cartCount}/>
-    ${route.page === "cart" && html`<${ShoppingCart} cart=${cart} catalog=${catalog} remoteCart=${shopifyCart} syncing=${cartSyncing} pendingKeys=${cartPendingKeys} pendingOperations=${cartPendingOperations} error=${!online ? "Reconnect to update your cart." : cartError} onRetry=${cartState.retry} onClose=${() => navigate(cartReturnHash.current)} onUpdate=${updateCart} onRemove=${removeCart} checkoutEnabled=${catalogService.canCheckout || shopifyConfig.breeze.enabled} checkoutBusy=${checkoutBusy} onCheckout=${checkout}/>`}
+    ${route.page === "cart" && html`<${ShoppingCart} cart=${cart} catalog=${catalog} remoteCart=${shopifyCart} syncing=${cartSyncing} pendingKeys=${cartPendingKeys} pendingOperations=${cartPendingOperations} error=${!online ? "Reconnect to update your cart." : cartError} onRetry=${cartState.retry} onClose=${() => navigate(cartReturnHash.current)} onUpdate=${updateCart} onRemove=${removeCart} checkoutEnabled=${catalogService.canCheckout && !shopifyConfig.breeze.enabled} breezeEnabled=${shopifyConfig.breeze.enabled} breezeCartData=${breezeCartData} breezeCartLoading=${breezeCartLoading} breezeShopUrl=${shopifyConfig.breeze.shopUrl} onBreezeEvent=${handleBreezeEvent} checkoutBusy=${checkoutBusy} onCheckout=${checkout}/>`}
     ${(accountDrawerOpen || route.page === "account") && html`<${CustomerAccountPage} state=${accountState} account=${customerAccount} onNavigate=${navigate} onClose=${closeAccount}/>`}
   </div>`;
 }

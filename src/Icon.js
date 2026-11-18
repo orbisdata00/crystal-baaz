@@ -24,7 +24,7 @@ const paths = {
   sparkle: [["path", { d: "m12 3 1.6 5.4L19 10l-5.4 1.6L12 17l-1.6-5.4L5 10l5.4-1.6L12 3Zm7 12 .8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8L19 15Z" }]],
   grid: [["rect", { x: 4, y: 4, width: 6, height: 6, rx: 1 }], ["rect", { x: 14, y: 4, width: 6, height: 6, rx: 1 }], ["rect", { x: 4, y: 14, width: 6, height: 6, rx: 1 }], ["rect", { x: 14, y: 14, width: 6, height: 6, rx: 1 }]],
   bracelet: [["circle", { cx: 12, cy: 12, r: 8 }], ["circle", { cx: 12, cy: 12, r: 3, strokeWidth: 1.2 }]],
-  ring: [["circle", { cx: 12, cy: 13, r: 6 }], ["path", { d: "m9 6 3-3 3 3M8.7 7.2l-2-1.8M15.3 7.2l2-1.8" }]],
+  ring: [["circle", { cx: 12, cy: 17, r: 5.2 }], ["path", { d: "m8.4 10.5 1.9-4.2h3.4l1.9 4.2-3.6 3.7-3.6-3.7Z" }], ["path", { d: "M8.4 10.5h7.2" }]],
   pendant: [["path", { d: "M8 4h8l4 5-8 11L4 9l4-5Z" }], ["path", { d: "m8 4 4 16 4-16M4 9h16" }]],
   home: [["path", { d: "m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-6v-7h-4v7H4a1 1 0 0 1-1-1V10Z" }]],
   homeTab: [["path", { d: "m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1V10Z" }]],

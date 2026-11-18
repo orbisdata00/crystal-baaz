@@ -339,6 +339,21 @@ test("sticky PDP purchase bar uses live variant price, MRP, quantity and Buy Now
   assert.doesNotMatch(markup, /shopping-pdp-offer/);
 });
 
+test("sticky PDP offer is shown only when Shopify marks it verified and active", () => {
+  const props = {
+    product: { ...product, offers: [
+      { title: "Unverified offer", active: true, verified: false },
+      { title: "Expired offer", active: false, verified: true },
+      { title: "Verified offer", active: true, verified: true },
+    ] },
+    variant: product.variants[0], off: 40, thumbnail: product.image, cart: [], pendingKeys: [], pendingOperations: [],
+    onAdd() {}, onUpdate() {}, onNavigate() {},
+  };
+  const markup = renderToStaticMarkup(React.createElement(PdpPurchaseBar, props));
+  assert.match(markup, /shopping-pdp-offer[^>]*>Verified offer</);
+  assert.doesNotMatch(markup, /Unverified offer|Expired offer|Namaste Offer/);
+});
+
 test("PDP quantity one can be decremented and Buy Now stays disabled for an existing line", () => {
   const markup = renderToStaticMarkup(React.createElement(PdpPurchaseBar, {
     product, variant: product.variants[0], off: 40, thumbnail: product.image,
