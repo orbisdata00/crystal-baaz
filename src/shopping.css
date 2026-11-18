@@ -2338,3 +2338,172 @@ html:not(.pwa-standalone) .shopping-topnav { display:none; }
   }
   .shopping-shell[data-mobile-mode="navigation"] .shopping-bottom-nav button[aria-current="page"] { color: var(--cb-primary); background: #f6e9e5; }
 }
+
+/* Keep the desktop storefront header balanced; mobile/PWA header rules stay as-is. */
+@media (min-width: 1101px) {
+  .shopping-shell .shopping-header:not(.shopping-pdp-header):not(.is-searching) .shopping-header-main {
+    max-width: 1440px;
+    min-height: 88px;
+    grid-template-columns: 190px minmax(320px, min(48vw, 680px)) auto;
+    justify-content: space-between;
+    gap: clamp(14px, 1.5vw, 24px);
+    padding: 12px clamp(20px, 2.5vw, 36px);
+  }
+
+  .shopping-shell .shopping-header:not(.shopping-pdp-header):not(.is-searching) .shopping-image-logo {
+    width: 180px;
+    height: 64px;
+  }
+
+  .shopping-shell .shopping-header:not(.shopping-pdp-header):not(.is-searching) .shopping-image-logo > img {
+    object-fit: contain;
+    padding: 4px;
+  }
+
+  .shopping-shell .shopping-header:not(.shopping-pdp-header):not(.is-searching) .shopping-search {
+    width: 100%;
+    max-width: 680px;
+    min-height: 54px;
+  }
+
+  .shopping-shell .shopping-header:not(.shopping-pdp-header):not(.is-searching) .shopping-tools {
+    gap: clamp(10px, 1.15vw, 18px);
+    white-space: nowrap;
+  }
+
+  .shopping-shell .shopping-header:not(.shopping-pdp-header):not(.is-searching) .shopping-tools > .shopping-cart-button {
+    min-width: 112px;
+    min-height: 48px;
+    padding-inline: 14px;
+  }
+}
+
+@media (min-width: 781px) and (max-width: 1100px) {
+  .shopping-shell .shopping-header:not(.shopping-pdp-header):not(.is-searching) .shopping-header-main {
+    min-height: 78px;
+    grid-template-columns: 150px minmax(160px, 1fr) auto;
+    gap: 12px;
+    padding: 10px 18px;
+  }
+
+  .shopping-shell .shopping-header:not(.shopping-pdp-header):not(.is-searching) .shopping-image-logo {
+    width: 142px;
+    height: 54px;
+  }
+
+  .shopping-shell .shopping-header:not(.shopping-pdp-header):not(.is-searching) .shopping-image-logo > img {
+    object-fit: contain;
+    padding: 3px;
+  }
+
+  .shopping-shell .shopping-header:not(.shopping-pdp-header):not(.is-searching) .shopping-search {
+    min-height: 46px;
+  }
+
+  .shopping-shell .shopping-header:not(.shopping-pdp-header):not(.is-searching) .shopping-tools {
+    gap: 8px;
+  }
+}
+
+/* Keep the back-to-top control out of the header's layout on web, and size the
+   desktop logo to the source artwork so it stays crisp without being cropped. */
+@media (min-width: 781px) {
+  html:not(.pwa-standalone) .shopping-shell .shopping-header:not(.shopping-pdp-header):not(.is-searching) .shopping-image-logo {
+    box-sizing: border-box;
+    width: 126px;
+    height: 71px;
+  }
+
+  html:not(.pwa-standalone) .shopping-shell .shopping-header:not(.shopping-pdp-header):not(.is-searching) .shopping-image-logo > img {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    object-fit: contain !important;
+    object-position: center;
+  }
+
+  html:not(.pwa-standalone) .shopping-shell .shopping-header .shopping-back-to-top {
+    position: fixed;
+    z-index: 34;
+    top: 106px;
+    right: auto;
+    bottom: auto;
+    left: 50%;
+    display: inline-flex;
+    min-height: 32px;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 0 13px;
+    transform: translateX(-50%);
+    border: 0;
+    border-radius: 18px;
+    color: #fff;
+    background: #171717;
+    box-shadow: 0 2px 8px #0002;
+    font: 600 12px/1 var(--sans);
+    white-space: nowrap;
+  }
+
+  html:not(.pwa-standalone) .shopping-shell .shopping-header .shopping-back-to-top > span {
+    display: grid;
+    width: 15px;
+    height: 15px;
+    place-items: center;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    font-size: 10px;
+    line-height: 1;
+  }
+}
+
+@media (min-width: 1101px) {
+  html:not(.pwa-standalone) .shopping-shell .shopping-header .shopping-back-to-top {
+    top: 120px;
+  }
+
+  html:not(.pwa-standalone) .shopping-shell .shopping-header:not(.shopping-pdp-header):not(.is-searching) .shopping-image-logo {
+    width: 144px;
+    height: 81px;
+  }
+}
+
+/* On the web storefront, blend the header and footer into the page surface.
+   Installed PWA colors are intentionally left to the rules above. */
+html:not(.pwa-standalone) .shopping-shell :is(.shopping-header, .shopping-pdp-header),
+html:not(.pwa-standalone) .shopping-shell :is(.shopping-header-main, .shopping-header:not(.is-searching) .shopping-header-main,
+  .shopping-header.is-searching .shopping-header-main) {
+  color: var(--cb-text-primary);
+  background: var(--cb-background);
+  border-color: var(--cb-border);
+}
+
+html:not(.pwa-standalone) .shopping-shell .shopping-topnav {
+  color: var(--cb-text-primary);
+  background: var(--cb-background);
+  border-color: var(--cb-border);
+}
+
+html:not(.pwa-standalone) .shopping-shell .shopping-header .shopping-tools > button,
+html:not(.pwa-standalone) .shopping-shell .shopping-header .shopping-mobile-menu-button,
+html:not(.pwa-standalone) .shopping-shell .shopping-header .shopping-mobile-search-button,
+html:not(.pwa-standalone) .shopping-shell .shopping-header .shopping-account-trigger,
+html:not(.pwa-standalone) .shopping-shell .shopping-header .shopping-cart-button,
+html:not(.pwa-standalone) .shopping-shell .shopping-pdp-header .shopping-pdp-actions > button,
+html:not(.pwa-standalone) .shopping-shell .shopping-pdp-header .shopping-pdp-back,
+html:not(.pwa-standalone) .shopping-shell .shopping-pdp-header .shopping-pdp-menu {
+  color: var(--cb-primary);
+}
+
+html:not(.pwa-standalone) .shopping-shell .shopping-footer {
+  color: var(--cb-text-primary);
+  background: var(--cb-background);
+  border-top: 1px solid var(--cb-border);
+}
+
+html:not(.pwa-standalone) .shopping-shell .shopping-footer :is(p, small) { color: var(--muted); }
+html:not(.pwa-standalone) .shopping-shell .shopping-footer button { color: var(--cb-text-primary); }
+html:not(.pwa-standalone) .shopping-shell .shopping-footer-brand > strong { color: var(--cb-primary); }
+html:not(.pwa-standalone) .shopping-shell .shopping-footer-brand > strong span { color: var(--cb-gold); }
+html:not(.pwa-standalone) .shopping-shell .shopping-footer-accordion > summary { color: var(--cb-text-primary); }
+html:not(.pwa-standalone) .shopping-shell .shopping-footer-accordion > nav { color: var(--ink-soft); }
