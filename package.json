@@ -7,6 +7,7 @@
   },
   "scripts": {
     "dev": "vite",
+    "backend:dev": "node --env-file=backend/.env backend/server.js",
     "start": "vite",
     "build": "vite build",
     "preview": "vite preview",

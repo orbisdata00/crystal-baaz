@@ -13,12 +13,15 @@ import { categoryParents, getParentCategory, hierarchyHref } from "./category-hi
 import { useShopifyCart } from "./use-shopify-cart.js";
 import { mergeWishlistIds, normalizeWishlistIds, persistWishlistToggle, SHOPIFY_PRODUCT_GID, toggleWishlistId, updateCustomerWishlist } from "./wishlist.js";
 import { ShoppingExperience, useExperience } from "./shopping-experience.js";
-import { ProductImage, ShoppingHeader, ShoppingHome, ShoppingBrowse, ShoppingResults, ShoppingProduct, ShoppingCart, ShoppingSharedCart, ShoppingFooter, ShoppingBottom, ShoppingInformation } from "./shopping-ui.js";
+import { ProductImage, ShoppingHeader, ShoppingHome, ShoppingBrowse, ShoppingResults, ShoppingProduct, ShoppingCart, ShoppingSharedCart, RazorpayOrderConfirmation, RazorpayTestConfirmation, ShoppingFooter, ShoppingBottom, ShoppingInformation } from "./shopping-ui.js";
 import { parseSharedCartItems } from "./cart-share.js";
 import { customerAccount, useCustomerAccount } from "./customer-account.js";
 import { CustomerAccountPage } from "./customer-account-ui.js";
 import { formatCurrencyAmount } from "./money.js";
 import { shopifyConfig } from "./config.js";
+import { canStartCheckout } from "./checkout-coordinator.js";
+import { mapShopifyCartToRazorpayMagic } from "./razorpay-magic-cart.js";
+import { startRazorpayMagicCheckout } from "./razorpay-magic-checkout.js";
 
 const html = htm.bind(React.createElement);
 // Keep the compact category rail in the installed PWA, but omit it in browser tabs.
@@ -861,29 +864,23 @@ function StoreApp() {
   const wasWishlistAuthenticated = useRef(false);
   const wishlistMutationQueue = useRef(Promise.resolve());
   const [checkoutBusy, setCheckoutBusy] = useState(false);
-  const [breezeCartData, setBreezeCartData] = useState(null);
-  const [breezeCartLoading, setBreezeCartLoading] = useState(false);
+  const [razorpayOrderConfirmation, setRazorpayOrderConfirmation] = useState(null);
+  const [razorpayTestConfirmation, setRazorpayTestConfirmation] = useState(null);
   const [toast, setToast] = useState("");
   const cartState = useShopifyCart({ catalog, setCatalog, onNotice: setToast });
   const { cart, remoteCart: shopifyCart, pending: cartSyncing, pendingKeys: cartPendingKeys, pendingOperations: cartPendingOperations, error: cartError } = cartState;
 
-  useEffect(() => {
-    if (!shopifyConfig.breeze.enabled || !shopifyCart?.id || cartSyncing || cartError) {
-      setBreezeCartData(null);
-      setBreezeCartLoading(false);
-      return undefined;
-    }
-    let active = true;
-    setBreezeCartData(null);
-    setBreezeCartLoading(true);
-    fetchCompleteShopifyCart(shopifyCart.id)
-      .then((completeCart) => { if (active) setBreezeCartData(completeCart); })
-      .catch(() => { if (active) setBreezeCartData(null); })
-      .finally(() => { if (active) setBreezeCartLoading(false); });
-    return () => { active = false; };
-  }, [shopifyCart, cartSyncing, cartError]);
 
   useEffect(() => { void customerAccount.initialize(); }, []);
+  useEffect(() => {
+    if (accountState.status !== "authenticated") return;
+    try {
+      if (window.sessionStorage.getItem("crystal-baaz-checkout-login-pending") === "true") {
+        window.sessionStorage.removeItem("crystal-baaz-checkout-login-pending");
+        setToast("You’re signed in. Review your cart, then click checkout again to continue.");
+      }
+    } catch { /* A blocked session store must not interrupt sign-in. */ }
+  }, [accountState.status]);
   useEffect(() => {
     if (!catalogService.isLive) { setShopifyCollectionImages({}); return undefined; }
     if (!liveCatalog) return undefined;
@@ -997,7 +994,7 @@ function StoreApp() {
     corrections.forEach((item) => reportedVariantCorrections.current.add(item.variantId));
     console.warn("Crystal Baaz product variant corrections required:", corrections);
   }, [catalog, liveCatalog]);
-  useEffect(() => { if (toast) { const timer = setTimeout(() => setToast(""), 3200); return () => clearTimeout(timer); } }, [toast]);
+  useEffect(() => { if (toast && route.page !== "cart") { const timer = setTimeout(() => setToast(""), 3200); return () => clearTimeout(timer); } }, [toast, route.page]);
 
   useEffect(() => {
     let active = true;
@@ -1180,8 +1177,73 @@ function StoreApp() {
   const openProduct = useCallback((product) => { productReturnHash.current = window.location.hash || "#collections"; navigate(productHash(product), { productEntry: true }); }, [navigate]);
   const openSharedProduct = useCallback((product, variantId) => { productReturnHash.current = window.location.hash || "#home"; navigate(productHash(product, variantId), { productEntry: true }); }, [navigate]);
   const checkout = async () => {
-    if (!catalogService.canCheckout) { setToast("Checkout is not enabled for this storefront yet."); return; }
-    if (!shopifyCart?.id || cartSyncing || cartError) { setToast("Confirm your current cart before checkout."); return; }
+    if (shopifyConfig.checkoutProvider.conflict) { setToast("Checkout configuration conflict. Contact the store administrator."); return; }
+    if (!customerAccount.isAuthenticated) {
+      if (!customerAccount.isConfigured) { setToast("Sign in is required, but Shopify Customer Accounts are not configured."); return; }
+      try { window.sessionStorage.setItem("crystal-baaz-checkout-login-pending", "true"); } catch { /* OAuth return path still returns to the cart. */ }
+      const started = await customerAccount.login({ returnPath: `${window.location.pathname}#cart` });
+      if (!started) {
+        try { window.sessionStorage.removeItem("crystal-baaz-checkout-login-pending"); } catch { /* Ignore unavailable storage. */ }
+        setToast("Could not start sign-in. Please try again.");
+      }
+      return;
+    }
+    if (shopifyConfig.checkoutProvider.provider === "razorpay_test") {
+      if (!shopifyConfig.razorpayTest.enabled || !shopifyConfig.razorpayTest.backendUrl || !/^rzp_test_/.test(shopifyConfig.razorpayTest.keyId)) { setToast("Razorpay test checkout is available only in development with a test key and local backend."); return; }
+      if (!shopifyCart?.id || cartSyncing || cartError || checkoutBusy) { setToast("Confirm your current cart before test checkout."); return; }
+      setCheckoutBusy(true); setToast("");
+      try {
+        if (!import.meta.env.DEV) throw new Error("Razorpay test checkout is disabled outside development.");
+        const { startRazorpayStandardTestCheckout } = await import("./razorpay-standard-test.js");
+        const result = await startRazorpayStandardTestCheckout({ backendUrl: shopifyConfig.razorpayTest.backendUrl, shopifyCartId: shopifyCart.id });
+        if (result.cancelled) { setToast("Test checkout closed. Your cart is unchanged."); return; }
+        setRazorpayTestConfirmation(result);
+      } catch (error) { setToast(error?.message || "Test payment could not be verified. Your cart remains unchanged."); }
+      finally { setCheckoutBusy(false); }
+      return;
+    }
+    if (shopifyConfig.checkoutProvider.provider === "razorpay") {
+      if (!shopifyConfig.razorpayMagic.enabled || !shopifyConfig.razorpayMagic.keyId || !shopifyConfig.razorpayMagic.backendUrl) {
+        setToast("Razorpay Magic Checkout is disabled until merchant authorization and backend setup are verified."); return;
+      }
+      if (!shopifyCart?.id || cartSyncing || cartError || checkoutBusy) { setToast("Confirm your current cart before checkout."); return; }
+      setCheckoutBusy(true);
+      setToast("");
+      try {
+        const completeCart = await fetchCompleteShopifyCart(shopifyCart.id);
+        const mapped = mapShopifyCartToRazorpayMagic(completeCart);
+        const result = await startRazorpayMagicCheckout({
+          backendUrl: shopifyConfig.razorpayMagic.backendUrl,
+          keyId: shopifyConfig.razorpayMagic.keyId,
+          shopifyCartId: shopifyCart.id,
+          cart: mapped,
+          storeDomain: shopifyConfig.storeDomain,
+        });
+        if (result.cancelled) { setToast("Checkout closed. Your cart is unchanged."); return; }
+        try {
+          const latestCart = await fetchCompleteShopifyCart(shopifyCart.id);
+          const latestLineIds = new Set((latestCart?.lines?.nodes || []).map(line => line.id));
+          for (const purchasedLine of completeCart.lines.nodes) {
+            if (!latestLineIds.has(purchasedLine.id)) continue;
+            const localLine = cart.find(line => line.variantId === purchasedLine.merchandise?.id);
+            if (localLine) await cartState.update(localLine.key, -Math.min(localLine.quantity, purchasedLine.quantity), localLine.product?.title);
+          }
+        } catch {
+          // Payment and Shopify order are already verified. Keep uncertain cart state for safe reconciliation.
+        }
+        setRazorpayOrderConfirmation(result.order);
+      } catch (error) {
+        const message = String(error?.message || "");
+        const authorizationStatus = [
+          "Razorpay Magic Checkout is disabled or merchant authorization is incomplete.",
+          "Razorpay has not authorized this Shopify store for Magic Checkout.",
+        ].find(known => message.includes(known));
+        setToast(authorizationStatus || "Razorpay checkout could not be completed. Your cart has not been cleared.");
+      } finally { setCheckoutBusy(false); }
+      return;
+    }
+    if (shopifyConfig.checkoutProvider.provider !== "shopify" || !catalogService.canCheckout) { setToast("Checkout is not enabled for this storefront yet."); return; }
+    if (!canStartCheckout({ provider: "shopify", conflict: shopifyConfig.checkoutProvider.conflict, cart: shopifyCart, syncing: cartSyncing, error: cartError })) { setToast("Confirm your current cart before checkout."); return; }
     setCheckoutBusy(true);
     setToast("");
     try {
@@ -1194,10 +1256,6 @@ function StoreApp() {
       setCheckoutBusy(false);
     }
   };
-  const handleBreezeEvent = useCallback((event) => {
-    if (event?.detail !== "clear-cart") return;
-    setToast("Breeze reported checkout completion. The order still needs server verification; your cart has not been cleared.");
-  }, []);
 
   const updateViewOption = (name, value) => {
     const currentHash = window.location.hash || "#home";
@@ -1277,6 +1335,8 @@ function StoreApp() {
   const dataState = { loading, loadingMore: catalogLoadingMore, error: !online ? "You are offline. Reconnect to load current products and prices." : catalogError, onRetry: retryCatalog };
   const sortProducts = value => { setSort(value); setPageSize(24); updateViewOption("sort", value); };
   const pageContent = () => {
+    if (route.page === "cart" && razorpayOrderConfirmation) return html`<${RazorpayOrderConfirmation} order=${razorpayOrderConfirmation} onContinueShopping=${() => { setRazorpayOrderConfirmation(null); navigate("#home"); }}/>`;
+    if (route.page === "cart" && razorpayTestConfirmation) return html`<${RazorpayTestConfirmation} payment=${razorpayTestConfirmation} onReturnToCart=${() => setRazorpayTestConfirmation(null)}/>`;
     if (["home", "cart"].includes(route.page)) return html`<${ShoppingHome} catalog=${catalog} collectionImages=${shopifyCollectionImages} ...${shared} ...${dataState}/>`;
     if (route.page === "account") return html`<${ShoppingHome} catalog=${catalog} collectionImages=${shopifyCollectionImages} ...${shared} ...${dataState}/>`;
     if (route.page === "shared-cart") return html`<${ShoppingSharedCart} items=${sharedCartData.items} loading=${sharedCartData.loading} error=${sharedCartData.error} cartCount=${cartCount} cartSyncing=${cartSyncing} cartError=${cartError} onRetryVerification=${retryCatalog} onRetryCart=${cartState.retry} onAddItems=${addSharedItems} onNavigate=${navigate} onOpenProduct=${openSharedProduct}/>`;
@@ -1301,7 +1361,7 @@ function StoreApp() {
     ${toast && route.page !== "cart" && html`<div className="toast" role=${retryCartToast || /wishlist/i.test(toast) ? "alert" : "status"}><span>${toast}</span>${retryCartToast && html`<button type="button" onClick=${() => { setToast(""); void cartState.retry(); }}>Retry</button>`}</div>`}
     <${experience.Controls} route=${route} count=${cartCount} cartItems=${cartTotals.lines} remoteCart=${shopifyCart} pending=${cartSyncing} error=${cartError} onCart=${openCart}/>
     <${ShoppingBottom} route=${route} onNavigate=${navigate} onCart=${openCart} count=${cartCount}/>
-    ${route.page === "cart" && html`<${ShoppingCart} cart=${cart} catalog=${catalog} remoteCart=${shopifyCart} syncing=${cartSyncing} pendingKeys=${cartPendingKeys} pendingOperations=${cartPendingOperations} error=${!online ? "Reconnect to update your cart." : cartError} onRetry=${cartState.retry} onClose=${() => navigate(cartReturnHash.current)} onUpdate=${updateCart} onRemove=${removeCart} checkoutEnabled=${catalogService.canCheckout && !shopifyConfig.breeze.enabled} breezeEnabled=${shopifyConfig.breeze.enabled} breezeCartData=${breezeCartData} breezeCartLoading=${breezeCartLoading} breezeShopUrl=${shopifyConfig.breeze.shopUrl} onBreezeEvent=${handleBreezeEvent} checkoutBusy=${checkoutBusy} onCheckout=${checkout}/>`}
+    ${route.page === "cart" && !razorpayOrderConfirmation && !razorpayTestConfirmation && html`<${ShoppingCart} cart=${cart} catalog=${catalog} remoteCart=${shopifyCart} syncing=${cartSyncing} pendingKeys=${cartPendingKeys} pendingOperations=${cartPendingOperations} error=${!online ? "Reconnect to update your cart." : cartError} onRetry=${cartState.retry} onClose=${() => navigate(cartReturnHash.current)} onUpdate=${updateCart} onRemove=${removeCart} checkoutEnabled=${shopifyConfig.checkoutProvider.provider === "shopify" && catalogService.canCheckout && !shopifyConfig.checkoutProvider.conflict} razorpayEnabled=${shopifyConfig.checkoutProvider.provider === "razorpay" && shopifyConfig.razorpayMagic.enabled && Boolean(shopifyConfig.razorpayMagic.keyId && shopifyConfig.razorpayMagic.backendUrl) && !shopifyConfig.checkoutProvider.conflict} razorpayTestEnabled=${shopifyConfig.checkoutProvider.provider === "razorpay_test" && shopifyConfig.razorpayTest.enabled && Boolean(shopifyConfig.razorpayTest.backendUrl) && !shopifyConfig.checkoutProvider.conflict} checkoutProvider=${shopifyConfig.checkoutProvider.provider} checkoutConflict=${shopifyConfig.checkoutProvider.conflict} checkoutNotice=${toast} checkoutBusy=${checkoutBusy} onCheckout=${checkout}/>`}
     ${(accountDrawerOpen || route.page === "account") && html`<${CustomerAccountPage} state=${accountState} account=${customerAccount} onNavigate=${navigate} onClose=${closeAccount}/>`}
   </div>`;
 }

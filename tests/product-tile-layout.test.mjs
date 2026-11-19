@@ -3,7 +3,7 @@ import { readFile } from "node:fs/promises";
 import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { test } from "node:test";
-import { CatalogStatus, NewArrivalsPreview, PdpPurchaseBar, ShoppingBrowse, ShoppingCard, ShoppingCart, ShoppingHeader, ShoppingHome, ShoppingProduct, ShoppingResults, ShoppingSharedCart, VariantSheetContent } from "../src/shopping-ui.js";
+import { CatalogStatus, NewArrivalsPreview, PdpPurchaseBar, RazorpayOrderConfirmation, ShoppingBrowse, ShoppingCard, ShoppingCart, ShoppingHeader, ShoppingHome, ShoppingProduct, ShoppingResults, ShoppingSharedCart, VariantSheetContent } from "../src/shopping-ui.js";
 import { CartSummaryThumbs } from "../src/shopping-experience.js";
 
 const product = {
@@ -208,6 +208,38 @@ test("cart hydration uses skeleton rows without technical loading copy", () => {
   assert.match(markup, /shopping-cart-loading/);
   assert.match(markup, /aria-label="Refreshing cart"/);
   assert.doesNotMatch(markup, /Checking your saved cart|Loading from Shopify|Shopify/);
+});
+
+test("Razorpay selection never falls back to Shopify when Magic merchant setup is disabled", () => {
+  const markup = renderToStaticMarkup(React.createElement(ShoppingCart, {
+    cart: [], catalog: [], syncing: false, error: "", remoteCart: null,
+    checkoutProvider: "razorpay", checkoutConflict: false, razorpayEnabled: false,
+  }));
+  assert.match(markup, /Razorpay setup required/);
+  assert.match(markup, /disabled until merchant authorization and backend setup are verified/);
+  assert.doesNotMatch(markup, /Proceed to checkout/);
+});
+
+test("cart keeps Razorpay authorization failures visible", () => {
+  const markup = renderToStaticMarkup(React.createElement(ShoppingCart, {
+    cart: [], catalog: [], syncing: false, error: "", remoteCart: null,
+    checkoutProvider: "razorpay", checkoutConflict: false, razorpayEnabled: true,
+    checkoutNotice: "Razorpay Magic Checkout is disabled or merchant authorization is incomplete.",
+  }));
+  assert.match(markup, /Checkout with Razorpay/);
+  assert.match(markup, /role="alert"[^>]*>Razorpay Magic Checkout is disabled or merchant authorization is incomplete/);
+});
+
+test("Razorpay confirmation displays only backend-verified Shopify order and amount fields", () => {
+  const markup = renderToStaticMarkup(React.createElement(RazorpayOrderConfirmation, { order: {
+    order_number: "#32697", total_amount: 659430, payment_currency: "INR", payment_method: "upi",
+    order_status_url: "https://crystalbaaz.myshopify.com/orders/32697",
+  } }));
+  assert.match(markup, /Order confirmed/);
+  assert.match(markup, /#32697/);
+  assert.match(markup, /₹6,594\.30/);
+  assert.match(markup, /upi/);
+  assert.match(markup, /href="https:\/\/crystalbaaz\.myshopify\.com\/orders\/32697"/);
 });
 
 test("shared-cart preview never renders internal SKU labels", () => {

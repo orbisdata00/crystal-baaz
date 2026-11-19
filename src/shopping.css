@@ -383,12 +383,13 @@ body { background:#fff; }
 .shopping-shared-cart>footer { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:8px; margin-top:20px; padding-top:15px; border-top:1px solid var(--line); color:var(--muted); font-size:12px; }
 @media(max-width:780px) { .shopping-shared-cart { width:calc(100% - 28px); min-height:calc(100dvh - 206px); padding:24px 0 35px; } .shopping-shared-item { grid-template-columns:72px minmax(0,1fr); gap:12px; padding:11px; } .shopping-shared-item>img,.shopping-shared-item>.shopping-image-unavailable { width:72px; height:78px; } .shopping-shared-item-copy h2 { font-size:13px; } .shopping-shared-confirm { padding:14px; } .shopping-shared-confirm>div { flex-direction:column; } }
 
-.shopping-cart-panel footer.shopping-cart-checkout { background:var(--cb-primary); color:#fff; margin:12px; padding:16px; border-radius:12px; min-height:76px; flex-shrink:0; }
+.shopping-cart-panel footer.shopping-cart-checkout { background:var(--cb-primary); color:#fff; margin:12px; padding:16px; border-radius:12px; min-height:76px; flex-shrink:0; flex-wrap:wrap; }
 .shopping-cart-checkout>div { text-align:left; }
 .shopping-cart-checkout>div>strong { color:white; font-size:18px; }
 .shopping-cart-checkout>div>small { color:white; font-size:10px; margin-top:4px; }
 .shopping-cart-panel footer.shopping-cart-checkout>.shopping-primary { width:auto; margin:0; background:transparent; color:#fff; font-size:14px; }
 .shopping-cart-panel footer.shopping-cart-checkout>small { display:none; }
+.shopping-cart-panel footer.shopping-cart-checkout>.shopping-cart-checkout-notice { display:block; flex:1 0 100%; margin:4px 0 0; color:#fff; font-size:12px; line-height:1.45; text-align:right; }
 .shopping-cart-panel footer.shopping-cart-checkout>.shopping-primary:disabled { opacity:.72; cursor:not-allowed; }
 .shopping-cart-panel footer.shopping-cart-checkout>.shopping-primary[aria-busy=true]::after { content:""; display:inline-block; width:10px; height:10px; margin-left:8px; border:1.5px solid currentColor; border-right-color:transparent; border-radius:50%; vertical-align:-1px; animation:shopping-spin .7s linear infinite; }
 .customer-account-page { width:min(900px,calc(100% - 32px)); min-height:calc(100dvh - 250px); margin:0 auto; padding:38px 0 70px; }
@@ -1976,10 +1977,6 @@ html:not(.pwa-standalone) .shopping-topnav { display:none; }
 @media(max-width:780px) {
  .shopping-product-page.is-japam-style-pdp { --h5-font-size:clamp(20px,5.3vw,24px); }
 }
-.breeze-checkout-control { width: 100%; min-width: 0; }
-.breeze-checkout-control breeze-button { display: block; width: 100%; }
-.breeze-checkout-control.is-attempting breeze-button { pointer-events: none; opacity: .78; }
-.breeze-checkout-status { display: block; margin-top: 5px; color: var(--muted, #687064); font-size: 11px; text-align: center; }
 
 @media(max-width:780px) {
  .shopping-product-page.is-japam-style-pdp .shopping-pdp-inline-purchase { grid-template-columns:minmax(88px,min(112px,32vw)) minmax(120px,min(168px,48vw)); justify-content:start; width:fit-content; max-width:100%; gap:8px; }
@@ -2323,7 +2320,6 @@ html:not(.pwa-standalone) .shopping-topnav { display:none; }
 .shopping-shell .shopping-product-offers > article > span { color: var(--cb-primary); background: #f6e9e5; }
 .shopping-shell .shopping-tile-purchase-row.has-options-cta .shopping-add { border-color: var(--cb-primary); color: #fff; background: var(--cb-primary); }
 .shopping-shell .shopping-skeleton { border-color: var(--cb-border); background: linear-gradient(110deg,#f3eadb 25%,#fffaf0 45%,#f3eadb 65%); background-size:250% 100%; }
-.shopping-shell .breeze-checkout-status { color: var(--muted); }
 .shopping-shell .shopping-install-sheet { --shop-accent: var(--cb-primary); --shop-gold: var(--cb-gold); --ink: var(--cb-text-primary); --ink-soft: #59473d; --muted: #806f64; --cream: var(--cb-background); --paper: var(--cb-surface); --line: var(--cb-border); }
 .shopping-shell .shopping-modal-backdrop.shopping-variant-backdrop { --shop-accent: var(--cb-primary); --shop-gold: var(--cb-gold); --ink: var(--cb-text-primary); --ink-soft: #59473d; --muted: #806f64; --cream: var(--cb-background); --paper: var(--cb-surface); --line: var(--cb-border); }
 

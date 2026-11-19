@@ -10,7 +10,6 @@
   "safeguards": {
     "previewDefaultChanged": false,
     "checkoutEnabled": false,
-    "juspayTouched": false,
     "published": false,
     "shopifyAdminOrCatalogModified": false,
     "checkoutOrOrderAttempted": false,

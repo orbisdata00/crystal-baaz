@@ -36,7 +36,6 @@ The first three values must match Shopify's Customer Account API settings exactl
 
 ## Payment-provider readiness
 
-This workspace has no Shopify Admin connection, so payment-provider status, test mode, shipping zones, tax setup, policies and actual checkout accessibility could not be inspected. Juspay support/activation for this specific Shopify store is also unverified. Shopify's merchant documentation places provider activation in Shopify Admin and makes provider availability dependent on the merchant's market and provider eligibility. Juspay's public gateway onboarding material does not establish that this store has an approved Shopify integration. No separate Juspay browser payment flow was added.
 
 ## Verification boundary
 
@@ -51,4 +50,3 @@ This workspace has no Shopify Admin connection, so payment-provider status, test
 - [Shopify Customer Account API address mutations](https://shopify.dev/docs/api/customer/latest/objects/Mutation)
 - [Shopify cart and checkout URL guide](https://shopify.dev/docs/storefronts/headless/building-with-the-storefront-api/cart/manage)
 - [Shopify third-party payment provider setup](https://help.shopify.com/en/manual/payments/third-party-providers)
-- [Juspay gateway onboarding](https://juspay.io/in/docs/payment-gateway-integrations/docs/gateway-onboarding-guide/get-started)

@@ -284,55 +284,31 @@ export async function fetchShopifyCart(cartId) {
   return data.cart || null;
 }
 
-const BREEZE_CART_LINE_FIELDS = `
+const COMPLETE_CART_LINE_FIELDS = `
   nodes {
     id quantity attributes { key value }
     cost {
       amountPerQuantity { amount currencyCode }
-      compareAtAmountPerQuantity { amount currencyCode }
       subtotalAmount { amount currencyCode }
       totalAmount { amount currencyCode }
     }
-    discountAllocations(lineLevelOnly: false) { discountedAmount { amount currencyCode } }
     merchandise {
-      ... on ProductVariant {
-        id title sku weight weightUnit availableForSale requiresShipping
-        selectedOptions { name value }
-        image { url altText }
-        price { amount currencyCode }
-        compareAtPrice { amount currencyCode }
-        product {
-          id title handle description isGiftCard productType vendor onlineStoreUrl
-          featuredImage { url altText }
-        }
-      }
+      ... on ProductVariant { id availableForSale product { id } }
     }
   }
   pageInfo { hasNextPage endCursor }
 `;
 
-/** Fetches every current Shopify cart line with the confirmed headless payload fields for Breeze. */
+/** Fetches every current Shopify cart line for verified checkout preparation. */
 export async function fetchCompleteShopifyCart(cartId, { request = storefrontRequest } = {}) {
   if ((!configured() && request === storefrontRequest) || !cartId) return null;
   if (typeof cartId !== "string" || !cartId.startsWith("gid://shopify/Cart/")) throw new Error("A confirmed Shopify cart is required.");
-  const gql = `query CrystalBazzBreezeCart($id: ID!, $after: String) {
+  const gql = `query CrystalBazzCompleteCart($id: ID!, $after: String) {
     cart(id: $id) {
-      id updatedAt checkoutUrl note totalQuantity attributes { key value }
-      buyerIdentity { countryCode email phone }
+      id updatedAt note totalQuantity attributes { key value }
       discountCodes { code applicable }
-      discountApplications {
-        __typename targetType allocationMethod targetSelection totalAllocatedAmount { amount currencyCode }
-        ... on CartCodeDiscountApplication { code }
-        ... on CartAutomaticDiscountApplication { title }
-        ... on CartCustomDiscountApplication { title }
-      }
-      cost {
-        subtotalAmount { amount currencyCode }
-        totalAmount { amount currencyCode }
-        totalDutyAmount { amount currencyCode }
-        totalTaxAmount { amount currencyCode }
-      }
-      lines(first: 100, after: $after) { ${BREEZE_CART_LINE_FIELDS} }
+      cost { subtotalAmount { amount currencyCode } totalAmount { amount currencyCode } }
+      lines(first: 100, after: $after) { ${COMPLETE_CART_LINE_FIELDS} }
     }
   }`;
   let after = null;
@@ -351,7 +327,6 @@ export async function fetchCompleteShopifyCart(cartId, { request = storefrontReq
     after = pageInfo.endCursor;
   } while (true);
   if (!cart) return null;
-  // totalQuantity counts units; the connection contains distinct cart lines.
   const totalUnits = lines.reduce((sum, line) => sum + line.quantity, 0);
   if (totalUnits !== cart.totalQuantity) throw new Error("The Shopify cart is incomplete.");
   return { ...cart, lines: { nodes: lines, pageInfo: { hasNextPage: false, endCursor: null } } };

@@ -30,9 +30,7 @@ The discovery page uses only workbook collection memberships and product-title m
 
 ## Shopify and payments
 
-`src/config.js` intentionally contains no store domain or Storefront API token. When supplied, configure only the merchant’s public Storefront API access token there. The Storefront adapter uses Shopify API version `2026-10`; it does not contain an Admin API token or write catalog data to Shopify.
-
-Juspay setup is not included because merchant, Shopify, region, and payment compatibility details have not been provided. Checkout remains disabled in the private preview; no live payments or orders can be created from it.
+`src/config.js` intentionally contains no store domain or Storefront API token. When supplied, configure only the merchant’s public Storefront API access token there. The Storefront adapter uses Shopify API version `2026-10`; it does not contain an Admin API token or write catalog data to Shopify. Checkout remains disabled in the private preview; no live payments or orders can be created from it.
 
 ## Local development
 

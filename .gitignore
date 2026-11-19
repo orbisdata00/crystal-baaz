@@ -4,3 +4,7 @@ node_modules/
 .env
 .env.*
 !.env.example
+/backend/.env
+/backend/.local-checkout-store.json
+/backend/.local-checkout-store.json.*.tmp
+!/backend/.env.example
