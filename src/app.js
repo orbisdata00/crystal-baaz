@@ -22,6 +22,7 @@ import { shopifyConfig } from "./config.js";
 import { canStartCheckout } from "./checkout-coordinator.js";
 import { mapShopifyCartToRazorpayMagic } from "./razorpay-magic-cart.js";
 import { startRazorpayMagicCheckout } from "./razorpay-magic-checkout.js";
+import { saveRazorpayTestOrderAccess } from "./razorpay-test-orders.js";
 
 const html = htm.bind(React.createElement);
 // Keep the compact category rail in the installed PWA, but omit it in browser tabs.
@@ -1197,7 +1198,8 @@ function StoreApp() {
         const { startRazorpayStandardTestCheckout } = await import("./razorpay-standard-test.js");
         const result = await startRazorpayStandardTestCheckout({ backendUrl: shopifyConfig.razorpayTest.backendUrl, shopifyCartId: shopifyCart.id });
         if (result.cancelled) { setToast("Test checkout closed. Your cart is unchanged."); return; }
-        setRazorpayTestConfirmation(result);
+        saveRazorpayTestOrderAccess(result);
+        navigate(`#order-success/${encodeURIComponent(result.reference)}`);
       } catch (error) { setToast(error?.message || "Test payment could not be verified. Your cart remains unchanged."); }
       finally { setCheckoutBusy(false); }
       return;
@@ -1336,7 +1338,8 @@ function StoreApp() {
   const sortProducts = value => { setSort(value); setPageSize(24); updateViewOption("sort", value); };
   const pageContent = () => {
     if (route.page === "cart" && razorpayOrderConfirmation) return html`<${RazorpayOrderConfirmation} order=${razorpayOrderConfirmation} onContinueShopping=${() => { setRazorpayOrderConfirmation(null); navigate("#home"); }}/>`;
-    if (route.page === "cart" && razorpayTestConfirmation) return html`<${RazorpayTestConfirmation} payment=${razorpayTestConfirmation} onReturnToCart=${() => setRazorpayTestConfirmation(null)}/>`;
+    if (route.page === "order-success" && shopifyConfig.razorpayTest.enabled) return html`<${RazorpayTestConfirmation} reference=${route.reference} backendUrl=${shopifyConfig.razorpayTest.backendUrl} onNavigate=${navigate}/>`;
+    if (route.page === "test-orders" && shopifyConfig.razorpayTest.enabled) return html`<${RazorpayTestConfirmation} history=${true} backendUrl=${shopifyConfig.razorpayTest.backendUrl} onNavigate=${navigate}/>`;
     if (["home", "cart"].includes(route.page)) return html`<${ShoppingHome} catalog=${catalog} collectionImages=${shopifyCollectionImages} ...${shared} ...${dataState}/>`;
     if (route.page === "account") return html`<${ShoppingHome} catalog=${catalog} collectionImages=${shopifyCollectionImages} ...${shared} ...${dataState}/>`;
     if (route.page === "shared-cart") return html`<${ShoppingSharedCart} items=${sharedCartData.items} loading=${sharedCartData.loading} error=${sharedCartData.error} cartCount=${cartCount} cartSyncing=${cartSyncing} cartError=${cartError} onRetryVerification=${retryCatalog} onRetryCart=${cartState.retry} onAddItems=${addSharedItems} onNavigate=${navigate} onOpenProduct=${openSharedProduct}/>`;

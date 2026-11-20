@@ -16,6 +16,7 @@ export function parseRoute(hash = "") {
     return variantId ? { page, handle: value, variantId } : { page, handle: value };
   }
   if (page === "shared-cart") return { page, items: params.get("items") || "" };
+  if (page === "order-success") return { page, reference: value };
   if (page === "collection") return { page, handle: value, ...viewOptions };
   if (page === "discovery") return { page, id: value, ...viewOptions };
   if (page === "group") return { page, id: value, ...viewOptions };
@@ -23,6 +24,6 @@ export function parseRoute(hash = "") {
   if (page === "zodiac") return { page, sign: value, ...viewOptions };
   if (page === "crystals") return { page, handle: value };
   if (page === "search") return { page, query: value, ...viewOptions };
-  if (["wishlist", "cart", "account", "orders", "faq", "about", "contact", "policies", "copilot"].includes(page)) return { page };
+  if (["wishlist", "cart", "account", "orders", "test-orders", "faq", "about", "contact", "policies", "copilot"].includes(page)) return { page };
   return { page: "home" };
 }

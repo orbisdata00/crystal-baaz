@@ -28,7 +28,7 @@ export async function startRazorpayStandardTestCheckout({ backendUrl, shopifyCar
   if (!backendUrl || !shopifyCartId || typeof fetchImpl !== "function") throw new Error("Local Razorpay test checkout configuration is incomplete.");
   const Razorpay = await sdkLoader({ windowRef });
   const order = await postJson(backendUrl, "/api/razorpay/test/create-order", { shopifyCartId }, fetchImpl);
-  if (!/^rzp_test_/.test(order?.keyId || "") || !/^order_[A-Za-z0-9]+$/.test(order?.id || "") || !Number.isSafeInteger(order.amount) || order.amount < 100 || order.currency !== "INR") throw new Error("Local Razorpay test order response is invalid.");
+  if (!/^rzp_test_/.test(order?.keyId || "") || !/^order_[A-Za-z0-9]+$/.test(order?.id || "") || !/^CBT-[\da-f-]{36}$/i.test(order?.reference || "") || !Number.isSafeInteger(order.amount) || order.amount < 100 || order.currency !== "INR") throw new Error("Local Razorpay test order response is invalid.");
   return new Promise((resolve, reject) => {
     let finished = false;
     const instance = new Razorpay({
@@ -39,7 +39,7 @@ export async function startRazorpayStandardTestCheckout({ backendUrl, shopifyCar
         finished = true;
         try {
           const result = await postJson(backendUrl, "/api/razorpay/test/verify-payment", response, fetchImpl);
-          if (result?.verified !== true || result.mode !== "test" || result.shopifyOrderCreated !== false || result.status !== "captured") throw new Error("Razorpay has not confirmed this test payment.");
+          if (result?.verified !== true || result.mode !== "test" || result.shopifyOrderCreated !== false || result.status !== "captured" || result.reference !== order.reference || !/^[a-f\d]{64}$/i.test(result.accessToken || "")) throw new Error("Razorpay has not confirmed this test payment.");
           resolve(result);
         } catch (error) { reject(error); }
       },

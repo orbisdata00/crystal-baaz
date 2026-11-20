@@ -82,6 +82,7 @@ export function createLocalRazorpayStore(filePath) {
     }),
     saveStandardTestOrder: order => transaction(state => { state.standardTestOrders[order.id] = order; return true; }),
     getStandardTestOrder: orderId => lookup(state => state.standardTestOrders[orderId]),
+    getStandardTestOrderByReference: reference => lookup(state => Object.values(state.standardTestOrders).find(order => order.reference === reference)),
     saveStandardTestVerification: (orderId, result) => transaction(state => {
       if (!state.standardTestOrders[orderId]) throw new Error("Test order was not found.");
       state.standardTestOrders[orderId] = { ...state.standardTestOrders[orderId], ...result };

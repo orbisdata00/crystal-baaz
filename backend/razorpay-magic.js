@@ -31,7 +31,7 @@ export function createShopifyMagicCartFetcher({ storeDomain, storefrontToken, ap
         lines(first: 100, after: $after) {
           nodes { id quantity attributes { key value }
             cost { amountPerQuantity { amount currencyCode } subtotalAmount { amount currencyCode } totalAmount { amount currencyCode } }
-            merchandise { ... on ProductVariant { id availableForSale product { id } } }
+            merchandise { ... on ProductVariant { id title availableForSale image { url altText } product { id title } } }
           }
           pageInfo { hasNextPage endCursor }
         }

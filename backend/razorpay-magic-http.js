@@ -10,7 +10,7 @@ export function createRazorpayMagicHttpHandler({ backend, standardTestBackend = 
     const route = new URL(request.url, allowedOrigin).pathname;
     const isWebhook = route === "/api/razorpay/magic/webhook";
     const isHealthCheck = route === "/health" && request.method === "GET";
-    if (!isWebhook && !isHealthCheck && ((origin && origin !== allowedOrigin) || (!origin && !localHttpOrigin))) { response.writeHead(403, { "Cache-Control": "no-store" }); response.end(); return; }
+    if (!isWebhook && ((origin && origin !== allowedOrigin) || (!isHealthCheck && !origin && !localHttpOrigin))) { response.writeHead(403, { "Cache-Control": "no-store" }); response.end(); return; }
     if (!isWebhook && origin === allowedOrigin) {
       response.setHeader("Access-Control-Allow-Origin", allowedOrigin);
       response.setHeader("Vary", "Origin");
@@ -27,7 +27,7 @@ export function createRazorpayMagicHttpHandler({ backend, standardTestBackend = 
       response.end(); return;
     }
     if (request.method !== "POST") { response.writeHead(405); response.end(JSON.stringify({ message: "Method not allowed." })); return; }
-    const standardTestRoute = new Set(["/api/razorpay/test/create-order", "/api/razorpay/test/verify-payment"]).has(route);
+    const standardTestRoute = new Set(["/api/razorpay/test/create-order", "/api/razorpay/test/verify-payment", "/api/razorpay/test/get-order"]).has(route);
     if (!standardTestRoute && !new Set(["/api/razorpay/magic/prepare", "/api/razorpay/magic/complete", "/api/razorpay/magic/webhook"]).has(route)) { response.writeHead(404); response.end(JSON.stringify({ message: "Not found." })); return; }
     if (standardTestRoute && !standardTestBackend) { response.writeHead(404); response.end(JSON.stringify({ message: "Not found." })); return; }
     try {
@@ -48,7 +48,7 @@ export function createRazorpayMagicHttpHandler({ backend, standardTestBackend = 
         const body = JSON.parse(raw || "{}");
         if (standardTestRoute) result = route.endsWith("create-order")
           ? await standardTestBackend.createOrder({ shopifyCartId: body.shopifyCartId })
-          : await standardTestBackend.verifyPayment(body);
+          : route.endsWith("get-order") ? await standardTestBackend.getOrder(body) : await standardTestBackend.verifyPayment(body);
         else result = route.endsWith("/prepare")
           ? await backend.prepareCheckout({ shopifyCartId: body.shopifyCartId })
           : await backend.completeCheckout(body);
