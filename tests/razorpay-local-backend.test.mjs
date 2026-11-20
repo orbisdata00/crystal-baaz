@@ -48,6 +48,14 @@ test("HTTP health checks support hosting probes without relaxing checkout origin
     const blocked = await invoke(handler, { method: "POST", url: "/api/razorpay/magic/prepare", headers: { origin: "https://other.example.com" } });
     assert.equal(blocked.status, 403);
     assert.equal(blocked.headers["access-control-allow-origin"], undefined);
+    const blockedHealthPost = await invoke(handler, { method: "POST", url: "/health", headers: { origin: "https://other.example.com" } });
+    assert.equal(blockedHealthPost.status, 403);
+    const blockedStandardCheckout = await invoke(handler, { method: "POST", url: "/api/razorpay/test/create-order", headers: { origin: "https://other.example.com" } });
+    assert.equal(blockedStandardCheckout.status, 403);
+    if (allowedOrigin.startsWith("https://")) {
+      const noOriginCheckout = await invoke(handler, { method: "POST", url: "/api/razorpay/magic/prepare" });
+      assert.equal(noOriginCheckout.status, 403);
+    }
     assert.equal(called, false);
   }
 });

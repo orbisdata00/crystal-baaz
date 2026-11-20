@@ -10,14 +10,14 @@ export function createRazorpayMagicHttpHandler({ backend, standardTestBackend = 
     const route = new URL(request.url, allowedOrigin).pathname;
     const isWebhook = route === "/api/razorpay/magic/webhook";
     const isHealthCheck = route === "/health" && request.method === "GET";
-    if (!isWebhook && ((origin && origin !== allowedOrigin) || (!isHealthCheck && !origin && !localHttpOrigin))) { response.writeHead(403, { "Cache-Control": "no-store" }); response.end(); return; }
+    if (!isWebhook && !isHealthCheck && ((origin && origin !== allowedOrigin) || (!origin && !localHttpOrigin))) { response.writeHead(403, { "Cache-Control": "no-store" }); response.end(); return; }
     if (!isWebhook && origin === allowedOrigin) {
       response.setHeader("Access-Control-Allow-Origin", allowedOrigin);
       response.setHeader("Vary", "Origin");
     }
     response.setHeader("Cache-Control", "no-store");
     response.setHeader("Content-Type", "application/json; charset=utf-8");
-    if (route === "/health" && request.method === "GET") {
+    if (isHealthCheck) {
       response.writeHead(200);
       response.end(JSON.stringify({ ok: true, service: "crystal-baaz-razorpay-local" }));
       return;
