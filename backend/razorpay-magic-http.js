@@ -9,7 +9,8 @@ export function createRazorpayMagicHttpHandler({ backend, standardTestBackend = 
     const origin = request.headers.origin;
     const route = new URL(request.url, allowedOrigin).pathname;
     const isWebhook = route === "/api/razorpay/magic/webhook";
-    if (!isWebhook && ((origin && origin !== allowedOrigin) || (!origin && !localHttpOrigin))) { response.writeHead(403, { "Cache-Control": "no-store" }); response.end(); return; }
+    const isHealthCheck = route === "/health" && request.method === "GET";
+    if (!isWebhook && !isHealthCheck && ((origin && origin !== allowedOrigin) || (!origin && !localHttpOrigin))) { response.writeHead(403, { "Cache-Control": "no-store" }); response.end(); return; }
     if (!isWebhook && origin === allowedOrigin) {
       response.setHeader("Access-Control-Allow-Origin", allowedOrigin);
       response.setHeader("Vary", "Origin");

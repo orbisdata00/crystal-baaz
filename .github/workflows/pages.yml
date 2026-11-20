@@ -24,6 +24,7 @@ jobs:
       VITE_SHOPIFY_CUSTOMER_ACCOUNT_LOGOUT_URI: 'https://orbisdata00.github.io/crystal-baaz/'
       VITE_PUBLIC_SITE_URL: 'https://orbisdata00.github.io/crystal-baaz/'
       VITE_CHECKOUT_PROVIDER: ${{ vars.VITE_CHECKOUT_PROVIDER || 'disabled' }}
+      VITE_RAZORPAY_TEST_CHECKOUT_ENABLED: ${{ vars.VITE_RAZORPAY_TEST_CHECKOUT_ENABLED || 'false' }}
       VITE_RAZORPAY_MAGIC_ENABLED: 'false'
     steps:
       - uses: actions/checkout@v6
@@ -46,6 +47,9 @@ jobs:
           VITE_SHOPIFY_API_VERSION: ${{ vars.VITE_SHOPIFY_API_VERSION || '2026-10' }}
           VITE_SHOPIFY_CHECKOUT_ENABLED: ${{ vars.VITE_SHOPIFY_CHECKOUT_ENABLED || 'false' }}
           VITE_CHECKOUT_PROVIDER: ${{ vars.VITE_CHECKOUT_PROVIDER || 'disabled' }}
+          VITE_RAZORPAY_TEST_CHECKOUT_ENABLED: ${{ vars.VITE_RAZORPAY_TEST_CHECKOUT_ENABLED || 'false' }}
+          VITE_RAZORPAY_KEY_ID: ${{ vars.VITE_RAZORPAY_KEY_ID || '' }}
+          VITE_RAZORPAY_BACKEND_URL: ${{ vars.VITE_RAZORPAY_BACKEND_URL || '' }}
           VITE_RAZORPAY_MAGIC_ENABLED: 'false'
       - uses: actions/upload-pages-artifact@v3
         if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'

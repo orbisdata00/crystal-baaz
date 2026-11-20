@@ -21,7 +21,7 @@ export const shopifyConfig = {
   checkoutProvider: resolveCheckoutProvider({
     requested: env.VITE_CHECKOUT_PROVIDER,
     shopifyEnabled: env.VITE_SHOPIFY_CHECKOUT_ENABLED === "true",
-    allowTestProvider: env.DEV === true,
+    allowTestProvider: env.DEV === true || (env.VITE_RAZORPAY_TEST_CHECKOUT_ENABLED === "true" && /^rzp_test_/.test(env.VITE_RAZORPAY_KEY_ID || "") && /^https:\/\//i.test(env.VITE_RAZORPAY_BACKEND_URL || "")),
   }),
   razorpayMagic: {
     enabled: env.VITE_RAZORPAY_MAGIC_ENABLED === "true",
@@ -29,7 +29,7 @@ export const shopifyConfig = {
     backendUrl: env.VITE_RAZORPAY_BACKEND_URL || "",
   },
   razorpayTest: {
-    enabled: env.DEV === true && env.VITE_CHECKOUT_PROVIDER === "razorpay_test" && /^rzp_test_/.test(env.VITE_RAZORPAY_KEY_ID || ""),
+    enabled: (env.DEV === true || env.VITE_RAZORPAY_TEST_CHECKOUT_ENABLED === "true") && env.VITE_CHECKOUT_PROVIDER === "razorpay_test" && /^rzp_test_/.test(env.VITE_RAZORPAY_KEY_ID || "") && Boolean(env.DEV === true ? env.VITE_RAZORPAY_BACKEND_URL : /^https:\/\//i.test(env.VITE_RAZORPAY_BACKEND_URL || "")),
     keyId: env.VITE_RAZORPAY_KEY_ID || "",
     backendUrl: env.VITE_RAZORPAY_BACKEND_URL || "",
   },

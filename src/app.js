@@ -1189,11 +1189,11 @@ function StoreApp() {
       return;
     }
     if (shopifyConfig.checkoutProvider.provider === "razorpay_test") {
-      if (!shopifyConfig.razorpayTest.enabled || !shopifyConfig.razorpayTest.backendUrl || !/^rzp_test_/.test(shopifyConfig.razorpayTest.keyId)) { setToast("Razorpay test checkout is available only in development with a test key and local backend."); return; }
+      if (!shopifyConfig.razorpayTest.enabled || !shopifyConfig.razorpayTest.backendUrl || !/^rzp_test_/.test(shopifyConfig.razorpayTest.keyId)) { setToast("Razorpay test checkout is not configured. Check the test key and public backend URL."); return; }
       if (!shopifyCart?.id || cartSyncing || cartError || checkoutBusy) { setToast("Confirm your current cart before test checkout."); return; }
       setCheckoutBusy(true); setToast("");
       try {
-        if (!import.meta.env.DEV) throw new Error("Razorpay test checkout is disabled outside development.");
+        if (!shopifyConfig.razorpayTest.enabled) throw new Error("Razorpay test checkout is disabled for this build.");
         const { startRazorpayStandardTestCheckout } = await import("./razorpay-standard-test.js");
         const result = await startRazorpayStandardTestCheckout({ backendUrl: shopifyConfig.razorpayTest.backendUrl, shopifyCartId: shopifyCart.id });
         if (result.cancelled) { setToast("Test checkout closed. Your cart is unchanged."); return; }
