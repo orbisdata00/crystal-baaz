@@ -30,16 +30,26 @@ test("local checkout store persists sessions and serializes idempotency claims",
   } finally { await rm(dir, { recursive: true, force: true }); }
 });
 
-test("local HTTP health check supports the Vite origin and rejects another origin", async () => {
-  const handler = createRazorpayMagicHttpHandler({ backend: {}, allowedOrigin: "http://localhost:5173" });
-  const healthy = await invoke(handler, { url: "/health", headers: { origin: "http://localhost:5173" } });
-  assert.equal(healthy.status, 200);
-  assert.equal(healthy.headers["access-control-allow-origin"], "http://localhost:5173");
-  assert.equal(healthy.body.ok, true);
-  const blocked = await invoke(handler, { url: "/health", headers: { origin: "http://localhost:5174" } });
-  assert.equal(blocked.status, 403);
-  const localProbe = await invoke(handler, { url: "/health" });
-  assert.equal(localProbe.status, 200);
+test("HTTP health checks support hosting probes without relaxing checkout origin restrictions", async () => {
+  for (const allowedOrigin of ["http://localhost:5173", "https://example.com"]) {
+    let called = false;
+    const handler = createRazorpayMagicHttpHandler({ backend: { prepareCheckout: () => { called = true; } }, allowedOrigin });
+    const healthy = await invoke(handler, { url: "/health", headers: { origin: allowedOrigin } });
+    assert.equal(healthy.status, 200);
+    assert.equal(healthy.headers["access-control-allow-origin"], allowedOrigin);
+    assert.equal(healthy.body.ok, true);
+    const crossOrigin = await invoke(handler, { url: "/health", headers: { origin: "https://other.example.com" } });
+    assert.equal(crossOrigin.status, 200);
+    assert.equal(crossOrigin.body.ok, true);
+    assert.equal(crossOrigin.headers["access-control-allow-origin"], undefined);
+    const probe = await invoke(handler, { url: "/health" });
+    assert.equal(probe.status, 200);
+    assert.equal(probe.body.ok, true);
+    const blocked = await invoke(handler, { method: "POST", url: "/api/razorpay/magic/prepare", headers: { origin: "https://other.example.com" } });
+    assert.equal(blocked.status, 403);
+    assert.equal(blocked.headers["access-control-allow-origin"], undefined);
+    assert.equal(called, false);
+  }
 });
 
 test("disabled merchant authorization fails closed without contacting Razorpay", async () => {
