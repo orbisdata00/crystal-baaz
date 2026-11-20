@@ -264,6 +264,73 @@
 .shopping-information p { max-width:600px; margin:0 0 22px; color:var(--muted); font-size:13px; line-height:1.6; }
 .shopping-information>div { display:flex; flex-wrap:wrap; align-items:center; gap:20px; }
 
+/* Razorpay Standard test payment confirmation and browser-local test history. */
+.test-order-page { max-width:920px; min-height:56vh; padding-block:clamp(28px,5vw,64px); }
+.test-order-page-heading { margin-bottom:24px; }
+.test-order-page-heading h1 { margin:12px 0 7px; color:#35251f; font-size:clamp(25px,3.4vw,38px); line-height:1.12; letter-spacing:-.7px; }
+.test-order-page-heading p { max-width:620px; margin:0; color:#75665d; font-size:14px; line-height:1.6; }
+.test-order-list { display:grid; gap:18px; }
+.test-order-card { overflow:hidden; border:1px solid #eadfce; border-radius:18px; background:#fff; box-shadow:0 12px 34px #411a160d; }
+.test-order-card-heading { display:flex; align-items:center; justify-content:space-between; gap:18px; padding:22px 24px; border-bottom:1px solid #f0e9df; }
+.test-order-card-heading>div { display:flex; align-items:center; gap:13px; min-width:0; }
+.test-order-check { display:grid; width:42px; height:42px; flex:0 0 42px; place-items:center; border-radius:50%; color:#246b47; background:#e7f4eb; font-size:24px; font-weight:800; }
+.test-order-eyebrow { color:#8a6b39; font-size:10px; font-weight:750; letter-spacing:1px; }
+.test-order-card-heading h2 { margin:4px 0 0; color:#33251f; font-size:20px; line-height:1.25; }
+.test-order-card-heading>strong { flex:0 0 auto; color:#651d27; font-size:clamp(20px,3vw,28px); }
+.test-order-notice { display:flex; align-items:flex-start; gap:10px; margin:18px 22px 0; padding:13px 15px; border:1px solid #f1dfb8; border-radius:11px; color:#604a2e; background:#fff9eb; }
+.test-order-notice>span { flex:0 0 auto; font-size:18px; line-height:1.2; }
+.test-order-notice p { max-width:none; margin:0; color:inherit; font-size:12px; line-height:1.55; }
+.test-order-items { padding:22px 24px 12px; }
+.test-order-items h3 { margin:0 0 12px; color:#382b25; font-size:15px; }
+.test-order-item { display:grid; grid-template-columns:58px minmax(0,1fr) auto; align-items:center; gap:13px; padding:12px 0; border-top:1px solid #f1ece5; }
+.test-order-item img,.test-order-item-placeholder { display:grid; width:58px; height:58px; place-items:center; border:1px solid #f0e9df; border-radius:10px; background:#fbf8f3; object-fit:contain; }
+.test-order-item-placeholder { color:#a47a35; font-size:24px; }
+.test-order-item>div { display:grid; min-width:0; gap:4px; }
+.test-order-item>div strong { overflow:hidden; color:#392c27; font-size:13px; text-overflow:ellipsis; }
+.test-order-item small { color:#82746b; font-size:11px; }
+.test-order-item-price { color:#3a2c26; font-size:13px; font-weight:700; }
+.test-order-summary { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; margin:0 24px; padding:17px 0; border-top:1px solid #eee7dd; }
+.test-order-summary>div { display:grid; align-content:start; gap:5px; min-width:0; }
+.test-order-summary span { color:#83766d; font-size:10px; }
+.test-order-summary strong { overflow-wrap:anywhere; color:#382b25; font-size:12px; }
+.test-order-summary .test-order-captured { color:#26714c; text-transform:capitalize; }
+.test-order-technical { margin:0 24px 20px; border-top:1px solid #eee7dd; color:#70635b; }
+.test-order-technical summary { width:max-content; padding:13px 0 0; cursor:pointer; font-size:11px; font-weight:650; }
+.test-order-technical dl { display:grid; gap:8px; margin:12px 0 0; }
+.test-order-technical dl>div { display:grid; grid-template-columns:minmax(130px,.35fr) minmax(0,1fr); gap:12px; font-size:11px; }
+.test-order-technical dt { color:#82746b; }
+.test-order-technical dd { margin:0; overflow-wrap:anywhere; color:#493b34; }
+.test-order-state { display:grid; min-height:160px; align-content:center; justify-items:center; gap:8px; padding:24px; border:1px solid #eadfce; border-radius:16px; background:#fff; text-align:center; }
+.test-order-state p { max-width:520px; margin:0; color:#75665d; font-size:13px; line-height:1.55; }
+.test-order-error { border-color:#e7c9c6; background:#fffafa; }
+.test-order-error strong { color:#8f2830; }
+.test-order-spinner { width:22px; height:22px; border:2px solid #eadfce; border-top-color:#651d27; border-radius:50%; animation:shopping-spin .7s linear infinite; }
+.test-order-page-footer { display:grid; gap:16px; margin-top:20px; }
+.test-order-page-footer>p { max-width:720px; margin:0; color:#83766d; font-size:11px; line-height:1.6; }
+.test-order-page-footer>div { display:flex; flex-wrap:wrap; align-items:center; gap:10px 18px; }
+.test-order-page-footer .shopping-text-button { padding:8px 0; border:0; color:var(--shop-accent); background:transparent; font-size:12px; font-weight:650; }
+@media(max-width:600px) {
+ .test-order-page { width:100%; min-height:55vh; padding:24px 14px 30px; }
+ .test-order-page-heading { margin-bottom:17px; }
+ .test-order-page-heading h1 { font-size:25px; }
+ .test-order-card { border-radius:14px; }
+ .test-order-card-heading { padding:16px; }
+ .test-order-check { width:36px; height:36px; flex-basis:36px; font-size:21px; }
+ .test-order-eyebrow { font-size:8px; letter-spacing:.7px; }
+ .test-order-card-heading h2 { font-size:17px; }
+ .test-order-notice { margin:13px 13px 0; padding:11px; }
+ .test-order-items { padding:18px 14px 8px; }
+ .test-order-item { grid-template-columns:48px minmax(0,1fr) auto; gap:10px; }
+ .test-order-item img,.test-order-item-placeholder { width:48px; height:48px; }
+ .test-order-item>div strong { font-size:12px; }
+ .test-order-item-price { font-size:12px; }
+ .test-order-summary { grid-template-columns:repeat(2,minmax(0,1fr)); margin-inline:14px; }
+ .test-order-summary>div:last-child { grid-column:1/-1; }
+ .test-order-technical { margin-inline:14px; }
+ .test-order-page-footer>div { align-items:stretch; flex-direction:column; }
+ .test-order-page-footer>div .shopping-primary,.test-order-page-footer>div .shopping-text-button { width:100%; }
+}
+
 /* The mobile controls share one route-aware layout. */
 body { background:#fff; }
 .shopping-shell { --serif:var(--sans); }
